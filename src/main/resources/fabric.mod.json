@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "ether-dim",
+  "version": "${version}",
+  "name": "Ether Dimension",
+  "description": "This is an example description! Tell everyone what your mod is about!",
+  "authors": [
+    "RoboSky"
+  ],
+  "languageAdapter": "net.fabricmc.language.scala.ScalaLanguageAdapter",
+  "license": "EPL",
+  "icon": "assets/modid/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "robosky.ether.EtherMod"
+    ]
+  },
+  "mixins": [
+    "ether-dim.mixins.json"
+  ],
+  "requires": {
+    "fabricloader": ">=0.4.0",
+    "fabric": "*",
+    "fabric-language-scala": "*"
+  }
+}
