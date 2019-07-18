@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import robosky.ether.world.WorldRegistry;
+import robosky.ether.MixinHack;
 
 import java.util.HashSet;
 
@@ -31,7 +31,7 @@ public class ChangeDimensionMixin {
 
         // going or coming from our custom dimension
         // regardless, we get the top position at 0,0 and set the player there
-        if (toDimension == WorldRegistry.ETHER_DIMENSION() || previousDimension == WorldRegistry.ETHER_DIMENSION()) {
+        if (toDimension == MixinHack.ETHER_DIMTYPE || previousDimension == MixinHack.ETHER_DIMTYPE) {
             BlockPos pos = etherdimension_getTopPos(world, entity.getBlockPos());
 
             if (entity instanceof ServerPlayerEntity) {

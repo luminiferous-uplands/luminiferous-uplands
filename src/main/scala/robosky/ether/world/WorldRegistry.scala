@@ -7,8 +7,8 @@ import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.World
 import net.minecraft.world.biome.source.BiomeSource
-import net.minecraft.world.dimension.DimensionType
 import net.minecraft.world.gen.chunk.{ChunkGenerator, ChunkGeneratorConfig}
+import robosky.ether.MixinHack
 import robosky.ether.world.gen.{EtherChunkGenConfig, EtherChunkGenerator}
 
 object WorldRegistry {
@@ -25,6 +25,9 @@ object WorldRegistry {
     Registry.register[FabricChunkGeneratorType[C, T]](Registry.CHUNK_GENERATOR_TYPE, id,
       new FabricChunkGeneratorType[C, T](factory, appearsOnBuffet, supplier))
 
-  private def registerDimensionType(dimType: FabricDimensionType) =
-    Registry.register[FabricDimensionType](Registry.DIMENSION, dimType.getNumericalID, dimType.getIdentifier.toString, dimType)
+  private def registerDimensionType(dimType: FabricDimensionType) = {
+    val t = Registry.register[FabricDimensionType](Registry.DIMENSION, dimType.getNumericalID, dimType.getIdentifier.toString, dimType)
+    MixinHack.ETHER_DIMTYPE = t
+    t
+  }
 }
