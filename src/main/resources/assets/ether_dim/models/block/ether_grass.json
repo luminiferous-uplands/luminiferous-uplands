@@ -1,0 +1,9 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "particle": "ether_dim:block/ether_dirt",
+    "bottom": "ether_dim:block/ether_dirt",
+    "top": "ether_dim:block/ether_grass_top",
+    "side": "ether_dim:block/ether_grass_side"
+  }
+}

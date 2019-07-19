@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "ether-dim",
+  "id": "ether_dim",
   "version": "${version}",
   "name": "Ether Dimension",
   "description": "This is an example description! Tell everyone what your mod is about!",
@@ -19,7 +19,7 @@
     ]
   },
   "mixins": [
-    "ether-dim.mixins.json"
+    "ether_dim.mixins.json"
   ],
   "requires": {
     "fabricloader": ">=0.4.0",

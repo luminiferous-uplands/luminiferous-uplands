@@ -6,13 +6,15 @@ import net.minecraft.world.World
 import net.minecraft.world.biome.source.BiomeSourceType
 import net.minecraft.world.dimension.{Dimension, DimensionType}
 import net.minecraft.world.gen.chunk.ChunkGenerator
-import robosky.ether.world.gen.{BiomeEtherHighlands, EtherChunkGenerator}
+import robosky.ether.world.biome.BiomeRegistry
+import robosky.ether.world.gen.EtherChunkGenConfig
 
 class EtherDimension(world: World, dimensionType: DimensionType) extends Dimension(world, dimensionType) {
   private val colorsSunriseSunset = new Array[Float](4)
 
-  override def createChunkGenerator(): ChunkGenerator[_] = new EtherChunkGenerator(world,
-    BiomeSourceType.FIXED.applyConfig(BiomeSourceType.FIXED.getConfig.setBiome(BiomeEtherHighlands)))
+  override def createChunkGenerator(): ChunkGenerator[_] = WorldRegistry.ETHER_CHUNK_GENERATOR.create(world,
+    BiomeSourceType.FIXED.applyConfig(BiomeSourceType.FIXED.getConfig.setBiome(BiomeRegistry.ETHER_HIGHLANDS_BIOME)),
+    EtherChunkGenConfig)
 
   override def getSpawningBlockInChunk(chunkPos: ChunkPos, b: Boolean): BlockPos = null
 

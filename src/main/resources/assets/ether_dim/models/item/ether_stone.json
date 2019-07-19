@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "ether-dim:block/ether_dirt"
+    "all": "ether_dim:block/ether_stone"
   }
 }

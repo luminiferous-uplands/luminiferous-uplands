@@ -1,2 +1,2 @@
 # ether-dim
-Lightweight skylands dimension mod, inspired by the Aether mods
+Lightweight skylands com.github.draylar.dimension mod, inspired by the Aether mods

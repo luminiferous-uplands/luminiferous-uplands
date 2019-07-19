@@ -13,7 +13,7 @@ import robosky.ether.world.gen.{EtherChunkGenConfig, EtherChunkGenerator}
 
 object WorldRegistry {
   val ETHER_CHUNK_GENERATOR: FabricChunkGeneratorType[EtherChunkGenConfig.type, EtherChunkGenerator] =
-    registerChunkGeneratorType(new Identifier("ether-dim", "etherchunkgen"),
+    registerChunkGeneratorType(new Identifier("ether_dim", "etherchunkgen"),
       new EtherChunkGenerator(_, _), () => EtherChunkGenConfig, appearsOnBuffet = false)
 
   val ETHER_DIMENSION: FabricDimensionType = registerDimensionType(EtherDimensionType)
