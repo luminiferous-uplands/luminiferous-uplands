@@ -7,13 +7,15 @@
   "authors": [
     "RoboSky"
   ],
-  "languageAdapter": "net.fabricmc.language.scala.ScalaLanguageAdapter",
   "license": "EPL",
   "icon": "assets/modid/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "robosky.ether.EtherMod"
+      {
+        "adapter": "scala",
+        "value": "robosky.ether.EtherMod"
+      }
     ]
   },
   "mixins": [

@@ -18,6 +18,8 @@ object WorldRegistry {
 
   val ETHER_DIMENSION: FabricDimensionType = registerDimensionType(EtherDimensionType)
 
+  def init(): Unit = Unit
+
   private def registerChunkGeneratorType[C <: ChunkGeneratorConfig, T <: ChunkGenerator[C]](id: Identifier, factory: (World, BiomeSource) => T, supplier: () => C, appearsOnBuffet: Boolean): FabricChunkGeneratorType[C, T]
   = registerChunkGeneratorType2(id, (world: World, source: BiomeSource, _: C) => factory(world, source), () => supplier(), appearsOnBuffet)
 
