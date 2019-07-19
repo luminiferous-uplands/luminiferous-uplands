@@ -1,9 +1,9 @@
 {
   "required": true,
-  "package": "robosky.ether.mixin",
+  "package": "com.github.draylar.dimension.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "VoidOutMixin"
+    "ChangeDimensionMixin"
   ],
   "injectors": {
     "defaultRequire": 1

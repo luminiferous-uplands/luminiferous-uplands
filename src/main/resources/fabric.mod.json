@@ -8,7 +8,7 @@
     "RoboSky"
   ],
   "license": "EPL",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/ether_dim/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -19,7 +19,8 @@
     ]
   },
   "mixins": [
-    "ether_dim.mixins.json"
+    "ether_dim.mixins.json",
+    "dimension_fixes.mixins.json"
   ],
   "requires": {
     "fabricloader": ">=0.4.0",

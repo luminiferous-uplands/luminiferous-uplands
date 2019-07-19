@@ -34,11 +34,15 @@ public class ChangeDimensionMixin {
         if (toDimension == MixinHack.ETHER_DIMTYPE || previousDimension == MixinHack.ETHER_DIMTYPE) {
             BlockPos pos = etherdimension_getTopPos(world, entity.getBlockPos());
 
+            int y = pos.getY();
+            if (entity.y < -63.0) {
+                y = 257;
+            }
             if (entity instanceof ServerPlayerEntity) {
-                ((ServerPlayerEntity) entity).networkHandler.teleportRequest(pos.getX(), pos.getY(), pos.getZ(), 0, 0, new HashSet<>());
+                ((ServerPlayerEntity) entity).networkHandler.teleportRequest(pos.getX(), y, pos.getZ(), 0, 0, new HashSet<>());
                 ((ServerPlayerEntity) entity).networkHandler.syncWithPlayerPosition();
             } else {
-                entity.setPositionAndAngles(pos.getX(), pos.getY(), pos.getZ(), 0, 0);
+                entity.setPositionAndAngles(pos.getX(), y, pos.getZ(), 0, 0);
             }
 
             info.setReturnValue(true);
@@ -67,6 +71,6 @@ public class ChangeDimensionMixin {
             }
         }
 
-        return returnPos;
+        return pos;
     }
 }
