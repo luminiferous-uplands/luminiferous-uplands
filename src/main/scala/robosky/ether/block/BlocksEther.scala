@@ -1,18 +1,18 @@
 package robosky.ether.block
 
 import net.fabricmc.fabric.api.block.FabricBlockSettings
-import net.minecraft.block.{Block, GrassBlock, Material}
+import net.minecraft.block.{Block, Material}
 import net.minecraft.item.{BlockItem, Item, ItemGroup}
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
 
 object BlocksEther {
-  val ETHER_STONE: Block = register("ether_grass", itemGroup = ItemGroup.BUILDING_BLOCKS)(EtherGrassBlock)
+  val ETHER_GRASS: Block = register("ether_grass", itemGroup = ItemGroup.BUILDING_BLOCKS)(EtherGrassBlock)
   val ETHER_DIRT: Block = register("ether_dirt", itemGroup = ItemGroup.BUILDING_BLOCKS)(
     new Block(FabricBlockSettings.of(Material.ORGANIC).strength(0.5f, 0.5f)
       .sounds(BlockSoundGroup.GRAVEL).build()))
-  val ETHER_GRASS: Block = register("ether_stone", itemGroup = ItemGroup.BUILDING_BLOCKS)(
+  val ETHER_STONE: Block = register("ether_stone", itemGroup = ItemGroup.BUILDING_BLOCKS)(
     new Block(FabricBlockSettings.of(Material.STONE).strength(1.5f, 6f)
       .sounds(BlockSoundGroup.STONE).build()))
 

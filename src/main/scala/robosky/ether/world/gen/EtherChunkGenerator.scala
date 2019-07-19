@@ -1,13 +1,8 @@
 package robosky.ether.world.gen
 
-import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import net.minecraft.world.biome.source.BiomeSource
-import net.minecraft.world.chunk.Chunk
-import net.minecraft.world.gen.ChunkRandom
 import net.minecraft.world.gen.chunk.SurfaceChunkGenerator
-import robosky.ether.block.BlocksEther
-import net.minecraft.block.Blocks
 
 class EtherChunkGenerator(world: World, biomeSource: BiomeSource)
   extends SurfaceChunkGenerator[EtherChunkGenConfig.type](world, biomeSource, 8, 4, 128,

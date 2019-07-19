@@ -1,25 +1,28 @@
 package robosky.ether.world.biome
 
 import net.fabricmc.api.{EnvType, Environment}
+import net.minecraft.block.BlockState
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.Biome.Category
-import net.minecraft.world.gen.surfacebuilder.{ConfiguredSurfaceBuilder, TernarySurfaceConfig}
+import net.minecraft.world.gen.surfacebuilder.{SurfaceConfig, TernarySurfaceConfig}
 import robosky.ether.block.BlocksEther
 import robosky.ether.world.biome.BiomeEtherHighlandsConfig._
 import robosky.ether.world.gen.EtherHighlandsSurfaceBuilder
 
 object BiomeEtherHighlandsConfig {
 
-  val ETHER_GRASS_DIRT_HOLYSTONE_SURFACE =
-    new TernarySurfaceConfig(BlocksEther.ETHER_GRASS.getDefaultState, BlocksEther.ETHER_DIRT.getDefaultState,
-      BlocksEther.ETHER_STONE.getDefaultState)
+  val ETHER_GRASS_DIRT_STONE_SURFACE: SurfaceConfig = new SurfaceConfig {
+    override def getTopMaterial: BlockState = BlocksEther.ETHER_GRASS.getDefaultState
+
+    override def getUnderMaterial: BlockState = BlocksEther.ETHER_DIRT.getDefaultState
+  }
 
   val ETHER_HIGHLANDS_SURFACE_BUILDER = new EtherHighlandsSurfaceBuilder()
 }
 
 object BiomeEtherHighlands extends Biome((new Biome.Settings)
-  .surfaceBuilder(new ConfiguredSurfaceBuilder[TernarySurfaceConfig](ETHER_HIGHLANDS_SURFACE_BUILDER, ETHER_GRASS_DIRT_HOLYSTONE_SURFACE))
+  .configureSurfaceBuilder(ETHER_HIGHLANDS_SURFACE_BUILDER, ETHER_GRASS_DIRT_STONE_SURFACE)
   .precipitation(Biome.Precipitation.NONE).category(Category.FOREST).depth(0.1F).scale(0.2F)
   .temperature(0.5F).downfall(0.0F).waterColor(11139071).waterFogColor(11139071)
   .category(Biome.Category.FOREST)) {
