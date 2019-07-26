@@ -22,7 +22,7 @@
     "ether_dim.mixins.json",
     "dimension_fixes.mixins.json"
   ],
-  "requires": {
+  "depends": {
     "fabricloader": ">=0.4.0",
     "fabric": "*",
     "fabric-language-scala": "*"

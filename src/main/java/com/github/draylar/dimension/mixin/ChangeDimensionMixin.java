@@ -29,7 +29,7 @@ public class ChangeDimensionMixin {
         DimensionType previousDimension = entity.world.getDimension().getType();
         DimensionType toDimension = world.getDimension().getType();
 
-        // going or coming from our custom com.github.draylar.dimension
+        // going or coming from our custom dimension
         // regardless, we get the top position at 0,0 and set the player there
         if (toDimension == MixinHack.ETHER_DIMTYPE || previousDimension == MixinHack.ETHER_DIMTYPE) {
             BlockPos pos = etherdimension_getTopPos(world, entity.getBlockPos());

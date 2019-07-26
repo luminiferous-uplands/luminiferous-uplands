@@ -15,6 +15,7 @@ minecraft {
 
 repositories {
     mavenLocal()
+    maven {url "https://maven.jamieswhiteshirt.com/libs-release/"}
 }
 
 dependencies {
@@ -29,6 +30,7 @@ dependencies {
     include "net.fabricmc:fabric-language-scala:${project.scala_adapter_version}"
     compile "org.scala-lang:scala-library:${project.scala_version}"
     compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
+    modCompile "com.jamieswhiteshirt:developer-mode:1.0.14"
 }
 
 processResources {

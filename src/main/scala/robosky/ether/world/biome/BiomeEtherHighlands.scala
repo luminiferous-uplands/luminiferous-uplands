@@ -5,9 +5,13 @@ import net.minecraft.block.BlockState
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.Biome.Category
-import net.minecraft.world.gen.surfacebuilder.{SurfaceConfig, TernarySurfaceConfig}
+import net.minecraft.world.gen.GenerationStep
+import net.minecraft.world.gen.decorator.{Decorator, RangeDecoratorConfig}
+import net.minecraft.world.gen.feature.DefaultFeatureConfig
+import net.minecraft.world.gen.surfacebuilder.SurfaceConfig
 import robosky.ether.block.BlocksEther
 import robosky.ether.world.biome.BiomeEtherHighlandsConfig._
+import robosky.ether.world.feature.FeaturesEther
 import robosky.ether.world.gen.EtherHighlandsSurfaceBuilder
 
 object BiomeEtherHighlandsConfig {
@@ -26,6 +30,9 @@ object BiomeEtherHighlands extends Biome((new Biome.Settings)
   .precipitation(Biome.Precipitation.NONE).category(Category.FOREST).depth(0.1F).scale(0.2F)
   .temperature(0.5F).downfall(0.0F).waterColor(11139071).waterFogColor(11139071)
   .category(Biome.Category.FOREST)) {
+
+  addFeature(GenerationStep.Feature.UNDERGROUND_ORES, Biome.configureFeature(FeaturesEther.oreFeature,
+    new DefaultFeatureConfig, Decorator.COUNT_RANGE, new RangeDecoratorConfig(1, 0, 0, 256)))
 
   @Environment(EnvType.CLIENT)
   override def getSkyColor(currentTemperature: Float) = 12632319
