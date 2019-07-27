@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'scala'
-    id 'fabric-loom' version '0.2.3-SNAPSHOT'
+    id 'fabric-loom' version '0.2.4-SNAPSHOT'
 }
 
 group 'robosky.mods'
@@ -15,7 +15,8 @@ minecraft {
 
 repositories {
     mavenLocal()
-    maven {url "https://maven.jamieswhiteshirt.com/libs-release/"}
+    maven { url "https://minecraft.curseforge.com/api/maven" }
+    maven { url "https://maven.jamieswhiteshirt.com/libs-release/" }
 }
 
 dependencies {
@@ -30,7 +31,16 @@ dependencies {
     include "net.fabricmc:fabric-language-scala:${project.scala_adapter_version}"
     compile "org.scala-lang:scala-library:${project.scala_version}"
     compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
-    modCompile "com.jamieswhiteshirt:developer-mode:1.0.14"
+    modRuntime("com.jamieswhiteshirt:developer-mode:1.0.14") {
+        exclude group: 'net.fabricmc.fabric-api'
+        exclude group: 'net.fabricmc'
+        exclude group: 'net.minecraft'
+    }
+    modCompile("me.shedaniel:RoughlyEnoughItems:2.9.7+build.143") {
+        exclude group: 'net.fabricmc.fabric-api'
+        exclude group: 'net.fabricmc'
+        exclude group: 'net.minecraft'
+    }
 }
 
 processResources {
@@ -46,16 +56,10 @@ processResources {
     }
 }
 
-// ensure that the encoding is set to UTF-8, no matter what the system default is
-// this fixes some edge cases with special characters not displaying correctly
-// see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
 
-// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-// if it is present.
-// If you remove this task, sources will not be generated.
 task sourcesJar(type: Jar, dependsOn: classes) {
     archiveClassifier = "sources"
     from sourceSets.main.allSource

@@ -2,12 +2,12 @@ package robosky.ether.world.feature.trees
 
 import java.util.Random
 
+import com.mojang.datafixers.Dynamic
 import javax.annotation.Nullable
-import net.minecraft.block.sapling.SaplingGenerator
 import net.minecraft.block.{BlockState, Blocks}
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.IWorld
-import net.minecraft.world.gen.feature.{AbstractTreeFeature, DefaultFeatureConfig, FeatureConfig, LargeOakTreeFeature, OakTreeFeature}
+import net.minecraft.world.gen.feature.{DefaultFeatureConfig, FeatureConfig}
 
 
 abstract class EtherSaplingGenerator {
@@ -17,7 +17,7 @@ abstract class EtherSaplingGenerator {
     else {
       iWorld_1.setBlockState(blockPos_1, Blocks.AIR.getDefaultState, 4)
       if (abstractTreeFeature_1.generate(iWorld_1, iWorld_1.getChunkManager.getChunkGenerator, random_1, blockPos_1,
-        FeatureConfig.DEFAULT.asInstanceOf[FeatureConfig])) true
+        FeatureConfig.DEFAULT)) true
       else {
         iWorld_1.setBlockState(blockPos_1, blockState_1, 4)
         false
@@ -32,7 +32,7 @@ object EtherSaplingGenerator {
 
   object SkyrootSaplingGenerator extends EtherSaplingGenerator {
     @Nullable override protected def createTreeFeature(random_1: Random) =
-      new SkyrootTreeFeature(DefaultFeatureConfig.deserialize, true)
+      new SkyrootTreeFeature((t: Dynamic[_]) => DefaultFeatureConfig.deserialize(t), true)
   }
 
 }
