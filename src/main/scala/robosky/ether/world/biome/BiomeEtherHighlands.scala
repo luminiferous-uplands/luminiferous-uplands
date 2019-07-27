@@ -27,7 +27,7 @@ object BiomeEtherHighlandsConfig {
 
 object BiomeEtherHighlands extends Biome((new Biome.Settings)
   .configureSurfaceBuilder(ETHER_HIGHLANDS_SURFACE_BUILDER, ETHER_GRASS_DIRT_STONE_SURFACE)
-  .precipitation(Biome.Precipitation.NONE).category(Category.FOREST).depth(0.1F).scale(0.2F)
+  .precipitation(Biome.Precipitation.NONE).category(Category.FOREST).depth(0.3F).scale(0.2F)
   .temperature(0.5F).downfall(0.0F).waterColor(11139071).waterFogColor(11139071)
   .category(Biome.Category.FOREST)) {
 

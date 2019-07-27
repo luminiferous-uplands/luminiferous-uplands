@@ -16,24 +16,24 @@ class EtherHighlandsSurfaceBuilder extends SurfaceBuilder[SurfaceConfig](null) {
     var topBlock = BlockRegistry.ETHER_GRASS.getDefaultState
     var underBlock = BlockRegistry.ETHER_DIRT.getDefaultState
     val pos = new BlockPos.Mutable
-    var int_5 = -1
-    val int_6 = (noise / 3.0D + 3.0D + rand.nextDouble * 0.25D).toInt
+    var depth = -1
+    val maxDepth = (noise / 3.0D + 3.0D + rand.nextDouble * 0.25D).toInt
     val x = absX & 15
     val z = absZ & 15
-    for (y <- 128 to 0 by -1) {
+    for (y <- startHeight to 0 by -1) {
       pos.set(x, y, z)
       val blockState_8 = chunk.getBlockState(pos)
-      if (blockState_8.isAir) int_5 = -1
-      else if (blockState_8.getBlock == defaultBlock.getBlock) if (int_5 == -1) {
-        if (int_6 <= 0) {
+      if (blockState_8.isAir) depth = -1
+      else if (blockState_8.getBlock == defaultBlock.getBlock) if (depth == -1) {
+        if (maxDepth <= 0) {
           topBlock = Blocks.AIR.getDefaultState
           underBlock = topBlock
         }
         chunk.setBlockState(pos, topBlock, false)
-        int_5 = int_6
+        depth = maxDepth
       }
-      else if (int_5 > 0) {
-        int_5 -= 1
+      else if (depth > 0) {
+        depth -= 1
         chunk.setBlockState(pos, underBlock, false)
       }
     }
