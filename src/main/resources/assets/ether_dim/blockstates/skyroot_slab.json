@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ether_dim:block/skyroot_slab"
+    },
+    "type=double": {
+      "model": "ether_dim:block/skyroot_planks"
+    },
+    "type=top": {
+      "model": "ether_dim:block/skyroot_slab_top"
+    }
+  }
+}

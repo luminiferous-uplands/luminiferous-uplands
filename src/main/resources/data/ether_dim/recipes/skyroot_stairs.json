@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ether_dim:skyroot_planks"
+    }
+  },
+  "result": {
+    "item": "ether_dim:skyroot_stairs",
+    "count": 4
+  }
+}

@@ -22,16 +22,18 @@ object BlockRegistry {
   val ETHER_ORES: Map[EtherOreBlock.EtherOreType, EtherOreBlock] = EtherOreBlock.oreTypes
     .map(t => t -> register(s"${t.name}_ore")(new EtherOreBlock(t))).toMap
 
-  val SKYROOT_LOG: LogBlock = register("skyroot_log")(new LogBlock(MaterialColor.WOOD, FabricBlockSettings
-    .of(Material.WOOD).strength(2, 2).sounds(BlockSoundGroup.WOOD).breakByHand(true)
-    .breakByTool(FabricToolTags.AXES, 0).build()))
-
+  val skyroot: Block.Settings = FabricBlockSettings.of(Material.WOOD, MaterialColor.BROWN)
+    .strength(2.0F, 2.0F).sounds(BlockSoundGroup.WOOD).breakByTool(FabricToolTags.AXES, -1).build
+  val SKYROOT_LOG: LogBlock = register("skyroot_log")(new LogBlock(MaterialColor.WOOD, skyroot))
+  val SKYROOT_PLANKS: Block = register("skyroot_planks")(new Block(skyroot))
+  val SKYROOT_SLAB: SlabBlock = register("skyroot_slab")(new SlabBlock(skyroot))
+  val SKYROOT_STAIRS: StairsBlock = register("skyroot_stairs")(new ModStairsBlock(SKYROOT_PLANKS, skyroot))
   val SKYROOT_LEAVES: LeavesBlock = register("skyroot_leaves")(new LeavesBlock(FabricBlockSettings.of(Material.LEAVES)
     .strength(0.2F, 0.2F).ticksRandomly.sounds(BlockSoundGroup.GRASS).build()))
-
   val SKYROOT_SAPLING: EtherSaplingBlock = register("skyroot_sapling")(new EtherSaplingBlock(
     EtherSaplingGenerator.SkyrootSaplingGenerator, FabricBlockSettings.of(Material.PLANT).noCollision.ticksRandomly
       .breakInstantly.sounds(BlockSoundGroup.GRASS).build()))
+
 
   val ETHER_BEACON: EtherBeaconBlock.type = register("ether_beacon")(EtherBeaconBlock)
 

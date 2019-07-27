@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "ether_dim:block/skyroot_planks"
+  }
+}

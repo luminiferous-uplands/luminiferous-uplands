@@ -1,5 +1,15 @@
 {
+  "itemGroup.ether_dim.general": "The Ether",
   "block.ether_dim.ether_grass": "Ether Grass",
   "block.ether_dim.ether_dirt": "Ether Dirt",
-  "block.ether_dim.ether_stone": "Ether Stone"
+  "block.ether_dim.ether_stone": "Ether Stone",
+  "block.ether_dim.aegisalt_ore": "Aegisalt Ore",
+  "block.ether_dim.ether_beacon": "Ether Beacon",
+  "block.ether_dim.skyroot_log": "Skyroot Log",
+  "block.ether_dim.skyroot_planks": "Skyroot Planks",
+  "block.ether_dim.skyroot_slab": "Skyroot Slab",
+  "block.ether_dim.skyroot_stairs": "Skyroot Stairs",
+  "block.ether_dim.skyroot_sapling": "Skyroot Sapling",
+  "block.ether_dim.skyroot_leaves": "Skyroot Leaves",
+  "item.ether_dim.aegisalt_crystal": "Aegisalt Crystal"
 }
