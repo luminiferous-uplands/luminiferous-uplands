@@ -32,7 +32,10 @@ public class ChangeDimensionMixin {
         // going or coming from our custom dimension
         // regardless, we get the top position at 0,0 and set the player there
         if (toDimension == MixinHack.ETHER_DIMTYPE || previousDimension == MixinHack.ETHER_DIMTYPE) {
-            BlockPos pos = etherdimension_getTopPos(world, entity.getBlockPos());
+            BlockPos p1 = entity.getBlockPos();
+            if (toDimension == MixinHack.ETHER_DIMTYPE)
+                p1 = world.getForcedSpawnPoint();
+            BlockPos pos = etherdimension_getTopPos(world, p1);
 
             int y = pos.getY();
             if (entity.y < -63.0) {
@@ -66,7 +69,7 @@ public class ChangeDimensionMixin {
         for (int i = 255; i > 0; i--) {
             // if block is not air, return that spot
             if (!world.getBlockState(returnPos.up(i)).equals(Blocks.AIR.getDefaultState())) {
-                returnPos = returnPos.up(i);
+                returnPos = returnPos.up(i + 1);
                 return returnPos;
             }
         }

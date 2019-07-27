@@ -16,6 +16,8 @@ class EtherDimension(world: World, dimensionType: DimensionType) extends Dimensi
     BiomeSourceType.FIXED.applyConfig(BiomeSourceType.FIXED.getConfig.setBiome(BiomeRegistry.ETHER_HIGHLANDS_BIOME)),
     EtherChunkGenConfig)
 
+  override val getForcedSpawnPoint: BlockPos = new BlockPos(0, 130, 0)
+
   override def getSpawningBlockInChunk(chunkPos: ChunkPos, b: Boolean): BlockPos = null
 
   override def getTopSpawningBlockPosition(i: Int, i1: Int, b: Boolean): BlockPos = null
