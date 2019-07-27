@@ -9,7 +9,7 @@ import net.minecraft.world.IWorld
 import net.minecraft.world.chunk.Chunk
 import net.minecraft.world.gen.chunk.{ChunkGenerator, ChunkGeneratorConfig}
 import net.minecraft.world.gen.feature.{DefaultFeatureConfig, Feature}
-import robosky.ether.block.{BlocksEther, EtherOreBlock}
+import robosky.ether.block.{BlockRegistry, EtherOreBlock}
 
 import scala.util.control.Breaks._
 
@@ -75,7 +75,7 @@ object EtherOreFeature extends Feature[DefaultFeatureConfig]((t: datafixers.Dyna
     val pos = new BlockPos(x, y, z)
     val toReplace = world.getBlockState(pos)
     val replaceWith = states(rand.nextInt(states.length))
-    if (toReplace.getBlock != BlocksEther.ETHER_STONE) return false
+    if (toReplace.getBlock != BlockRegistry.ETHER_STONE) return false
     world.setBlockState(pos, replaceWith, 3)
     true
   }

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "ether_dim:block/skyroot_log"
+    },
+    "axis=z": {
+      "model": "ether_dim:block/skyroot_log",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "ether_dim:block/skyroot_log",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

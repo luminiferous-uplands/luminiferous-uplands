@@ -7,14 +7,14 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.chunk.Chunk
 import net.minecraft.world.gen.surfacebuilder.{SurfaceBuilder, SurfaceConfig}
-import robosky.ether.block.BlocksEther
+import robosky.ether.block.BlockRegistry
 
 class EtherHighlandsSurfaceBuilder extends SurfaceBuilder[SurfaceConfig](null) {
   def generate(rand: Random, chunk: Chunk, biome: Biome, absX: Int, absZ: Int, startHeight: Int, noise: Double,
                defaultBlock: BlockState, defaultFluid: BlockState, seaLevel: Int, seed: Long,
                config: SurfaceConfig): Unit = {
-    var topBlock = BlocksEther.ETHER_GRASS.getDefaultState
-    var underBlock = BlocksEther.ETHER_DIRT.getDefaultState
+    var topBlock = BlockRegistry.ETHER_GRASS.getDefaultState
+    var underBlock = BlockRegistry.ETHER_DIRT.getDefaultState
     val pos = new BlockPos.Mutable
     var int_5 = -1
     val int_6 = (noise / 3.0D + 3.0D + rand.nextDouble * 0.25D).toInt

@@ -1,7 +1,7 @@
 package robosky.ether.world
 
 import net.fabricmc.api.{EnvType, Environment}
-import net.minecraft.util.math.{BlockPos, ChunkPos, Vec3d}
+import net.minecraft.util.math.{BlockPos, ChunkPos, MathHelper, Vec3d}
 import net.minecraft.world.World
 import net.minecraft.world.biome.source.BiomeSourceType
 import net.minecraft.world.dimension.{Dimension, DimensionType}
@@ -56,8 +56,6 @@ class EtherDimension(world: World, dimensionType: DimensionType) extends Dimensi
   override def shouldRenderFog(i: Int, i1: Int): Boolean = false
 
   override def getType: DimensionType = dimensionType
-
-  import net.minecraft.util.math.MathHelper
 
   @Environment(EnvType.CLIENT)
   override def getBackgroundColor(celestialAngle: Float, partialTicks: Float): Array[Float] = {

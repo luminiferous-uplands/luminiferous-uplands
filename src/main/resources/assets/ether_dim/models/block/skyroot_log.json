@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "ether_dim:block/skyroot_log_base",
+    "side": "ether_dim:block/skyroot_log_side"
+  }
+}

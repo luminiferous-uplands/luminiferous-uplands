@@ -1,14 +1,16 @@
 package robosky.ether.block
 
 import net.fabricmc.fabric.api.block.FabricBlockSettings
-import net.minecraft.block.{Block, Material}
+import net.fabricmc.fabric.api.tools.FabricToolTags
+import net.minecraft.block._
 import net.minecraft.item.{BlockItem, Item, ItemGroup}
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
 import robosky.ether.EtherMod
+import robosky.ether.world.feature.trees.EtherSaplingGenerator
 
-object BlocksEther {
+object BlockRegistry {
   val ETHER_GRASS: Block = register("ether_grass")(EtherGrassBlock)
   val ETHER_DIRT: Block = register("ether_dirt")(
     new Block(FabricBlockSettings.of(Material.ORGANIC).strength(0.5f, 0.5f)
@@ -19,6 +21,20 @@ object BlocksEther {
 
   val ETHER_ORES: Map[EtherOreBlock.EtherOreType, EtherOreBlock] = EtherOreBlock.oreTypes
     .map(t => t -> register(s"${t.name}_ore")(new EtherOreBlock(t))).toMap
+
+  val SKYROOT_LOG: LogBlock = register("skyroot_log")(new LogBlock(MaterialColor.WOOD, FabricBlockSettings
+    .of(Material.WOOD).strength(2, 2).sounds(BlockSoundGroup.WOOD).breakByHand(true)
+    .breakByTool(FabricToolTags.AXES, 0).build()))
+
+  val SKYROOT_LEAVES: LeavesBlock = register("skyroot_leaves")(new LeavesBlock(FabricBlockSettings.of(Material.LEAVES)
+    .strength(0.2F, 0.2F).ticksRandomly.sounds(BlockSoundGroup.GRASS).build()))
+
+  val SKYROOT_SAPLING: EtherSaplingBlock = register("skyroot_sapling")(new EtherSaplingBlock(
+    EtherSaplingGenerator.SkyrootSaplingGenerator, FabricBlockSettings.of(Material.PLANT).noCollision.ticksRandomly
+      .breakInstantly.sounds(BlockSoundGroup.GRASS).build()))
+
+  val ETHER_BEACON: EtherBeaconBlock.type = register("ether_beacon")(EtherBeaconBlock)
+
 
   def init(): Unit = {}
 

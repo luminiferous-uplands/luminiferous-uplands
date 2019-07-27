@@ -37,7 +37,7 @@ object EtherOreBlock {
       .strength(3.0F, 3.0F)
       .breakByTool(FabricToolTags.PICKAXES, 2).build()
 
-    override def genSettings(): OreGenSettings = OreGenSettings(5, 1, 32, 8, Set(BlocksEther.ETHER_ORES(OreTypeAegisalt).getDefaultState))
+    override def genSettings(): OreGenSettings = OreGenSettings(7, 3, 128, 1, Set(BlockRegistry.ETHER_ORES(OreTypeAegisalt).getDefaultState))
   }
 
 }

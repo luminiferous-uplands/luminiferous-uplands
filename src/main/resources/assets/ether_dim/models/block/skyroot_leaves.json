@@ -1,0 +1,6 @@
+{
+  "parent": "block/leaves",
+  "textures": {
+    "all": "ether_dim:block/skyroot_leaves"
+  }
+}

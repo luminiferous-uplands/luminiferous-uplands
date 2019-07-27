@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "ether_dim:block/skyroot_sapling"
+  }
+}
