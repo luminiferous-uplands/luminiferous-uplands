@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'scala'
     id 'fabric-loom' version '0.2.4-SNAPSHOT'
+    id "com.github.johnrengelman.shadow" version "5.1.0"
 }
 
 group 'robosky.mods'
@@ -17,6 +18,7 @@ repositories {
     mavenLocal()
     maven { url "https://minecraft.curseforge.com/api/maven" }
     maven { url "https://maven.jamieswhiteshirt.com/libs-release/" }
+    maven { url "https://repo.elytradev.com/"}
 }
 
 dependencies {
@@ -45,6 +47,7 @@ dependencies {
         exclude group: 'net.fabricmc'
         exclude group: 'net.minecraft'
     }
+    shadow "blue.endless.libnoise:LibnoiseJava:0.0.1-17"
 }
 
 processResources {
@@ -62,6 +65,17 @@ processResources {
 
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
+}
+
+shadowJar {
+    configurations = [project.configurations.shadow]
+    exclude("META-INF")
+}
+
+tasks.remapJar {
+    delegate.dependsOn tasks.shadowJar
+    delegate.input = shadowJar.archiveFile
+    delegate.output = file("$buildDir/libs/${project.name}-${project.version}-big.jar")
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
