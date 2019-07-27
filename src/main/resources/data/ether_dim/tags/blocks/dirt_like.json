@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "ether_dim:ether_dirt",
+    "ether_dim:ether_grass"
+  ]
+}
