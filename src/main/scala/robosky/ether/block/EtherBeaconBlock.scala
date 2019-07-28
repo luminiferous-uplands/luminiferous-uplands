@@ -9,8 +9,8 @@ import net.minecraft.util.Hand
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.shape.VoxelShape
-import net.minecraft.world.{BlockView, World}
 import net.minecraft.world.dimension.DimensionType
+import net.minecraft.world.{BlockView, World}
 import robosky.ether.world.WorldRegistry
 
 object EtherBeaconBlock extends Block(FabricBlockSettings.of(Material.STONE).strength(3, 3)

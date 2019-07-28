@@ -7,7 +7,7 @@ import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.Biome.Category
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.{CountExtraChanceDecoratorConfig, Decorator, RangeDecoratorConfig}
-import net.minecraft.world.gen.feature.{DefaultFeatureConfig, Feature, FeatureConfig}
+import net.minecraft.world.gen.feature.{DefaultFeatureConfig, FeatureConfig}
 import net.minecraft.world.gen.surfacebuilder.SurfaceConfig
 import robosky.ether.block.BlockRegistry
 import robosky.ether.world.biome.BiomeEtherHighlandsConfig._

@@ -10,13 +10,12 @@ import robosky.ether.world.biome.BiomeRegistry
 import robosky.ether.world.gen.EtherChunkGenConfig
 
 class EtherDimension(world: World, dimensionType: DimensionType) extends Dimension(world, dimensionType) {
+  override val getForcedSpawnPoint: BlockPos = new BlockPos(0, 130, 0)
   private val colorsSunriseSunset = new Array[Float](4)
 
   override def createChunkGenerator(): ChunkGenerator[_] = WorldRegistry.ETHER_CHUNK_GENERATOR.create(world,
     BiomeSourceType.FIXED.applyConfig(BiomeSourceType.FIXED.getConfig.setBiome(BiomeRegistry.ETHER_HIGHLANDS_BIOME)),
     EtherChunkGenConfig)
-
-  override val getForcedSpawnPoint: BlockPos = new BlockPos(0, 130, 0)
 
   override def getSpawningBlockInChunk(chunkPos: ChunkPos, b: Boolean): BlockPos = null
 
@@ -54,11 +53,6 @@ class EtherDimension(world: World, dimensionType: DimensionType) extends Dimensi
 
   override def getHorizonShadingRatio: Double = 1
 
-  override protected def initializeLightLevelToBrightness(): Unit = for (level <- 0 until 16) {
-    val brightness = 1.0F - level / 15.0F
-    this.lightLevelToBrightness(level) = (1.0F - brightness) / (brightness * 3.0F + 1.0F) * 0.9F + 0.1F
-  }
-
   override def getType: DimensionType = dimensionType
 
   @Environment(EnvType.CLIENT)
@@ -75,5 +69,10 @@ class EtherDimension(world: World, dimensionType: DimensionType) extends Dimensi
       return this.colorsSunriseSunset
     }
     null
+  }
+
+  override protected def initializeLightLevelToBrightness(): Unit = for (level <- 0 until 16) {
+    val brightness = 1.0F - level / 15.0F
+    this.lightLevelToBrightness(level) = (1.0F - brightness) / (brightness * 3.0F + 1.0F) * 0.9F + 0.1F
   }
 }

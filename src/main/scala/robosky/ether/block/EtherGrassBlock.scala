@@ -3,12 +3,12 @@ package robosky.ether.block
 import java.util.Random
 
 import net.fabricmc.fabric.api.block.FabricBlockSettings
-import net.minecraft.block.{Block, BlockState, Blocks, Material}
+import net.minecraft.block.{Block, BlockState, Material}
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.tag.FluidTags
 import net.minecraft.util.math.{BlockPos, Direction}
-import net.minecraft.world.{ViewableWorld, World}
 import net.minecraft.world.chunk.light.ChunkLightProvider
+import net.minecraft.world.{ViewableWorld, World}
 
 object EtherGrassBlock extends Block(FabricBlockSettings.of(Material.ORGANIC).ticksRandomly
   .strength(0.6f, 0.6f).sounds(BlockSoundGroup.GRASS).build()) {

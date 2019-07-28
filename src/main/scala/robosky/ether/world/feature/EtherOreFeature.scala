@@ -71,15 +71,6 @@ object EtherOreFeature extends Feature[DefaultFeatureConfig]((t: datafixers.Dyna
     replaced
   }
 
-  def replace(world: IWorld, x: Int, y: Int, z: Int, states: Array[BlockState], rand: Random): Boolean = {
-    val pos = new BlockPos(x, y, z)
-    val toReplace = world.getBlockState(pos)
-    val replaceWith = states(rand.nextInt(states.length))
-    if (toReplace.getBlock != BlockRegistry.ETHER_STONE) return false
-    world.setBlockState(pos, replaceWith, 3)
-    true
-  }
-
   protected def generateVeinPart(world: IWorld, x: Int, y: Int, z: Int, clumpSize: Int, radius: Int, states: Set[BlockState], density: Int, rand: Random): Int = {
     val rad2 = radius * radius
     val blocks = states.toArray
@@ -102,6 +93,15 @@ object EtherOreFeature extends Feature[DefaultFeatureConfig]((t: datafixers.Dyna
     }
 
     replaced
+  }
+
+  def replace(world: IWorld, x: Int, y: Int, z: Int, states: Array[BlockState], rand: Random): Boolean = {
+    val pos = new BlockPos(x, y, z)
+    val toReplace = world.getBlockState(pos)
+    val replaceWith = states(rand.nextInt(states.length))
+    if (toReplace.getBlock != BlockRegistry.ETHER_STONE) return false
+    world.setBlockState(pos, replaceWith, 3)
+    true
   }
 
   protected def generateVeinPartGaussian(world: IWorld, x: Int, y: Int, z: Int, clumpSize: Int, radius: Int, states: Set[BlockState], density: Int, rand: Random): Int = {
