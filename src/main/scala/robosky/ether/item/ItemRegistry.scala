@@ -6,7 +6,11 @@ import net.minecraft.util.registry.Registry
 import robosky.ether.EtherMod
 
 object ItemRegistry {
-  val AEGISALT_CRYSTAL: Item = register("aegisalt_crystal", new Item(new Item.Settings().group(EtherMod.ETHER_GROUP)))
+  val AEGISALT_CRYSTAL: Item = register("aegisalt_crystal", new Item(new Item.Settings()
+    .group(EtherMod.ETHER_GROUP)))
+
+  val AEGISALT_CHARM: Item = register("aegisalt_charm", new Item(new Item.Settings().group(EtherMod.ETHER_GROUP)
+    .maxCount(1)))
 
   def init(): Unit = {}
 

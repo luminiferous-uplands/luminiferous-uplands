@@ -11,6 +11,7 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.{BlockPos, ChunkPos, MutableIntBoundingBox}
 import net.minecraft.world.World
 import net.minecraft.world.dimension.DimensionType
+import robosky.ether.item.ItemRegistry
 import robosky.ether.world.WorldRegistry
 import robosky.ether.world.feature.SpawnPlatformPiece
 
@@ -68,4 +69,6 @@ object MixinHackHooksImpl extends MixinHackHooks {
     }
     true
   }
+
+  override def checkParachute(stack: ItemStack): Boolean = stack.getItem == ItemRegistry.AEGISALT_CHARM
 }
