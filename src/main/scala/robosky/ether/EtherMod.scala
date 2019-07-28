@@ -8,7 +8,7 @@ import robosky.ether.block.BlockRegistry
 import robosky.ether.item.ItemRegistry
 import robosky.ether.world.biome.BiomeRegistry
 import robosky.ether.world.feature.FeatureRegistry
-import robosky.ether.world.{MixinHackHooksImpl, WorldRegistry}
+import robosky.ether.world.WorldRegistry
 
 object EtherMod extends ModInitializer {
 

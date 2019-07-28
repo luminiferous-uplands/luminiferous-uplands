@@ -1,16 +1,17 @@
-package robosky.ether.world
+package robosky.ether
 
 import java.util.Random
 
 import com.google.common.collect.Sets
 import net.minecraft.block.Blocks
 import net.minecraft.entity.Entity
+import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.{BlockPos, ChunkPos, MutableIntBoundingBox}
 import net.minecraft.world.World
 import net.minecraft.world.dimension.DimensionType
-import robosky.ether.MixinHackHooks
+import robosky.ether.world.WorldRegistry
 import robosky.ether.world.feature.SpawnPlatformPiece
 
 object MixinHackHooksImpl extends MixinHackHooks {
