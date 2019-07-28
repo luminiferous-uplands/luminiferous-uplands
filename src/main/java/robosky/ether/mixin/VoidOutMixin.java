@@ -16,7 +16,7 @@ public abstract class VoidOutMixin extends LivingEntity {
 
     @Override
     protected void destroy() {
-        if (this.dimension == MixinHack.ETHER_DIMTYPE) {
+        if (this.dimension == MixinHack.HOOKS.getDimensionType()) {
             changeDimension(DimensionType.OVERWORLD);
         } else {
             super.destroy();

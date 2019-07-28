@@ -6,9 +6,9 @@ import net.minecraft.item.{ItemGroup, ItemStack}
 import net.minecraft.util.Identifier
 import robosky.ether.block.BlockRegistry
 import robosky.ether.item.ItemRegistry
-import robosky.ether.world.WorldRegistry
 import robosky.ether.world.biome.BiomeRegistry
 import robosky.ether.world.feature.FeatureRegistry
+import robosky.ether.world.{MixinHackHooksImpl, WorldRegistry}
 
 object EtherMod extends ModInitializer {
 
@@ -21,5 +21,6 @@ object EtherMod extends ModInitializer {
     FeatureRegistry.init()
     BiomeRegistry.init()
     WorldRegistry.init()
+    MixinHack.HOOKS = MixinHackHooksImpl
   }
 }
