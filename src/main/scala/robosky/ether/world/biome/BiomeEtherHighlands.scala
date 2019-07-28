@@ -42,4 +42,6 @@ object BiomeEtherHighlands extends Biome((new Biome.Settings)
   override def getGrassColorAt(pos: BlockPos) = 11665355
 
   override def getFoliageColorAt(pos: BlockPos) = 11665355
+
+  override def computeTemperature(blockPos_1: BlockPos): Float = getTemperature()
 }

@@ -23,14 +23,11 @@ class EtherDimension(world: World, dimensionType: DimensionType) extends Dimensi
   override def getTopSpawningBlockPosition(i: Int, i1: Int, b: Boolean): BlockPos = null
 
   override def getSkyAngle(worldTime: Long, partialTicks: Float): Float = {
-    val i = (worldTime % 24000L).toInt
-    var f = (i.toFloat + partialTicks) / 24000.0F - 0.25F
-    if (f < 0.0F) f += 1
-    if (f > 1.0F) f -= 1
-    val f1 = 1.0F - ((Math.cos(f.toDouble * 3.141592653589793D) + 1.0D) / 2.0D).toFloat
-    f += (f1 - f) / 3.0F
-    f
+    val a = MathHelper.fractionalPart(worldTime / 24000.0D - 0.25D)
+    (a * 2.0D + (0.5D - Math.cos(a * 3.141592653589793D) / 2.0D)).toFloat / 3.0F
   }
+
+  override def getCloudHeight: Float = 8
 
   override def hasVisibleSky = true
 
@@ -54,6 +51,13 @@ class EtherDimension(world: World, dimensionType: DimensionType) extends Dimensi
   override def canPlayersSleep: Boolean = true
 
   override def shouldRenderFog(i: Int, i1: Int): Boolean = false
+
+  override def getHorizonShadingRatio: Double = 1
+
+  override protected def initializeLightLevelToBrightness(): Unit = for (level <- 0 until 16) {
+    val brightness = 1.0F - level / 15.0F
+    this.lightLevelToBrightness(level) = (1.0F - brightness) / (brightness * 3.0F + 1.0F) * 0.9F + 0.1F
+  }
 
   override def getType: DimensionType = dimensionType
 

@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "robosky.ether.clientmixins",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "WorldMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
