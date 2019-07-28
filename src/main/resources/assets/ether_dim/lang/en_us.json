@@ -11,5 +11,7 @@
   "block.ether_dim.skyroot_stairs": "Skyroot Stairs",
   "block.ether_dim.skyroot_sapling": "Skyroot Sapling",
   "block.ether_dim.skyroot_leaves": "Skyroot Leaves",
+  "block.ether_dim.skyroot_fence": "Skyroot Fence",
+  "block.ether_dim.skyroot_fence_gate": "Skyroot Fence Gate",
   "item.ether_dim.aegisalt_crystal": "Aegisalt Crystal"
 }
