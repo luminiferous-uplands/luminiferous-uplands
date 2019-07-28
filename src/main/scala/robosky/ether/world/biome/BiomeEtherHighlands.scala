@@ -34,7 +34,7 @@ object BiomeEtherHighlands extends Biome((new Biome.Settings)
   addFeature(GenerationStep.Feature.UNDERGROUND_ORES, Biome.configureFeature(FeatureRegistry.oreFeature,
     new DefaultFeatureConfig, Decorator.COUNT_RANGE, new RangeDecoratorConfig(1, 0, 0, 256)))
   addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Biome.configureFeature(FeatureRegistry.skyrootTreeFeature,
-    FeatureConfig.DEFAULT, Decorator.COUNT_EXTRA_HEIGHTMAP, new CountExtraChanceDecoratorConfig(5, 0.1F, 1)))
+    FeatureConfig.DEFAULT, Decorator.COUNT_EXTRA_HEIGHTMAP, new CountExtraChanceDecoratorConfig(2, 0.1F, 1)))
 
   @Environment(EnvType.CLIENT)
   override def getSkyColor(currentTemperature: Float) = 12632319
