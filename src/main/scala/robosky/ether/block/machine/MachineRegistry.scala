@@ -11,21 +11,32 @@ import net.minecraft.container.BlockContext
 import net.minecraft.entity.player.{PlayerEntity, PlayerInventory}
 import net.minecraft.util.registry.Registry
 import net.minecraft.util.{Identifier, PacketByteBuf}
+import robosky.ether.block.BlockRegistry
 import robosky.ether.block.machine.base.{BaseMachineBlock, BaseMachineBlockEntity}
 
 import scala.collection.mutable
 
 object MachineRegistry {
 
-  val machineRegistry: mutable.HashMap[Identifier, BlockEntityType[_ <: BaseMachineBlockEntity]] = mutable.HashMap.empty
+  val MACHINES: mutable.HashMap[Identifier, BlockEntityType[_ <: BaseMachineBlockEntity]] = mutable.HashMap.empty
 
-  def register[B <: BaseMachineBlock, E <: BaseMachineBlockEntity, C <: CottonScreenController](m: Machine[B, E, C]): Unit = m match {
+
+  val aegisaltInfuser: MachineEntry[AegisaltInfuserBlock.type, AegisaltInfuser, Nothing] =
+    register("aegisalt_infuser", Machine(AegisaltInfuserBlock, AegisaltInfuser.apply, None))
+
+  def register[B <: BaseMachineBlock, E <: BaseMachineBlockEntity, C <: CottonScreenController](name: String, m: Machine[B, E, C]): MachineEntry[B, E, C] = {
+    BlockRegistry.register(name)(m.b)
+    register(m)
+  }
+
+  def register[B <: BaseMachineBlock, E <: BaseMachineBlockEntity, C <: CottonScreenController](m: Machine[B, E, C]): MachineEntry[B, E, C] = m match {
     case Machine(b, e, gui) =>
       val id = Registry.BLOCK.getId(b)
       val t = new BlockEntityType[E](() => e(), ImmutableSet.of(b), null)
       Registry.register(Registry.BLOCK_ENTITY, id, t)
-      machineRegistry.put(id, t)
+      MACHINES.put(id, t)
       gui.foreach(registerGui(id, _))
+      MachineEntry(m, t)
   }
 
   def registerGui[C <: CottonScreenController](id: Identifier, gui: MachineGui[C]): Unit = {
@@ -45,5 +56,8 @@ object MachineRegistry {
 
   case class Machine[B <: BaseMachineBlock, E <: BaseMachineBlockEntity, C <: CottonScreenController](b: B, e: () => E,
     gui: Option[MachineGui[C]] = None)
+
+  case class MachineEntry[B <: BaseMachineBlock, E <: BaseMachineBlockEntity, C <: CottonScreenController](machine: Machine[B, E, C],
+    blockEntityType: BlockEntityType[E])
 
 }

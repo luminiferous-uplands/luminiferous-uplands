@@ -7,6 +7,6 @@ import net.minecraft.world.BlockView
 import robosky.ether.block.machine.MachineRegistry
 
 abstract class BaseMachineBlock(s: Block.Settings) extends Block(s) with BlockEntityProvider {
-  override def createBlockEntity(var1: BlockView): BlockEntity = MachineRegistry.machineRegistry(Registry.BLOCK
+  override def createBlockEntity(var1: BlockView): BlockEntity = MachineRegistry.MACHINES(Registry.BLOCK
     .getId(this)).instantiate()
 }
