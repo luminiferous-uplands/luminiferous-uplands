@@ -49,13 +49,14 @@ dependencies {
         exclude group: 'net.minecraft'
     }
     shadow "blue.endless.libnoise:LibnoiseJava:0.0.1-17"
-    modCompile("io.github.cottonmc:LibGui:1.2.2") {
+    modCompile("io.github.cottonmc:LibGui:1.2.3") {
         exclude group: 'net.fabricmc.fabric-api'
         exclude group: 'net.fabricmc'
         exclude group: 'net.minecraft'
         exclude group: 'io.github.prospector.modmenu'
         exclude group: 'io.github.prospector'
     }
+    include "io.github.cottonmc:LibGui:1.2.3"
 }
 
 processResources {
