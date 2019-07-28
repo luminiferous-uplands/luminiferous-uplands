@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import robosky.ether.MixinHack;
 
 @Mixin(BackgroundRenderer.class)
@@ -30,7 +31,7 @@ public class BGRenderMixin {
     }
 
     @Inject(at = @At("HEAD"), method = "renderBackground")
-    private void heckLoom(Camera unused1, float unused2) {
+    private void heckLoom(Camera unused1, float unused2, CallbackInfo info) {
 
     }
 }
