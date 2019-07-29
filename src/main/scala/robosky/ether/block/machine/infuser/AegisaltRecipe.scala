@@ -85,5 +85,5 @@ class AegisaltRecipe(id: Identifier, group: String, val ingredients: IndexedSeq[
 
   @Environment(EnvType.CLIENT)
   override def getRecipeKindIcon: ItemStack =
-    new ItemStack(MachineRegistry.aegisaltInfuser.machine.b)
+    new ItemStack(MachineRegistry.aegisaltInfuser.block)
 }

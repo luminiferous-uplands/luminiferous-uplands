@@ -16,6 +16,9 @@
         "adapter": "scala",
         "value": "robosky.ether.UplandsMod"
       }
+    ],
+    "rei_plugins": [
+      "robosky.ether.interop.EtherREIPlugin"
     ]
   },
   "mixins": [

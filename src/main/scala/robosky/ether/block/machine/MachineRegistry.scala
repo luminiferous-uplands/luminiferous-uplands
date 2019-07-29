@@ -65,6 +65,10 @@ object MachineRegistry {
     gui: Option[MachineGui[C]] = None)
 
   case class MachineEntry[B <: BaseMachineBlock, E <: BaseMachineBlockEntity, C <: CottonScreenController](
-    machine: Machine[B, E, C], blockEntityType: BlockEntityType[E])
+    machine: Machine[B, E, C], blockEntityType: BlockEntityType[E]) {
+    val block: B = machine.b
+    val be: () => E = machine.e
+    val gui: Option[MachineGui[C]] = machine.gui
+  }
 
 }
