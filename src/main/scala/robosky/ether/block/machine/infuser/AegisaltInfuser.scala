@@ -1,15 +1,17 @@
 package robosky.ether.block.machine.infuser
 
 import net.fabricmc.fabric.api.block.FabricBlockSettings
+import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable
 import net.fabricmc.fabric.api.tools.FabricToolTags
 import net.minecraft.block.{BlockState, InventoryProvider, Material}
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.inventory.{Inventory, SidedInventory}
 import net.minecraft.item.ItemStack
+import net.minecraft.nbt.CompoundTag
 import net.minecraft.recipe.{Recipe, RecipeFinder, RecipeInputProvider}
 import net.minecraft.sound.BlockSoundGroup
-import net.minecraft.util.Tickable
 import net.minecraft.util.math.{BlockPos, Direction}
+import net.minecraft.util.{Identifier, Tickable}
 import net.minecraft.world.IWorld
 import robosky.ether.block.machine.base.{BaseMachineBlock, BaseMachineBlockEntity, MachineGUIBlockActivationSkeleton}
 import robosky.ether.block.machine.{MachineRegistry, RecipeRegistry}
@@ -18,10 +20,10 @@ import robosky.ether.item.ItemRegistry
 import scala.reflect.{ClassTag, classTag}
 
 case class AegisaltInfuser() extends BaseMachineBlockEntity(MachineRegistry.aegisaltInfuser.blockEntityType)
-  with InventoryProvider with RecipeInputProvider with Tickable {
+  with InventoryProvider with RecipeInputProvider with Tickable with BlockEntityClientSerializable {
   self =>
   val inputStacks: Array[ItemStack] = Array(ItemStack.EMPTY, ItemStack.EMPTY)
-  private val MAX_BURN_TIME = 200
+  private val MAX_BURN_TIME = 100
   var crystalStack: ItemStack = ItemStack.EMPTY
   var outputStack: ItemStack = ItemStack.EMPTY
   var burnTime: Int = 0
@@ -47,6 +49,7 @@ case class AegisaltInfuser() extends BaseMachineBlockEntity(MachineRegistry.aegi
     var shouldMark = false
     if (!burning && canAcceptOutput(recipe) && !crystalStack.isEmpty) {
       this.recipe = Some(recipe)
+      println(s"Started crafting ${recipe.getId}")
       inputStacks.foreach(_.decrement(1))
       crystalStack.decrement(1)
       burnTime = 0
@@ -62,6 +65,7 @@ case class AegisaltInfuser() extends BaseMachineBlockEntity(MachineRegistry.aegi
           outputStack.increment(out.getCount)
         }
         shouldMark = true
+        this.recipe = None
       }
     } else {
       shouldMark = true
@@ -71,6 +75,7 @@ case class AegisaltInfuser() extends BaseMachineBlockEntity(MachineRegistry.aegi
   }
 
   def burning: Boolean = recipe.nonEmpty
+
 
   def canAcceptOutput(recipe_1: Recipe[Inventory]): Boolean =
     if (!inputStacks.forall(_.isEmpty) && recipe_1 != null) {
@@ -155,6 +160,28 @@ case class AegisaltInfuser() extends BaseMachineBlockEntity(MachineRegistry.aegi
     }
   }
 
+  override def fromClientTag(tag: CompoundTag): Unit = {
+    recipe = if (tag.getBoolean("HasRecipe"))
+      Some(world.getRecipeManager.get(new Identifier(tag.getString("recipe"))).get().asInstanceOf[AegisaltRecipe])
+    else
+      None
+
+    (0 to 1).map(i => s"InputStack$i").map(tag.getCompound).map(ItemStack.fromTag).zipWithIndex
+      .foreach { case (s, i) => inputStacks(i) = s }
+    outputStack = ItemStack.fromTag(tag.getCompound("OutputStack"))
+    crystalStack = ItemStack.fromTag(tag.getCompound("CrystalStack"))
+    burnTime = tag.getInt("BurnTime")
+  }
+
+  override def toClientTag(tag: CompoundTag): CompoundTag = {
+    tag.putBoolean("HasRecipe", recipe.nonEmpty)
+    recipe.foreach(r => tag.putString("Recipe", r.getId.toString))
+    inputStacks.zipWithIndex.foreach { case (s, i) => tag.put(s"InputStack$i", s.toTag(new CompoundTag)) }
+    tag.put("OutputStack", outputStack.toTag(new CompoundTag))
+    tag.put("CrystalStack", crystalStack.toTag(new CompoundTag))
+    tag.putInt("BurnTime", burnTime)
+    tag
+  }
 }
 
 object AegisaltInfuserBlock extends BaseMachineBlock(FabricBlockSettings.of(Material.STONE)

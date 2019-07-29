@@ -1,3 +1,16 @@
 {
-  "type": "$modid:aegisalt_infusion"
+  "type": "$modid:aegisalt_infusion",
+  "group": "",
+  "result": {
+    "item": "$modid:aegisalt_charm",
+    "count": 1
+  },
+  "ingredients": [
+    {
+      "item": "$modid:iron_charm"
+    },
+    {
+      "item": "$modid:aegisalt_crystal"
+    }
+  ]
 }

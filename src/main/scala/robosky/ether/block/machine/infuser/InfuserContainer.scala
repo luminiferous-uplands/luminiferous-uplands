@@ -26,10 +26,12 @@ class InfuserContainer(syncId: Int, playerInventory: PlayerInventory, ctx: Block
       0
     )
 
-    gridRoot.add(WItemSlot.of(be.InfuserInventory, 0, 2, 1), 4, 1)
-    gridRoot.add(WItemSlot.of(be.InfuserInventory, 2), 6, 2)
-    gridRoot.add(WItemSlot.outputOf(be.InfuserInventory, 3), 7, 1)
+    gridRoot.add(WItemSlot.of(blockInventory, 0, 2, 1), 2, 1)
+    gridRoot.add(WItemSlot.of(blockInventory, 2), 5, 2)
+    gridRoot.add(WItemSlot.outputOf(blockInventory, 3), 7, 1)
     gridRoot.add(this.createPlayerInventoryPanel(), 0, 4)
+
+    gridRoot.validate(this)
   }
 
   init()

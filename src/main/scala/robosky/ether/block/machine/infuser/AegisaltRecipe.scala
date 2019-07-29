@@ -15,10 +15,11 @@ object AegisaltRecipe {
 
     override def read(identifier_1: Identifier, jsonObject_1: JsonObject): AegisaltRecipe = {
       val group = JsonHelper.getString(jsonObject_1, "group")
+      val array = JsonHelper.getArray(jsonObject_1, "ingredients")
       val ingredients = for {
-        i <- 0 until JsonHelper.getArray(jsonObject_1, "ingredients").size()
+        i <- 0 until array.size()
         ingredient_1 = Ingredient.fromJson(
-          JsonHelper.getArray(jsonObject_1, "ingredients").get(i)
+          array.get(i)
         )
         if !ingredient_1.isEmpty
       } yield ingredient_1
