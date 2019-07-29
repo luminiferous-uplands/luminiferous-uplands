@@ -6,6 +6,8 @@ import robosky.ether.UplandsMod
 import robosky.ether.block.machine.infuser.AegisaltRecipe
 
 object RecipeRegistry {
+  def init(): Unit = {}
+
   val aegisaltRecipe: RecipeType[AegisaltRecipe] =
     register[AegisaltRecipe]("aegisalt_infusion", AegisaltRecipe.Serializer)
 

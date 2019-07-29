@@ -5,7 +5,7 @@ import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
 import net.minecraft.item.{ItemGroup, ItemStack}
 import net.minecraft.util.Identifier
 import robosky.ether.block.BlockRegistry
-import robosky.ether.block.machine.MachineRegistry
+import robosky.ether.block.machine.{MachineRegistry, RecipeRegistry}
 import robosky.ether.item.ItemRegistry
 import robosky.ether.world.WorldRegistry
 import robosky.ether.world.biome.BiomeRegistry
@@ -25,6 +25,7 @@ object UplandsMod extends ModInitializer {
     BiomeRegistry.init()
     WorldRegistry.init()
     MachineRegistry.init()
+    RecipeRegistry.init()
     MixinHack.HOOKS = MixinHackHooksImpl
   }
 

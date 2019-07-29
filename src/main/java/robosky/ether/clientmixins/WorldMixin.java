@@ -22,7 +22,7 @@ public class WorldMixin {
     @Inject(at = @At("HEAD"), method = "getHorizonHeight", cancellable = true)
     public void getHorizonHeight(final CallbackInfoReturnable<Double> cb) {
         if (dimension != null && dimension.getType() == MixinHack.HOOKS.getDimensionType()) {
-            cb.setReturnValue(0D);
+            cb.setReturnValue(Double.NEGATIVE_INFINITY);
         }
     }
 }

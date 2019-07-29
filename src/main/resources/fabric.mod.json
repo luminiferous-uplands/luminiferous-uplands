@@ -14,7 +14,7 @@
     "main": [
       {
         "adapter": "scala",
-        "value": "robosky.ether.EtherMod"
+        "value": "robosky.ether.UplandsMod"
       }
     ]
   },
