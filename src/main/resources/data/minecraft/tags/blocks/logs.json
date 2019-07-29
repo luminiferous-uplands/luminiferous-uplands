@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "luminiferous_uplands:skyroot_log"
+    "$modid:skyroot_log"
   ]
 }

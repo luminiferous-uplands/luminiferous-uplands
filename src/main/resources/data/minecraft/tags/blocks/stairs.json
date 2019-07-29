@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "luminiferous_uplands:skyroot_stairs"
+    "$modid:skyroot_stairs"
   ]
 }

@@ -1,3 +1,3 @@
 {
-  "parent": "luminiferous_uplands:block/ether_grass"
+  "parent": "$modid:block/ether_grass"
 }

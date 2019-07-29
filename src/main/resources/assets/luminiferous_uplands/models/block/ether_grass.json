@@ -1,9 +1,9 @@
 {
   "parent": "block/cube_bottom_top",
   "textures": {
-    "particle": "luminiferous_uplands:block/ether_dirt",
-    "bottom": "luminiferous_uplands:block/ether_dirt",
-    "top": "luminiferous_uplands:block/ether_grass_top",
-    "side": "luminiferous_uplands:block/ether_grass_side"
+    "particle": "$modid:block/ether_dirt",
+    "bottom": "$modid:block/ether_dirt",
+    "top": "$modid:block/ether_grass_top",
+    "side": "$modid:block/ether_grass_side"
   }
 }

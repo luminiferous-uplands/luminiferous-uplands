@@ -13,5 +13,5 @@ object ItemRegistry {
 
   def init(): Unit = {}
 
-  private def register[A <: Item](name: String, item: A): A = Registry.register(Registry.ITEM, UplandsMod :/ name, item)
+  private def register[A <: Item](name: String, item: A): A = Registry.register[A](Registry.ITEM, UplandsMod :/ name, item)
 }

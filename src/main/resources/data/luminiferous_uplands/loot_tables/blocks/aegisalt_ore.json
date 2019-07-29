@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "name": "luminiferous_uplands:aegisalt_ore"
+              "name": "$modid:aegisalt_ore"
             },
             {
               "type": "minecraft:item",
@@ -46,7 +46,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "luminiferous_uplands:aegisalt_crystal"
+              "name": "$modid:aegisalt_crystal"
             }
           ]
         }

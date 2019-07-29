@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "name": "luminiferous_uplands:ether_grass"
+              "name": "$modid:ether_grass"
             },
             {
               "type": "minecraft:item",
@@ -33,7 +33,7 @@
                   "condition": "minecraft:survives_explosion"
                 }
               ],
-              "name": "luminiferous_uplands:ether_dirt"
+              "name": "$modid:ether_dirt"
             }
           ]
         }

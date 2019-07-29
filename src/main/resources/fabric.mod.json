@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "luminiferous_uplands",
+  "id": "$modid",
   "version": "${version}",
   "name": "Luminiferous Uplands",
   "description": "This is an example description! Tell everyone what your mod is about!",

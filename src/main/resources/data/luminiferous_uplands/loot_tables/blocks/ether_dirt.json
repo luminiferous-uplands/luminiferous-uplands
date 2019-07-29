@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "luminiferous_uplands:ether_dirt"
+          "name": "$modid:ether_dirt"
         }
       ],
       "conditions": [

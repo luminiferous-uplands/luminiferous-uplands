@@ -17,10 +17,10 @@ import robosky.ether.world.feature.SpawnPlatformPiece
 
 object MixinHackHooksImpl extends MixinHackHooks {
 
-  override def getDimensionType: DimensionType = WorldRegistry.luminiferous_uplandsENSION
+  override def getDimensionType: DimensionType = WorldRegistry.UPLANDS_DIMENSION
 
   override def usePortalHookTo(entity: Entity, world: World): Boolean = {
-    val tag = world.getLevelProperties.getWorldData(WorldRegistry.luminiferous_uplandsENSION)
+    val tag = world.getLevelProperties.getWorldData(WorldRegistry.UPLANDS_DIMENSION)
     val pos: BlockPos = if (tag.containsKey("SpawnPlatform")) {
       val ptag = tag.getIntArray("SpawnPlatform")
       new BlockPos(ptag(0), ptag(1), ptag(2))
@@ -29,7 +29,7 @@ object MixinHackHooksImpl extends MixinHackHooks {
       createSpawnPlatform(world, pos1.north(6).west(4).down(6))
       tag.putIntArray("SpawnPlatform", Array(pos1.getX, pos1.getY, pos1.getZ))
       world.getLevelProperties
-        .setWorldData(WorldRegistry.luminiferous_uplandsENSION, tag)
+        .setWorldData(WorldRegistry.UPLANDS_DIMENSION, tag)
       pos1
     }
     entity match {

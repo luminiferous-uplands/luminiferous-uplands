@@ -1,8 +1,8 @@
 {
   "credit": "Made with Blockbench",
   "textures": {
-    "0": "luminiferous_uplands:block/pedestal",
-    "particle": "luminiferous_uplands:block/pedestal"
+    "0": "$modid:block/pedestal",
+    "particle": "$modid:block/pedestal"
   },
   "elements": [
     {

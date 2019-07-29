@@ -3,11 +3,11 @@
   "group": "planks",
   "ingredients": [
     {
-      "item": "luminiferous_uplands:skyroot_log"
+      "item": "$modid:skyroot_log"
     }
   ],
   "result": {
-    "item": "luminiferous_uplands:skyroot_planks",
+    "item": "$modid:skyroot_planks",
     "count": 4
   }
 }

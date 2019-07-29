@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "luminiferous_uplands:block/ether_dirt"
+      "model": "$modid:block/ether_dirt"
     }
   }
 }

@@ -22,10 +22,10 @@ object EtherBeaconBlock extends Block(FabricBlockSettings.of(Material.STONE).str
 
   override def activate(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand,
     result: BlockHitResult): Boolean = {
-    if (player.world.dimension.getType eq WorldRegistry.luminiferous_uplandsENSION)
+    if (player.world.dimension.getType eq WorldRegistry.UPLANDS_DIMENSION)
       player.changeDimension(DimensionType.OVERWORLD)
     else { // going to our custom dimension
-      player.changeDimension(WorldRegistry.luminiferous_uplandsENSION)
+      player.changeDimension(WorldRegistry.UPLANDS_DIMENSION)
     }
     true
   }

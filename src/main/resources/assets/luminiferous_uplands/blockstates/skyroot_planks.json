@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "luminiferous_uplands:block/skyroot_planks"
+      "model": "$modid:block/skyroot_planks"
     }
   }
 }

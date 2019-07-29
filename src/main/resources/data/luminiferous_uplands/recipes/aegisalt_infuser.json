@@ -1,23 +1,23 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "G G",
+    "GGG",
     "SRS",
     "SSS"
   ],
   "key": {
     "G": {
-      "item": "minecraft:glowstone_dust"
+      "item": "$modid:skyroot_slab"
     },
     "R": {
-      "item": "minecraft:redstone"
+      "item": "$modid:aegisalt_crystal"
     },
     "S": {
-      "item": "minecraft:stone"
+      "item": "$modid:ether_stone"
     }
   },
   "result": {
-    "item": "$modid:ether_beacon",
+    "item": "$modid:aegisalt_infuser",
     "count": 1
   }
 }

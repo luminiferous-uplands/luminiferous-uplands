@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "luminiferous_uplands:block/ether_stone"
+    "all": "$modid:block/ether_stone"
   }
 }

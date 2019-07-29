@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "luminiferous_uplands:ether_dirt",
-    "luminiferous_uplands:ether_grass"
+    "$modid:ether_dirt",
+    "$modid:ether_grass"
   ]
 }

@@ -16,7 +16,7 @@ object WorldRegistry {
     registerChunkGeneratorType(UplandsMod :/ "uplands_chunk_generator", new EtherChunkGenerator(_, _),
       () => EtherChunkGenConfig, appearsOnBuffet = false)
 
-  val luminiferous_uplandsENSION: FabricDimensionType = registerDimensionType(EtherDimensionType)
+  val UPLANDS_DIMENSION: FabricDimensionType = registerDimensionType(EtherDimensionType)
 
   def init(): Unit = Unit
 
