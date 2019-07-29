@@ -44,16 +44,8 @@ public abstract class AbstractEtherTree<T extends FeatureConfig> extends Feature
         });
     }
 
-    static boolean isAir(TestableWorld testableWorld_1, BlockPos blockPos_1) {
-        return testableWorld_1.testBlockState(blockPos_1, BlockState::isAir);
-    }
-
     private static boolean isNaturalDirt(TestableWorld testableWorld_1, BlockPos blockPos_1) {
         return testableWorld_1.testBlockState(blockPos_1, (blockState_1) -> Block.isNaturalDirt(blockState_1.getBlock()));
-    }
-
-    static boolean isLeaves(TestableWorld testableWorld_1, BlockPos blockPos_1) {
-        return testableWorld_1.testBlockState(blockPos_1, (blockState_1) -> blockState_1.matches(BlockTags.LEAVES));
     }
 
     static boolean isAirOrLeaves(TestableWorld testableWorld_1, BlockPos blockPos_1) {

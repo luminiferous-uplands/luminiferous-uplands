@@ -18,14 +18,14 @@ public class SkyrootTreeFeature extends AbstractEtherTree<DefaultFeatureConfig> 
     private final BlockState leaves;
 
     public SkyrootTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> function_1, boolean sapling) {
-        this(function_1, sapling, 4, BlockRegistry.SKYROOT_LOG().getDefaultState(),
+        this(function_1, sapling, BlockRegistry.SKYROOT_LOG().getDefaultState(),
                 BlockRegistry.SKYROOT_LEAVES().getDefaultState());
     }
 
-    private SkyrootTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> function_1, boolean sapling, int int_1,
+    private SkyrootTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> function_1, boolean sapling,
                                BlockState blockState_1, BlockState blockState_2) {
         super(function_1, sapling);
-        this.height = int_1;
+        this.height = 4;
         this.log = blockState_1;
         this.leaves = blockState_2;
     }
