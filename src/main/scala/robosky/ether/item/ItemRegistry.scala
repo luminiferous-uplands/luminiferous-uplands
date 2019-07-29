@@ -9,7 +9,7 @@ object ItemRegistry {
     .group(UplandsMod.GROUP)))
 
   val AEGISALT_CHARM: Item = register("aegisalt_charm", new Item(new Item.Settings().group(UplandsMod.GROUP)
-    .maxCount(1)))
+    .maxCount(1).maxDamage(2400)))
 
   def init(): Unit = {}
 

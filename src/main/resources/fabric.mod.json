@@ -7,7 +7,7 @@
   "authors": [
     "RoboSky"
   ],
-  "license": "EPL",
+  "license": "MIT",
   "icon": "assets/luminiferous_uplands/icon.png",
   "environment": "*",
   "entrypoints": {

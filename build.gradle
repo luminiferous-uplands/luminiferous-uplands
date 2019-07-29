@@ -3,6 +3,7 @@ plugins {
     id 'scala'
     id 'fabric-loom' version '0.2.4-SNAPSHOT'
     id "com.github.johnrengelman.shadow" version "5.1.0"
+//    id "com.matthewprenger.cursegradle" version "1.3.0"
 }
 
 group 'robosky.mods'
@@ -97,3 +98,24 @@ task sourcesJar(type: Jar, dependsOn: classes) {
     archiveClassifier = "sources"
     from sourceSets.main.allSource
 }
+
+//curseforge {
+//    apiKey = (System.getenv("CURSEFORGE_KEY") == null) ? System.getenv("CURSEFORGE_KEY") : ""
+//    project {
+//        id = '12345'
+//        changelog = "Version ${project.version}"
+//        releaseType = 'alpha'
+//        addGameVersion '1.14.4'
+//
+//        mainArtifact(jar) {
+//            displayName = "Luminiferous Uplands version: $project.version"
+//        }
+//        afterEvaluate {
+//            mainArtifact(remapJar.output)
+//            uploadTask.dependsOn(remapJar)
+//        }
+//    }
+//    options {
+//        forgeGradleIntegration = false
+//    }
+//}

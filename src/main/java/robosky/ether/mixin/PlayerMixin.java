@@ -5,7 +5,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import org.spongepowered.asm.mixin.Mixin;
@@ -29,15 +29,22 @@ public abstract class PlayerMixin extends LivingEntity {
         }
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;updateTurtleHelmet()V"),
             method = "tick")
     private void updateParachute(CallbackInfo info) {
-        for (ItemStack itemStack : getItemsHand()) {
-            if (MixinHack.HOOKS.checkParachute(itemStack)) {
-                addPotionEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 20, 0, false,
-                        false, true));
-                return;
-            }
+        if (MixinHack.HOOKS.checkParachute(getMainHandStack())) {
+            addPotionEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 20, 0, false,
+                    false, true));
+            if (getVelocity().y < 0)
+                getMainHandStack().damage(1, (PlayerEntity) (Object) this, p -> p.sendToolBreakStatus(Hand.MAIN_HAND));
+            return;
+        }
+        if (MixinHack.HOOKS.checkParachute(getOffHandStack())) {
+            addPotionEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 20, 0, false,
+                    false, true));
+            if (getVelocity().y < 0)
+                getOffHandStack().damage(1, (PlayerEntity) (Object) this, p -> p.sendToolBreakStatus(Hand.OFF_HAND));
         }
     }
 }
