@@ -16,13 +16,16 @@ import robosky.ether.world.WorldRegistry
 object EtherBeaconBlock extends Block(FabricBlockSettings.of(Material.STONE).strength(3, 3)
   .breakByTool(FabricToolTags.PICKAXES, 2).build()) {
 
-  override def getOutlineShape(blockState_1: BlockState, blockView_1: BlockView, blockPos_1: BlockPos, entityContext_1: EntityContext): VoxelShape =
+  override def getOutlineShape(blockState_1: BlockState, blockView_1: BlockView, blockPos_1: BlockPos,
+    entityContext_1: EntityContext): VoxelShape =
     Block.createCuboidShape(2, 0, 2, 14, 16, 14)
 
-  override def activate(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand, result: BlockHitResult): Boolean = {
-    if (player.world.dimension.getType eq WorldRegistry.ETHER_DIMENSION) player.changeDimension(DimensionType.OVERWORLD)
+  override def activate(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand,
+    result: BlockHitResult): Boolean = {
+    if (player.world.dimension.getType eq WorldRegistry.luminiferous_uplandsENSION)
+      player.changeDimension(DimensionType.OVERWORLD)
     else { // going to our custom dimension
-      player.changeDimension(WorldRegistry.ETHER_DIMENSION)
+      player.changeDimension(WorldRegistry.luminiferous_uplandsENSION)
     }
     true
   }

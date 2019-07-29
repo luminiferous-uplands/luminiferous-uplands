@@ -21,7 +21,6 @@ class EtherOreBlock(oreType: EtherOreBlock.EtherOreType) extends Block(oreType.b
 }
 
 object EtherOreBlock {
-
   val oreTypes: IndexedSeq[EtherOreType] = IndexedSeq(OreTypeAegisalt)
 
   sealed abstract class EtherOreType(val name: String, val xp: Range) {
@@ -34,10 +33,10 @@ object EtherOreBlock {
 
   case object OreTypeAegisalt extends EtherOreType("aegisalt", 2 to 5) {
     override val blockSettings: Block.Settings = FabricBlockSettings.of(Material.STONE)
-      .strength(3.0F, 3.0F)
-      .breakByTool(FabricToolTags.PICKAXES, 2).build()
+      .strength(3.0F, 3.0F).breakByTool(FabricToolTags.PICKAXES, 2).build()
 
-    override def genSettings(): OreGenSettings = OreGenSettings(9, 6, 128, 1, Set(BlockRegistry.ETHER_ORES(OreTypeAegisalt).getDefaultState))
+    override def genSettings(): OreGenSettings = OreGenSettings(9, 6, 128, 1,
+      Set(BlockRegistry.ETHER_ORES(OreTypeAegisalt).getDefaultState))
   }
 
 }

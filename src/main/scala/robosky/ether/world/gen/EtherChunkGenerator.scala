@@ -12,23 +12,27 @@ import net.minecraft.world.gen.chunk.SurfaceChunkGenerator
 class EtherChunkGenerator(world: World, biomeSource: BiomeSource)
   extends SurfaceChunkGenerator[EtherChunkGenConfig.type](world, biomeSource, 4, 8, 128,
     EtherChunkGenConfig, true) {
-  private val BIOME_WEIGHT_TABLE = SystemUtil.consume(new Array[Float](25), (values: Array[Float]) => for {
-    dx <- -2 to 2
-    dz <- -2 to 2
-  } {
-    val weight = 10.0F / MathHelper.sqrt(dx * dx + dz * dz + 0.2F)
-    values(dx + 2 + (dz + 2) * 5) = weight
-  })
+  private val BIOME_WEIGHT_TABLE = SystemUtil.consume(
+    new Array[Float](25),
+    (values: Array[Float]) =>
+      for {
+        dx <- -2 to 2
+        dz <- -2 to 2
+      } {
+        val weight = 10.0F / MathHelper.sqrt(dx * dx + dz * dz + 0.2F)
+        values(dx + 2 + (dz + 2) * 5) = weight
+      }
+  )
 
   override def getSpawnHeight: Int = 130
 
   override def getSeaLevel: Int = 0
 
-
   override def buildBedrock(chunk_1: Chunk, random_1: Random): Unit = Unit
 
   override protected def sampleNoiseColumn(doubles_1: Array[Double], int_1: Int, int_2: Int): Unit =
-    this.sampleNoiseColumn(doubles_1, int_1, int_2, 684.412D, 684.412D * 4, 684.412D / 80, 684.412D / 160, 3, -10)
+    this.sampleNoiseColumn(doubles_1, int_1, int_2, 684.412D, 684.412D * 4,
+      684.412D / 80, 684.412D / 160, 3, -10)
 
   override protected def method_16409: Double = (this.getNoiseSizeY - 4) / 2
 
@@ -39,8 +43,10 @@ class EtherChunkGenerator(world: World, biomeSource: BiomeSource)
     var depthTotal = 0.0F
     var weightTotal = 0.0F
     val centerDepth = this.biomeSource.getBiomeForNoiseGen(x, z).getDepth
-    for {dx <- -2 to 2
-         dz <- -2 to 2} {
+    for {
+      dx <- -2 to 2
+      dz <- -2 to 2
+    } {
       val biome = this.biomeSource.getBiomeForNoiseGen(x + dx, z + dz)
       val depth = biome.getDepth
       val scale = biome.getScale
@@ -56,5 +62,6 @@ class EtherChunkGenerator(world: World, biomeSource: BiomeSource)
     Array[Double](depthTotal, scaleTotal)
   }
 
-  override protected def computeNoiseFalloff(double_1: Double, double_2: Double, int_1: Int): Double = 12 - 15 * double_1
+  override protected def computeNoiseFalloff(double_1: Double, double_2: Double, int_1: Int): Double =
+    12 - 15 * double_1
 }

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "luminiferous_uplands:block/skyroot_log"
+    },
+    "axis=z": {
+      "model": "luminiferous_uplands:block/skyroot_log",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "luminiferous_uplands:block/skyroot_log",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

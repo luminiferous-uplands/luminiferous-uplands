@@ -7,7 +7,8 @@ import com.mojang.datafixers.Dynamic
 import net.minecraft.world.gen.feature.{Feature, LakeFeatureConfig}
 import robosky.ether.block.BlockRegistry
 
-class SkyLakeFeature($f: Function[Dynamic[_], LakeFeatureConfig]) extends Feature[LakeFeatureConfig]($f) {
+class SkyLakeFeature($f: Function[Dynamic[_], LakeFeatureConfig])
+  extends Feature[LakeFeatureConfig]($f) {
 
   import net.minecraft.block.{Block, Blocks, Material}
   import net.minecraft.util.math.{BlockPos, ChunkPos}
@@ -16,7 +17,8 @@ class SkyLakeFeature($f: Function[Dynamic[_], LakeFeatureConfig]) extends Featur
   import net.minecraft.world.gen.feature.{Feature, LakeFeatureConfig}
   import net.minecraft.world.{IWorld, LightType}
 
-  def generate(world: IWorld, generator: ChunkGenerator[_ <: ChunkGeneratorConfig], random: Random, st: BlockPos, config: LakeFeatureConfig): Boolean = {
+  def generate(world: IWorld, generator: ChunkGenerator[_ <: ChunkGeneratorConfig], random: Random, st: BlockPos,
+    config: LakeFeatureConfig): Boolean = {
     var start = st
     while ( {
       start.getY > 5 && world.isAir(start)
@@ -26,8 +28,10 @@ class SkyLakeFeature($f: Function[Dynamic[_], LakeFeatureConfig]) extends Featur
     start = start.down(4)
 
     val chunkPos = new ChunkPos(start)
-    if (!world.getChunk(chunkPos.x, chunkPos.z, ChunkStatus.STRUCTURE_REFERENCES)
-      .getStructureReferences(Feature.VILLAGE.getName).isEmpty) return false
+    if (!world
+      .getChunk(chunkPos.x, chunkPos.z, ChunkStatus.STRUCTURE_REFERENCES)
+      .getStructureReferences(Feature.VILLAGE.getName)
+      .isEmpty) return false
 
     val bitset = new Array[Boolean](2048)
     val size = random.nextInt(4) + 4
@@ -54,9 +58,15 @@ class SkyLakeFeature($f: Function[Dynamic[_], LakeFeatureConfig]) extends Featur
     }
 
     def bitsetCheck(dx: Int, dz: Int, dy: Int): Boolean = {
-      !bitset((dx * 16 + dz) * 8 + dy) && (dx < 15 && bitset(((dx + 1) * 16 + dz) * 8 + dy)
-        || dx > 0 && bitset(((dx - 1) * 16 + dz) * 8 + dy) || dz < 15 && bitset((dx * 16 + dz + 1) * 8 + dy)
-        || dz > 0 && bitset((dx * 16 + dz - 1) * 8 + dy) || dy < 7 && bitset((dx * 16 + dz) * 8 + dy + 1)
+      !bitset((dx * 16 + dz) * 8 + dy) && (dx < 15 && bitset(
+        ((dx + 1) * 16 + dz) * 8 + dy
+      )
+        || dx > 0 && bitset(((dx - 1) * 16 + dz) * 8 + dy) || dz < 15 && bitset(
+        (dx * 16 + dz + 1) * 8 + dy
+      )
+        || dz > 0 && bitset((dx * 16 + dz - 1) * 8 + dy) || dy < 7 && bitset(
+        (dx * 16 + dz) * 8 + dy + 1
+      )
         || dy > 0 && bitset((dx * 16 + dz) * 8 + dy - 1))
     }
 
@@ -68,7 +78,9 @@ class SkyLakeFeature($f: Function[Dynamic[_], LakeFeatureConfig]) extends Featur
       if (bitsetCheck(dx, dz, dy)) {
         val material_1 = world.getBlockState(start.add(dx, dy, dz)).getMaterial
         if (dy >= 4 && material_1.isLiquid) return false
-        if (dy < 4 && !material_1.isSolid && (world.getBlockState(start.add(dx, dy, dz)) != config.state)) return false
+        if (dy < 4 && !material_1.isSolid && (world.getBlockState(
+          start.add(dx, dy, dz)
+        ) != config.state)) return false
       }
     }
     for {
@@ -76,8 +88,14 @@ class SkyLakeFeature($f: Function[Dynamic[_], LakeFeatureConfig]) extends Featur
       dz <- 0 until 16
       dy <- 0 until 8
     } {
-      if (bitset((i * 16 + dz) * 8 + dy)) world.setBlockState(start.add(i, dy, dz), if (dy >= 4)
-        Blocks.CAVE_AIR.getDefaultState else config.state, 2)
+      if (bitset((i * 16 + dz) * 8 + dy))
+        world.setBlockState(
+          start.add(i, dy, dz),
+          if (dy >= 4)
+            Blocks.CAVE_AIR.getDefaultState
+          else config.state,
+          2
+        )
     }
     for {
       dx <- 0 until 16
@@ -86,8 +104,9 @@ class SkyLakeFeature($f: Function[Dynamic[_], LakeFeatureConfig]) extends Featur
       if bitset((dx * 16 + dz) * 8 + dy)
     } {
       val pos = start.add(dx, dy - 1, dz)
-      if (Block.isNaturalDirt(world.getBlockState(pos).getBlock) && world.getLightLevel(LightType.SKY,
-        start.add(dx, dy, dz)) > 0) world.setBlockState(pos, BlockRegistry.ETHER_GRASS.getDefaultState, 2)
+      if (Block.isNaturalDirt(world.getBlockState(pos).getBlock) && world
+        .getLightLevel(LightType.SKY, start.add(dx, dy, dz)) > 0)
+        world.setBlockState(pos, BlockRegistry.ETHER_GRASS.getDefaultState, 2)
     }
     if (config.state.getMaterial == Material.LAVA) {
       for {
@@ -96,8 +115,12 @@ class SkyLakeFeature($f: Function[Dynamic[_], LakeFeatureConfig]) extends Featur
         dy <- 0 until 8
       } {
         if (bitsetCheck(dx, dz, dy) && (dy < 4 || (random.nextInt(2) != 0))
-          && world.getBlockState(start.add(dx, dy, dz)).getMaterial.isSolid) world.setBlockState(start.add(dx, dy, dz),
-          BlockRegistry.ETHER_STONE.getDefaultState, 2)
+          && world.getBlockState(start.add(dx, dy, dz)).getMaterial.isSolid)
+          world.setBlockState(
+            start.add(dx, dy, dz),
+            BlockRegistry.ETHER_STONE.getDefaultState,
+            2
+          )
       }
     }
     if (config.state.getMaterial == Material.WATER) {
@@ -106,7 +129,8 @@ class SkyLakeFeature($f: Function[Dynamic[_], LakeFeatureConfig]) extends Featur
         dz <- 0 until 16
       } {
         val pos = start.add(dx, 4, dz)
-        if (world.getBiome(pos).canSetSnow(world, pos, false)) world.setBlockState(pos, Blocks.ICE.getDefaultState, 2)
+        if (world.getBiome(pos).canSetSnow(world, pos, false))
+          world.setBlockState(pos, Blocks.ICE.getDefaultState, 2)
       }
     }
     true

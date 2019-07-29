@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "id": "ether_dim",
+  "id": "luminiferous_uplands",
   "version": "${version}",
-  "name": "Ether Dimension",
+  "name": "Luminiferous Uplands",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
     "RoboSky"
   ],
   "license": "EPL",
-  "icon": "assets/ether_dim/icon.png",
+  "icon": "assets/luminiferous_uplands/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -19,10 +19,10 @@
     ]
   },
   "mixins": [
-    "ether_dim.mixins.json",
+    "luminiferous_uplands.mixins.json",
     "dimension_fixes.mixins.json",
     {
-      "config": "ether_dim.client-mixins.json",
+      "config": "luminiferous_uplands.client-mixins.json",
       "environment": "client"
     }
   ],

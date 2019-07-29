@@ -17,6 +17,7 @@ public class WorldMixin {
     @Shadow
     @Final
     private Dimension dimension;
+
     @Environment(EnvType.CLIENT)
     @Inject(at = @At("HEAD"), method = "getHorizonHeight", cancellable = true)
     public void getHorizonHeight(final CallbackInfoReturnable<Double> cb) {

@@ -28,7 +28,7 @@ public class SpawnPlatformPiece extends SimpleStructurePiece {
     }
 
     private void initializeStructureData(StructureManager structureManager_1) {
-        Structure structure_1 = structureManager_1.getStructureOrBlank(new Identifier("ether_dim", "spawn_platform"));
+        Structure structure_1 = structureManager_1.getStructureOrBlank(new Identifier("luminiferous_uplands", "spawn_platform"));
         StructurePlacementData structurePlacementData_1 = (new StructurePlacementData()).setRotation(BlockRotation.NONE)
                 .setMirrored(BlockMirror.NONE).setPosition(new BlockPos(0, 0, 0))
                 .addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS);

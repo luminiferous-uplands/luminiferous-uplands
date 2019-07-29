@@ -11,8 +11,7 @@ import robosky.ether.block.BlockRegistry
 
 class EtherHighlandsSurfaceBuilder extends SurfaceBuilder[SurfaceConfig](null) {
   def generate(rand: Random, chunk: Chunk, biome: Biome, absX: Int, absZ: Int, startHeight: Int, noise: Double,
-    defaultBlock: BlockState, defaultFluid: BlockState, seaLevel: Int, seed: Long,
-    config: SurfaceConfig): Unit = {
+    defaultBlock: BlockState, defaultFluid: BlockState, seaLevel: Int, seed: Long, config: SurfaceConfig): Unit = {
     var topBlock = BlockRegistry.ETHER_GRASS.getDefaultState
     var underBlock = BlockRegistry.ETHER_DIRT.getDefaultState
     val pos = new BlockPos.Mutable
@@ -24,18 +23,18 @@ class EtherHighlandsSurfaceBuilder extends SurfaceBuilder[SurfaceConfig](null) {
       pos.set(x, y, z)
       val blockState_8 = chunk.getBlockState(pos)
       if (blockState_8.isAir) depth = -1
-      else if (blockState_8.getBlock == defaultBlock.getBlock) if (depth == -1) {
-        if (maxDepth <= 0) {
-          topBlock = Blocks.AIR.getDefaultState
-          underBlock = topBlock
+      else if (blockState_8.getBlock == defaultBlock.getBlock)
+        if (depth == -1) {
+          if (maxDepth <= 0) {
+            topBlock = Blocks.AIR.getDefaultState
+            underBlock = topBlock
+          }
+          chunk.setBlockState(pos, topBlock, false)
+          depth = maxDepth
+        } else if (depth > 0) {
+          depth -= 1
+          chunk.setBlockState(pos, underBlock, false)
         }
-        chunk.setBlockState(pos, topBlock, false)
-        depth = maxDepth
-      }
-      else if (depth > 0) {
-        depth -= 1
-        chunk.setBlockState(pos, underBlock, false)
-      }
     }
   }
 }

@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "ether_dim:ether_dirt",
-    "ether_dim:ether_grass"
+    "luminiferous_uplands:ether_dirt",
+    "luminiferous_uplands:ether_grass"
   ]
 }

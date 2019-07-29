@@ -9,7 +9,6 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.IWorld
 import net.minecraft.world.gen.feature.{DefaultFeatureConfig, FeatureConfig}
 
-
 abstract class EtherSaplingGenerator {
   def generate(iWorld_1: IWorld, blockPos_1: BlockPos, blockState_1: BlockState, random_1: Random): Boolean = {
     val abstractTreeFeature_1 = this.createTreeFeature(random_1)
@@ -31,8 +30,8 @@ abstract class EtherSaplingGenerator {
 object EtherSaplingGenerator {
 
   object SkyrootSaplingGenerator extends EtherSaplingGenerator {
-    @Nullable override protected def createTreeFeature(random_1: Random) =
-      new SkyrootTreeFeature((t: Dynamic[_]) => DefaultFeatureConfig.deserialize(t), true)
+    @Nullable override protected def createTreeFeature(random_1: Random) = new SkyrootTreeFeature((t: Dynamic[_]) =>
+      DefaultFeatureConfig.deserialize(t), true)
   }
 
 }

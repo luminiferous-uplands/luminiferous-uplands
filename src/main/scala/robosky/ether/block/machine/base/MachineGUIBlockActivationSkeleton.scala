@@ -21,9 +21,14 @@ trait MachineGUIBlockActivationSkeleton[A <: BlockEntity] {
     if (world.isClient) return true
     world.getBlockEntity(pos) match {
       case a if beCTag.runtimeClass.isInstance(a) =>
-        ContainerProviderRegistry.INSTANCE.openContainer(Registry.BLOCK.getId(self), player, new Consumer[PacketByteBuf] {
-          override def accept(buf: PacketByteBuf): Unit = buf.writeBlockPos(pos)
-        })
+        ContainerProviderRegistry.INSTANCE.openContainer(
+          Registry.BLOCK.getId(self),
+          player,
+          new Consumer[PacketByteBuf] {
+            override def accept(buf: PacketByteBuf): Unit =
+              buf.writeBlockPos(pos)
+          }
+        )
       case _ =>
     }
     true

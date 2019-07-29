@@ -31,10 +31,7 @@ class EtherDimension(world: World, dimensionType: DimensionType) extends Dimensi
   override def hasVisibleSky = true
 
   override def getFogColor(celestialAngle: Float, partialTicks: Float): Vec3d = {
-    import net.minecraft.util.math.MathHelper
-    var multiplier = MathHelper.cos(celestialAngle * 6.2831855F) * 2.0F + 0.5F
-
-    multiplier = MathHelper.clamp(multiplier, 0.0F, 1.0F)
+    val multiplier = MathHelper.clamp(MathHelper.cos(celestialAngle * 6.2831855F) * 2.0F + 0.5F, 0.0F, 1.0F)
 
     var r = 0.6019608F
     var g = 0.6019608F
@@ -71,8 +68,9 @@ class EtherDimension(world: World, dimensionType: DimensionType) extends Dimensi
     null
   }
 
-  override protected def initializeLightLevelToBrightness(): Unit = for (level <- 0 until 16) {
-    val brightness = 1.0F - level / 15.0F
-    this.lightLevelToBrightness(level) = (1.0F - brightness) / (brightness * 3.0F + 1.0F) * 0.9F + 0.1F
-  }
+  override protected def initializeLightLevelToBrightness(): Unit =
+    for (level <- 0 until 16) {
+      val brightness = 1.0F - level / 15.0F
+      lightLevelToBrightness(level) = (1.0F - brightness) / (brightness * 3.0F + 1.0F) * 0.9F + 0.1F
+    }
 }

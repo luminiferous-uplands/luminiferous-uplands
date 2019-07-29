@@ -13,10 +13,12 @@ import robosky.ether.block.{BlockRegistry, EtherOreBlock}
 
 import scala.util.control.Breaks._
 
-object EtherOreFeature extends Feature[DefaultFeatureConfig]((t: datafixers.Dynamic[_]) => DefaultFeatureConfig.deserialize(t)) {
-  var SPHERES: IndexedSeq[Clump] = (1 to 9).map(_.toFloat).map(Clump.of)
+object EtherOreFeature extends Feature[DefaultFeatureConfig]((t: datafixers.Dynamic[_]) =>
+  DefaultFeatureConfig.deserialize(t)) {
+  val SPHERES: IndexedSeq[Clump] = (1 to 9).map(_.toFloat).map(Clump.of)
 
-  def generate(world: IWorld, generator: ChunkGenerator[_ <: ChunkGeneratorConfig], rand: Random, pos: BlockPos, uselessConfig: DefaultFeatureConfig): Boolean = {
+  def generate(world: IWorld, generator: ChunkGenerator[_ <: ChunkGeneratorConfig], rand: Random, pos: BlockPos,
+    uselessConfig: DefaultFeatureConfig): Boolean = {
     val toGenerateIn: Chunk = world.getChunk(pos)
     for (s <- EtherOreBlock.oreTypes) {
       val settings: EtherOreBlock.OreGenSettings = s.genSettings()
@@ -44,7 +46,8 @@ object EtherOreFeature extends Feature[DefaultFeatureConfig]((t: datafixers.Dyna
           val clusterY = rand.nextInt(heightRange) + settings.minHeight
           clusterX += toGenerateIn.getPos.getStartX
           clusterZ += toGenerateIn.getPos.getStartZ
-          val generatedThisCluster = generateVeinPartGaussianClump(world, clusterX, clusterY, clusterZ, settings.clusterSize, radius, settings.ores, 85, rand)
+          val generatedThisCluster = generateVeinPartGaussianClump(world, clusterX, clusterY, clusterZ,
+            settings.clusterSize, radius, settings.ores, 85, rand)
           blocksGenerated += generatedThisCluster
         }
       }
@@ -52,10 +55,12 @@ object EtherOreFeature extends Feature[DefaultFeatureConfig]((t: datafixers.Dyna
     false
   }
 
-  protected def generateVeinPartGaussianClump(world: IWorld, x: Int, y: Int, z: Int, clumpSize: Int, radius: Int, states: Set[BlockState], density: Int, rand: Random): Int = {
+  protected def generateVeinPartGaussianClump(world: IWorld, x: Int, y: Int, z: Int, clumpSize: Int, radius: Int,
+    states: Set[BlockState], density: Int, rand: Random): Int = {
     val radIndex = radius - 1
-    val clump = if (radIndex < SPHERES.length) SPHERES(radIndex).copy
-    else Clump.of(radius)
+    val clump =
+      if (radIndex < SPHERES.length) SPHERES(radIndex).copy
+      else Clump.of(radius)
     //int rad2 = radius * radius;
     val blocks = states.toArray
     var replaced = 0
@@ -71,7 +76,8 @@ object EtherOreFeature extends Feature[DefaultFeatureConfig]((t: datafixers.Dyna
     replaced
   }
 
-  protected def generateVeinPart(world: IWorld, x: Int, y: Int, z: Int, clumpSize: Int, radius: Int, states: Set[BlockState], density: Int, rand: Random): Int = {
+  protected def generateVeinPart(world: IWorld, x: Int, y: Int, z: Int, clumpSize: Int, radius: Int,
+    states: Set[BlockState], density: Int, rand: Random): Int = {
     val rad2 = radius * radius
     val blocks = states.toArray
     var replaced = 0
@@ -104,7 +110,8 @@ object EtherOreFeature extends Feature[DefaultFeatureConfig]((t: datafixers.Dyna
     true
   }
 
-  protected def generateVeinPartGaussian(world: IWorld, x: Int, y: Int, z: Int, clumpSize: Int, radius: Int, states: Set[BlockState], density: Int, rand: Random): Int = {
+  protected def generateVeinPartGaussian(world: IWorld, x: Int, y: Int, z: Int, clumpSize: Int, radius: Int,
+    states: Set[BlockState], density: Int, rand: Random): Int = {
     val rad2 = radius * radius
     val blocks = states.toArray
     var replaced = 0

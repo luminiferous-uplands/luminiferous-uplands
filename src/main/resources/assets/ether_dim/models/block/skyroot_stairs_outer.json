@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "ether_dim:block/skyroot_planks",
-    "top": "ether_dim:block/skyroot_planks",
-    "side": "ether_dim:block/skyroot_planks"
-  }
-}

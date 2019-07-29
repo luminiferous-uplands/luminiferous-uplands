@@ -11,22 +11,26 @@ import scala.collection.mutable.ArrayBuffer
 object Clump {
   def of(r: Float): Clump = {
     val ir = Math.ceil(r).toInt
-    val result = new Clump((for {z <- -ir to ir
-                                 x <- -ir to ir
-                                 y <- -ir to ir
-                                 d = Math.sqrt(x * x + y * y + z * z).toFloat
-                                 if d <= r
-                                 } yield new Clump.Entry(x, y, z, d)).toBuffer)
+    val result = new Clump((for {
+      z <- -ir to ir
+      x <- -ir to ir
+      y <- -ir to ir
+      d = Math.sqrt(x * x + y * y + z * z).toFloat
+      if d <= r
+    } yield new Clump.Entry(x, y, z, d)).toBuffer)
 
     if (result.entries.isEmpty) result.entries += new Clump.Entry(0, 0, 0, 0)
-    result.entries.sortWith((a: Clump.Entry, b: Clump.Entry) => Floats.compare(a.d, b.d) < 0)
+    result.entries.sortWith(
+      (a: Clump.Entry, b: Clump.Entry) => Floats.compare(a.d, b.d) < 0
+    )
     result
   }
 
   private[feature] class Entry(var x: Int, var y: Int, var z: Int, var d: Float) {
     def pos = new Vec3i(x, y, z)
 
-    def blockPos(x: Int, y: Int, z: Int) = new BlockPos(this.x + x, this.y + y, this.z + z)
+    def blockPos(x: Int, y: Int, z: Int) =
+      new BlockPos(this.x + x, this.y + y, this.z + z)
   }
 
 }

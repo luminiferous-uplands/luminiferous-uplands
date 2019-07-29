@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "item": "luminiferous_uplands:skyroot_log"
+    }
+  ],
+  "result": {
+    "item": "luminiferous_uplands:skyroot_planks",
+    "count": 4
+  }
+}

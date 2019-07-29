@@ -17,10 +17,10 @@ import robosky.ether.world.feature.SpawnPlatformPiece
 
 object MixinHackHooksImpl extends MixinHackHooks {
 
-  override def getDimensionType: DimensionType = WorldRegistry.ETHER_DIMENSION
+  override def getDimensionType: DimensionType = WorldRegistry.luminiferous_uplandsENSION
 
   override def usePortalHookTo(entity: Entity, world: World): Boolean = {
-    val tag = world.getLevelProperties.getWorldData(WorldRegistry.ETHER_DIMENSION)
+    val tag = world.getLevelProperties.getWorldData(WorldRegistry.luminiferous_uplandsENSION)
     val pos: BlockPos = if (tag.containsKey("SpawnPlatform")) {
       val ptag = tag.getIntArray("SpawnPlatform")
       new BlockPos(ptag(0), ptag(1), ptag(2))
@@ -28,12 +28,20 @@ object MixinHackHooksImpl extends MixinHackHooks {
       val pos1 = getTopPos(world, 7, 7).up(2)
       createSpawnPlatform(world, pos1.north(6).west(4).down(6))
       tag.putIntArray("SpawnPlatform", Array(pos1.getX, pos1.getY, pos1.getZ))
-      world.getLevelProperties.setWorldData(WorldRegistry.ETHER_DIMENSION, tag)
+      world.getLevelProperties
+        .setWorldData(WorldRegistry.luminiferous_uplandsENSION, tag)
       pos1
     }
     entity match {
       case se: ServerPlayerEntity =>
-        se.networkHandler.teleportRequest(pos.getX, pos.getY, pos.getZ, 0, 0, Sets.newHashSet())
+        se.networkHandler.teleportRequest(
+          pos.getX,
+          pos.getY,
+          pos.getZ,
+          0,
+          0,
+          Sets.newHashSet()
+        )
         se.networkHandler.syncWithPlayerPosition()
       case _ => entity.setPositionAndAngles(pos.getX, pos.getY, pos.getZ, 0, 0)
     }
@@ -41,12 +49,23 @@ object MixinHackHooksImpl extends MixinHackHooks {
     true
   }
 
-  def createSpawnPlatform(world: World, pos: BlockPos): Unit = if (!world.isClient) {
-    val sw = world.asInstanceOf[ServerWorld]
-    val structure = new SpawnPlatformPiece(sw.getStructureManager, pos)
-    val cp = new ChunkPos(pos)
-    structure.generate(world, new Random(), new MutableIntBoundingBox(cp.getStartX, cp.getStartZ, cp.getEndX, cp.getEndZ), cp)
-  }
+  def createSpawnPlatform(world: World, pos: BlockPos): Unit =
+    if (!world.isClient) {
+      val sw = world.asInstanceOf[ServerWorld]
+      val structure = new SpawnPlatformPiece(sw.getStructureManager, pos)
+      val cp = new ChunkPos(pos)
+      structure.generate(
+        world,
+        new Random(),
+        new MutableIntBoundingBox(
+          cp.getStartX,
+          cp.getStartZ,
+          cp.getEndX,
+          cp.getEndZ
+        ),
+        cp
+      )
+    }
 
   private def getTopPos(world: World, x: Int, z: Int): BlockPos = {
     var returnPos = new BlockPos(x, 0, z)
@@ -63,12 +82,20 @@ object MixinHackHooksImpl extends MixinHackHooks {
     val pos = new BlockPos(entity.x, 256, entity.z)
     entity match {
       case se: ServerPlayerEntity =>
-        se.networkHandler.teleportRequest(pos.getX, pos.getY, pos.getZ, 0, 0, Sets.newHashSet())
+        se.networkHandler.teleportRequest(
+          pos.getX,
+          pos.getY,
+          pos.getZ,
+          0,
+          0,
+          Sets.newHashSet()
+        )
         se.networkHandler.syncWithPlayerPosition()
       case _ => entity.setPositionAndAngles(pos.getX, pos.getY, pos.getZ, 0, 0)
     }
     true
   }
 
-  override def checkParachute(stack: ItemStack): Boolean = stack.getItem == ItemRegistry.AEGISALT_CHARM
+  override def checkParachute(stack: ItemStack): Boolean =
+    stack.getItem == ItemRegistry.AEGISALT_CHARM
 }
