@@ -7,10 +7,10 @@
   },
   "ingredients": [
     {
-      "item": "$modid:iron_charm"
+      "item": "minecraft:iron_ingot"
     },
     {
-      "item": "$modid:aegisalt_crystal"
+      "item": "minecraft:redstone"
     }
   ]
 }

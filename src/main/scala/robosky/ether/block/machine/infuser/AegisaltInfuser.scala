@@ -60,7 +60,7 @@ case class AegisaltInfuser() extends BaseMachineBlockEntity(MachineRegistry.aegi
       if (burnTime > MAX_BURN_TIME) {
         val out = this.recipe.get.getOutput
         if (outputStack.isEmpty) {
-          outputStack = out
+          outputStack = out.copy()
         } else if (outputStack.isItemEqual(out)) {
           outputStack.increment(out.getCount)
         }

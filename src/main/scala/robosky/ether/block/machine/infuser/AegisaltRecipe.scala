@@ -53,8 +53,8 @@ object AegisaltRecipe {
 
 class AegisaltRecipe(id: Identifier, group: String, val ingredients: IndexedSeq[Ingredient], output: ItemStack)
   extends Recipe[Inventory] {
-  override def matches(var1: Inventory, var2: World): Boolean =
-    (0 to 1).forall(i => ingredients(i).method_8093(var1.getInvStack(i)))
+  override def matches(var1: Inventory, var2: World): Boolean = (0 to 1).forall(i => ingredients(i)
+    .method_8093(var1.getInvStack(i))) || (0 to 1).forall(i => ingredients(1 - i).method_8093(var1.getInvStack(i)))
 
   override def craft(var1: Inventory): ItemStack = output.copy()
 
