@@ -27,7 +27,7 @@ case class AegisaltRecipeDisplay(recipe: AegisaltRecipe) extends RecipeDisplay[A
 
   override def getOutput: util.List[ItemStack] = Lists.newArrayList(recipe.getOutput)
 
-  override def getRecipeCategory: Identifier = UplandsMod :/ "plugins/aegisalt_infusion"
+  override def getRecipeCategory: Identifier = UplandsMod :/ "plugins/aegisalt_infusions"
 
   override def getRequiredItems: util.List[util.List[ItemStack]] = getInput
 
