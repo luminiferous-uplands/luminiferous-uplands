@@ -1,0 +1,31 @@
+{
+  "display": {
+    "icon": {
+      "item": "$modid:ether_grass"
+    },
+    "title": {
+      "translate": "advancements.luminiferous_uplands.lore.root"
+    },
+    "description": {
+      "translate": "advancements.luminiferous_uplands.lore.root.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false,
+    "background": "$modid:textures/block/ether_stone.png"
+  },
+  "criteria": {
+    "tick": {
+      "trigger":"minecraft:tick"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "$modid:ether_beacon"
+    ]
+  },
+  "requirements": [
+    ["tick"]
+  ]
+}

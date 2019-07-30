@@ -1,0 +1,40 @@
+{
+  "parent": "$modid:lore/enter_skylands",
+  "display": {
+    "icon": {
+      "item": "$modid:aegisalt_infuser"
+    },
+    "title": {
+      "translate": "advancements.luminiferous_uplands.lore.build_infuser"
+    },
+    "description": {
+      "translate": "advancements.luminiferous_uplands.lore.build_infuser.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "infuser": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "$modid:aegisalt_infuser"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "infuser"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "$modid:aegisalt_charm"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "parent": "$modid:lore/root",
+  "display": {
+    "icon": {
+      "item": "$modid:ether_beacon"
+    },
+    "title": {
+      "translate": "advancements.luminiferous_uplands.lore.enter_skylands"
+    },
+    "description": {
+      "translate": "advancements.luminiferous_uplands.lore.enter_skylands.description"
+    },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "beacon": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "$modid:ether_beacon"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "beacon"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "$modid:aegisalt_infuser"
+    ]
+  }
+}
