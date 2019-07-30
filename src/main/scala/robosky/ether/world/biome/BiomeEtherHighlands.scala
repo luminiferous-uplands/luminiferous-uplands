@@ -31,7 +31,7 @@ object BiomeEtherHighlands
   extends Biome(new Biome.Settings().configureSurfaceBuilder(ETHER_HIGHLANDS_SURFACE_BUILDER,
     ETHER_GRASS_DIRT_STONE_SURFACE).precipitation(Biome.Precipitation.NONE).category(Category.FOREST)
     .depth(0.3F).scale(0.2F).temperature(0.5F).downfall(0.0F)
-    .waterColor(0x3D57D6).waterFogColor(0x050533).category(Biome.Category.FOREST)) {
+    .waterColor(0x9898BC).waterFogColor(0x9898BC).category(Biome.Category.FOREST)) {
 
   addFeature(GenerationStep.Feature.UNDERGROUND_ORES, Biome.configureFeature(FeatureRegistry.oreFeature,
     new DefaultFeatureConfig, Decorator.COUNT_RANGE,

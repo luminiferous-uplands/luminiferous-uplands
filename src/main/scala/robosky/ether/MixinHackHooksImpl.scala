@@ -95,7 +95,4 @@ object MixinHackHooksImpl extends MixinHackHooks {
     }
     true
   }
-
-  override def checkParachute(stack: ItemStack): Boolean =
-    stack.getItem == ItemRegistry.AEGISALT_CHARM
 }
