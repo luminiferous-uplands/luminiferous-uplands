@@ -24,6 +24,7 @@ object BlockRegistry {
     .strength(2.0F, 2.0F).sounds(BlockSoundGroup.WOOD)
     .breakByTool(FabricToolTags.AXES, -1).build
   val SKYROOT_LOG: LogBlock = register("skyroot_log")(new LogBlock(MaterialColor.WOOD, skyroot))
+  val SKYROOT_WOOD: LogBlock = register("skyroot_wood")(new LogBlock(MaterialColor.WOOD, skyroot));
   val SKYROOT_PLANKS: Block = register("skyroot_planks")(new Block(skyroot))
   val SKYROOT_SLAB: SlabBlock = register("skyroot_slab")(new SlabBlock(skyroot))
   val SKYROOT_STAIRS: StairsBlock = register("skyroot_stairs")(new ModStairsBlock(SKYROOT_PLANKS, skyroot))
