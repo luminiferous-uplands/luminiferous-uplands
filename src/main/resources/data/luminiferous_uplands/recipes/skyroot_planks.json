@@ -3,7 +3,7 @@
   "group": "planks",
   "ingredients": [
     {
-      "item": "$modid:skyroot_log"
+      "tag": "$modid:skyroot_logs"
     }
   ],
   "result": {
