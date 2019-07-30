@@ -19,7 +19,7 @@ import robosky.ether.item.ItemRegistry
 
 import scala.reflect.{ClassTag, classTag}
 
-case class AegisaltInfuser() extends BaseMachineBlockEntity(MachineRegistry.aegisaltInfuser.blockEntityType)
+class AegisaltInfuser extends BaseMachineBlockEntity(MachineRegistry.aegisaltInfuser.blockEntityType)
   with InventoryProvider with RecipeInputProvider with Tickable with BlockEntityClientSerializable {
   self =>
   val inputStacks: Array[ItemStack] = Array(ItemStack.EMPTY, ItemStack.EMPTY)

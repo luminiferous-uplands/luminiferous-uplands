@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'scala'
     id 'fabric-loom' version '0.2.4-SNAPSHOT'
-    id "com.github.johnrengelman.shadow" version "5.1.0"
+//    id "com.github.johnrengelman.shadow" version "5.1.0"
 //    id "com.matthewprenger.cursegradle" version "1.3.0"
 }
 
@@ -19,7 +19,7 @@ repositories {
     mavenLocal()
     maven { url "https://minecraft.curseforge.com/api/maven" }
     maven { url "https://maven.jamieswhiteshirt.com/libs-release/" }
-    maven { url "https://repo.elytradev.com/"}
+    maven { url "https://repo.elytradev.com/" }
     maven { url 'http://server.bbkr.space:8081/artifactory/libs-release' }
 }
 
@@ -31,28 +31,24 @@ dependencies {
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    modRuntime("net.fabricmc:fabric-language-scala:${project.scala_adapter_version}")  {
-        exclude group: 'net.fabricmc.fabric-api'
-        exclude group: 'net.fabricmc'
-        exclude group: 'net.minecraft'
-    }
+    modCompile "net.fabricmc:fabric-language-scala:${project.scala_adapter_version}"
     include "net.fabricmc:fabric-language-scala:${project.scala_adapter_version}"
     compile "org.scala-lang:scala-library:${project.scala_version}"
     compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
     modRuntime("com.jamieswhiteshirt:developer-mode:1.0.14") {
         exclude group: 'net.fabricmc.fabric-api'
-        exclude group: 'net.fabricmc'
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
         exclude group: 'net.minecraft'
     }
     modCompile("me.shedaniel:RoughlyEnoughItems:2.9.7+build.143") {
         exclude group: 'net.fabricmc.fabric-api'
-        exclude group: 'net.fabricmc'
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
         exclude group: 'net.minecraft'
     }
-    shadow "blue.endless.libnoise:LibnoiseJava:0.0.1-17"
+//    shadow "blue.endless.libnoise:LibnoiseJava:0.0.1-17"
     modCompile("io.github.cottonmc:LibGui:1.2.3") {
         exclude group: 'net.fabricmc.fabric-api'
-        exclude group: 'net.fabricmc'
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
         exclude group: 'net.minecraft'
         exclude group: 'io.github.prospector.modmenu'
         exclude group: 'io.github.prospector'
@@ -82,17 +78,17 @@ processResources {
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
+//
+//shadowJar {
+//    configurations = [project.configurations.shadow]
+//    exclude("META-INF")
+//}
 
-shadowJar {
-    configurations = [project.configurations.shadow]
-    exclude("META-INF")
-}
-
-tasks.remapJar {
-    delegate.dependsOn tasks.shadowJar
-    delegate.input = shadowJar.archiveFile
-    delegate.output = file("$buildDir/libs/${project.name}-${project.version}-big.jar")
-}
+//tasks.remapJar {
+//    delegate.dependsOn tasks.shadowJar
+//    delegate.input = shadowJar.archiveFile
+//    delegate.output = file("$buildDir/libs/${project.name}-${project.version}-big.jar")
+//}
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     archiveClassifier = "sources"
