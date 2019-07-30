@@ -8,6 +8,7 @@ import net.minecraft.util.registry.Registry
 import robosky.ether.{TickableItem, UplandsMod}
 
 object ItemRegistry {
+  private val charmSettings: Item.Settings = new Item.Settings().group(UplandsMod.GROUP).maxCount(1).maxDamage(2400)
   val AEGISALT_CRYSTAL: Item = register("aegisalt_crystal", new Item(new Item.Settings()
     .group(UplandsMod.GROUP)))
 
@@ -23,7 +24,6 @@ object ItemRegistry {
         StatusEffects.JUMP_BOOST, 10, 0, false, false, false)))
     }
   })
-  private val charmSettings: Item.Settings = new Item.Settings().group(UplandsMod.GROUP).maxCount(1).maxDamage(2400)
 
   def init(): Unit = {}
 
