@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "$modid:skyroot_log",
+    "$modid:skyroot_wood"
+  ]
+}
