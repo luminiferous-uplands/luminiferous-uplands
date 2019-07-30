@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "$modid:block/ether_stone_bricks" }
+    }
+}

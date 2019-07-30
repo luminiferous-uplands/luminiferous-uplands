@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "$modid:ether_stone_wall",
+    "$modid:ether_stone_brick_wall"
+  ]
+}
