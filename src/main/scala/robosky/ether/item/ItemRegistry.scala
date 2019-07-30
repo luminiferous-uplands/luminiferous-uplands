@@ -1,29 +1,16 @@
 package robosky.ether.item
 
-import net.minecraft.entity.effect.{StatusEffectInstance, StatusEffects}
-import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.item.{Item, ItemStack}
-import net.minecraft.util.Hand
+import net.minecraft.entity.effect.StatusEffects
+import net.minecraft.item.Item
 import net.minecraft.util.registry.Registry
-import robosky.ether.{TickableItem, UplandsMod}
+import robosky.ether.UplandsMod
 
 object ItemRegistry {
-  private val charmSettings: Item.Settings = new Item.Settings().group(UplandsMod.GROUP).maxCount(1).maxDamage(2400)
   val AEGISALT_CRYSTAL: Item = register("aegisalt_crystal", new Item(new Item.Settings()
     .group(UplandsMod.GROUP)))
 
-  val AEGISALT_CHARM: Item = register("aegisalt_charm", new Item(charmSettings) with TickableItem {
-    override def tick(entity: PlayerEntity, stack: ItemStack, hand: Hand): Unit = {
-      stack.damage(1, entity, (player: PlayerEntity) => player.addPotionEffect(new StatusEffectInstance(
-        StatusEffects.SLOW_FALLING, 10, 0, false, false, false)))
-    }
-  })
-  val SKYROOT_CHARM: Item = register("skyroot_charm", new Item(charmSettings) with TickableItem {
-    override def tick(entity: PlayerEntity, stack: ItemStack, hand: Hand): Unit = {
-      stack.damage(1, entity, (player: PlayerEntity) => player.addPotionEffect(new StatusEffectInstance(
-        StatusEffects.JUMP_BOOST, 10, 0, false, false, false)))
-    }
-  })
+  val AEGISALT_CHARM: Item = register("aegisalt_charm", CharmItem(StatusEffects.SLOW_FALLING, 0))
+  val SKYROOT_CHARM: Item = register("skyroot_charm", CharmItem(StatusEffects.JUMP_BOOST, 0))
 
   def init(): Unit = {}
 
