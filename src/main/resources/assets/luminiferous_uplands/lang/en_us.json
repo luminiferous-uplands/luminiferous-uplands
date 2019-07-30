@@ -17,7 +17,7 @@
   "item.luminiferous_uplands.aegisalt_charm": "Aegisalt Charm",
   "block.luminiferous_uplands.aegisalt_infuser": "Aegisalt Infuser",
 
-  "advancements.luminiferous_uplands.lore.root": "Look to the Sky",
+  "advancements.luminiferous_uplands.lore.root": "The Luminiferous Uplands",
   "advancements.luminiferous_uplands.lore.root.description": "What could be up there?",
 
   "advancements.luminiferous_uplands.lore.enter_skylands": "Greater Heights",
@@ -26,6 +26,6 @@
   "advancements.luminiferous_uplands.lore.build_infuser": "Aegisalt Infuser",
   "advancements.luminiferous_uplands.lore.build_infuser.description": "Build an Aegisalt Infuser",
 
-  "advancements.luminiferous_uplands.lore.infuse_slowfall_charm": "Aegisalt Charm",
-  "advancements.luminiferous_uplands.lore.infuse_slowfall_charm.description": "Build an Aegisalt Charm, which gives you slowfall when held. It's a long way down to the Overworld!"
+  "advancements.luminiferous_uplands.lore.infuse_slowfall_charm": "It's a Long Way Down",
+  "advancements.luminiferous_uplands.lore.infuse_slowfall_charm.description": "Build an Aegisalt Charm"
 }
