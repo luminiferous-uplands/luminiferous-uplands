@@ -7,7 +7,7 @@ import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.Biome.Category
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.{CountExtraChanceDecoratorConfig, Decorator, LakeDecoratorConfig, RangeDecoratorConfig}
-import net.minecraft.world.gen.feature.{DefaultFeatureConfig, FeatureConfig, LakeFeatureConfig}
+import net.minecraft.world.gen.feature._
 import net.minecraft.world.gen.surfacebuilder.SurfaceConfig
 import robosky.ether.block.BlockRegistry
 import robosky.ether.world.biome.BiomeEtherHighlandsConfig._
@@ -36,9 +36,10 @@ object BiomeEtherHighlands
   addFeature(GenerationStep.Feature.UNDERGROUND_ORES, Biome.configureFeature(FeatureRegistry.oreFeature,
     new DefaultFeatureConfig, Decorator.COUNT_RANGE,
     new RangeDecoratorConfig(1, 0, 0, 256)))
-  addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Biome.configureFeature(FeatureRegistry.skyrootTreeFeature,
-    FeatureConfig.DEFAULT, Decorator.COUNT_EXTRA_HEIGHTMAP,
-    new CountExtraChanceDecoratorConfig(2, 0.1F, 1)))
+  addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Biome.configureFeature(Feature.RANDOM_SELECTOR,
+    new RandomFeatureConfig(Array(FeatureRegistry.treehouseFeature), Array(FeatureConfig.DEFAULT), Array(0.15f),
+      FeatureRegistry.skyrootTreeFeature, FeatureConfig.DEFAULT), Decorator.COUNT_EXTRA_HEIGHTMAP,
+    new CountExtraChanceDecoratorConfig(2, 0.1f, 1)))
   addFeature(GenerationStep.Feature.LOCAL_MODIFICATIONS, Biome.configureFeature(FeatureRegistry.skyLakeFeature,
     new LakeFeatureConfig(Blocks.WATER.getDefaultState), Decorator.WATER_LAKE, new LakeDecoratorConfig(4)))
 

@@ -6,6 +6,7 @@ import net.minecraft.structure.{StructureManager, StructurePieceType}
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.gen.feature.{DefaultFeatureConfig, Feature, LakeFeatureConfig}
 import robosky.ether.UplandsMod
+import robosky.ether.world.feature.minidungeons.{TreehouseFeature, TreehouseGenerator}
 import robosky.ether.world.feature.trees.SkyrootTreeFeature
 
 object FeatureRegistry {
@@ -15,8 +16,14 @@ object FeatureRegistry {
   val skyLakeFeature: SkyLakeFeature = register("sky_lake", new SkyLakeFeature((t: Dynamic[_]) =>
     LakeFeatureConfig.deserialize(t)))
 
+  val treehouseFeature: TreehouseFeature = register("treehouse", new TreehouseFeature((t: Dynamic[_]) =>
+    DefaultFeatureConfig.deserialize(t)))
+
   val spawnPlatformPiece: StructurePieceType = Registry.register[StructurePieceType](Registry.STRUCTURE_PIECE,
     UplandsMod :/ "spawn_platform", (var1: StructureManager, var2: CompoundTag) => new SpawnPlatformPiece(var1, var2))
+  val treehousePiece: StructurePieceType = Registry.register[StructurePieceType](Registry.STRUCTURE_PIECE,
+    UplandsMod :/ "minidungeons/treehouse", (var1: StructureManager, var2: CompoundTag) => new TreehouseGenerator
+    .Piece(var1, var2))
 
   def register[A <: Feature[_]](name: String, f: A): A = Registry.register[A](Registry.FEATURE, UplandsMod :/ name, f)
 
