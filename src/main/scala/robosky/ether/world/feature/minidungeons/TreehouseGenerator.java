@@ -1,5 +1,8 @@
 package robosky.ether.world.feature.minidungeons;
 
+import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.structure.*;
 import net.minecraft.structure.processor.BlockIgnoreStructureProcessor;
@@ -53,8 +56,15 @@ public class TreehouseGenerator {
         }
 
         @Override
-        protected void handleMetadata(String var1, BlockPos var2, IWorld var3, Random var4, MutableIntBoundingBox var5) {
-
+        protected void handleMetadata(String string_1, BlockPos blockPos_1, IWorld iWorld_1, Random random_1, MutableIntBoundingBox var5) {
+            if ("chest".equals(string_1)) {
+                iWorld_1.setBlockState(blockPos_1, Blocks.AIR.getDefaultState(), 3);
+                BlockEntity blockEntity_1 = iWorld_1.getBlockEntity(blockPos_1.down());
+                if (blockEntity_1 instanceof ChestBlockEntity) {
+                    ((ChestBlockEntity) blockEntity_1).setLootTable(new Identifier("luminiferous_uplands",
+                            "chests/minidungeons/treehouse"), random_1.nextLong());
+                }
+            }
         }
 
         @Override
