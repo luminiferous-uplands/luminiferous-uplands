@@ -8,21 +8,20 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableIntBoundingBox;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.feature.AbstractTempleFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
-import robosky.ether.world.feature.FeatureRegistry;
 
+import java.util.Random;
 import java.util.function.Function;
 
-public class TreehouseFeature extends AbstractTempleFeature<DefaultFeatureConfig> {
+public class TreehouseFeature extends StructureFeature<DefaultFeatureConfig> {
     public TreehouseFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> function_1) {
         super(function_1);
     }
 
     @Override
-    protected int getSeedModifier() {
-        return 0;
+    public boolean shouldStartAt(ChunkGenerator<?> var1, Random var2, int var3, int var4) {
+        return true;
     }
 
     @Override
@@ -32,7 +31,7 @@ public class TreehouseFeature extends AbstractTempleFeature<DefaultFeatureConfig
 
     @Override
     public String getName() {
-        return "Treehouse";
+        return "Uplands Treehouse";
     }
 
     @Override
@@ -47,11 +46,10 @@ public class TreehouseFeature extends AbstractTempleFeature<DefaultFeatureConfig
 
         @Override
         public void initialize(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, int chunkX, int chunkZ, Biome biome) {
-            DefaultFeatureConfig defaultFeatureConfig = chunkGenerator.getStructureConfig(biome, FeatureRegistry.treehouseFeature());
             int x = chunkX * 16;
             int z = chunkZ * 16;
             BlockPos startingPos = new BlockPos(x, 0, z);
-            BlockRotation rotation = BlockRotation.values()[this.random.nextInt(BlockRotation.values().length)];
+            BlockRotation rotation = BlockRotation.random(this.random);
             TreehouseGenerator.addParts(structureManager, startingPos, rotation, this.children);
             this.setBoundingBoxFromChildren();
         }
