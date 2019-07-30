@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import robosky.ether.MixinHack;
+import robosky.ether.TickableItem;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerMixin extends LivingEntity {
@@ -33,18 +34,11 @@ public abstract class PlayerMixin extends LivingEntity {
     @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;updateTurtleHelmet()V"),
             method = "tick")
     private void updateParachute(CallbackInfo info) {
-        if (MixinHack.HOOKS.checkParachute(getMainHandStack())) {
-            addPotionEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 20, 0, false,
-                    false, true));
-            if (getVelocity().y < 0)
-                getMainHandStack().damage(1, (PlayerEntity) (Object) this, p -> p.sendToolBreakStatus(Hand.MAIN_HAND));
-            return;
+        if (getMainHandStack().getItem() instanceof TickableItem) {
+            ((TickableItem) getMainHandStack().getItem()).tick((PlayerEntity) (Object) this, getMainHandStack(), Hand.MAIN_HAND);
         }
-        if (MixinHack.HOOKS.checkParachute(getOffHandStack())) {
-            addPotionEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 20, 0, false,
-                    false, true));
-            if (getVelocity().y < 0)
-                getOffHandStack().damage(1, (PlayerEntity) (Object) this, p -> p.sendToolBreakStatus(Hand.OFF_HAND));
+        if (getOffHandStack().getItem() instanceof TickableItem) {
+            ((TickableItem) getOffHandStack().getItem()).tick((PlayerEntity) (Object) this, getOffHandStack(), Hand.OFF_HAND);
         }
     }
 }

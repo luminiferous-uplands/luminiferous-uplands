@@ -8,8 +8,6 @@ import net.minecraft.world.dimension.DimensionType;
 public interface MixinHackHooks {
     DimensionType getDimensionType();
 
-    boolean checkParachute(ItemStack stack);
-
     boolean usePortalHookTo(final Entity entity, final World world);
 
     default boolean usePortalHookFrom(final Entity entity, final World world) {
