@@ -53,20 +53,7 @@ class EtherDimension(world: World, dimensionType: DimensionType) extends Dimensi
   override def getType: DimensionType = dimensionType
 
   @Environment(EnvType.CLIENT)
-  override def getBackgroundColor(celestialAngle: Float, partialTicks: Float): Array[Float] = {
-    val f3 = MathHelper.cos(celestialAngle * 3.141593F * 2.0F) - 0.0F
-    if (f3 >= -0.4F && f3 <= 0.4F) {
-      val f5 = f3 / 0.4F * 0.5F + 0.5F
-      var f6 = 1.0F - (1.0F - MathHelper.sin(f5 * 3.141593F)) * 0.99F
-      f6 *= f6
-      this.colorsSunriseSunset(0) = f5 * 0.3F + 0.1F
-      this.colorsSunriseSunset(1) = f5 * f5 * 0.7F + 0.2F
-      this.colorsSunriseSunset(2) = f5 * f5 * 0.7F + 0.2F
-      this.colorsSunriseSunset(3) = f6
-      return this.colorsSunriseSunset
-    }
-    null
-  }
+  override def getBackgroundColor(celestialAngle: Float, partialTicks: Float): Array[Float] = null
 
   override protected def initializeLightLevelToBrightness(): Unit =
     for (level <- 0 until 16) {
