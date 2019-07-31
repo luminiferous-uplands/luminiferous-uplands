@@ -49,7 +49,7 @@ public class TreehouseFeature extends StructureFeature<DefaultFeatureConfig> {
             int x = chunkX * 16;
             int z = chunkZ * 16;
             BlockPos startingPos = new BlockPos(x, 0, z);
-            BlockRotation rotation = BlockRotation.random(this.random);
+            BlockRotation rotation = BlockRotation.NONE;
             TreehouseGenerator.addParts(structureManager, startingPos, rotation, this.children);
             this.setBoundingBoxFromChildren();
         }

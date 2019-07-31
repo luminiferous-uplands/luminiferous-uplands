@@ -51,7 +51,7 @@ public class TreehouseGenerator {
             Structure structure_1 = structureManager_1.getStructureOrBlank(name);
             StructurePlacementData structurePlacementData_1 = (new StructurePlacementData()).setRotation(rotation)
                     .setMirrored(BlockMirror.NONE).setPosition(new BlockPos(0, 0, 0))
-                    .addProcessor(BlockIgnoreStructureProcessor.IGNORE_AIR);
+                    .addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS);
             this.setStructureData(structure_1, this.pos, structurePlacementData_1);
         }
 
@@ -70,14 +70,18 @@ public class TreehouseGenerator {
         @Override
         public boolean generate(IWorld iWorld_1, Random random_1, MutableIntBoundingBox mutableIntBoundingBox_1, ChunkPos chunkPos_1) {
             int yHeight = iWorld_1.getTop(Heightmap.Type.WORLD_SURFACE_WG, this.pos.getX() + 8, this.pos.getZ() + 8);
+
             this.pos = this.pos.add(0, yHeight - 1, 0);
+
             if (pos.getY() < 20) return false;
+
             for (int x = pos.getX() - 3; x < pos.getX() + 3; x++) {
                 for (int z = pos.getZ() - 3; x < pos.getZ() + 3; x++) {
                     if (iWorld_1.getBlockState(new BlockPos(x, pos.getY() - 1, z)).isAir())
                         return false;
                 }
             }
+
             return super.generate(iWorld_1, random_1, mutableIntBoundingBox_1, chunkPos_1);
         }
     }
