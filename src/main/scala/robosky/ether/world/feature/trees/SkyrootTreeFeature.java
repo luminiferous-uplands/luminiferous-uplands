@@ -80,8 +80,12 @@ public class SkyrootTreeFeature extends AbstractEtherTree<DefaultFeatureConfig> 
             return false;
         }
 
+        // If the spot directly below is grass, turn it to dirt.
+        // Otherwise stop, or else trees can generate in the void.
         if (isDirtOrGrass(world, startPos.down())) {
             setToDirt(world, startPos.down());
+        } else {
+            return false;
         }
 
         // currentPos will represent the current trunk log being placed.
