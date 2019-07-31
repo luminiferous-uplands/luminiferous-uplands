@@ -1,6 +1,7 @@
 package robosky.ether.block
 
 import net.fabricmc.fabric.api.block.FabricBlockSettings
+import net.fabricmc.fabric.api.registry.FlammableBlockRegistry
 import net.fabricmc.fabric.api.tools.FabricToolTags
 import net.minecraft.block._
 import net.minecraft.item.{BlockItem, Item, ItemGroup}
@@ -46,6 +47,15 @@ object BlockRegistry {
       .breakInstantly.sounds(BlockSoundGroup.GRASS).build()))
   val SKYROOT_FENCE: FenceBlock = register("skyroot_fence")(new FenceBlock(skyroot))
   val SKYROOT_FENCE_GATE: FenceGateBlock = register("skyroot_fence_gate")(new FenceGateBlock(skyroot))
+
+    FlammableBlockRegistry.getDefaultInstance().add(SKYROOT_LOG, 5, 5);
+    FlammableBlockRegistry.getDefaultInstance().add(SKYROOT_WOOD, 5, 5);
+    FlammableBlockRegistry.getDefaultInstance().add(SKYROOT_PLANKS, 20, 5);
+    FlammableBlockRegistry.getDefaultInstance().add(SKYROOT_SLAB, 20, 5);
+    FlammableBlockRegistry.getDefaultInstance().add(SKYROOT_STAIRS, 20, 5);
+    FlammableBlockRegistry.getDefaultInstance().add(SKYROOT_LEAVES, 60, 30);
+    FlammableBlockRegistry.getDefaultInstance().add(SKYROOT_FENCE, 20, 5);
+    FlammableBlockRegistry.getDefaultInstance().add(SKYROOT_FENCE_GATE, 20, 5);
 
   val ETHER_BEACON: EtherBeaconBlock.type = register("ether_beacon")(EtherBeaconBlock)
 
