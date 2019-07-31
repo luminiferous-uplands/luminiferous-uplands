@@ -6,6 +6,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MutableIntBoundingBox;
 import net.minecraft.world.ModifiableTestableWorld;
+import net.minecraft.world.TestableWorld;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import robosky.ether.block.BlockRegistry;
 
@@ -14,8 +15,18 @@ import java.util.Set;
 import java.util.function.Function;
 
 public class SkyrootTreeFeature extends AbstractEtherTree<DefaultFeatureConfig> {
+    private final int[] leafLayerRadius = {
+            3,
+            5,
+            8,
+            8,
+            8,
+            5,
+            3
+    };
     private final int height;
     private final BlockState log;
+    private final BlockState wood;
     private final BlockState leaves;
 
     public SkyrootTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> deserialize, boolean sapling) {
@@ -28,87 +39,113 @@ public class SkyrootTreeFeature extends AbstractEtherTree<DefaultFeatureConfig> 
         super(dezerialize, sapling);
         this.height = 4;
         this.log = log;
+        this.wood = BlockRegistry.SKYROOT_WOOD().getDefaultState();
         this.leaves = leaves;
     }
 
     public boolean generate(Set<BlockPos> set, ModifiableTestableWorld world, Random rand,
                             BlockPos startPos, MutableIntBoundingBox bbox) {
-        int segment1Height = this.getTreeHeight(rand) - 2;
-        int segment2Height = this.getTreeHeight(rand) + 4;
-        Direction bendDirection = Direction.fromHorizontal(rand.nextInt(4));
-        boolean keepGoing = true;
-        if (startPos.getY() >= 1 && startPos.getY() + segment1Height + 1 <= 256) {
-            for (int y = startPos.getY(); y <= startPos.getY() + 1 + segment1Height + segment2Height; ++y) {
-                int radius = 1;
-                if (y == startPos.getY()) {
-                    radius = 0;
-                }
+        // Create variables related to the tree's trunk
 
-                if (y >= startPos.getY() + 1 + segment1Height - 2) {
-                    radius = 2;
-                }
+        // The number of segments this tree will generate with, from 2 to 4.
+        int numberOfSegments = (rand.nextInt(2) + 2);
 
-                BlockPos.Mutable pos = new BlockPos.Mutable();
+        // The height of the individual segments.
+        int[] segmentHeights = new int[numberOfSegments];
 
-                for (int x = startPos.getX() - radius; x <= startPos.getX() + radius && keepGoing; ++x) {
-                    for (int z = startPos.getZ() - radius; z <= startPos.getZ() + radius && keepGoing; ++z) {
-                        if (y >= 0 && y < 256) {
-                            if (!canTreeReplace(world, pos.set(x, y, z))) {
-                                keepGoing = false;
-                            }
-                        } else {
-                            keepGoing = false;
-                        }
-                    }
-                }
+        // The total height of all the segments, used to make sure the tree doesn't try to grow over the sky limit
+        int totalHeightOfTrunk = 0;
+
+        // The direction the trunk will bend when the next segment begins.
+        Direction[] segmentBendDirections = new Direction[numberOfSegments];
+
+        for (int i = 0; i <= numberOfSegments - 1; i++) {
+            int treeHeight = height + rand.nextInt(3);
+
+            totalHeightOfTrunk += treeHeight;
+            segmentHeights[i] = treeHeight;
+            segmentBendDirections[i] = Direction.fromHorizontal(rand.nextInt(4));
+
+            // Last segment needs to be taller to be sure there's enough room for the leaves.
+            if (i == numberOfSegments - 1) {
+                totalHeightOfTrunk += 3;
+                segmentHeights[i] += 3;
             }
+        }
 
-            if (!keepGoing) {
-                return false;
-            } else if (isDirtOrGrass(world, startPos.down()) && startPos.getY() < 256 - segment1Height - 1) {
-                this.setToDirt(world, startPos.down());
-                BlockPos segment2Start = startPos.up(segment1Height - 1).offset(bendDirection);
-                for (int leavesY = segment2Start.getY() - 4 + segment2Height; leavesY <= segment2Start.getY() + segment2Height; ++leavesY) {
-                    int radius = Math.min(1 - (leavesY - (segment2Start.getY() + segment2Height)) / 2, 2);
 
-                    for (int leavesX = segment2Start.getX() - radius; leavesX <= segment2Start.getX() + radius; ++leavesX) {
-                        for (int leavesZ = segment2Start.getZ() - radius; leavesZ <= segment2Start.getZ() + radius; ++leavesZ) {
-                            if (Math.abs(leavesX - segment2Start.getX()) != radius ||
-                                    Math.abs(leavesZ - segment2Start.getZ()) != radius || rand.nextInt(2) != 0
-                                    && leavesY - (segment2Start.getY() + segment2Height) != 0) {
-                                BlockPos pos = new BlockPos(leavesX, leavesY, leavesZ);
-                                if (isAirOrLeaves(world, pos) || isReplaceablePlant(world, pos)) {
-                                    this.setBlockState(set, world, pos, this.leaves, bbox);
-                                }
-                            }
-                        }
-                    }
-                }
-
-                for (int y = 0; y < segment1Height; ++y) {
-                    if (isAirOrLeaves(world, startPos.up(y)) || isReplaceablePlant(world, startPos.up(y))) {
-                        this.setBlockState(set, world, startPos.up(y), y == segment1Height - 1 ?
-                                BlockRegistry.SKYROOT_WOOD().getDefaultState() : this.log, bbox);
-                    }
-                }
-                for (int y = 0; y < segment2Height; ++y) {
-                    if (isAirOrLeaves(world, segment2Start.up(y)) || isReplaceablePlant(world, segment2Start.up(y))) {
-                        this.setBlockState(set, world, segment2Start.up(y), y == 0 || y ==
-                                segment2Height - 1 ? BlockRegistry.SKYROOT_WOOD().getDefaultState() : this.log, bbox);
-                    }
-                }
-
-                return true;
-            } else {
-                return false;
-            }
-        } else {
+        // If the tree is too close to the sky limit, bail out.
+        // +2 to account for the extra height of the leaves
+        if (startPos.getY() + totalHeightOfTrunk + 2 >= 256) {
             return false;
         }
+
+        if (isDirtOrGrass(world, startPos.down())) {
+            setToDirt(world, startPos.down());
+        }
+
+        // currentPos will represent the current trunk log being placed.
+        BlockPos currentPos = startPos;
+
+        // For every segment,
+        for (int i = 0; i <= numberOfSegments - 1; i++) {
+
+            // For every block of that segment,
+            for (int j = 0; j < segmentHeights[i]; j++) {
+                // Check if the block position is empty, quit if it's not.
+                // This is in case someone tries to grow a tree beneath a roof or something.
+                if (!canPlaceBlock(world, currentPos)) {
+                    return true;
+                }
+
+                // Check if this trunk is either the top or the bottom of a segment.
+                // If this is the bottom of the first segment, it's the bit that connects the tree to the ground;
+                // use a log there.
+                boolean isTopOrBottom = (j == 0) || (j == segmentHeights[i] - 1) && (startPos != currentPos);
+
+                // Place either a bark or log block there depending on whether or not it's a top or a bottom.
+                setBlockState(set, world, currentPos, isTopOrBottom ? wood : log, bbox);
+
+                // Increment the position.
+                currentPos = currentPos.add(0, 1, 0);
+            }
+
+            // If that wasn't the last segment, add the bend direction too.
+            // If this were done on the last segment, it'd cause the leaves to be placed incorrectly.
+            if (i != numberOfSegments - 1) {
+                currentPos = currentPos.add(segmentBendDirections[i].getVector());
+            }
+        }
+
+        // Move the current position down three blocks to start on the leaves.
+        currentPos = currentPos.add(0, -5, 0);
+
+        for(int y = 0; y <= 6; y++) {
+            int radius = leafLayerRadius[y];
+
+            int radiusSquared = radius ^ 2;
+
+            for(int x = -radius; x <= radius; x++) {
+                for (int z = -radius; z <= radius; z++) {
+                    int squareDistance = (x * x) + (z * z);
+
+                    if (squareDistance <= radiusSquared) {
+                        if (isAirOrLeaves(world, currentPos.add(x, y, z))) {
+                            setBlockState(set, world, currentPos.add(x, y, z), leaves, bbox);
+                        }
+                    }
+                }
+            }
+        }
+
+        return true;
     }
 
-    private int getTreeHeight(Random random_1) {
-        return this.height + random_1.nextInt(3);
-    }
+    private boolean canPlaceBlock(TestableWorld world, BlockPos blockPosition) {
+        if (!isAirOrLeaves(world, blockPosition)) {
+            return false;
+        }
 
+        return canTreeReplace(world, blockPosition);
+    }
 }
