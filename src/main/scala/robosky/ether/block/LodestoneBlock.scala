@@ -2,26 +2,21 @@ package robosky.ether.block
 
 import java.util.Random
 
-import net.fabricmc.fabric.api.block.FabricBlockSettings
-import net.fabricmc.fabric.api.tools.FabricToolTags
-
-import net.minecraft.block.{Block, BlockState, FallingBlock, Material}
+import net.minecraft.block.{Block, BlockState, FallingBlock}
 import net.minecraft.entity.FallingBlockEntity
 import net.minecraft.item.ItemPlacementContext
-import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.state.StateFactory
 import net.minecraft.state.property.{IntProperty, Property}
 import net.minecraft.util.math.{BlockPos, Direction}
 import net.minecraft.world.{BlockView, IWorld, World}
 
-object LodestoneBlock extends Block(
-    FabricBlockSettings.of(Material.STONE)
-      .sounds(BlockSoundGroup.STONE)
-      .strength(6.0F, 8.0F)
-      .breakByTool(FabricToolTags.PICKAXES, 2)
-      .build()) {
-
+object LodestoneBlock {
   val DISTANCE: Property[Integer] = IntProperty.of("distance", 0, 4)
+}
+
+class LodestoneBlock(settings: Block.Settings) extends Block(settings) {
+
+  import LodestoneBlock.DISTANCE
 
   override protected def appendProperties(builder: StateFactory.Builder[Block, BlockState]): Unit = {
     builder.add(DISTANCE)

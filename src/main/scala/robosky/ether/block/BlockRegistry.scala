@@ -59,7 +59,12 @@ object BlockRegistry {
 
   val ETHER_BEACON: EtherBeaconBlock.type = register("ether_beacon")(EtherBeaconBlock)
 
-  val LODESTONE: LodestoneBlock.type = register("lodestone")(LodestoneBlock)
+  val LODESTONE: LodestoneBlock = register("lodestone")(new LodestoneBlock(
+    FabricBlockSettings.of(Material.STONE)
+      .sounds(BlockSoundGroup.STONE)
+      .strength(6.0F, 8.0F)
+      .breakByTool(FabricToolTags.PICKAXES, 2)
+      .build()))
 
   def init(): Unit = {}
 
