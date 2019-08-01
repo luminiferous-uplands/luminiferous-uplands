@@ -59,6 +59,8 @@ object BlockRegistry {
 
   val ETHER_BEACON: EtherBeaconBlock.type = register("ether_beacon")(EtherBeaconBlock)
 
+  val LODESTONE: LodestoneBlock.type = register("lodestone")(LodestoneBlock)
+
   def init(): Unit = {}
 
   def register[B <: Block](name: String, item: Boolean = true, itemGroup: ItemGroup = UplandsMod.GROUP)(b: B): B = {
