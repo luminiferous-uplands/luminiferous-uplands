@@ -27,11 +27,11 @@ public class SkyrootTreeFeature extends AbstractEtherTree<DefaultFeatureConfig> 
     private final int height;
     private final BlockState log;
     private final BlockState wood;
-    private final BlockState leaves;
+    private BlockState leaves;
 
     public SkyrootTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> deserialize, boolean sapling) {
         this(deserialize, sapling, BlockRegistry.SKYROOT_LOG().getDefaultState(),
-                BlockRegistry.SKYROOT_LEAVES().getDefaultState());
+                BlockRegistry.ORANGE_SKYROOT_LEAVES().getDefaultState());
     }
 
     private SkyrootTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> dezerialize, boolean sapling,
@@ -40,11 +40,14 @@ public class SkyrootTreeFeature extends AbstractEtherTree<DefaultFeatureConfig> 
         this.height = 4;
         this.log = log;
         this.wood = BlockRegistry.SKYROOT_WOOD().getDefaultState();
-        this.leaves = leaves;
     }
 
     public boolean generate(Set<BlockPos> set, ModifiableTestableWorld world, Random rand,
                             BlockPos startPos, MutableIntBoundingBox bbox) {
+        // Leaves have to be obtained in generate because we need access to the RNG
+        leaves = (rand.nextFloat() > 0.3 ? BlockRegistry.ORANGE_SKYROOT_LEAVES() : BlockRegistry.RED_SKYROOT_LEAVES())
+                .getDefaultState();
+        
         // Create variables related to the tree's trunk
 
         // The number of segments this tree will generate with, from 2 to 4.

@@ -40,20 +40,30 @@ object BlockRegistry {
   val SKYROOT_PLANKS: Block = register("skyroot_planks")(new Block(skyroot))
   val SKYROOT_SLAB: SlabBlock = register("skyroot_slab")(new SlabBlock(skyroot))
   val SKYROOT_STAIRS: StairsBlock = register("skyroot_stairs")(new ModStairsBlock(SKYROOT_PLANKS, skyroot))
-  val SKYROOT_LEAVES: LeavesBlock = register("skyroot_leaves")(new LeavesBlock(FabricBlockSettings
-    .of(Material.LEAVES).strength(0.2F, 0.2F).ticksRandomly.sounds(BlockSoundGroup.GRASS).build()))
   val SKYROOT_SAPLING: EtherSaplingBlock = register("skyroot_sapling")(new EtherSaplingBlock(
     EtherSaplingGenerator.SkyrootSaplingGenerator, FabricBlockSettings.of(Material.PLANT).noCollision.ticksRandomly
       .breakInstantly.sounds(BlockSoundGroup.GRASS).build()))
   val SKYROOT_FENCE: FenceBlock = register("skyroot_fence")(new FenceBlock(skyroot))
   val SKYROOT_FENCE_GATE: FenceGateBlock = register("skyroot_fence_gate")(new FenceGateBlock(skyroot))
 
+  val skyrootLeavesSettings: Block.Settings = FabricBlockSettings
+      .of(Material.LEAVES)
+      .strength(0.2F, 0.2F)
+      .ticksRandomly
+      .sounds(BlockSoundGroup.GRASS).build()
+
+  val RED_SKYROOT_LEAVES: LeavesBlock = register("red_skyroot_leaves")(new LeavesBlock(skyrootLeavesSettings));
+  val ORANGE_SKYROOT_LEAVES: LeavesBlock = register("orange_skyroot_leaves")(new LeavesBlock(skyrootLeavesSettings));
+  val YELLOW_SKYROOT_LEAVES: LeavesBlock = register("yellow_skyroot_leaves")(new LeavesBlock(skyrootLeavesSettings));
+
     FlammableBlockRegistry.getDefaultInstance().add(SKYROOT_LOG, 5, 5);
     FlammableBlockRegistry.getDefaultInstance().add(SKYROOT_WOOD, 5, 5);
     FlammableBlockRegistry.getDefaultInstance().add(SKYROOT_PLANKS, 20, 5);
     FlammableBlockRegistry.getDefaultInstance().add(SKYROOT_SLAB, 20, 5);
     FlammableBlockRegistry.getDefaultInstance().add(SKYROOT_STAIRS, 20, 5);
-    FlammableBlockRegistry.getDefaultInstance().add(SKYROOT_LEAVES, 60, 30);
+    FlammableBlockRegistry.getDefaultInstance().add(RED_SKYROOT_LEAVES, 60, 30);
+    FlammableBlockRegistry.getDefaultInstance().add(ORANGE_SKYROOT_LEAVES, 60, 30);
+    FlammableBlockRegistry.getDefaultInstance().add(YELLOW_SKYROOT_LEAVES, 60, 30);
     FlammableBlockRegistry.getDefaultInstance().add(SKYROOT_FENCE, 20, 5);
     FlammableBlockRegistry.getDefaultInstance().add(SKYROOT_FENCE_GATE, 20, 5);
 
