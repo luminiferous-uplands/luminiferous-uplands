@@ -1,7 +1,7 @@
 package robosky.ether.block
 
 import net.fabricmc.fabric.api.block.FabricBlockSettings
-import net.fabricmc.fabric.api.registry.FlammableBlockRegistry
+import net.fabricmc.fabric.api.registry.{CompostingChanceRegistry, FlammableBlockRegistry}
 import net.fabricmc.fabric.api.tools.FabricToolTags
 import net.minecraft.block._
 import net.minecraft.item.{BlockItem, Item, ItemGroup}
@@ -40,11 +40,14 @@ object BlockRegistry {
     val SKYROOT_PLANKS: Block = register("skyroot_planks")(new Block(skyroot))
     val SKYROOT_SLAB: SlabBlock = register("skyroot_slab")(new SlabBlock(skyroot))
     val SKYROOT_STAIRS: StairsBlock = register("skyroot_stairs")(new ModStairsBlock(SKYROOT_PLANKS, skyroot))
+    val SKYROOT_FENCE: FenceBlock = register("skyroot_fence")(new FenceBlock(skyroot))
+    val SKYROOT_FENCE_GATE: FenceGateBlock = register("skyroot_fence_gate")(new FenceGateBlock(skyroot))
+
     val SKYROOT_SAPLING: EtherSaplingBlock = register("skyroot_sapling")(new EtherSaplingBlock(
         EtherSaplingGenerator.SkyrootSaplingGenerator, FabricBlockSettings.of(Material.PLANT).noCollision.ticksRandomly
             .breakInstantly.sounds(BlockSoundGroup.GRASS).build()))
-    val SKYROOT_FENCE: FenceBlock = register("skyroot_fence")(new FenceBlock(skyroot))
-    val SKYROOT_FENCE_GATE: FenceGateBlock = register("skyroot_fence_gate")(new FenceGateBlock(skyroot))
+
+    CompostingChanceRegistry.INSTANCE.add(SKYROOT_SAPLING, 0.65f);
 
     val skyrootLeavesSettings: Block.Settings = FabricBlockSettings
         .of(Material.LEAVES)
@@ -55,6 +58,10 @@ object BlockRegistry {
     val RED_SKYROOT_LEAVES: LeavesBlock = register("red_skyroot_leaves")(new LeavesBlock(skyrootLeavesSettings));
     val ORANGE_SKYROOT_LEAVES: LeavesBlock = register("orange_skyroot_leaves")(new LeavesBlock(skyrootLeavesSettings));
     val YELLOW_SKYROOT_LEAVES: LeavesBlock = register("yellow_skyroot_leaves")(new LeavesBlock(skyrootLeavesSettings));
+
+    CompostingChanceRegistry.INSTANCE.add(RED_SKYROOT_LEAVES, 0.30f);
+    CompostingChanceRegistry.INSTANCE.add(ORANGE_SKYROOT_LEAVES, 0.30f);
+    CompostingChanceRegistry.INSTANCE.add(YELLOW_SKYROOT_LEAVES, 0.30f);
 
     FlammableBlockRegistry.getDefaultInstance().add(SKYROOT_LOG, 5, 5);
     FlammableBlockRegistry.getDefaultInstance().add(SKYROOT_WOOD, 5, 5);
