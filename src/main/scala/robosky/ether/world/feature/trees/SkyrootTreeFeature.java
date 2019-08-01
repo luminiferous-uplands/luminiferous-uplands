@@ -30,24 +30,36 @@ public class SkyrootTreeFeature extends AbstractEtherTree<DefaultFeatureConfig> 
     private BlockState leaves;
 
     public SkyrootTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> deserialize, boolean sapling) {
-        this(deserialize, sapling, BlockRegistry.SKYROOT_LOG().getDefaultState(),
-                BlockRegistry.ORANGE_SKYROOT_LEAVES().getDefaultState());
+        this(deserialize,
+                sapling,
+                BlockRegistry.SKYROOT_LOG().getDefaultState(),
+                BlockRegistry.SKYROOT_WOOD().getDefaultState());
     }
 
     private SkyrootTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> dezerialize, boolean sapling,
-                               BlockState log, BlockState leaves) {
+                               BlockState log, BlockState wood) {
         super(dezerialize, sapling);
         this.height = 4;
         this.log = log;
-        this.wood = BlockRegistry.SKYROOT_WOOD().getDefaultState();
+        this.wood = wood;
     }
 
     public boolean generate(Set<BlockPos> set, ModifiableTestableWorld world, Random rand,
                             BlockPos startPos, MutableIntBoundingBox bbox) {
         // Leaves have to be obtained in generate because we need access to the RNG
-        leaves = (rand.nextFloat() > 0.3 ? BlockRegistry.ORANGE_SKYROOT_LEAVES() : BlockRegistry.RED_SKYROOT_LEAVES())
-                .getDefaultState();
-        
+        float randomLeaves = rand.nextFloat();
+
+        // In order of rarity, leaf colors are: Orange, Red, Yellow
+        if (randomLeaves < 0.8f) {
+            if (randomLeaves > 0.45) {
+                leaves = BlockRegistry.RED_SKYROOT_LEAVES().getDefaultState();
+            } else {
+                leaves = BlockRegistry.ORANGE_SKYROOT_LEAVES().getDefaultState();
+            }
+        } else {
+            leaves = BlockRegistry.YELLOW_SKYROOT_LEAVES().getDefaultState();
+        }
+
         // Create variables related to the tree's trunk
 
         // The number of segments this tree will generate with, from 2 to 4.
