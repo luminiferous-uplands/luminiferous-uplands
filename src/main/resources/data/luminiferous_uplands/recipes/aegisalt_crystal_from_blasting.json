@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "$modid:aegisalt_ore"
+  },
+  "result": "$modid:aegisalt_crystal",
+  "experience": 0.1,
+  "cookingtime": 100
+}
