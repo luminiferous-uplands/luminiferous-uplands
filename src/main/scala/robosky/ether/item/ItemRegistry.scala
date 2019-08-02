@@ -10,7 +10,7 @@ object ItemRegistry {
     .group(UplandsMod.GROUP)))
 
   val AEGISALT_CHARM: Item = register("aegisalt_charm", CharmItem(StatusEffects.SLOW_FALLING, 0))
-  val SKYROOT_CHARM: Item = register("skyroot_charm", CharmItem(StatusEffects.JUMP_BOOST, 0))
+  val SKYROOT_CHARM: Item = register("skyroot_charm", CharmItem(StatusEffects.JUMP_BOOST, 1))
 
   def init(): Unit = {}
 
