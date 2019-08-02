@@ -12,33 +12,42 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableIntBoundingBox;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.IWorld;
-import robosky.ether.world.feature.FeatureRegistry;
 
 import java.util.List;
 import java.util.Random;
 
-public class TreehouseGenerator {
-    public static final Identifier name = new Identifier("luminiferous_uplands", "minidungeons/treehouse");
-
-    static void addParts(StructureManager mgr, BlockPos pos, BlockRotation rot, List<StructurePiece> pieces) {
-        pieces.add(new Piece(mgr, pos, rot));
+public class MinidungeonGenerator {
+    static void addParts(StructureManager mgr, BlockPos pos, BlockRotation rot, List<StructurePiece> pieces,
+                         MinidungeonFeatureConfig conf) {
+        pieces.add(new Piece(mgr, pos, rot, conf));
     }
 
     public static class Piece extends SimpleStructurePiece {
         private BlockRotation rotation;
+        private Identifier template;
+        private Identifier loot = null;
 
-        Piece(StructureManager mgr, BlockPos pos, BlockRotation rotation) {
-            super(FeatureRegistry.treehousePiece(), 0);
+        Piece(StructureManager mgr, BlockPos pos, BlockRotation rotation, MinidungeonFeatureConfig conf) {
+            super(Registry.STRUCTURE_PIECE.get(conf.template()), 0);
             this.rotation = rotation;
             this.pos = pos;
+            this.template = conf.template();
+            this.loot = conf.loot().orElse(null);
+
             initializeStructureData(mgr);
         }
 
         public Piece(StructureManager mgr, CompoundTag compoundTag_1) {
-            super(FeatureRegistry.treehousePiece(), compoundTag_1);
+            super(Registry.STRUCTURE_PIECE.get(new Identifier(compoundTag_1.getString("Template"))),
+                    compoundTag_1);
             this.rotation = BlockRotation.valueOf(compoundTag_1.getString("Rot"));
+            this.template = new Identifier(compoundTag_1.getString("Template"));
+            if (compoundTag_1.containsKey("LootTable")) {
+                this.loot = new Identifier(compoundTag_1.getString("LootTable"));
+            }
             initializeStructureData(mgr);
         }
 
@@ -48,7 +57,7 @@ public class TreehouseGenerator {
         }
 
         private void initializeStructureData(StructureManager structureManager_1) {
-            Structure structure_1 = structureManager_1.getStructureOrBlank(name);
+            Structure structure_1 = structureManager_1.getStructureOrBlank(template);
             StructurePlacementData structurePlacementData_1 = (new StructurePlacementData()).setRotation(rotation)
                     .setMirrored(BlockMirror.NONE).setPosition(new BlockPos(0, 0, 0))
                     .addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS);
@@ -61,8 +70,7 @@ public class TreehouseGenerator {
                 iWorld_1.setBlockState(blockPos_1, Blocks.AIR.getDefaultState(), 3);
                 BlockEntity blockEntity_1 = iWorld_1.getBlockEntity(blockPos_1.down());
                 if (blockEntity_1 instanceof ChestBlockEntity) {
-                    ((ChestBlockEntity) blockEntity_1).setLootTable(new Identifier("luminiferous_uplands",
-                            "chests/minidungeons/treehouse"), random_1.nextLong());
+                    ((ChestBlockEntity) blockEntity_1).setLootTable(loot, random_1.nextLong());
                 }
             }
         }
