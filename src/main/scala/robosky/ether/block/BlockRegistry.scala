@@ -98,6 +98,14 @@ object BlockRegistry {
     CompostingChanceRegistry.INSTANCE.add(CLOUD_DAISIES, 0.65f)
     FlammableBlockRegistry.getDefaultInstance.add(CLOUD_DAISIES, 100, 30)
 
+    val CROP_SETTINGS = FabricBlockSettings.of(Material.PLANT)
+        .breakInstantly()
+        .collidable(false)
+        .ticksRandomly()
+        .build()
+
+    val ZEPHYR_ONION_CROP_BLOCK = Registry.register(Registry.BLOCK, UplandsMod :/ "zephyr_onion_crop", new ZephyrOnionBlock(CROP_SETTINGS))
+
     def init(): Unit = {}
 
     def register[B <: Block](name: String, item: Boolean = true, itemGroup: ItemGroup = UplandsMod.GROUP)(b: B): B = {
