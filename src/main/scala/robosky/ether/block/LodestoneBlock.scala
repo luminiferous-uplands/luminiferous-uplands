@@ -32,6 +32,7 @@ class LodestoneBlock(settings: Block.Settings) extends Block(settings) {
             pos.getY,
             pos.getZ + 0.5,
             state.`with`(DISTANCE, Int.box(0)))
+          fallingEntity.setHurtEntities(true)
           world.spawnEntity(fallingEntity)
         }
       }
