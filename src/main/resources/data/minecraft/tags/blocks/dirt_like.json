@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "$modid:ether_dirt",
-    "$modid:ether_grass"
+    "$modid:uplander_dirt",
+    "$modid:uplander_grass"
   ]
 }

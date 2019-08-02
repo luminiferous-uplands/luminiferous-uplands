@@ -1,6 +1,6 @@
 {
     "parent": "block/template_wall_post",
     "textures": {
-        "wall": "$modid:block/ether_stone"
+        "wall": "$modid:block/uplander_stone"
     }
 }

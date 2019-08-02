@@ -1,8 +1,8 @@
 {
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "$modid:ether_stone"
+    "item": "$modid:uplander_stone"
   },
-  "result": "$modid:ether_stone_stairs",
+  "result": "$modid:uplander_stone_stairs",
   "count": 1
 }

@@ -1,8 +1,8 @@
 {
     "parent": "block/inner_stairs",
     "textures": {
-        "bottom": "$modid:block/ether_stone",
-        "top": "$modid:block/ether_stone",
-        "side": "$modid:block/ether_stone"
+        "bottom": "$modid:block/uplander_stone",
+        "top": "$modid:block/uplander_stone",
+        "side": "$modid:block/uplander_stone"
     }
 }

@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "$modid:block/ether_beacon"
+      "model": "$modid:block/uplander_beacon"
     }
   }
 }

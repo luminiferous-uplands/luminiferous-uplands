@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "name": "$modid:ether_grass"
+              "name": "$modid:uplander_grass"
             },
             {
               "type": "minecraft:item",
@@ -33,7 +33,7 @@
                   "condition": "minecraft:survives_explosion"
                 }
               ],
-              "name": "$modid:ether_dirt"
+              "name": "$modid:uplander_dirt"
             }
           ]
         }

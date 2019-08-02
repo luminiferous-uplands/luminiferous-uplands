@@ -5,11 +5,11 @@
   ],
   "key": {
     "#": {
-      "item": "$modid:ether_stone"
+      "item": "$modid:uplander_stone"
     }
   },
   "result": {
-    "item": "$modid:ether_stone_slab",
+    "item": "$modid:uplander_stone_slab",
     "count": 6
   }
 }

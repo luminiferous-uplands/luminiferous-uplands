@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "$modid:block/ether_stone"
+      "model": "$modid:block/uplander_stone"
     }
   }
 }

@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "$modid:ether_stone_stairs"
+          "name": "$modid:uplander_stone_stairs"
         }
       ],
       "conditions": [

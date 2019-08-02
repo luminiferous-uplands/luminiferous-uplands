@@ -1,10 +1,10 @@
 {
   "variants": {
     "": [
-      { "model": "$modid:block/ether_grass" },
-      { "model": "$modid:block/ether_grass", "y": 90 },
-      { "model": "$modid:block/ether_grass", "y": 180 },
-      { "model": "$modid:block/ether_grass", "y": -90 }
+      { "model": "$modid:block/uplander_grass" },
+      { "model": "$modid:block/uplander_grass", "y": 90 },
+      { "model": "$modid:block/uplander_grass", "y": 180 },
+      { "model": "$modid:block/uplander_grass", "y": -90 }
     ]
   }
 }

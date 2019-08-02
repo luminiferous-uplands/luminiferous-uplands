@@ -1,6 +1,6 @@
 {
     "parent": "block/wall_inventory",
     "textures": {
-        "wall": "$modid:block/ether_stone_bricks"
+        "wall": "$modid:block/uplander_stone_bricks"
     }
 }
