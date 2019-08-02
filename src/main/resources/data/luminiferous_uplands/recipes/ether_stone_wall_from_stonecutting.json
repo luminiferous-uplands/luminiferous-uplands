@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "$modid:ether_stone"
-  },
-  "result": "$modid:ether_stone_wall",
-  "count": 1
-}
