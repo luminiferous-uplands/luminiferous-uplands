@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.block.FabricBlockSettings
 import net.fabricmc.fabric.api.registry.{CompostingChanceRegistry, FlammableBlockRegistry, FuelRegistry}
 import net.fabricmc.fabric.api.tools.FabricToolTags
 import net.minecraft.block._
+import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.item.{BlockItem, Item, ItemGroup}
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.registry.Registry
@@ -91,6 +92,12 @@ object BlockRegistry {
     FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_FENCE_GATE, 20, 5)
 
     val ETHER_BEACON: EtherBeaconBlock.type = register("uplander_beacon")(EtherBeaconBlock)
+
+    val FLOWER_SETTINGS: Block.Settings = FabricBlockSettings.of(Material.LEAVES).breakInstantly().collidable(false).build()
+
+    val CLOUD_DAISIES: FlowerBlock = register("cloud_daisies")(new CloudDaisiesBlock(FLOWER_SETTINGS))
+    CompostingChanceRegistry.INSTANCE.add(CLOUD_DAISIES, 0.65f)
+    FlammableBlockRegistry.getDefaultInstance.add(CLOUD_DAISIES, 100, 30)
 
     def init(): Unit = {}
 
