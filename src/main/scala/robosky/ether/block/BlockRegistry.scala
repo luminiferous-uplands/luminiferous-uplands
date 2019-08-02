@@ -7,6 +7,7 @@ import net.minecraft.block._
 import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.item.{BlockItem, Item, ItemGroup}
 import net.minecraft.sound.BlockSoundGroup
+import net.minecraft.tag.BlockTags
 import net.minecraft.util.registry.Registry
 import robosky.ether.UplandsMod
 import robosky.ether.world.feature.trees.EtherSaplingGenerator
@@ -39,29 +40,35 @@ object BlockRegistry {
 
     val SKYROOT_LOG: LogBlock = register("skyroot_log")(new LogBlock(MaterialColor.WOOD, skyroot))
     FuelRegistry.INSTANCE.add(SKYROOT_LOG, 300)
+    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_LOG, 5, 5)
 
     val SKYROOT_WOOD: LogBlock = register("skyroot_wood")(new LogBlock(MaterialColor.WOOD, skyroot))
     FuelRegistry.INSTANCE.add(SKYROOT_WOOD, 300)
+    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_WOOD, 5, 5)
 
     val SKYROOT_PLANKS: Block = register("skyroot_planks")(new Block(skyroot))
     FuelRegistry.INSTANCE.add(SKYROOT_PLANKS, 300)
+    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_PLANKS, 20, 5)
 
     val SKYROOT_SLAB: SlabBlock = register("skyroot_slab")(new SlabBlock(skyroot))
     FuelRegistry.INSTANCE.add(SKYROOT_SLAB, 150)
+    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_SLAB, 20, 5)
 
     val SKYROOT_STAIRS: StairsBlock = register("skyroot_stairs")(new ModStairsBlock(SKYROOT_PLANKS, skyroot))
     FuelRegistry.INSTANCE.add(SKYROOT_STAIRS, 300)
+    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_STAIRS, 20, 5)
 
     val SKYROOT_FENCE: FenceBlock = register("skyroot_fence")(new FenceBlock(skyroot))
     FuelRegistry.INSTANCE.add(SKYROOT_FENCE, 300)
+    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_FENCE, 20, 5)
 
     val SKYROOT_FENCE_GATE: FenceGateBlock = register("skyroot_fence_gate")(new FenceGateBlock(skyroot))
     FuelRegistry.INSTANCE.add(SKYROOT_FENCE_GATE, 300)
+    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_FENCE_GATE, 20, 5)
 
     val SKYROOT_SAPLING: EtherSaplingBlock = register("skyroot_sapling")(new EtherSaplingBlock(
         EtherSaplingGenerator.SkyrootSaplingGenerator, FabricBlockSettings.of(Material.PLANT).noCollision.ticksRandomly
             .breakInstantly.sounds(BlockSoundGroup.GRASS).build()))
-
     CompostingChanceRegistry.INSTANCE.add(SKYROOT_SAPLING, 0.65f)
     FuelRegistry.INSTANCE.add(SKYROOT_WOOD, 100)
 
@@ -73,23 +80,15 @@ object BlockRegistry {
 
     val RED_SKYROOT_LEAVES: LeavesBlock = register("red_skyroot_leaves")(new LeavesBlock(skyrootLeavesSettings))
     CompostingChanceRegistry.INSTANCE.add(RED_SKYROOT_LEAVES, 0.30f)
+    FlammableBlockRegistry.getDefaultInstance.add(RED_SKYROOT_LEAVES, 60, 30)
 
     val ORANGE_SKYROOT_LEAVES: LeavesBlock = register("orange_skyroot_leaves")(new LeavesBlock(skyrootLeavesSettings))
     CompostingChanceRegistry.INSTANCE.add(ORANGE_SKYROOT_LEAVES, 0.30f)
+    FlammableBlockRegistry.getDefaultInstance.add(ORANGE_SKYROOT_LEAVES, 60, 30)
 
     val YELLOW_SKYROOT_LEAVES: LeavesBlock = register("yellow_skyroot_leaves")(new LeavesBlock(skyrootLeavesSettings))
     CompostingChanceRegistry.INSTANCE.add(YELLOW_SKYROOT_LEAVES, 0.30f)
-
-    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_LOG, 5, 5)
-    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_WOOD, 5, 5)
-    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_PLANKS, 20, 5)
-    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_SLAB, 20, 5)
-    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_STAIRS, 20, 5)
-    FlammableBlockRegistry.getDefaultInstance.add(RED_SKYROOT_LEAVES, 60, 30)
-    FlammableBlockRegistry.getDefaultInstance.add(ORANGE_SKYROOT_LEAVES, 60, 30)
     FlammableBlockRegistry.getDefaultInstance.add(YELLOW_SKYROOT_LEAVES, 60, 30)
-    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_FENCE, 20, 5)
-    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_FENCE_GATE, 20, 5)
 
     val ETHER_BEACON: EtherBeaconBlock.type = register("uplander_beacon")(EtherBeaconBlock)
 
