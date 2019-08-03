@@ -8,7 +8,7 @@ import net.minecraft.block._
 import net.minecraft.item.{BlockItem, Item, ItemGroup}
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.registry.Registry
-import robosky.ether.UplandsMod
+import robosky.ether.{HoeHacks, UplandsMod}
 import robosky.ether.world.feature.trees.EtherSaplingGenerator
 
 object BlockRegistry {
@@ -104,6 +104,8 @@ object BlockRegistry {
     val farmlandSettings: Block.Settings = FabricBlockSettings.of(Material.EARTH)
         .strength(0.6f, 0.6f).sounds(BlockSoundGroup.GRAVEL).build()
     val UPLANDER_FARMLAND: Block = register("uplander_farmland")(new UplanderFarmlandBlock(farmlandSettings))
+    HoeHacks.addHoeable(UPLANDER_DIRT, UPLANDER_FARMLAND.getDefaultState)
+    HoeHacks.addHoeable(UPLANDER_GRASS, UPLANDER_FARMLAND.getDefaultState)
 
     val CROP_SETTINGS: Settings = FabricBlockSettings.of(Material.PLANT)
         .breakInstantly()
