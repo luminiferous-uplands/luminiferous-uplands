@@ -37,6 +37,8 @@ class UplanderFarmlandBlock(val settings: Block.Settings) extends Block(settings
         super.onLandedUpon(world_1, blockPos_1, entity_1, float_1)
     }
 
-    def setToDirt(blockState_1: BlockState, world_1: World, blockPos_1: BlockPos) =
-        world_1.setBlockState(blockPos_1, BlockRegistry.UPLANDER_DIRT.getDefaultState)
+    def setToDirt(blockState_1: BlockState, world_1: World, blockPos_1: BlockPos) = {
+        world_1.setBlockState(blockPos_1, Block.pushEntitiesUpBeforeBlockChange(blockState_1,
+            BlockRegistry.UPLANDER_DIRT.getDefaultState, world_1, blockPos_1))
+    }
 }
