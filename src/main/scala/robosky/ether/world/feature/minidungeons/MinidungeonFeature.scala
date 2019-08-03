@@ -35,7 +35,8 @@ class MinidungeonFeature(conf: MinidungeonFeatureConfig)
     val f = FeatureRegistry.register(name, this)
     Registry.register(Registry.STRUCTURE_FEATURE, UplandsMod :/ name, this)
     Feature.STRUCTURES.put(conf.name, this.asInstanceOf[StructureFeature[_]])
-    val tpe = Registry.register[StructurePieceType](Registry.STRUCTURE_PIECE, conf.template, (var1: StructureManager,
+    var tpe: StructurePieceType = null // Use var instead of a single recursive val because scalac is dumb
+    tpe = Registry.register[StructurePieceType](Registry.STRUCTURE_PIECE, conf.template, (var1: StructureManager,
       var2: CompoundTag) => new MinidungeonGenerator.Piece(tpe, var1, var2))
     f
   }
