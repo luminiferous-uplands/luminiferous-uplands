@@ -1,6 +1,5 @@
 {
     "variants": {
-        "": { "model": "$modid:block/uplander_farmland" },
-        "moisture=1": { "model": "$modid:block/uplander_farmland" }
+        "": { "model": "$modid:block/uplander_farmland" }
     }
 }
