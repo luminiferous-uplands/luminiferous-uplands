@@ -2,7 +2,7 @@
   "parent": "$modid:lore/root",
   "display": {
     "icon": {
-      "item": "$modid:ether_beacon"
+      "item": "$modid:uplander_beacon"
     },
     "title": {
       "translate": "advancements.luminiferous_uplands.lore.enter_skylands"
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "$modid:ether_beacon"
+            "item": "$modid:uplander_beacon"
           }
         ]
       }

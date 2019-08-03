@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab_top",
-    "textures": {
-        "bottom": "$modid:block/ether_stone",
-        "top": "$modid:block/ether_stone",
-        "side": "$modid:block/ether_stone"
-    }
-}

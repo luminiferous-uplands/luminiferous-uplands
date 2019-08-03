@@ -2,7 +2,7 @@
   "parent": "block/cube_bottom_top",
   "textures": {
     "particle": "$modid:block/aegisalt_infuser_side",
-    "bottom": "$modid:block/ether_stone",
+    "bottom": "$modid:block/uplander_stone",
     "top": "$modid:block/skyroot_planks",
     "side": "$modid:block/aegisalt_infuser_side"
   }
