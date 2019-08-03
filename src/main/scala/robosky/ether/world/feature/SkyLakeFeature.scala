@@ -118,7 +118,7 @@ class SkyLakeFeature($f: Function[Dynamic[_], LakeFeatureConfig])
           && world.getBlockState(start.add(dx, dy, dz)).getMaterial.isSolid)
           world.setBlockState(
             start.add(dx, dy, dz),
-            BlockRegistry.ETHER_STONE.getDefaultState,
+            BlockRegistry.UPLANDER_STONE.getDefaultState,
             2
           )
       }

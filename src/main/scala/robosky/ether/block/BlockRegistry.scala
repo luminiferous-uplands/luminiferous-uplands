@@ -12,23 +12,23 @@ import robosky.ether.UplandsMod
 import robosky.ether.world.feature.trees.EtherSaplingGenerator
 
 object BlockRegistry {
-    val ETHER_GRASS: Block = register("uplander_grass")(EtherGrassBlock)
-    val ETHER_DIRT: Block = register("uplander_dirt")(new Block(FabricBlockSettings.of(Material.ORGANIC)
+    val UPLANDER_GRASS: Block = register("uplander_grass")(EtherGrassBlock)
+    val UPLANDER_DIRT: Block = register("uplander_dirt")(new Block(FabricBlockSettings.of(Material.ORGANIC)
         .strength(0.5f, 0.5f).sounds(BlockSoundGroup.GRAVEL).build()))
 
-    val ETHER_STONE_SETTINGS: Block.Settings = FabricBlockSettings.of(Material.STONE)
+    val UPLANDER_STONE_SETTINGS: Block.Settings = FabricBlockSettings.of(Material.STONE)
         .strength(1.5f, 6f).sounds(BlockSoundGroup.STONE)
         .breakByTool(FabricToolTags.PICKAXES, 1).build
 
-    val ETHER_STONE: Block = register("uplander_stone")(new Block(ETHER_STONE_SETTINGS))
-    val ETHER_STONE_STAIRS: StairsBlock = register("uplander_stone_stairs")(new ModStairsBlock(ETHER_STONE, ETHER_STONE_SETTINGS))
-    val ETHER_STONE_SLAB: SlabBlock = register("uplander_stone_slab")(new SlabBlock(ETHER_STONE_SETTINGS))
-    val ETHER_STONE_WALL: WallBlock = register("uplander_stone_wall")(new WallBlock(ETHER_STONE_SETTINGS))
+    val UPLANDER_STONE: Block = register("uplander_stone")(new Block(UPLANDER_STONE_SETTINGS))
+    val UPLANDER_STONE_STAIRS: StairsBlock = register("uplander_stone_stairs")(new ModStairsBlock(UPLANDER_STONE, UPLANDER_STONE_SETTINGS))
+    val UPLANDER_STONE_SLAB: SlabBlock = register("uplander_stone_slab")(new SlabBlock(UPLANDER_STONE_SETTINGS))
+    val UPLANDER_STONE_WALL: WallBlock = register("uplander_stone_wall")(new WallBlock(UPLANDER_STONE_SETTINGS))
 
-    val ETHER_STONE_BRICKS: Block = register("uplander_stone_bricks")(new Block(ETHER_STONE_SETTINGS))
-    val ETHER_STONE_BRICK_STAIRS: StairsBlock = register("uplander_stone_brick_stairs")(new ModStairsBlock(ETHER_STONE_BRICKS, ETHER_STONE_SETTINGS))
-    val ETHER_STONE_BRICK_SLAB: SlabBlock = register("uplander_stone_brick_slab")(new SlabBlock(ETHER_STONE_SETTINGS))
-    val ETHER_STONE_BRICK_WALL: WallBlock = register("uplander_stone_brick_wall")(new WallBlock(ETHER_STONE_SETTINGS))
+    val UPLANDER_STONE_BRICKS: Block = register("uplander_stone_bricks")(new Block(UPLANDER_STONE_SETTINGS))
+    val UPLANDER_STONE_BRICK_STAIRS: StairsBlock = register("uplander_stone_brick_stairs")(new ModStairsBlock(UPLANDER_STONE_BRICKS, UPLANDER_STONE_SETTINGS))
+    val UPLANDER_STONE_BRICK_SLAB: SlabBlock = register("uplander_stone_brick_slab")(new SlabBlock(UPLANDER_STONE_SETTINGS))
+    val UPLANDER_STONE_BRICK_WALL: WallBlock = register("uplander_stone_brick_wall")(new WallBlock(UPLANDER_STONE_SETTINGS))
 
     val ETHER_ORES: Map[EtherOreBlock.EtherOreType, EtherOreBlock] = EtherOreBlock.oreTypes.map(t => t ->
         register(s"${t.name}_ore")(new EtherOreBlock(t))).toMap
@@ -91,7 +91,7 @@ object BlockRegistry {
     CompostingChanceRegistry.INSTANCE.add(YELLOW_SKYROOT_LEAVES, 0.30f)
     FlammableBlockRegistry.getDefaultInstance.add(YELLOW_SKYROOT_LEAVES, 60, 30)
 
-    val ETHER_BEACON: EtherBeaconBlock.type = register("uplander_beacon")(EtherBeaconBlock)
+    val UPLANDER_BEACON: EtherBeaconBlock.type = register("uplander_beacon")(EtherBeaconBlock)
 
     val FLOWER_SETTINGS: Block.Settings = FabricBlockSettings.of(Material.LEAVES).breakInstantly().collidable(false).build()
 
