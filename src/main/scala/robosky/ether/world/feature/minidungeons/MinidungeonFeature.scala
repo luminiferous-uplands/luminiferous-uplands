@@ -20,13 +20,13 @@ class MinidungeonFeature(conf: MinidungeonFeatureConfig)
     bbox: MutableIntBoundingBox, references: Int, seed: Long) extends StructureStart(feature, chunkX, chunkZ, biome,
     bbox, references, seed) {
 
-    override def initialize(chunkGenerator: ChunkGenerator[_], structureManager: StructureManager, chunkX: Int,
-      chunkZ: Int, biome: Biome): Unit = {
+    override def initialize(generator: ChunkGenerator[_], mgr: StructureManager, chunkX: Int, chunkZ: Int,
+      biome: Biome): Unit = {
       val x = chunkX * 16
       val z = chunkZ * 16
       val startingPos = new BlockPos(x, 0, z)
       val rotation = BlockRotation.NONE
-      MinidungeonGenerator.addParts(structureManager, startingPos, rotation, this.children, conf)
+      MinidungeonGenerator.addParts(mgr, startingPos, rotation, this.children, conf)
       this.setBoundingBoxFromChildren()
     }
   }
@@ -35,8 +35,8 @@ class MinidungeonFeature(conf: MinidungeonFeatureConfig)
     val f = FeatureRegistry.register(name, this)
     Registry.register(Registry.STRUCTURE_FEATURE, UplandsMod :/ name, this)
     Feature.STRUCTURES.put(conf.name, this.asInstanceOf[StructureFeature[_]])
-    Registry.register[StructurePieceType](Registry.STRUCTURE_PIECE, conf.template, (var1: StructureManager,
-      var2: CompoundTag) => new MinidungeonGenerator.Piece(var1, var2))
+    val tpe = Registry.register[StructurePieceType](Registry.STRUCTURE_PIECE, conf.template, (var1: StructureManager,
+      var2: CompoundTag) => new MinidungeonGenerator.Piece(tpe, var1, var2))
     f
   }
 

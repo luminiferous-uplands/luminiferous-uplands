@@ -40,37 +40,41 @@ public class MinidungeonGenerator {
             initializeStructureData(mgr);
         }
 
-        public Piece(StructureManager mgr, CompoundTag compoundTag_1) {
-            super(Registry.STRUCTURE_PIECE.get(new Identifier(compoundTag_1.getString("Template"))),
-                    compoundTag_1);
-            this.rotation = BlockRotation.valueOf(compoundTag_1.getString("Rot"));
-            this.template = new Identifier(compoundTag_1.getString("Template"));
-            if (compoundTag_1.containsKey("LootTable")) {
-                this.loot = new Identifier(compoundTag_1.getString("LootTable"));
+        public Piece(StructurePieceType tpe, StructureManager mgr, CompoundTag tag) {
+            super(tpe, tag);
+            this.rotation = BlockRotation.valueOf(tag.getString("Rot"));
+            this.template = new Identifier(tag.getString("Template"));
+            if (tag.containsKey("LootTable")) {
+                this.loot = new Identifier(tag.getString("LootTable"));
             }
             initializeStructureData(mgr);
         }
 
-        protected void toNbt(CompoundTag compoundTag_1) {
-            super.toNbt(compoundTag_1);
-            compoundTag_1.putString("Rot", this.rotation.name());
+        protected void toNbt(CompoundTag tag) {
+            super.toNbt(tag);
+            tag.putString("Rot", this.rotation.name());
+            tag.putString("Template", template.toString());
+            if (loot != null) {
+                tag.putString("LootTable", loot.toString());
+            }
         }
 
-        private void initializeStructureData(StructureManager structureManager_1) {
-            Structure structure_1 = structureManager_1.getStructureOrBlank(template);
-            StructurePlacementData structurePlacementData_1 = (new StructurePlacementData()).setRotation(rotation)
+        private void initializeStructureData(StructureManager mgr) {
+            Structure structure = mgr.getStructureOrBlank(template);
+            StructurePlacementData placementData = (new StructurePlacementData()).setRotation(rotation)
                     .setMirrored(BlockMirror.NONE).setPosition(new BlockPos(0, 0, 0))
                     .addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS);
-            this.setStructureData(structure_1, this.pos, structurePlacementData_1);
+            this.setStructureData(structure, this.pos, placementData);
         }
 
         @Override
-        protected void handleMetadata(String string_1, BlockPos blockPos_1, IWorld iWorld_1, Random random_1, MutableIntBoundingBox var5) {
-            if ("chest".equals(string_1)) {
-                iWorld_1.setBlockState(blockPos_1, Blocks.AIR.getDefaultState(), 3);
-                BlockEntity blockEntity_1 = iWorld_1.getBlockEntity(blockPos_1.down());
+        protected void handleMetadata(String dataName, BlockPos pos, IWorld world, Random rand,
+                                      MutableIntBoundingBox bbox) {
+            if ("chest".equals(dataName)) {
+                world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+                BlockEntity blockEntity_1 = world.getBlockEntity(pos.down());
                 if (blockEntity_1 instanceof ChestBlockEntity) {
-                    ((ChestBlockEntity) blockEntity_1).setLootTable(loot, random_1.nextLong());
+                    ((ChestBlockEntity) blockEntity_1).setLootTable(loot, rand.nextLong());
                 }
             }
         }
