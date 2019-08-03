@@ -13,7 +13,7 @@ import robosky.ether.world.feature.trees.EtherSaplingGenerator
 
 object BlockRegistry {
     val UPLANDER_GRASS: Block = register("uplander_grass")(EtherGrassBlock)
-    val UPLANDER_DIRT: Block = register("uplander_dirt")(new Block(FabricBlockSettings.of(Material.ORGANIC)
+    val UPLANDER_DIRT: Block = register("uplander_dirt")(new Block(FabricBlockSettings.of(Material.EARTH)
         .strength(0.5f, 0.5f).sounds(BlockSoundGroup.GRAVEL).build()))
 
     val UPLANDER_STONE_SETTINGS: Block.Settings = FabricBlockSettings.of(Material.STONE)
@@ -100,6 +100,10 @@ object BlockRegistry {
     FlammableBlockRegistry.getDefaultInstance.add(CLOUD_DAISIES, 100, 30)
     val POTTED_CLOUD_DAISIES: Block = Registry.register(Registry.BLOCK, UplandsMod :/ "potted_cloud_daisies",
         new FlowerPotBlock(CLOUD_DAISIES, FabricBlockSettings.of(Material.PART).breakInstantly().build()))
+
+    val farmlandSettings: Block.Settings = FabricBlockSettings.of(Material.EARTH)
+        .strength(0.6f, 0.6f).sounds(BlockSoundGroup.GRAVEL).build()
+    val UPLANDER_FARMLAND: Block = register("uplander_farmland")(new UplanderFarmlandBlock(farmlandSettings))
 
     val CROP_SETTINGS: Settings = FabricBlockSettings.of(Material.PLANT)
         .breakInstantly()
