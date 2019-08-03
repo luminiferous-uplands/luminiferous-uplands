@@ -5,7 +5,7 @@ import com.google.common.collect.ImmutableMap
 import com.mojang.datafixers.Dynamic
 import com.mojang.datafixers.types.DynamicOps
 
-import net.minecraft.block.{Blocks, BlockState}
+import net.minecraft.block.{Block, Blocks, BlockState}
 import net.minecraft.predicate.block.BlockPredicate
 import net.minecraft.world.gen.feature.FeatureConfig
 
@@ -18,13 +18,16 @@ object EtherOreFeatureConfig {
       { d => BlockState.deserialize(d) } orElse { Blocks.AIR.getDefaultState }
     new EtherOreFeatureConfig(size, min, max, state)
   }
+
+  def apply(size: Int, minHeight: Int, maxHeight: Int, block: Block): EtherOreFeatureConfig =
+    new EtherOreFeatureConfig(size, minHeight, maxHeight, block.getDefaultState)
 }
 
-class EtherOreFeatureConfig(
-    val size: Int,
-    val minHeight: Int,
-    val maxHeight: Int,
-    val state: BlockState) extends FeatureConfig {
+case class EtherOreFeatureConfig(
+    size: Int,
+    minHeight: Int,
+    maxHeight: Int,
+    state: BlockState) extends FeatureConfig {
 
   override def serialize[T](ops: DynamicOps[T]): Dynamic[T] = {
     return new Dynamic(ops, ops.createMap(ImmutableMap.of(

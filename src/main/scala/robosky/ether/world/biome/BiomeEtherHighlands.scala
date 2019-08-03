@@ -34,10 +34,10 @@ object BiomeEtherHighlands
     .waterColor(0x9898BC).waterFogColor(0x9898BC).category(Biome.Category.FOREST)) {
 
   addFeature(GenerationStep.Feature.UNDERGROUND_ORES, Biome.configureFeature(FeatureRegistry.oreFeature,
-    new EtherOreFeatureConfig(9, 1, 128, BlockRegistry.ETHER_ORES(EtherOreBlock.OreTypeAegisalt).getDefaultState),
+    EtherOreFeatureConfig(9, 1, 128, BlockRegistry.ETHER_ORES(EtherOreBlock.OreTypeAegisalt)),
     Decorator.COUNT_RANGE, new RangeDecoratorConfig(1, 0, 0, 256)))
   addFeature(GenerationStep.Feature.UNDERGROUND_ORES, Biome.configureFeature(FeatureRegistry.oreFeature,
-    new EtherOreFeatureConfig(20, 1, 64, BlockRegistry.LODESTONE.getDefaultState),
+    EtherOreFeatureConfig(20, 1, 64, BlockRegistry.LODESTONE),
     Decorator.COUNT_RANGE, new RangeDecoratorConfig(4, 0, 0, 256)))
   addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Biome.configureFeature(FeatureRegistry.skyrootTreeFeature,
     FeatureConfig.DEFAULT, Decorator.COUNT_EXTRA_HEIGHTMAP, new CountExtraChanceDecoratorConfig(2, 0.1f, 1)))
