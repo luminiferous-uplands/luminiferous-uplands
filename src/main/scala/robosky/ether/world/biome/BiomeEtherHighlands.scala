@@ -51,9 +51,9 @@ object BiomeEtherHighlands
   @Environment(EnvType.CLIENT)
   override def getSkyColor(currentTemperature: Float) = 12632319
 
-  override def getGrassColorAt(pos: BlockPos) = 11665355
+  override def getGrassColorAt(pos: BlockPos) = 15382866
 
-  override def getFoliageColorAt(pos: BlockPos) = 11665355
+  override def getFoliageColorAt(pos: BlockPos) = 15382866
 
   override def computeTemperature(blockPos_1: BlockPos): Float = getTemperature()
 }

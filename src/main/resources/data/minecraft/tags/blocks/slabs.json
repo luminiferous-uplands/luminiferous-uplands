@@ -2,7 +2,7 @@
   "replace": false,
   "values": [
     "$modid:skyroot_slab",
-    "$modid:ether_stone_slab",
-    "$modid:ether_stone_brick_slab"
+    "$modid:uplander_stone_slab",
+    "$modid:uplander_stone_brick_slab"
   ]
 }

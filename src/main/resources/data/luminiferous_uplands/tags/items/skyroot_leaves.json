@@ -1,0 +1,8 @@
+{
+  "replace": true,
+  "values": [
+    "$modid:red_skyroot_leaves",
+    "$modid:orange_skyroot_leaves",
+    "$modid:yellow_skyroot_leaves"
+  ]
+}

@@ -68,21 +68,21 @@ public class TreehouseGenerator {
         }
 
         @Override
-        public boolean generate(IWorld iWorld_1, Random random_1, MutableIntBoundingBox mutableIntBoundingBox_1, ChunkPos chunkPos_1) {
-            int yHeight = iWorld_1.getTop(Heightmap.Type.WORLD_SURFACE_WG, this.pos.getX() + 8, this.pos.getZ() + 8);
+        public boolean generate(IWorld world, Random rand, MutableIntBoundingBox bbox, ChunkPos chunkPos) {
+            int yHeight = world.getTop(Heightmap.Type.WORLD_SURFACE_WG, this.pos.getX() + 8, this.pos.getZ() + 8);
 
             this.pos = this.pos.add(0, yHeight - 1, 0);
 
             if (pos.getY() < 20) return false;
 
-            for (int x = pos.getX() - 3; x < pos.getX() + 3; x++) {
-                for (int z = pos.getZ() - 3; x < pos.getZ() + 3; x++) {
-                    if (iWorld_1.getBlockState(new BlockPos(x, pos.getY() - 1, z)).isAir())
+            for (int x = pos.getX() - 3 + 8; x < pos.getX() + 3 + 8; x++) {
+                for (int z = pos.getZ() - 3 + 8; z < pos.getZ() + 3 + 8; z++) {
+                    if (world.getBlockState(new BlockPos(x, pos.getY() - 1, z)).isAir())
                         return false;
                 }
             }
 
-            return super.generate(iWorld_1, random_1, mutableIntBoundingBox_1, chunkPos_1);
+            return super.generate(world, rand, bbox, chunkPos);
         }
     }
 
