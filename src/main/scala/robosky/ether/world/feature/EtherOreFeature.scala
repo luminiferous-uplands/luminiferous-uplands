@@ -105,7 +105,7 @@ object EtherOreFeature extends Feature[DefaultFeatureConfig]((t: datafixers.Dyna
     val pos = new BlockPos(x, y, z)
     val toReplace = world.getBlockState(pos)
     val replaceWith = states(rand.nextInt(states.length))
-    if (toReplace.getBlock != BlockRegistry.ETHER_STONE) return false
+    if (toReplace.getBlock != BlockRegistry.UPLANDER_STONE) return false
     world.setBlockState(pos, replaceWith, 3)
     true
   }
