@@ -70,7 +70,7 @@ object BlockRegistry {
             .breakInstantly.sounds(BlockSoundGroup.GRASS).build()))
     CompostingChanceRegistry.INSTANCE.add(SKYROOT_SAPLING, 0.65f)
     FuelRegistry.INSTANCE.add(SKYROOT_WOOD, 100)
-    val POTTED_SKYROOT_SAPLING: FlowerPotBlock = Registry.register(Registry.BLOCK, UplandsMod :/ "potted_skyroot_sapling",
+    val POTTED_SKYROOT_SAPLING: Block = Registry.register(Registry.BLOCK, UplandsMod :/ "potted_skyroot_sapling",
         new FlowerPotBlock(SKYROOT_SAPLING, FabricBlockSettings.of(Material.PART).breakInstantly().build()))
 
     val skyrootLeavesSettings: Block.Settings = FabricBlockSettings
@@ -98,7 +98,7 @@ object BlockRegistry {
     val CLOUD_DAISIES: FlowerBlock = register("cloud_daisies")(new CloudDaisiesBlock(FLOWER_SETTINGS))
     CompostingChanceRegistry.INSTANCE.add(CLOUD_DAISIES, 0.65f)
     FlammableBlockRegistry.getDefaultInstance.add(CLOUD_DAISIES, 100, 30)
-    val POTTED_CLOUD_DAISIES: FlowerPotBlock = Registry.register(Registry.BLOCK, UplandsMod :/ "potted_cloud_daisies",
+    val POTTED_CLOUD_DAISIES: Block = Registry.register(Registry.BLOCK, UplandsMod :/ "potted_cloud_daisies",
         new FlowerPotBlock(CLOUD_DAISIES, FabricBlockSettings.of(Material.PART).breakInstantly().build()))
 
     val CROP_SETTINGS: Settings = FabricBlockSettings.of(Material.PLANT)
@@ -107,7 +107,7 @@ object BlockRegistry {
         .ticksRandomly()
         .build()
 
-    val ZEPHYR_ONION_CROP_BLOCK: ZephyrOnionBlock = Registry.register(Registry.BLOCK, UplandsMod :/ "zephyr_onion_crop", new ZephyrOnionBlock(CROP_SETTINGS))
+    val ZEPHYR_ONION_CROP_BLOCK: Block = Registry.register(Registry.BLOCK, UplandsMod :/ "zephyr_onion_crop", new ZephyrOnionBlock(CROP_SETTINGS))
 
     def init(): Unit = {}
 
