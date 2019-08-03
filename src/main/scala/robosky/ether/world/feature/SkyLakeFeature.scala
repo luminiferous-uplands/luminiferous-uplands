@@ -106,7 +106,7 @@ class SkyLakeFeature($f: Function[Dynamic[_], LakeFeatureConfig])
       val pos = start.add(dx, dy - 1, dz)
       if (Block.isNaturalDirt(world.getBlockState(pos).getBlock) && world
         .getLightLevel(LightType.SKY, start.add(dx, dy, dz)) > 0)
-        world.setBlockState(pos, BlockRegistry.ETHER_GRASS.getDefaultState, 2)
+        world.setBlockState(pos, BlockRegistry.UPLANDER_GRASS.getDefaultState, 2)
     }
     if (config.state.getMaterial == Material.LAVA) {
       for {

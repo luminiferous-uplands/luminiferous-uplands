@@ -12,8 +12,8 @@ import robosky.ether.block.BlockRegistry
 class EtherHighlandsSurfaceBuilder extends SurfaceBuilder[SurfaceConfig](null) {
   def generate(rand: Random, chunk: Chunk, biome: Biome, absX: Int, absZ: Int, startHeight: Int, noise: Double,
     defaultBlock: BlockState, defaultFluid: BlockState, seaLevel: Int, seed: Long, config: SurfaceConfig): Unit = {
-    var topBlock = BlockRegistry.ETHER_GRASS.getDefaultState
-    var underBlock = BlockRegistry.ETHER_DIRT.getDefaultState
+    var topBlock = BlockRegistry.UPLANDER_GRASS.getDefaultState
+    var underBlock = BlockRegistry.UPLANDER_DIRT.getDefaultState
     val pos = new BlockPos.Mutable
     var depth = -1
     val maxDepth = (noise / 3.0D + 3.0D + rand.nextDouble * 0.25D).toInt
