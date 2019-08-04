@@ -1,11 +1,9 @@
 package robosky.ether.item
 
 import net.minecraft.advancement.criterion.Criterions
-import net.minecraft.block.Block
-import net.minecraft.item.Item
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.fluid.Fluids
-import net.minecraft.item.{BlockItem, Item, ItemStack, ItemUsageContext}
+import net.minecraft.item.{Item, ItemStack, ItemUsageContext}
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.sound.{SoundCategory, SoundEvents}
 import net.minecraft.stat.Stats

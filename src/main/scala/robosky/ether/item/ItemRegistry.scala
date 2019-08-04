@@ -1,7 +1,7 @@
 package robosky.ether.item
 
 import net.minecraft.entity.effect.StatusEffects
-import net.minecraft.item.{AliasedBlockItem, FoodComponent, FoodComponents, Item}
+import net.minecraft.item.{AliasedBlockItem, FoodComponent, Item}
 import net.minecraft.util.registry.Registry
 import robosky.ether.UplandsMod
 import robosky.ether.block.BlockRegistry
