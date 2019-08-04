@@ -92,6 +92,13 @@ object BlockRegistry {
 
     val ETHER_BEACON: EtherBeaconBlock.type = register("uplander_beacon")(EtherBeaconBlock)
 
+    val LODESTONE: LodestoneBlock = register("lodestone")(new LodestoneBlock(
+      FabricBlockSettings.of(Material.STONE)
+        .sounds(BlockSoundGroup.STONE)
+        .strength(6.0F, 8.0F)
+        .breakByTool(FabricToolTags.PICKAXES, 2)
+        .build()))
+
     def init(): Unit = {}
 
     def register[B <: Block](name: String, item: Boolean = true, itemGroup: ItemGroup = UplandsMod.GROUP)(b: B): B = {
