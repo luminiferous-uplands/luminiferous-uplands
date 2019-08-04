@@ -111,9 +111,11 @@ object BlockRegistry {
         .breakInstantly()
         .collidable(false)
         .ticksRandomly()
+        .sounds(BlockSoundGroup.GRASS)
         .build()
 
     val ZEPHYR_ONION_CROP_BLOCK: Block = Registry.register(Registry.BLOCK, UplandsMod :/ "zephyr_onion_crop", new ZephyrOnionBlock(CROP_SETTINGS))
+    val WATER_CHESTNUT_CROP_BLOCK: Block = Registry.register(Registry.BLOCK, UplandsMod :/ "water_chestnut_crop", new WaterChestnutBlock(CROP_SETTINGS))
 
     def init(): Unit = {}
 

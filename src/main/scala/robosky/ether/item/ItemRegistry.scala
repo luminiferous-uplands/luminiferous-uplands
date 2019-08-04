@@ -28,6 +28,17 @@ object ItemRegistry {
             .saturationModifier(0.6F)
             .build())))
 
+    val WATER_CHESTNUT_ITEM: Item = register("water_chestnut", new Item(new Item.Settings()
+        .group(UplandsMod.GROUP)
+        .food(new FoodComponent.Builder()
+            .hunger(1)
+            .saturationModifier(0.3F)
+            .build())))
+
+    val WATER_CHESTNUT_SEEDS_ITEM: Item = register("water_chestnut_seeds", new WaterChestnutItem(
+        new Item.Settings()
+            .group(UplandsMod.GROUP)))
+
     val SKYROOT_FRUIT: Item = register("skyroot_fruit", new Item(new Item.Settings()
         .group(UplandsMod.GROUP).food(new FoodComponent.Builder()
             .hunger(4)
