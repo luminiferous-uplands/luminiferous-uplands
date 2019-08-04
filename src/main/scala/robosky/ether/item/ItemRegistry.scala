@@ -1,7 +1,7 @@
 package robosky.ether.item
 
 import net.minecraft.entity.effect.StatusEffects
-import net.minecraft.item.{AliasedBlockItem, Item}
+import net.minecraft.item.{AliasedBlockItem, FoodComponent, FoodComponents, Item}
 import net.minecraft.util.registry.Registry
 import robosky.ether.UplandsMod
 import robosky.ether.block.BlockRegistry
@@ -13,9 +13,26 @@ object ItemRegistry {
     val AEGISALT_CHARM: Item = register("aegisalt_charm", CharmItem(StatusEffects.SLOW_FALLING, 0))
     val SKYROOT_CHARM: Item = register("skyroot_charm", CharmItem(StatusEffects.JUMP_BOOST, 1))
 
-    val seedSettings: Item.Settings = new Item.Settings().group(UplandsMod.GROUP)
+    val ZEPHYR_ONION_ITEM: Item = register("zephyr_onion", new AliasedBlockItem(
+        BlockRegistry.ZEPHYR_ONION_CROP_BLOCK, new Item.Settings()
+            .group(UplandsMod.GROUP)
+            .food(new FoodComponent.Builder()
+                .hunger(1)
+                .saturationModifier(0.3F)
+                .build())))
 
-    val ZEPHYR_ONION_ITEM: Item = register("zephyr_onion", new AliasedBlockItem(BlockRegistry.ZEPHYR_ONION_CROP_BLOCK, seedSettings))
+    val ROASTED_ZEPHYR_ONION_ITEM: Item = register("roasted_zephyr_onion", new Item(new Item.Settings()
+        .group(UplandsMod.GROUP)
+        .food(new FoodComponent.Builder()
+            .hunger(5)
+            .saturationModifier(0.6F)
+            .build())))
+
+    val SKYROOT_FRUIT: Item = register("skyroot_fruit", new Item(new Item.Settings()
+        .group(UplandsMod.GROUP).food(new FoodComponent.Builder()
+            .hunger(4)
+            .saturationModifier(0.6f)
+            .build())))
 
     def init(): Unit = {}
 

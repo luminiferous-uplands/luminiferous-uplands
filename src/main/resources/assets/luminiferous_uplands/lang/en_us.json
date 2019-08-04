@@ -2,6 +2,7 @@
   "itemGroup.luminiferous_uplands.general": "The Luminiferous Uplands",
   "block.luminiferous_uplands.uplander_grass": "Uplander Grass",
   "block.luminiferous_uplands.uplander_dirt": "Uplander Dirt",
+  "block.luminiferous_uplands.uplander_farmland": "Uplander Farmland",
   "block.luminiferous_uplands.uplander_stone": "Uplander Stone",
   "block.luminiferous_uplands.uplander_stone_stairs": "Uplander Stone Stairs",
   "block.luminiferous_uplands.uplander_stone_slab": "Uplander Stone Slab",
@@ -30,6 +31,8 @@
 
   "block.luminiferous_uplands.cloud_daisies": "Cloud Daisies",
   "item.luminiferous_uplands.zephyr_onion": "Zephyr Onion",
+  "item.luminiferous_uplands.roasted_zephyr_onion": "Roasted Zephyr Onion",
+  "item.luminiferous_uplands.skyroot_fruit": "Skyroot Fruit",
 
   "advancements.luminiferous_uplands.lore.root": "The Luminiferous Uplands",
   "advancements.luminiferous_uplands.lore.root.description": "What could be up there?",
