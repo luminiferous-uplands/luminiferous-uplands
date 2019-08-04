@@ -8,51 +8,40 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.IWorld
 import net.minecraft.world.chunk.Chunk
 import net.minecraft.world.gen.chunk.{ChunkGenerator, ChunkGeneratorConfig}
-import net.minecraft.world.gen.feature.{DefaultFeatureConfig, Feature}
+import net.minecraft.world.gen.feature.Feature
 import robosky.ether.block.{BlockRegistry, EtherOreBlock}
 
 import scala.util.control.Breaks._
 
-object EtherOreFeature extends Feature[DefaultFeatureConfig]((t: datafixers.Dynamic[_]) =>
-  DefaultFeatureConfig.deserialize(t)) {
+object EtherOreFeature extends Feature[EtherOreFeatureConfig]((t: datafixers.Dynamic[_]) =>
+  EtherOreFeatureConfig.deserialize(t)) {
   val SPHERES: IndexedSeq[Clump] = (1 to 9).map(_.toFloat).map(Clump.of)
 
   def generate(world: IWorld, generator: ChunkGenerator[_ <: ChunkGeneratorConfig], rand: Random, pos: BlockPos,
-    uselessConfig: DefaultFeatureConfig): Boolean = {
+    config: EtherOreFeatureConfig): Boolean = {
     val toGenerateIn: Chunk = world.getChunk(pos)
-    for (s <- EtherOreBlock.oreTypes) {
-      val settings: EtherOreBlock.OreGenSettings = s.genSettings()
-      if (settings.ores.nonEmpty) {
-        var clusters = settings.clusterCount
-        if (clusters < 1) clusters = 1
-        var blocksGenerated = 0
-        for (_ <- 0 until clusters) {
-          val overbleed = 0
-          var radius = Math.log(settings.clusterSize).toInt + 1
-          if (radius > 7) radius = 7
-          breakable {
-            for (j <- SPHERES.indices) {
-              val clump = SPHERES(j)
-              if (clump.size >= settings.clusterSize) {
-                radius = j + 1
-                break // FIXME: I AM SO SORRY
-              }
-            }
-          }
-          var clusterX = rand.nextInt(16 + overbleed - (radius * 2)) + radius
-          var clusterZ = rand.nextInt(16 + overbleed - (radius * 2)) + radius
-          var heightRange = settings.maxHeight - settings.minHeight
-          if (heightRange < 1) heightRange = 1
-          val clusterY = rand.nextInt(heightRange) + settings.minHeight
-          clusterX += toGenerateIn.getPos.getStartX
-          clusterZ += toGenerateIn.getPos.getStartZ
-          val generatedThisCluster = generateVeinPartGaussianClump(world, clusterX, clusterY, clusterZ,
-            settings.clusterSize, radius, settings.ores, 85, rand)
-          blocksGenerated += generatedThisCluster
+    val overbleed = 0
+    var radius = Math.log(config.size).toInt + 1
+    if (radius > 7) radius = 7
+    breakable {
+      for (j <- SPHERES.indices) {
+        val clump = SPHERES(j)
+        if (clump.size >= config.size) {
+          radius = j + 1
+          break // FIXME: I AM SO SORRY
         }
       }
     }
-    false
+    var clusterX = rand.nextInt(16 + overbleed - (radius * 2)) + radius
+    var clusterZ = rand.nextInt(16 + overbleed - (radius * 2)) + radius
+    var heightRange = config.maxHeight - config.minHeight
+    if (heightRange < 1) heightRange = 1
+    val clusterY = rand.nextInt(heightRange) + config.minHeight
+    clusterX += toGenerateIn.getPos.getStartX
+    clusterZ += toGenerateIn.getPos.getStartZ
+    val generatedThisCluster = generateVeinPartGaussianClump(world, clusterX, clusterY, clusterZ,
+      config.size, radius, Set(config.state), 85, rand)
+    generatedThisCluster > 0
   }
 
   protected def generateVeinPartGaussianClump(world: IWorld, x: Int, y: Int, z: Int, clumpSize: Int, radius: Int,

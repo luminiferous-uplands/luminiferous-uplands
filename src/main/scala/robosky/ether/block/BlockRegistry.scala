@@ -123,6 +123,13 @@ object BlockRegistry {
             .sounds(BlockSoundGroup.WET_GRASS)
             .build()))
 
+    val LODESTONE: LodestoneBlock = register("lodestone")(new LodestoneBlock(
+      FabricBlockSettings.of(Material.STONE)
+        .sounds(BlockSoundGroup.STONE)
+        .strength(6.0F, 8.0F)
+        .breakByTool(FabricToolTags.PICKAXES, 2)
+        .build()))
+
     def init(): Unit = {}
 
     def register[B <: Block](name: String, item: Boolean = true, itemGroup: ItemGroup = UplandsMod.GROUP)(b: B): B = {
