@@ -4,7 +4,8 @@ import java.util.Random
 
 import com.google.common.collect.Sets
 import net.minecraft.block.Blocks
-import net.minecraft.entity.Entity
+import net.minecraft.entity.{Entity, LivingEntity}
+import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
@@ -20,17 +21,24 @@ object MixinHackHooksImpl extends MixinHackHooks {
   override def getDimensionType: DimensionType = WorldRegistry.UPLANDS_DIMENSION
 
   override def usePortalHookTo(entity: Entity, world: World): Boolean = {
-    val tag = world.getLevelProperties.getWorldData(WorldRegistry.UPLANDS_DIMENSION)
-    val pos: BlockPos = if (tag.containsKey("SpawnPlatform")) {
-      val ptag = tag.getIntArray("SpawnPlatform")
-      new BlockPos(ptag(0), ptag(1), ptag(2))
+    val pos: BlockPos = if (entity.asInstanceOf[LivingEntity].hasStatusEffect(StatusEffects.LEVITATION)) {
+      // teleport to the spawn platform
+      val tag = world.getLevelProperties.getWorldData(WorldRegistry.UPLANDS_DIMENSION)
+      entity.asInstanceOf[LivingEntity].removePotionEffect(StatusEffects.LEVITATION)
+      if (tag.containsKey("SpawnPlatform")) {
+        val ptag = tag.getIntArray("SpawnPlatform")
+        new BlockPos(ptag(0), ptag(1), ptag(2))
+      } else {
+        val pos1 = getTopPos(world, 7, 7).up(2)
+        createSpawnPlatform(world, pos1.north(6).west(4).down(6))
+        tag.putIntArray("SpawnPlatform", Array(pos1.getX, pos1.getY, pos1.getZ))
+        world.getLevelProperties
+          .setWorldData(WorldRegistry.UPLANDS_DIMENSION, tag)
+        pos1
+      }
     } else {
-      val pos1 = getTopPos(world, 7, 7).up(2)
-      createSpawnPlatform(world, pos1.north(6).west(4).down(6))
-      tag.putIntArray("SpawnPlatform", Array(pos1.getX, pos1.getY, pos1.getZ))
-      world.getLevelProperties
-        .setWorldData(WorldRegistry.UPLANDS_DIMENSION, tag)
-      pos1
+      // teleport to the corresponding point in the Uplands void
+      new BlockPos(entity.x, -40.0, entity.z)
     }
     entity match {
       case se: ServerPlayerEntity =>

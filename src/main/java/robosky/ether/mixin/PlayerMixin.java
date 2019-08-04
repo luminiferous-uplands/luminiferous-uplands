@@ -41,4 +41,11 @@ public abstract class PlayerMixin extends LivingEntity {
             ((TickableItem) getOffHandStack().getItem()).tick((PlayerEntity) (Object) this, getOffHandStack(), Hand.OFF_HAND);
         }
     }
+
+    @Inject(method = "tickMovement", at = @At("TAIL"))
+    private void flyIntoUplands(CallbackInfo info) {
+        if (this.dimension == DimensionType.OVERWORLD && this.y >= 300.0) {
+            changeDimension(MixinHack.HOOKS.getDimensionType());
+        }
+    }
 }

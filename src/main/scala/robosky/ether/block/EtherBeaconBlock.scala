@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.block.FabricBlockSettings
 import net.fabricmc.fabric.api.tools.FabricToolTags
 import net.minecraft.block.{Block, BlockState, Material}
 import net.minecraft.entity.EntityContext
+import net.minecraft.entity.effect.{StatusEffect, StatusEffectInstance, StatusEffects}
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.util.Hand
 import net.minecraft.util.hit.BlockHitResult
@@ -23,7 +24,8 @@ object EtherBeaconBlock extends Block(FabricBlockSettings.of(Material.STONE).str
   override def activate(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand,
     result: BlockHitResult): Boolean = {
     if (player.world.dimension.getType == DimensionType.OVERWORLD) {
-      player.changeDimension(WorldRegistry.UPLANDS_DIMENSION)
+      player.addPotionEffect(new StatusEffectInstance(
+        StatusEffects.LEVITATION, 120, 64, false, false, false))
       true
     } else {
       false
