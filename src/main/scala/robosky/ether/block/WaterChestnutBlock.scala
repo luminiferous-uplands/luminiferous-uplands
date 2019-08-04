@@ -24,7 +24,7 @@ object WaterChestnutBlock {
 }
 
 class WaterChestnutBlock(val settings: Block.Settings) extends CropBlock(settings) {
-    @Environment(EnvType.CLIENT) override protected def getSeedsItem: ItemConvertible = ItemRegistry.WATER_CHESTNUT_ITEM
+    @Environment(EnvType.CLIENT) override protected def getSeedsItem: ItemConvertible = ItemRegistry.WATER_CHESTNUT_SEEDS_ITEM
 
     override def getOutlineShape(state: BlockState, view: BlockView, pos: BlockPos, context: EntityContext): VoxelShape =
         WaterChestnutBlock.AGE_TO_SHAPE(state.get(this.getAgeProperty))
