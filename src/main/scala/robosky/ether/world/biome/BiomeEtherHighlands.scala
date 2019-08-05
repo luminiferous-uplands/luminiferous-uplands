@@ -9,9 +9,9 @@ import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.{ChanceDecoratorConfig, CountExtraChanceDecoratorConfig, Decorator, LakeDecoratorConfig, RangeDecoratorConfig}
 import net.minecraft.world.gen.feature._
 import net.minecraft.world.gen.surfacebuilder.SurfaceConfig
-import robosky.ether.block.BlockRegistry
+import robosky.ether.block.{BlockRegistry, EtherOreBlock}
 import robosky.ether.world.biome.BiomeEtherHighlandsConfig._
-import robosky.ether.world.feature.FeatureRegistry
+import robosky.ether.world.feature.{EtherOreFeatureConfig, FeatureRegistry}
 import robosky.ether.world.gen.EtherHighlandsSurfaceBuilder
 
 object BiomeEtherHighlandsConfig {
@@ -34,8 +34,11 @@ object BiomeEtherHighlands
     .waterColor(0x9898BC).waterFogColor(0x9898BC).category(Biome.Category.FOREST)) {
 
   addFeature(GenerationStep.Feature.UNDERGROUND_ORES, Biome.configureFeature(FeatureRegistry.oreFeature,
-    new DefaultFeatureConfig, Decorator.COUNT_RANGE,
-    new RangeDecoratorConfig(1, 0, 0, 256)))
+    EtherOreFeatureConfig(9, 1, 128, BlockRegistry.ETHER_ORES(EtherOreBlock.OreTypeAegisalt)),
+    Decorator.COUNT_RANGE, new RangeDecoratorConfig(1, 0, 0, 256)))
+  addFeature(GenerationStep.Feature.UNDERGROUND_ORES, Biome.configureFeature(FeatureRegistry.oreFeature,
+    EtherOreFeatureConfig(20, 1, 64, BlockRegistry.LODESTONE),
+    Decorator.COUNT_RANGE, new RangeDecoratorConfig(4, 0, 0, 256)))
   addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Biome.configureFeature(FeatureRegistry.skyrootTreeFeature,
     FeatureConfig.DEFAULT, Decorator.COUNT_EXTRA_HEIGHTMAP, new CountExtraChanceDecoratorConfig(2, 0.1f, 1)))
   addFeature(GenerationStep.Feature.LOCAL_MODIFICATIONS, Biome.configureFeature(FeatureRegistry.skyLakeFeature,
