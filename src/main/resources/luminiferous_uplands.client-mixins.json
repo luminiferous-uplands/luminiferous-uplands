@@ -3,6 +3,7 @@
   "package": "robosky.ether.clientmixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "CompassItemPropertyGetterMixin",
     "WorldMixin",
     "WorldRendererMixin",
     "BGRenderMixin"

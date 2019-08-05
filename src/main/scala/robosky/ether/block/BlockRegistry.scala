@@ -13,11 +13,11 @@ import robosky.ether.world.feature.trees.EtherSaplingGenerator
 object BlockRegistry {
     val ETHER_GRASS: Block = register("uplander_grass")(EtherGrassBlock)
     val ETHER_DIRT: Block = register("uplander_dirt")(new Block(FabricBlockSettings.of(Material.ORGANIC)
-        .strength(0.5f, 0.5f).sounds(BlockSoundGroup.GRAVEL).build()))
+      .strength(0.5f, 0.5f).sounds(BlockSoundGroup.GRAVEL).build()))
 
     val ETHER_STONE_SETTINGS: Block.Settings = FabricBlockSettings.of(Material.STONE)
-        .strength(1.5f, 6f).sounds(BlockSoundGroup.STONE)
-        .breakByTool(FabricToolTags.PICKAXES, 1).build
+      .strength(1.5f, 6f).sounds(BlockSoundGroup.STONE)
+      .breakByTool(FabricToolTags.PICKAXES, 1).build
 
     val ETHER_STONE: Block = register("uplander_stone")(new Block(ETHER_STONE_SETTINGS))
     val ETHER_STONE_STAIRS: StairsBlock = register("uplander_stone_stairs")(new ModStairsBlock(ETHER_STONE, ETHER_STONE_SETTINGS))
@@ -30,11 +30,11 @@ object BlockRegistry {
     val ETHER_STONE_BRICK_WALL: WallBlock = register("uplander_stone_brick_wall")(new WallBlock(ETHER_STONE_SETTINGS))
 
     val ETHER_ORES: Map[EtherOreBlock.EtherOreType, EtherOreBlock] = EtherOreBlock.oreTypes.map(t => t ->
-        register(s"${t.name}_ore")(new EtherOreBlock(t))).toMap
+      register(s"${t.name}_ore")(new EtherOreBlock(t))).toMap
 
     val skyroot: Block.Settings = FabricBlockSettings.of(Material.WOOD, MaterialColor.BROWN)
-        .strength(2.0F, 2.0F).sounds(BlockSoundGroup.WOOD)
-        .breakByTool(FabricToolTags.AXES, -1).build
+      .strength(2.0F, 2.0F).sounds(BlockSoundGroup.WOOD)
+      .breakByTool(FabricToolTags.AXES, -1).build
 
     val SKYROOT_LOG: LogBlock = register("skyroot_log")(new LogBlock(MaterialColor.WOOD, skyroot))
     FuelRegistry.INSTANCE.add(SKYROOT_LOG, 300)
@@ -59,16 +59,16 @@ object BlockRegistry {
 
     val SKYROOT_SAPLING: EtherSaplingBlock = register("skyroot_sapling")(new EtherSaplingBlock(
         EtherSaplingGenerator.SkyrootSaplingGenerator, FabricBlockSettings.of(Material.PLANT).noCollision.ticksRandomly
-            .breakInstantly.sounds(BlockSoundGroup.GRASS).build()))
+          .breakInstantly.sounds(BlockSoundGroup.GRASS).build()))
 
     CompostingChanceRegistry.INSTANCE.add(SKYROOT_SAPLING, 0.65f)
     FuelRegistry.INSTANCE.add(SKYROOT_WOOD, 100)
 
     val skyrootLeavesSettings: Block.Settings = FabricBlockSettings
-        .of(Material.LEAVES)
-        .strength(0.2F, 0.2F)
-        .ticksRandomly
-        .sounds(BlockSoundGroup.GRASS).build()
+      .of(Material.LEAVES)
+      .strength(0.2F, 0.2F)
+      .ticksRandomly
+      .sounds(BlockSoundGroup.GRASS).build()
 
     val RED_SKYROOT_LEAVES: LeavesBlock = register("red_skyroot_leaves")(new LeavesBlock(skyrootLeavesSettings))
     CompostingChanceRegistry.INSTANCE.add(RED_SKYROOT_LEAVES, 0.30f)
@@ -91,6 +91,13 @@ object BlockRegistry {
     FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_FENCE_GATE, 20, 5)
 
     val ETHER_BEACON: EtherBeaconBlock.type = register("uplander_beacon")(EtherBeaconBlock)
+
+    val LODESTONE: LodestoneBlock = register("lodestone")(new LodestoneBlock(
+        FabricBlockSettings.of(Material.STONE)
+          .sounds(BlockSoundGroup.STONE)
+          .strength(6.0F, 8.0F)
+          .breakByTool(FabricToolTags.PICKAXES, 2)
+          .build()))
 
     def init(): Unit = {}
 
