@@ -2,8 +2,6 @@ package robosky.ether.mixin;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
@@ -12,8 +10,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import robosky.ether.MixinHack;
 import robosky.ether.TickableItem;
+import robosky.ether.world.WorldRegistry;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerMixin extends LivingEntity {
@@ -23,7 +21,7 @@ public abstract class PlayerMixin extends LivingEntity {
 
     @Override
     protected void destroy() {
-        if (this.dimension == MixinHack.HOOKS.getDimensionType()) {
+        if (this.dimension == WorldRegistry.UPLANDS_DIMENSION()) {
             changeDimension(DimensionType.OVERWORLD);
         } else {
             super.destroy();

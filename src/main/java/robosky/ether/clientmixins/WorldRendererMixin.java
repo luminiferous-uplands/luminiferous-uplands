@@ -9,8 +9,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.Slice;
-
-import robosky.ether.MixinHack;
+import robosky.ether.world.WorldRegistry;
 
 @Mixin(WorldRenderer.class)
 public abstract class WorldRendererMixin {
@@ -36,7 +35,7 @@ public abstract class WorldRendererMixin {
         )
     )
     private float modifySunMoonAlpha(float alpha) {
-        if(this.client.world.dimension.getType() == MixinHack.HOOKS.getDimensionType()) {
+        if (this.client.world.dimension.getType() == WorldRegistry.UPLANDS_DIMENSION()) {
             alpha = 0.0f;
         }
         return alpha;
