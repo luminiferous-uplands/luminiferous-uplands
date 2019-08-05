@@ -39,5 +39,11 @@
   "advancements.luminiferous_uplands.lore.build_infuser.description": "Build an Aegisalt Infuser",
 
   "advancements.luminiferous_uplands.lore.infuse_slowfall_charm": "It's a Long Way Down",
-  "advancements.luminiferous_uplands.lore.infuse_slowfall_charm.description": "Build an Aegisalt Charm"
+  "advancements.luminiferous_uplands.lore.infuse_slowfall_charm.description": "Build an Aegisalt Charm",
+
+  "advancements.luminiferous_uplands.lore.enter_with_beacon": "A Whole new World",
+  "advancements.luminiferous_uplands.lore.enter_with_beacon.description": "Travel to the Uplands",
+
+  "advancements.luminiferous_uplands.lore.enter_with_flying": "Up, Up, and Away",
+  "advancements.luminiferous_uplands.lore.enter_with_flying.description": "Travel to the Uplands without a beacon"
 }

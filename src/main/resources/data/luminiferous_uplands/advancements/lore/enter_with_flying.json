@@ -1,0 +1,26 @@
+{
+  "parent": "$modid:lore/infuse_slowfall_charm",
+  "display": {
+    "icon": {
+      "item": "minecraft:elytra"
+    },
+    "title": {
+      "translate": "advancements.luminiferous_uplands.lore.enter_with_flying"
+    },
+    "description": {
+      "translate": "advancements.luminiferous_uplands.lore.enter_with_flying.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "fly_into_uplands": {
+      "trigger": "$modid:fly_into_uplands"
+    }
+  },
+  "requirements": [
+    [ "fly_into_uplands" ]
+  ]
+}
