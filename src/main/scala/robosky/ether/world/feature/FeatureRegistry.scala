@@ -6,6 +6,7 @@ import net.minecraft.structure.{StructureManager, StructurePieceType}
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.gen.feature.{DefaultFeatureConfig, Feature, LakeFeatureConfig, StructureFeature}
 import robosky.ether.UplandsMod
+import robosky.ether.world.feature.megadungeon.{MegadungeonFeature, MegadungeonGenerator}
 import robosky.ether.world.feature.minidungeons.{TreehouseFeature, TreehouseGenerator}
 import robosky.ether.world.feature.trees.SkyrootTreeFeature
 
@@ -29,5 +30,8 @@ object FeatureRegistry {
 
   def register[A <: Feature[_]](name: String, f: A): A = Registry.register[A](Registry.FEATURE, UplandsMod :/ name, f)
 
-  def init(): Unit = {}
+  def init(): Unit = {
+    MegadungeonFeature.register()
+    MegadungeonGenerator.initialize()
+  }
 }
