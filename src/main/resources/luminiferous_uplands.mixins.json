@@ -3,6 +3,7 @@
   "package": "robosky.ether.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "CriterionsMixin",
     "PlayerMixin",
     "WorldMixin"
   ],

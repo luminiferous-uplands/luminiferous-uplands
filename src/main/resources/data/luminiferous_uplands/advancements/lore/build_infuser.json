@@ -1,5 +1,5 @@
 {
-  "parent": "$modid:lore/enter_skylands",
+  "parent": "$modid:lore/enter_with_beacon",
   "display": {
     "icon": {
       "item": "$modid:aegisalt_infuser"
