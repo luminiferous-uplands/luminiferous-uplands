@@ -14,6 +14,7 @@ import net.minecraft.util.math.{BlockPos, ChunkPos, MutableIntBoundingBox}
 import net.minecraft.world.World
 import net.minecraft.world.dimension.DimensionType
 import robosky.ether.advancement.FlyIntoUplandsCriterion
+import robosky.ether.iface.UplanderBeaconUser
 import robosky.ether.item.ItemRegistry
 import robosky.ether.world.WorldRegistry
 import robosky.ether.world.feature.SpawnPlatformPiece
@@ -25,7 +26,7 @@ object MixinHackHooksImpl extends MixinHackHooks {
   override def getUplandsCriterion: Criterion[_] = FlyIntoUplandsCriterion
 
   override def usePortalHookTo(entity: Entity, world: World): Boolean = {
-    val (pos, usedBeacon) = if (entity.asInstanceOf[LivingEntity].hasStatusEffect(StatusEffects.LEVITATION)) {
+    val (pos, usedBeacon) = if (entity.asInstanceOf[UplanderBeaconUser].uplands_isUsingBeacon) {
       // teleport to the spawn platform
       val tag = world.getLevelProperties.getWorldData(WorldRegistry.UPLANDS_DIMENSION)
       if (tag.containsKey("SpawnPlatform")) {
@@ -55,7 +56,7 @@ object MixinHackHooksImpl extends MixinHackHooks {
         )
         se.networkHandler.syncWithPlayerPosition()
         if (usedBeacon) {
-          se.removePotionEffect(StatusEffects.LEVITATION)
+          se.asInstanceOf[UplanderBeaconUser].uplands_setUsingBeacon(false)
         } else {
           FlyIntoUplandsCriterion.handle(se)
         }

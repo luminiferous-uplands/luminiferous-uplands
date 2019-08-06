@@ -12,6 +12,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.util.shape.VoxelShape
 import net.minecraft.world.dimension.DimensionType
 import net.minecraft.world.{BlockView, World}
+import robosky.ether.iface.UplanderBeaconUser
 import robosky.ether.world.WorldRegistry
 
 object EtherBeaconBlock extends Block(FabricBlockSettings.of(Material.STONE).strength(3, 3)
@@ -24,8 +25,7 @@ object EtherBeaconBlock extends Block(FabricBlockSettings.of(Material.STONE).str
   override def activate(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand,
     result: BlockHitResult): Boolean = {
     if (player.world.dimension.getType == DimensionType.OVERWORLD) {
-      player.addPotionEffect(new StatusEffectInstance(
-        StatusEffects.LEVITATION, 120, 64, false, false, false))
+      player.asInstanceOf[UplanderBeaconUser].uplands_setUsingBeacon(true)
       true
     } else {
       false
