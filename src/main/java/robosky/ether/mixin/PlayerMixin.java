@@ -43,15 +43,6 @@ public abstract class PlayerMixin extends LivingEntity implements UplanderBeacon
         }
     }
 
-    @Override
-    protected void destroy() {
-        if (this.dimension == MixinHack.HOOKS.getDimensionType()) {
-            changeDimension(DimensionType.OVERWORLD);
-        } else {
-            super.destroy();
-        }
-    }
-
     @SuppressWarnings("ConstantConditions")
     @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;updateTurtleHelmet()V"),
             method = "tick")
@@ -65,8 +56,10 @@ public abstract class PlayerMixin extends LivingEntity implements UplanderBeacon
     }
 
     @Inject(method = "tickMovement", at = @At("TAIL"))
-    private void flyIntoUplands(CallbackInfo info) {
-        if (this.dimension == DimensionType.OVERWORLD && this.y >= 300.0) {
+    private void onTickMovement(CallbackInfo info) {
+        if (this.dimension == MixinHack.HOOKS.getDimensionType() && this.y <= -60) {
+            changeDimension(DimensionType.OVERWORLD);
+        } else if (this.dimension == DimensionType.OVERWORLD && this.y >= 300.0) {
             changeDimension(MixinHack.HOOKS.getDimensionType());
         }
         if (uplands_isUsingBeacon()) {
