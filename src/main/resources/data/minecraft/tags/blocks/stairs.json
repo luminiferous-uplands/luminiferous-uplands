@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "$modid:skyroot_stairs",
     "$modid:uplander_stone_stairs",
     "$modid:uplander_stone_brick_stairs"
   ]

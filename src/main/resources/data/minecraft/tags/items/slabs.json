@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "$modid:uplander_stone_slab",
-    "$modid:uplander_stone_brick_slab"
+    "$modid:skyroot_slab"
   ]
 }
