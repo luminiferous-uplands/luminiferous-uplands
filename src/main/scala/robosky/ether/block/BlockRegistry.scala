@@ -65,6 +65,10 @@ object BlockRegistry {
     FuelRegistry.INSTANCE.add(SKYROOT_FENCE_GATE, 300)
     FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_FENCE_GATE, 20, 5)
 
+    val SKYROOT_DOOR: DoorBlock = register("skyroot_door")(new DoorBlock(skyroot))
+    val SKYROOT_TRAPDOOR: TrapdoorBlock = register("skyroot_trapdoor")(new TrapdoorBlock(skyroot))
+    val SKYROOT_BUTTON: WoodButtonBlock = register("skyroot_button")(new WoodButtonBlock(skyroot))
+
     val SKYROOT_SAPLING: EtherSaplingBlock = register("skyroot_sapling")(new EtherSaplingBlock(
         EtherSaplingGenerator.SkyrootSaplingGenerator, FabricBlockSettings.of(Material.PLANT).noCollision.ticksRandomly
             .breakInstantly.sounds(BlockSoundGroup.GRASS).build()))
@@ -107,15 +111,15 @@ object BlockRegistry {
     HoeHacks.addHoeable(UPLANDER_DIRT, UPLANDER_FARMLAND.getDefaultState)
     HoeHacks.addHoeable(UPLANDER_GRASS, UPLANDER_FARMLAND.getDefaultState)
 
-    val CROP_SETTINGS: Settings = FabricBlockSettings.of(Material.PLANT)
-        .breakInstantly()
-        .collidable(false)
-        .ticksRandomly()
-        .sounds(BlockSoundGroup.GRASS)
-        .build()
+    val ZEPHYR_ONION_CROP_BLOCK: Block = register("zephyr_onion_crop", false)(new ZephyrOnionBlock(
+        FabricBlockSettings.of(Material.PLANT)
+            .breakInstantly()
+            .collidable(false)
+            .ticksRandomly()
+            .sounds(BlockSoundGroup.GRASS)
+            .build()))
 
-    val ZEPHYR_ONION_CROP_BLOCK: Block = Registry.register(Registry.BLOCK, UplandsMod :/ "zephyr_onion_crop", new ZephyrOnionBlock(CROP_SETTINGS))
-    val WATER_CHESTNUT_CROP_BLOCK: Block = Registry.register(Registry.BLOCK, UplandsMod :/ "water_chestnut_crop", new WaterChestnutBlock(
+    val WATER_CHESTNUT_CROP_BLOCK: Block = register("water_chestnut_crop", false)(new WaterChestnutBlock(
         FabricBlockSettings.of(Material.PLANT)
             .breakInstantly()
             .noCollision()
