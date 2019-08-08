@@ -1,13 +1,16 @@
 package robosky.ether.world.feature.megadungeon
 
+import java.util.Random
+
 import com.mojang.datafixers.Dynamic
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.structure.{StructureManager, StructurePieceType, StructureStart}
-import net.minecraft.util.math.{BlockPos, MutableIntBoundingBox}
+import net.minecraft.util.math.{BlockPos, ChunkPos, MutableIntBoundingBox}
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.gen.chunk.ChunkGenerator
 import net.minecraft.world.gen.feature.{AbstractTempleFeature, DefaultFeatureConfig, Feature, StructureFeature}
+import net.minecraft.world.{Heightmap, IWorld}
 import robosky.ether.UplandsMod
 import robosky.ether.world.feature.FeatureRegistry
 
@@ -37,6 +40,17 @@ object MegadungeonFeature extends AbstractTempleFeature[DefaultFeatureConfig]((d
       val blockPos_1 = new BlockPos(int_1 * 16, 90, int_2 * 16)
       MegadungeonGenerator.addPieces(chunkGenerator_1, structureManager_1, blockPos_1, this.children, this.random)
       this.setBoundingBoxFromChildren()
+    }
+
+    override def generateStructure(world: IWorld, rand: Random, bbox: MutableIntBoundingBox, pos: ChunkPos): Unit = {
+
+      for {
+        x <- pos.getStartX + 5 to pos.getEndX - 5
+        z <- pos.getStartZ + 5 to pos.getEndZ - 5
+        if world.getBlockState(new BlockPos(x, world.getTop(Heightmap.Type.WORLD_SURFACE_WG, bbox.minX + 8,
+          bbox.minZ + 8), z)).isAir
+      } return
+      super.generateStructure(world, rand, bbox, pos)
     }
   }
 
