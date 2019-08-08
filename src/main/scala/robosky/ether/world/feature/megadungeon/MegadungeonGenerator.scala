@@ -24,12 +24,12 @@ object MegadungeonGenerator {
   def addPieces(generator: ChunkGenerator[_], manager: StructureManager, startPos: BlockPos, pieces: util.List[StructurePiece],
     random: ChunkRandom): Unit = {
     val pieceFactory: PieceFactory = MegadungeonPiece.create
-    StructurePoolBasedGenerator.addPieces(UplandsMod :/ "megadungeon/entrance", 32, pieceFactory, generator,
-      manager, startPos, pieces, random)
+    MegadungeonPoolGenerator.addPieces(UplandsMod :/ "megadungeon/entrance", 32, pieceFactory, generator,
+      manager, startPos, pieces, random, UplandsMod :/ "megadungeon/boss_room")
   }
 
   private def createSingleElement(name: String): StructurePoolElement = new SinglePoolElement((UplandsMod :/ name).toString,
-    ImmutableList.of(), Projection.RIGID) {
+    ImmutableList.of(), Projection.RIGID) with NamedPoolElement {
 
     // Metadata shenanigans so your data structure blocks do something!
     // The if statement in this method is probably unneeded based on the implementations of the methods that call this,
@@ -47,10 +47,12 @@ object MegadungeonGenerator {
       data.setIgnoreEntities(false)
       data.addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS)
       data.addProcessor(JigsawReplacementStructureProcessor.INSTANCE)
-      this.processors.forEach(data.addProcessor)
-      this.getProjection.getProcessors.forEach(data.addProcessor)
+      this.processors.forEach(p => data.addProcessor(p))
+      this.getProjection.getProcessors.forEach(p => data.addProcessor(p))
       data
     }
+
+    override def getName: Identifier = location
   }
 
 
