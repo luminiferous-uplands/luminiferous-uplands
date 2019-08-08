@@ -73,7 +73,7 @@ object MegadungeonGenerator {
   }
 
   registerPool("megadungeon/entrance", "megadungeon/entrance" -> 1)
-  registerPool("megadungeon/shafts", "megadungeon/shaft_vertical" -> 1)
+  registerPool("megadungeon/shafts", "megadungeon/shaft_vertical" -> 5, "megadungeon/shaft_bottom" -> 1)
 
   def initialize(): Unit = {}
 }
