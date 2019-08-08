@@ -6,11 +6,12 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.Biome.Category
 import net.minecraft.world.gen.GenerationStep
-import net.minecraft.world.gen.decorator.{ChanceDecoratorConfig, CountExtraChanceDecoratorConfig, Decorator, LakeDecoratorConfig, RangeDecoratorConfig}
+import net.minecraft.world.gen.decorator.{ChanceDecoratorConfig, CountExtraChanceDecoratorConfig, Decorator, LakeDecoratorConfig, NopeDecoratorConfig, RangeDecoratorConfig}
 import net.minecraft.world.gen.feature._
 import net.minecraft.world.gen.surfacebuilder.SurfaceConfig
 import robosky.ether.block.{BlockRegistry, EtherOreBlock}
 import robosky.ether.world.biome.BiomeEtherHighlandsConfig._
+import robosky.ether.world.feature.megadungeon.MegadungeonFeature
 import robosky.ether.world.feature.{EtherOreFeatureConfig, FeatureRegistry}
 import robosky.ether.world.gen.EtherHighlandsSurfaceBuilder
 
@@ -47,6 +48,10 @@ object BiomeEtherHighlands
   addStructureFeature(FeatureRegistry.treehouseFeature, FeatureConfig.DEFAULT)
   addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, Biome.configureFeature(FeatureRegistry.treehouseFeature,
     FeatureConfig.DEFAULT, Decorator.CHANCE_PASSTHROUGH, new ChanceDecoratorConfig(100)))
+
+  addStructureFeature(MegadungeonFeature, FeatureConfig.DEFAULT)
+  addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, Biome.configureFeature(MegadungeonFeature,
+    FeatureConfig.DEFAULT, Decorator.NOPE, new NopeDecoratorConfig()))
 
   @Environment(EnvType.CLIENT)
   override def getSkyColor(currentTemperature: Float) = 12632319
