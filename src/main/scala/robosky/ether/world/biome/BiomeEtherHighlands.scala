@@ -18,10 +18,10 @@ object BiomeEtherHighlandsConfig {
 
   val ETHER_GRASS_DIRT_STONE_SURFACE: SurfaceConfig = new SurfaceConfig {
     override def getTopMaterial: BlockState =
-      BlockRegistry.ETHER_GRASS.getDefaultState
+      BlockRegistry.UPLANDER_GRASS.getDefaultState
 
     override def getUnderMaterial: BlockState =
-      BlockRegistry.ETHER_DIRT.getDefaultState
+      BlockRegistry.UPLANDER_DIRT.getDefaultState
   }
 
   val ETHER_HIGHLANDS_SURFACE_BUILDER = new EtherHighlandsSurfaceBuilder()

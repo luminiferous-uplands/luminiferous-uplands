@@ -15,15 +15,6 @@ import java.util.Set;
 import java.util.function.Function;
 
 public class SkyrootTreeFeature extends AbstractEtherTree<DefaultFeatureConfig> {
-    private final int[] leafLayerRadius = {
-            3,
-            5,
-            8,
-            8,
-            8,
-            5,
-            3
-    };
     private final int height;
     private final BlockState log;
     private final BlockState wood;
@@ -62,8 +53,8 @@ public class SkyrootTreeFeature extends AbstractEtherTree<DefaultFeatureConfig> 
 
         // Create variables related to the tree's trunk
 
-        // The number of segments this tree will generate with, from 2 to 4.
-        int numberOfSegments = (rand.nextInt(2) + 2);
+        // The number of segments this tree will generate with, from 1 to 5.
+        int numberOfSegments = (rand.nextInt(4) + 1);
 
         // The height of the individual segments.
         int[] segmentHeights = new int[numberOfSegments];
@@ -136,17 +127,27 @@ public class SkyrootTreeFeature extends AbstractEtherTree<DefaultFeatureConfig> 
             }
         }
 
-        // Move the current position down three blocks to start on the leaves.
-        currentPos = currentPos.add(0, -5, 0);
+        int radius;
 
-        for(int y = 0; y <= 6; y++) {
-            int radius = leafLayerRadius[y];
+        if (numberOfSegments == 1) {
+            radius = 3;
+        } else {
+            if (numberOfSegments == 5) {
+                radius = 6;
+            } else {
+                radius = 4;
+            }
+        }
 
-            int radiusSquared = radius ^ 2;
+        // Move the current position down half the radius to start on the leaves.
+        currentPos = currentPos.add(0, -(radius / 2), 0);
 
+        int radiusSquared = radius * radius;
+
+        for(int y = -radius; y <= radius; y++) {
             for(int x = -radius; x <= radius; x++) {
                 for (int z = -radius; z <= radius; z++) {
-                    int squareDistance = (x * x) + (z * z);
+                    int squareDistance = (x * x) + (y * y) + (z * z);
 
                     if (squareDistance <= radiusSquared) {
                         if (isAirOrLeaves(world, currentPos.add(x, y, z))) {

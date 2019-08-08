@@ -1,0 +1,6 @@
+{
+  "parent": "block/crop",
+  "textures": {
+    "crop": "$modid:block/water_chestnut_crop_stage0"
+  }
+}

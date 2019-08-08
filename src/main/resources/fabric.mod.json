@@ -32,6 +32,9 @@
       "environment": "client"
     }
   ],
+  "custom": {
+    "extrapieces:piecepack": "extrapieces.luminiferous_uplands.json"
+  },
   "depends": {
     "fabricloader": ">=0.4.0",
     "fabric": "*",

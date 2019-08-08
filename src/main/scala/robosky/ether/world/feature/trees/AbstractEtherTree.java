@@ -38,8 +38,8 @@ public abstract class AbstractEtherTree<T extends FeatureConfig> extends Feature
     static boolean canTreeReplace(TestableWorld testableWorld_1, BlockPos blockPos_1) {
         return testableWorld_1.testBlockState(blockPos_1, (blockState_1) -> {
             Block block_1 = blockState_1.getBlock();
-            return blockState_1.isAir() || blockState_1.matches(BlockTags.LEAVES) || block_1 == BlockRegistry.ETHER_GRASS()
-                    || block_1 == BlockRegistry.ETHER_DIRT() || block_1.matches(BlockTags.LOGS) ||
+            return blockState_1.isAir() || blockState_1.matches(BlockTags.LEAVES) || block_1 == BlockRegistry.UPLANDER_GRASS()
+                    || block_1 == BlockRegistry.UPLANDER_DIRT() || block_1.matches(BlockTags.LOGS) ||
                     block_1.matches(BlockTags.SAPLINGS) || block_1 == Blocks.VINE;
         });
     }
@@ -55,7 +55,7 @@ public abstract class AbstractEtherTree<T extends FeatureConfig> extends Feature
     static boolean isDirtOrGrass(TestableWorld testableWorld_1, BlockPos blockPos_1) {
         return testableWorld_1.testBlockState(blockPos_1, (blockState_1) -> {
             Block block_1 = blockState_1.getBlock();
-            return block_1 == BlockRegistry.ETHER_DIRT() || block_1 == BlockRegistry.ETHER_GRASS();
+            return block_1 == BlockRegistry.UPLANDER_DIRT() || block_1 == BlockRegistry.UPLANDER_GRASS();
         });
     }
 
@@ -68,7 +68,7 @@ public abstract class AbstractEtherTree<T extends FeatureConfig> extends Feature
 
     void setToDirt(ModifiableTestableWorld modifiableTestableWorld_1, BlockPos blockPos_1) {
         if (!isNaturalDirt(modifiableTestableWorld_1, blockPos_1)) {
-            this.setBlockState(modifiableTestableWorld_1, blockPos_1, BlockRegistry.ETHER_DIRT().getDefaultState());
+            this.setBlockState(modifiableTestableWorld_1, blockPos_1, BlockRegistry.UPLANDER_DIRT().getDefaultState());
         }
 
     }
