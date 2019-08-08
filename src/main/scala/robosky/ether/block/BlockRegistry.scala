@@ -21,14 +21,8 @@ object BlockRegistry {
         .breakByTool(FabricToolTags.PICKAXES, 1).build
 
     val UPLANDER_STONE: Block = register("uplander_stone")(new Block(UPLANDER_STONE_SETTINGS))
-    val UPLANDER_STONE_STAIRS: StairsBlock = register("uplander_stone_stairs")(new ModStairsBlock(UPLANDER_STONE, UPLANDER_STONE_SETTINGS))
-    val UPLANDER_STONE_SLAB: SlabBlock = register("uplander_stone_slab")(new SlabBlock(UPLANDER_STONE_SETTINGS))
-    val UPLANDER_STONE_WALL: WallBlock = register("uplander_stone_wall")(new WallBlock(UPLANDER_STONE_SETTINGS))
 
     val UPLANDER_STONE_BRICKS: Block = register("uplander_stone_bricks")(new Block(UPLANDER_STONE_SETTINGS))
-    val UPLANDER_STONE_BRICK_STAIRS: StairsBlock = register("uplander_stone_brick_stairs")(new ModStairsBlock(UPLANDER_STONE_BRICKS, UPLANDER_STONE_SETTINGS))
-    val UPLANDER_STONE_BRICK_SLAB: SlabBlock = register("uplander_stone_brick_slab")(new SlabBlock(UPLANDER_STONE_SETTINGS))
-    val UPLANDER_STONE_BRICK_WALL: WallBlock = register("uplander_stone_brick_wall")(new WallBlock(UPLANDER_STONE_SETTINGS))
 
     val ETHER_ORES: Map[EtherOreBlock.EtherOreType, EtherOreBlock] = EtherOreBlock.oreTypes.map(t => t ->
         register(s"${t.name}_ore")(new EtherOreBlock(t))).toMap
@@ -48,22 +42,6 @@ object BlockRegistry {
     val SKYROOT_PLANKS: Block = register("skyroot_planks")(new Block(skyroot))
     FuelRegistry.INSTANCE.add(SKYROOT_PLANKS, 300)
     FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_PLANKS, 20, 5)
-
-    val SKYROOT_SLAB: SlabBlock = register("skyroot_slab")(new SlabBlock(skyroot))
-    FuelRegistry.INSTANCE.add(SKYROOT_SLAB, 150)
-    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_SLAB, 20, 5)
-
-    val SKYROOT_STAIRS: StairsBlock = register("skyroot_stairs")(new ModStairsBlock(SKYROOT_PLANKS, skyroot))
-    FuelRegistry.INSTANCE.add(SKYROOT_STAIRS, 300)
-    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_STAIRS, 20, 5)
-
-    val SKYROOT_FENCE: FenceBlock = register("skyroot_fence")(new FenceBlock(skyroot))
-    FuelRegistry.INSTANCE.add(SKYROOT_FENCE, 300)
-    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_FENCE, 20, 5)
-
-    val SKYROOT_FENCE_GATE: FenceGateBlock = register("skyroot_fence_gate")(new FenceGateBlock(skyroot))
-    FuelRegistry.INSTANCE.add(SKYROOT_FENCE_GATE, 300)
-    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_FENCE_GATE, 20, 5)
 
     val SKYROOT_SAPLING: EtherSaplingBlock = register("skyroot_sapling")(new EtherSaplingBlock(
         EtherSaplingGenerator.SkyrootSaplingGenerator, FabricBlockSettings.of(Material.PLANT).noCollision.ticksRandomly

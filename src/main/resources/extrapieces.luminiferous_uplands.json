@@ -1,5 +1,8 @@
 {
-  "uplander_stone": {
-    "base": "$modid:uplander_stone"
+  "version": "1.0.0",
+  "sets": {
+    "uplander_stone": {
+      "base": "$modid:uplander_stone"
+    }
   }
 }

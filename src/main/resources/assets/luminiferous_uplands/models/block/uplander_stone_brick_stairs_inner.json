@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "$modid:block/uplander_stone_bricks",
-        "top": "$modid:block/uplander_stone_bricks",
-        "side": "$modid:block/uplander_stone_bricks"
-    }
-}
