@@ -39,6 +39,7 @@
     "fabricloader": ">=0.4.0",
     "fabric": "*",
     "fabric-language-scala": "*",
-    "libgui": "*"
+    "libgui": "*",
+    "extrapieces": ">=2.5.3"
   }
 }

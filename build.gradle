@@ -21,6 +21,7 @@ repositories {
     maven { url "https://maven.jamieswhiteshirt.com/libs-release/" }
     maven { url "https://repo.elytradev.com/" }
     maven { url 'http://server.bbkr.space:8081/artifactory/libs-release' }
+    maven { url "https://maven.swordglowsblue.com" }
 }
 
 dependencies {
@@ -54,6 +55,8 @@ dependencies {
         exclude group: 'io.github.prospector'
     }
     include "io.github.cottonmc:LibGui:1.2.3"
+    modCompile "extra-pieces:extrapieces:${project.extra_pieces_version}"
+    modCompile "artificemc:artifice:${project.artifice_version}"
 }
 
 processResources {
