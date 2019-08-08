@@ -90,7 +90,6 @@ public class MegadungeonPoolGenerator {
             AtomicReference<VoxelShape> shape1 = new AtomicReference<>();
             MutableIntBoundingBox bbox = piece.getBoundingBox();
 
-            label90:
             for (Structure.StructureBlockInfo info : piece.getPoolElement().getStructureBlockInfos(this.manager,
                     piece.getPos(), piece.getRotation(), this.random)) {
                 Direction direction_1 = info.state.get(JigsawBlock.FACING);
@@ -111,12 +110,14 @@ public class MegadungeonPoolGenerator {
                     }
 
                     List<StructurePoolElement> elements = Lists.newArrayList();
-                    if (roomIndex != this.maxRooms) {
+                    if (roomIndex != this.maxRooms || (requiredRoom != null && !requiredRoomAdded)) {
                         elements.addAll(mainPool.getElementIndicesInRandomOrder(this.random));
                     }
                     elements.addAll(terminatorPool.getElementIndicesInRandomOrder(this.random));
 
+                    boolean added = false;
                     for (StructurePoolElement element1 : elements) {
+                        if (added) break;
                         if (element1 == EmptyPoolElement.INSTANCE) {
                             break;
                         }
@@ -125,7 +126,7 @@ public class MegadungeonPoolGenerator {
                             else requiredRoomAdded = true;
                         }
 
-                        label117:
+                        boolean noJunction = false;
                         for (BlockRotation rotation : BlockRotation.randomRotationOrder(this.random)) {
                             List<Structure.StructureBlockInfo> infos = element1.getStructureBlockInfos(this.manager, BlockPos.ORIGIN, rotation, this.random);
                             int maxElementHeight = element1.getBoundingBox(this.manager, BlockPos.ORIGIN, rotation).getBlockCountY() > 16 ? 0 :
@@ -142,17 +143,19 @@ public class MegadungeonPoolGenerator {
                                         }
                                     }).max().orElse(0);
 
-                            int y;
-                            int relativeY;
-                            int offsetY;
-                            MutableIntBoundingBox bbox2;
-                            BlockPos pos;
+                            int y = 0;
+                            int relativeY = 0;
+                            int offsetY = 0;
+                            MutableIntBoundingBox bbox2 = null;
+                            BlockPos pos = null;
                             int height;
                             do {
                                 Optional<Structure.StructureBlockInfo> first = infos.stream().filter(i -> JigsawBlock
                                         .attachmentMatches(info, i)).findFirst();
-                                if (!first.isPresent())
-                                    continue label117;
+                                if (!first.isPresent()) {
+                                    noJunction = true;
+                                    break;
+                                }
                                 Structure.StructureBlockInfo info2 = first.get();
 
                                 BlockPos pos1 = new BlockPos(info.pos.offset(direction_1).getX() - info2.pos.getX(),
@@ -169,6 +172,7 @@ public class MegadungeonPoolGenerator {
                                 }
                             } while (VoxelShapes.matchesAnywhere(shape4.get(), VoxelShapes.cuboid(Box.from(bbox2).contract(0.25D)),
                                     BooleanBiFunction.ONLY_SECOND));
+                            if (noJunction) break;
 
                             shape4.set(VoxelShapes.combine(shape4.get(), VoxelShapes.cuboid(Box.from(bbox2)), BooleanBiFunction.ONLY_FIRST));
                             height = piece.getGroundLevelDelta();
@@ -182,10 +186,11 @@ public class MegadungeonPoolGenerator {
                             piece1.addJunction(new JigsawJunction(info.pos.getX(), bbox.minY + info.pos.getY() -
                                     bbox.minY - y + height - relativeY, info.pos.getZ(), -relativeY, StructurePool.Projection.RIGID));
                             this.pieces.add(piece1);
-                            if (roomIndex + 1 <= this.maxRooms) {
+                            if (roomIndex + 1 <= this.maxRooms || (requiredRoom != null && !requiredRoomAdded)) {
                                 this.entryQueue.addLast(new Entry(piece1, shape4, minY, roomIndex + 1));
                             }
-                            continue label90;
+                            added = true;
+                            break;
                         }
                     }
                 } else {
