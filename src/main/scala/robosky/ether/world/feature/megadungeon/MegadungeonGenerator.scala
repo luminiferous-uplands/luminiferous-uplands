@@ -28,8 +28,8 @@ object MegadungeonGenerator {
       manager, startPos, pieces, random, UplandsMod :/ "megadungeon/boss_room")
   }
 
-  private def createSingleElement(name: String): StructurePoolElement = new SinglePoolElement((UplandsMod :/ name).toString,
-    ImmutableList.of(), Projection.RIGID) with NamedPoolElement {
+  private def createSingleElement(name: String, rotateable: Boolean = true): StructurePoolElement = new SinglePoolElement((UplandsMod :/ name).toString,
+    ImmutableList.of(), Projection.RIGID) with UplanderPoolElement {
 
     // Metadata shenanigans so your data structure blocks do something!
     // The if statement in this method is probably unneeded based on the implementations of the methods that call this,
@@ -53,6 +53,8 @@ object MegadungeonGenerator {
     }
 
     override def getName: Identifier = location
+
+    override def canRotate: Boolean = rotateable
   }
 
 
@@ -66,14 +68,14 @@ object MegadungeonGenerator {
     }
   }
 
-  private def registerPool(name: String, pieces: (String, Int)*): Unit = {
-    val array: Array[Pair[StructurePoolElement, Integer]] = pieces.map { case (s, i) => Pair.of(createSingleElement(s), Int.box(i)) }.toArray
+  private def registerPool(name: String, pieces: (String, Int, Boolean)*): Unit = {
+    val array: Array[Pair[StructurePoolElement, Integer]] = pieces.map { case (s, i, b) => Pair.of(createSingleElement(s), Int.box(i)) }.toArray
     StructurePoolBasedGenerator.REGISTRY.add(new StructurePool(UplandsMod :/ name, new Identifier("minecraft", "empty"),
       ImmutableList.copyOf(array), Projection.RIGID))
   }
 
-  registerPool("megadungeon/entrance", "megadungeon/entrance" -> 1)
-  registerPool("megadungeon/shafts", "megadungeon/shaft_vertical" -> 5, "megadungeon/shaft_bottom" -> 1)
+  registerPool("megadungeon/entrance", ("megadungeon/entrance", 1, false))
+  registerPool("megadungeon/shafts", ("megadungeon/shaft_vertical", 5, false), ("megadungeon/shaft_bottom", 1, false))
 
   def initialize(): Unit = {}
 }

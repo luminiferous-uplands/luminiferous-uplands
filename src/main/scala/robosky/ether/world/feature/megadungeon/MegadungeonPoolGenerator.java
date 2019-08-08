@@ -1,5 +1,6 @@
 package robosky.ether.world.feature.megadungeon;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
 import net.minecraft.block.JigsawBlock;
@@ -62,11 +63,12 @@ public class MegadungeonPoolGenerator {
         }
 
         private void doAddPieces(Identifier start, BlockPos pos) {
-            BlockRotation rotation = BlockRotation.random(random);
             StructurePool pool = StructurePoolBasedGenerator.REGISTRY.get(start);
             StructurePoolElement element = pool.getRandomElement(random);
-            PoolStructurePiece piece = pieceFactory.create(manager,
-                    element, pos, element.method_19308(), rotation, element.getBoundingBox(manager, pos, rotation));
+            BlockRotation rotation = (element instanceof UplanderPoolElement && !((UplanderPoolElement) element)
+                    .canRotate()) ? BlockRotation.NONE : BlockRotation.random(random);
+            PoolStructurePiece piece = pieceFactory.create(manager, element, pos, element.method_19308(), rotation,
+                    element.getBoundingBox(manager, pos, rotation));
             int midX = (piece.getBoundingBox().maxX + piece.getBoundingBox().minX) / 2;
             int midY = (piece.getBoundingBox().maxZ + piece.getBoundingBox().minZ) / 2;
             int midZ = generator.method_20402(midX, midY, Heightmap.Type.WORLD_SURFACE_WG);
@@ -121,13 +123,15 @@ public class MegadungeonPoolGenerator {
                         if (element1 == EmptyPoolElement.INSTANCE) {
                             break;
                         }
-                        if (element1 instanceof NamedPoolElement && ((NamedPoolElement) element1).getName().equals(requiredRoom)) {
+                        if (element1 instanceof UplanderPoolElement && ((UplanderPoolElement) element1).getName().equals(requiredRoom)) {
                             if (requiredRoomAdded) break;
                             else requiredRoomAdded = true;
                         }
 
                         boolean noJunction = false;
-                        for (BlockRotation rotation : BlockRotation.randomRotationOrder(this.random)) {
+                        List<BlockRotation> rotations = (element1 instanceof UplanderPoolElement && !((UplanderPoolElement) element1)
+                                .canRotate()) ? ImmutableList.of(BlockRotation.NONE) : BlockRotation.randomRotationOrder(this.random);
+                        for (BlockRotation rotation : rotations) {
                             List<Structure.StructureBlockInfo> infos = element1.getStructureBlockInfos(this.manager, BlockPos.ORIGIN, rotation, this.random);
                             int maxElementHeight = element1.getBoundingBox(this.manager, BlockPos.ORIGIN, rotation).getBlockCountY() > 16 ? 0 :
                                     infos.stream().mapToInt((info1) -> {
@@ -145,7 +149,7 @@ public class MegadungeonPoolGenerator {
 
                             int y = 0;
                             int relativeY = 0;
-                            int offsetY = 0;
+                            int offsetY;
                             MutableIntBoundingBox bbox2 = null;
                             BlockPos pos = null;
                             int height;
@@ -157,6 +161,7 @@ public class MegadungeonPoolGenerator {
                                     break;
                                 }
                                 Structure.StructureBlockInfo info2 = first.get();
+                                infos.remove(info2);
 
                                 BlockPos pos1 = new BlockPos(info.pos.offset(direction_1).getX() - info2.pos.getX(),
                                         info.pos.offset(direction_1).getY() - info2.pos.getY(), info.pos.offset(direction_1).getZ() - info2.pos.getZ());
@@ -194,7 +199,7 @@ public class MegadungeonPoolGenerator {
                         }
                     }
                 } else {
-                    MegadungeonPoolGenerator.LOGGER.warn("Empty or none existent pool: {}", info.tag.getString("target_pool"));
+                    MegadungeonPoolGenerator.LOGGER.warn("Empty or nonexistent pool: {}", info.tag.getString("target_pool"));
                 }
             }
         }

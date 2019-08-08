@@ -2,6 +2,8 @@ package robosky.ether.world.feature.megadungeon;
 
 import net.minecraft.util.Identifier;
 
-public interface NamedPoolElement {
+public interface UplanderPoolElement {
     Identifier getName();
+
+    boolean canRotate();
 }
