@@ -69,7 +69,7 @@ object MegadungeonGenerator {
   }
 
   private def registerPool(name: String, pieces: (String, Int, Boolean)*): Unit = {
-    val array: Array[Pair[StructurePoolElement, Integer]] = pieces.map { case (s, i, b) => Pair.of(createSingleElement(s), Int.box(i)) }.toArray
+    val array: Array[Pair[StructurePoolElement, Integer]] = pieces.map { case (s, i, b) => Pair.of(createSingleElement(s, b), Int.box(i)) }.toArray
     StructurePoolBasedGenerator.REGISTRY.add(new StructurePool(UplandsMod :/ name, new Identifier("minecraft", "empty"),
       ImmutableList.copyOf(array), Projection.RIGID))
   }

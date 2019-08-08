@@ -43,7 +43,6 @@ object MegadungeonFeature extends AbstractTempleFeature[DefaultFeatureConfig]((d
     }
 
     override def generateStructure(world: IWorld, rand: Random, bbox: MutableIntBoundingBox, pos: ChunkPos): Unit = {
-
       for {
         x <- pos.getStartX + 5 to pos.getEndX - 5
         z <- pos.getStartZ + 5 to pos.getEndZ - 5
