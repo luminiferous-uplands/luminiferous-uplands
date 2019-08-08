@@ -1,8 +1,18 @@
 {
   "version": "1.0.0",
   "sets": {
+    "skyroot": {
+      "base": "$modid:skyroot_planks",
+      "exclude": [
+        "extrapieces:wall"
+      ]
+    },
     "uplander_stone": {
-      "base": "$modid:uplander_stone"
+      "base": "$modid:uplander_stone",
+      "exclude": [
+        "extrapieces:fence",
+        "extrapieces:fence_gate"
+      ]
     }
   }
 }
