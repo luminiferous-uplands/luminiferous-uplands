@@ -31,10 +31,5 @@
     [
       "beacon"
     ]
-  ],
-  "rewards": {
-    "recipes": [
-      "$modid:aegisalt_infuser"
-    ]
-  }
+  ]
 }
