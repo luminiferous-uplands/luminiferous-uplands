@@ -50,7 +50,7 @@ object BiomeEtherHighlands
     FeatureConfig.DEFAULT, Decorator.CHANCE_PASSTHROUGH, new ChanceDecoratorConfig(100)))
 
   addStructureFeature(MegadungeonFeature, FeatureConfig.DEFAULT)
-  addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, Biome.configureFeature(MegadungeonFeature,
+  addFeature(GenerationStep.Feature.UNDERGROUND_STRUCTURES, Biome.configureFeature(MegadungeonFeature,
     FeatureConfig.DEFAULT, Decorator.NOPE, new NopeDecoratorConfig()))
 
   @Environment(EnvType.CLIENT)
