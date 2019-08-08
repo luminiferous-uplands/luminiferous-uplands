@@ -11,7 +11,8 @@ import net.minecraft.block.enums.StructureBlockMode
 import net.minecraft.structure.pool.StructurePool.Projection
 import net.minecraft.structure.pool.StructurePoolBasedGenerator.PieceFactory
 import net.minecraft.structure.pool._
-import net.minecraft.structure.{Structure, StructureManager, StructurePiece}
+import net.minecraft.structure.processor.{BlockIgnoreStructureProcessor, JigsawReplacementStructureProcessor}
+import net.minecraft.structure.{Structure, StructureManager, StructurePiece, StructurePlacementData}
 import net.minecraft.util.math.{BlockPos, MutableIntBoundingBox}
 import net.minecraft.util.{BlockRotation, Identifier}
 import net.minecraft.world.IWorld
@@ -37,6 +38,19 @@ object MegadungeonGenerator {
       rand: Random, bbox: MutableIntBoundingBox): Unit =
       if (info.tag != null && StructureBlockMode.valueOf(info.tag.getString("mode")) == StructureBlockMode.DATA)
         handleMetadata(info.tag.getString("metadata"), info.pos, world, rand, bbox)
+
+    override protected def method_16616(rot: BlockRotation, bbox: MutableIntBoundingBox): StructurePlacementData = {
+      val data = new StructurePlacementData
+      data.setBoundingBox(bbox)
+      data.setRotation(rot)
+      data.method_15131(true)
+      data.setIgnoreEntities(false)
+      data.addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS)
+      data.addProcessor(JigsawReplacementStructureProcessor.INSTANCE)
+      this.processors.forEach(data.addProcessor)
+      this.getProjection.getProcessors.forEach(data.addProcessor)
+      data
+    }
   }
 
 

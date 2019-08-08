@@ -9,14 +9,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableIntBoundingBox;
 
 class MegadungeonPiece extends PoolStructurePiece {
-    public MegadungeonPiece(StructureManager mgr, StructurePoolElement elem, BlockPos pos, int groundLevelDelta,
-                            BlockRotation rotation, MutableIntBoundingBox bbox) {
-        super(MegadungeonFeature.PIECE_TYPE(), mgr, elem, pos, groundLevelDelta, rotation, bbox);
+    private MegadungeonPiece(StructureManager mgr, StructurePoolElement elem, BlockPos pos, int groundLevelDelta,
+                             MutableIntBoundingBox bbox) {
+        super(MegadungeonFeature.PIECE_TYPE(), mgr, elem, pos, groundLevelDelta, BlockRotation.NONE, bbox);
     }
 
     public static MegadungeonPiece create(StructureManager mgr, StructurePoolElement elem, BlockPos pos, int groundLevelDelta,
-                                          BlockRotation rotation, MutableIntBoundingBox bbox) {
-        return new MegadungeonPiece(mgr, elem, pos, groundLevelDelta, rotation, bbox);
+                                          BlockRotation unused, MutableIntBoundingBox bbox) {
+        return new MegadungeonPiece(mgr, elem, pos, groundLevelDelta, bbox);
     }
 
     public MegadungeonPiece(StructureManager mgr, CompoundTag tag) {
