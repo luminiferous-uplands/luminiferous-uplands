@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.block.FabricBlockSettings
 import net.fabricmc.fabric.api.tools.FabricToolTags
 import net.minecraft.block.{Block, BlockState, Material}
 import net.minecraft.entity.EntityContext
+import net.minecraft.entity.effect.{StatusEffect, StatusEffectInstance, StatusEffects}
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.util.Hand
 import net.minecraft.util.hit.BlockHitResult
@@ -11,6 +12,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.util.shape.VoxelShape
 import net.minecraft.world.dimension.DimensionType
 import net.minecraft.world.{BlockView, World}
+import robosky.ether.iface.UplanderBeaconUser
 import robosky.ether.world.WorldRegistry
 
 object EtherBeaconBlock extends Block(FabricBlockSettings.of(Material.STONE).strength(3, 3)
@@ -23,7 +25,7 @@ object EtherBeaconBlock extends Block(FabricBlockSettings.of(Material.STONE).str
   override def activate(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand,
     result: BlockHitResult): Boolean = {
     if (player.world.dimension.getType == DimensionType.OVERWORLD) {
-      player.changeDimension(WorldRegistry.UPLANDS_DIMENSION)
+      player.asInstanceOf[UplanderBeaconUser].uplands_setUsingBeacon(true)
       true
     } else {
       false

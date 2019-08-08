@@ -1,0 +1,35 @@
+{
+  "parent": "$modid:lore/enter_skylands",
+  "display": {
+    "icon": {
+      "item": "minecraft:campfire"
+    },
+    "title": {
+      "translate": "advancements.luminiferous_uplands.lore.enter_with_beacon"
+    },
+    "description": {
+      "translate": "advancements.luminiferous_uplands.lore.enter_with_beacon.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "went_to_uplands": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "from": "minecraft:overworld",
+        "to": "$modid:luminiferous_uplands"
+      }
+    }
+  },
+  "requirements": [
+    [ "went_to_uplands" ]
+  ],
+  "rewards": {
+    "recipes": [
+      "$modid:aegisalt_infuser"
+    ]
+  }
+}
