@@ -27,7 +27,7 @@ object MegadungeonFeature extends AbstractTempleFeature[DefaultFeatureConfig]((d
 
   override def getStructureStartFactory: StructureFeature.StructureStartFactory = Start.apply
 
-  override def getName: String = "Uplands_Megadungeon"
+  override def getName: String = "uplands_megadungeon"
 
   override def getRadius: Int = 8
 
