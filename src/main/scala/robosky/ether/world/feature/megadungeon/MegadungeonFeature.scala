@@ -1,10 +1,13 @@
 package robosky.ether.world.feature.megadungeon
 
+import java.util.Random
+
 import com.mojang.datafixers.Dynamic
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.structure.{StructureManager, StructurePieceType, StructureStart}
 import net.minecraft.util.math.{BlockPos, MutableIntBoundingBox}
 import net.minecraft.util.registry.Registry
+import net.minecraft.world.Heightmap
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.gen.chunk.ChunkGenerator
 import net.minecraft.world.gen.feature.{AbstractTempleFeature, DefaultFeatureConfig, Feature, StructureFeature}
@@ -30,6 +33,16 @@ object MegadungeonFeature extends AbstractTempleFeature[DefaultFeatureConfig]((d
   override def getName: String = "uplands_megadungeon"
 
   override def getRadius: Int = 8
+
+
+  override def shouldStartAt(chunkGenerator_1: ChunkGenerator[_], random_1: Random, int_1: Int, int_2: Int): Boolean = {
+    val cpos = this.getStart(chunkGenerator_1, random_1, int_1, int_2, 0, 0)
+    val center = cpos.getCenterBlockPos
+    if (chunkGenerator_1.getHeightOnGround(center.getX, center.getZ, Heightmap.Type.WORLD_SURFACE_WG) < 30)
+      false
+    else
+      super.shouldStartAt(chunkGenerator_1, random_1, int_1, int_2)
+  }
 
   private case class Start(feature: StructureFeature[_], x: Int, z: Int, biome: Biome, bbox: MutableIntBoundingBox, refs: Int, seed: Long)
     extends StructureStart(feature, x, z, biome, bbox, refs, seed) {
