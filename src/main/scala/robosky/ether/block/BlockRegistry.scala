@@ -8,6 +8,7 @@ import net.minecraft.item.{BlockItem, Item, ItemGroup}
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.registry.Registry
 import robosky.ether.UplandsMod
+import robosky.ether.block.bossroom._
 import robosky.ether.world.feature.trees.EtherSaplingGenerator
 
 object BlockRegistry {
@@ -98,6 +99,9 @@ object BlockRegistry {
         .strength(6.0F, 8.0F)
         .breakByTool(FabricToolTags.PICKAXES, 2)
         .build()))
+
+    val BOSS_CONTROL: ControlBlock.type = register("boss_control", itemGroup = null)(ControlBlock)
+    Registry.register(Registry.BLOCK_ENTITY, UplandsMod :/ "boss_control", ControlBlockEntity.TYPE)
 
     def init(): Unit = {}
 
