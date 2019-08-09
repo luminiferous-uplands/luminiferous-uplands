@@ -31,8 +31,8 @@ dependencies {
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    modCompile "net.fabricmc:fabric-language-scala:${project.scala_adapter_version}"
-    include "net.fabricmc:fabric-language-scala:${project.scala_adapter_version}"
+    modCompile "fabric-language-scala:fabric-language-scala:${project.scala_adapter_version}:fat@jar"
+    include "fabric-language-scala:fabric-language-scala:${project.scala_adapter_version}:fat@jar"
     compile "org.scala-lang:scala-library:${project.scala_version}"
     compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
     modRuntime("com.jamieswhiteshirt:developer-mode:1.0.14") {
