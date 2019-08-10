@@ -65,8 +65,8 @@ public class MegadungeonPoolGenerator {
         private void doAddPieces(Identifier start, BlockPos pos) {
             StructurePool pool = StructurePoolBasedGenerator.REGISTRY.get(start);
             StructurePoolElement element = pool.getRandomElement(random);
-            BlockRotation rotation = (element instanceof UplanderPoolElement && !((UplanderPoolElement) element)
-                    .canRotate()) ? BlockRotation.NONE : BlockRotation.random(random);
+            BlockRotation rotation = (element instanceof UplanderPoolElement && ((UplanderPoolElement) element)
+                    .disableRotation()) ? BlockRotation.NONE : BlockRotation.random(random);
             PoolStructurePiece piece = pieceFactory.create(manager, element, pos, element.method_19308(), rotation,
                     element.getBoundingBox(manager, pos, rotation));
             int midX = (piece.getBoundingBox().maxX + piece.getBoundingBox().minX) / 2;
@@ -82,13 +82,13 @@ public class MegadungeonPoolGenerator {
 
                 while (!this.entryQueue.isEmpty()) {
                     Entry entry = this.entryQueue.removeFirst();
-                    this.propogateEntry(entry.piece, entry.shape, entry.minY, entry.roomIndex);
+                    this.propagateEntry(entry.piece, entry.shape, entry.minY, entry.roomIndex);
                 }
 
             }
         }
 
-        private void propogateEntry(PoolStructurePiece piece, AtomicReference<VoxelShape> shape, int int_1, int roomIndex) {
+        private void propagateEntry(PoolStructurePiece piece, AtomicReference<VoxelShape> shape, int int_1, int roomIndex) {
             AtomicReference<VoxelShape> shape1 = new AtomicReference<>();
             MutableIntBoundingBox bbox = piece.getBoundingBox();
 
@@ -129,8 +129,8 @@ public class MegadungeonPoolGenerator {
                         }
 
                         boolean noJunction = false;
-                        List<BlockRotation> rotations = (element1 instanceof UplanderPoolElement && !((UplanderPoolElement) element1)
-                                .canRotate()) ? ImmutableList.of(BlockRotation.NONE) : BlockRotation.randomRotationOrder(this.random);
+                        List<BlockRotation> rotations = (element1 instanceof UplanderPoolElement && ((UplanderPoolElement) element1)
+                                .disableRotation()) ? ImmutableList.of(BlockRotation.NONE) : BlockRotation.randomRotationOrder(this.random);
                         for (BlockRotation rotation : rotations) {
                             List<Structure.StructureBlockInfo> infos = element1.getStructureBlockInfos(this.manager, BlockPos.ORIGIN, rotation, this.random);
                             int maxElementHeight = element1.getBoundingBox(this.manager, BlockPos.ORIGIN, rotation).getBlockCountY() > 16 ? 0 :

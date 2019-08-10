@@ -5,5 +5,5 @@ import net.minecraft.util.Identifier;
 public interface UplanderPoolElement {
     Identifier getName();
 
-    boolean canRotate();
+    boolean disableRotation();
 }

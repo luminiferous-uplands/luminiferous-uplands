@@ -54,7 +54,7 @@ object MegadungeonGenerator {
 
     override def getName: Identifier = location
 
-    override def canRotate: Boolean = rotateable
+    override def disableRotation: Boolean = !rotateable
   }
 
 
