@@ -9,6 +9,7 @@ import net.minecraft.container.BlockContext
 import net.minecraft.entity.player.{PlayerEntity, PlayerInventory}
 
 import robosky.ether.UplandsMod
+import robosky.ether.block.machine.MachineRegistry
 import robosky.ether.block.machine.infuser.InfuserContainer
 
 // delete this class?
@@ -17,7 +18,7 @@ class InfuserScreen(container: InfuserContainer, player: PlayerEntity)
 
 object GuiRegistry {
 
-  val agisaltInfuserScreen = registerGui("aegisalt_infuser", new InfuserContainer(_, _, _), new InfuserScreen(_, _))
+  val agisaltInfuserScreen = registerGui("aegisalt_infuser", aegisaltInfuser.gui.get, new InfuserScreen(_, _))
 
   def registerGui[C <: CottonScreenController](
       id: String,
