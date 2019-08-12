@@ -5,10 +5,11 @@ import io.github.cottonmc.cotton.gui.client.CottonScreen
 
 import net.fabricmc.fabric.api.client.screen.ScreenProviderRegistry
 
+import net.minecraft.block.Block
 import net.minecraft.container.BlockContext
-import net.minecraft.entity.player.{PlayerEntity, PlayerInventory}
+import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.util.registry.Registry
 
-import robosky.ether.UplandsMod
 import robosky.ether.block.machine.MachineRegistry
 import robosky.ether.block.machine.infuser.InfuserContainer
 
@@ -18,13 +19,14 @@ class InfuserScreen(container: InfuserContainer, player: PlayerEntity)
 
 object GuiRegistry {
 
-  val agisaltInfuserScreen = registerGui("aegisalt_infuser", aegisaltInfuser.gui.get, new InfuserScreen(_, _))
+  val agisaltInfuserScreen = registerGui(MachineRegistry.aegisaltInfuser, new InfuserScreen(_, _))
 
   def registerGui[C <: CottonScreenController](
-      id: String,
-      ctrl: (Int, PlayerInventory, BlockContext) => C,
+      entry: MachineRegistry.MachineEntry[_ <: Block, _, C],
       screen: (C, PlayerEntity) => CottonScreen[C]): Unit = {
-    ScreenProviderRegistry.INSTANCE.registerFactory(UplandsMod :/ id,
+    val id = Registry.BLOCK.getId(entry.block: Block)
+    val ctrl = entry.gui.get
+    ScreenProviderRegistry.INSTANCE.registerFactory(id,
       (syncId, _, player, buf) =>
         screen(ctrl(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())), player))
   }
