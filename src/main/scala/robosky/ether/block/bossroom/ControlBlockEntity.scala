@@ -1,10 +1,12 @@
 package robosky.ether.block.bossroom
 
+import java.util.UUID
 import java.util.stream.Collectors.toList
 
 import net.minecraft.block.entity.{BlockEntity, BlockEntityType}
 import net.minecraft.entity.{Entity, EntityType, SpawnType}
 import net.minecraft.nbt.CompoundTag
+import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.{BlockRotation, Identifier}
 import net.minecraft.util.math.{BlockPos, MutableIntBoundingBox}
 import net.minecraft.util.registry.Registry
@@ -41,16 +43,34 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE) {
   private var bossType: EntityType[_] = EntityType.PIG
 
   /**
+   * The unique ID of the boss entity.
+   */
+  private var bossUuid: Option[UUID] = None
+
+  /**
    * Spawns the boss at the specified BlockPos.
    */
   def activateBoss(spawn: BlockPos): Unit = {
-    bossType.spawn(this.world, null, null, null, spawn, SpawnType.SPAWNER, false, false)
+    if (!this.world.isClient) {
+      val boss = bossType.spawn(this.world, null, null, null, spawn, SpawnType.SPAWNER, false, false)
+      bossUuid = Some(boss.getUuid)
+    }
   }
 
   /**
    * Despawns the boss (e.g. if the player died while fighting)
    */
-  def deactivateBoss(): Unit = ???
+  def deactivateBoss(): Unit = {
+    if (!this.world.isClient) {
+      bossUuid foreach {
+        uuid =>
+          val server = this.world.asInstanceOf[ServerWorld]
+          val boss = server.getEntity(uuid)
+          server.removeEntity(boss)
+      }
+      bossUuid = None
+    }
+  }
 
   /**
    * Cleans up the boss room upon the boss's defeat. This includes replacing
@@ -58,14 +78,13 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE) {
    */
   def onBossDefeat(): Unit = {
     // TODO: rotation
-    val ls = BlockPos.stream(
+    val ls = BlockPos.iterate(
         this.pos.getX + room.minX,
         this.pos.getY + room.minY,
         this.pos.getZ + room.minZ,
         this.pos.getX + room.maxX,
         this.pos.getY + room.maxY,
-        this.pos.getZ + room.maxZ)
-      .collect(toList[BlockPos]).asScala
+        this.pos.getZ + room.maxZ).asScala
     for {
       pos <- ls
       state = this.world.getBlockState(pos)
@@ -78,6 +97,11 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE) {
     tag.putIntArray("Bounds", Array(room.minX, room.minY, room.minZ, room.maxX, room.maxY, room.maxZ))
     tag.putString("Rotation", rotation.name)
     tag.putString("Boss", Registry.ENTITY_TYPE.getId(bossType).toString)
+    bossUuid foreach {
+      uuid =>
+        tag.putLong("BossUUIDMost", uuid.getMostSignificantBits)
+        tag.putLong("BossUUIDLeast", uuid.getLeastSignificantBits)
+    }
     tag
   }
 
@@ -113,5 +137,11 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE) {
         etyp <- Option[EntityType[_]](Registry.ENTITY_TYPE.get(id))
       } yield etyp
     } getOrElse EntityType.PIG
+    bossUuid = {
+      if (tag.containsKey("BossUUIDMost") && tag.containsKey("BossUUIDLeast"))
+        Some(new UUID(tag.getLong("BossUUIDMost"), tag.getLong("BossUUIDLeast")))
+      else
+        None
+    }
   }
 }
