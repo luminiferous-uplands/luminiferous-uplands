@@ -20,6 +20,12 @@
         "value": "robosky.ether.UplandsMod"
       }
     ],
+    "client": [
+      {
+        "adapter": "scala",
+        "value": "robosky.ether.UplandsModClient"
+      }
+    ],
     "rei_plugins": [
       "robosky.ether.interop.EtherREIPlugin"
     ]

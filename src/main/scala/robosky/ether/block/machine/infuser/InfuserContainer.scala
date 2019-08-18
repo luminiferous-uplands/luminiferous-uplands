@@ -1,10 +1,9 @@
 package robosky.ether.block.machine.infuser
 
 import io.github.cottonmc.cotton.gui.CottonScreenController
-import io.github.cottonmc.cotton.gui.client.CottonScreen
 import io.github.cottonmc.cotton.gui.widget.{WGridPanel, WItemSlot, WLabel}
 import net.minecraft.container.BlockContext
-import net.minecraft.entity.player.{PlayerEntity, PlayerInventory}
+import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.text.TranslatableText
 import robosky.ether.block.machine.RecipeRegistry
 
@@ -38,6 +37,3 @@ class InfuserContainer(syncId: Int, playerInventory: PlayerInventory, ctx: Block
 
   override def getCraftingResultSlotIndex: Int = -1
 }
-
-class InfuserScreen(container: InfuserContainer, player: PlayerEntity)
-  extends CottonScreen[InfuserContainer](container, player)

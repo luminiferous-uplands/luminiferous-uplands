@@ -80,7 +80,6 @@ class AegisaltRecipe(id: Identifier, group: String, val ingredients: IndexedSeq[
 
   override def isIgnoredInRecipeBook: Boolean = true
 
-  @Environment(EnvType.CLIENT)
   override def getGroup: String = group
 
   @Environment(EnvType.CLIENT)
