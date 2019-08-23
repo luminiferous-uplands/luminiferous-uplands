@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import robosky.ether.MixinHack;
+import robosky.ether.world.WorldRegistry;
 
 @Mixin(World.class)
 public class WorldMixin {
@@ -21,7 +21,7 @@ public class WorldMixin {
     @Environment(EnvType.CLIENT)
     @Inject(at = @At("HEAD"), method = "getHorizonHeight", cancellable = true)
     public void getHorizonHeight(final CallbackInfoReturnable<Double> cb) {
-        if (dimension != null && dimension.getType() == MixinHack.HOOKS.getDimensionType()) {
+        if (dimension != null && dimension.getType() == WorldRegistry.UPLANDS_DIMENSION()) {
             cb.setReturnValue(Double.NEGATIVE_INFINITY);
         }
     }

@@ -10,7 +10,8 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import robosky.ether.MixinHack;
+import robosky.ether.UplandsTeleporter;
+import robosky.ether.world.WorldRegistry;
 
 @Mixin(PortalForcer.class)
 public class ChangeDimensionMixin {
@@ -25,10 +26,10 @@ public class ChangeDimensionMixin {
 
         // going or coming from our custom dimension
         // regardless, we get the top position at 0,0 and set the player there
-        if (toDimension == MixinHack.HOOKS.getDimensionType()) {
-            info.setReturnValue(MixinHack.HOOKS.usePortalHookTo(entity, world));
-        } else if (previousDimension == MixinHack.HOOKS.getDimensionType()) {
-            info.setReturnValue(MixinHack.HOOKS.usePortalHookFrom(entity, world));
+        if (toDimension == WorldRegistry.UPLANDS_DIMENSION()) {
+            info.setReturnValue(UplandsTeleporter.usePortalHookTo(entity, world));
+        } else if (previousDimension == WorldRegistry.UPLANDS_DIMENSION()) {
+            info.setReturnValue(UplandsTeleporter.usePortalHookFrom(entity, world));
         }
     }
 }
