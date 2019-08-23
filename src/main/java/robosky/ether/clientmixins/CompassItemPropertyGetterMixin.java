@@ -1,19 +1,15 @@
 package robosky.ether.clientmixins;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Lazy;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.IWorld;
-
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import robosky.ether.block.BlockRegistry;
 
 @Mixin(targets = "net.minecraft.item.CompassItem$1")
 public abstract class CompassItemPropertyGetterMixin {
@@ -21,15 +17,8 @@ public abstract class CompassItemPropertyGetterMixin {
     @Unique
     private static final BlockPos.Mutable pos = new BlockPos.Mutable();
 
-    @Unique
-    private static final Lazy<Block> lodestone =
-            new Lazy<>(() -> Registry.BLOCK.get(new Identifier("luminiferous_uplands", "lodestone")));
-
-    @Inject(
-            method = "getAngleToSpawn(Lnet/minecraft/world/IWorld;Lnet/minecraft/entity/Entity;)D",
-            at = @At("HEAD"),
-            cancellable = true
-    )
+    @Inject(method = "getAngleToSpawn(Lnet/minecraft/world/IWorld;Lnet/minecraft/entity/Entity;)D",
+            at = @At("HEAD"), cancellable = true)
     private void onAngleToSpawn(IWorld world, Entity entity, CallbackInfoReturnable<Double> info) {
         final int X_RADIUS = 6;
         final int Y_RADIUS = 3;
@@ -42,10 +31,8 @@ public abstract class CompassItemPropertyGetterMixin {
                 for (int z = -X_RADIUS; z <= X_RADIUS; z++) {
                     pos.set(entity).setOffset(x, y, z);
                     BlockState state = world.getBlockState(pos);
-                    if (state.getBlock() == lodestone.get()) {
-                        int dist = Math.abs(x)
-                                + Math.abs(y)
-                                + Math.abs(z);
+                    if (state.getBlock() == BlockRegistry.LODESTONE()) {
+                        int dist = Math.abs(x) + Math.abs(y) + Math.abs(z);
                         if (dist < prevDist) {
                             targetX = x;
                             targetY = y;
