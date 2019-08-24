@@ -12,8 +12,8 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import robosky.ether.MixinHack;
 import robosky.ether.TickableItem;
+import robosky.ether.world.WorldRegistry;
 import robosky.ether.iface.UplanderBeaconUser;
 
 @Mixin(PlayerEntity.class)
@@ -57,10 +57,10 @@ public abstract class PlayerMixin extends LivingEntity implements UplanderBeacon
 
     @Inject(method = "tickMovement", at = @At("TAIL"))
     private void onTickMovement(CallbackInfo info) {
-        if (this.dimension == MixinHack.HOOKS.getDimensionType() && this.y <= -60) {
+        if (this.dimension == WorldRegistry.UPLANDS_DIMENSION() && this.y <= -60) {
             changeDimension(DimensionType.OVERWORLD);
         } else if (this.dimension == DimensionType.OVERWORLD && this.y >= 300.0) {
-            changeDimension(MixinHack.HOOKS.getDimensionType());
+            changeDimension(WorldRegistry.UPLANDS_DIMENSION());
         }
         if (uplands_isUsingBeacon()) {
             Vec3d vel = this.getVelocity();

@@ -19,13 +19,11 @@ import robosky.ether.item.ItemRegistry
 import robosky.ether.world.WorldRegistry
 import robosky.ether.world.feature.SpawnPlatformPiece
 
-object MixinHackHooksImpl extends MixinHackHooks {
+object UplandsTeleporter {
 
-  override def getDimensionType: DimensionType = WorldRegistry.UPLANDS_DIMENSION
+  def getUplandsCriterion: Criterion[_] = FlyIntoUplandsCriterion
 
-  override def getUplandsCriterion: Criterion[_] = FlyIntoUplandsCriterion
-
-  override def usePortalHookTo(entity: Entity, world: World): Boolean = {
+  def usePortalHookTo(entity: Entity, world: World): Boolean = {
     val (pos, usedBeacon) = if (entity.asInstanceOf[UplanderBeaconUser].uplands_isUsingBeacon) {
       // teleport to the spawn platform
       val tag = world.getLevelProperties.getWorldData(WorldRegistry.UPLANDS_DIMENSION)
@@ -95,7 +93,7 @@ object MixinHackHooksImpl extends MixinHackHooks {
     returnPos.up(56)
   }
 
-  override def usePortalHookFrom(entity: Entity, world: World): Boolean = {
+  def usePortalHookFrom(entity: Entity, world: World): Boolean = {
     val pos = new BlockPos(entity.x, 256, entity.z)
     entity match {
       case se: ServerPlayerEntity =>

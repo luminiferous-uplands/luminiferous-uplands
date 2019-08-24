@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import robosky.ether.MixinHack;
+import robosky.ether.world.WorldRegistry;
 
 @Mixin(BackgroundRenderer.class)
 public class BGRenderMixin {
@@ -24,7 +24,7 @@ public class BGRenderMixin {
             ordinal = 0
     )
     private double modifyVoidColor(double scale) {
-        if (client.world.dimension.getType() == MixinHack.HOOKS.getDimensionType()) {
+        if (client.world.dimension.getType() == WorldRegistry.UPLANDS_DIMENSION()) {
             scale = 1.0;
         }
         return scale;
