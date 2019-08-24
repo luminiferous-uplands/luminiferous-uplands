@@ -80,7 +80,9 @@ object MegadungeonGenerator {
     ("megadungeon/hallway", 4, true),
     ("megadungeon/corner", 2, true),
     ("megadungeon/tee", 2, true),
+    // ("megadungeon/staircase", 2, true), // causes massive vertical gen if enabled
     ("megadungeon/alcove", 1, true),
+    ("megadungeon/spawner_room", 1, true),
     ("megadungeon/dead_end", 1, true))
 
   def initialize(): Unit = {}
