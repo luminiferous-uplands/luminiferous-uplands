@@ -6,7 +6,7 @@ import java.util.Random
 import com.google.common.collect.ImmutableList
 import com.mojang.datafixers.util.Pair
 import net.minecraft.block.Blocks
-import net.minecraft.block.entity.ChestBlockEntity
+import net.minecraft.block.entity.LootableContainerBlockEntity
 import net.minecraft.block.enums.StructureBlockMode
 import net.minecraft.structure.pool.StructurePool.Projection
 import net.minecraft.structure.pool.StructurePoolBasedGenerator.PieceFactory
@@ -60,9 +60,9 @@ object MegadungeonGenerator {
 
   def handleMetadata(str: String, pos: BlockPos, world: IWorld, rand: Random, bbox: MutableIntBoundingBox): Unit = {
     if (str.startsWith("loot!")) {
-      world.setBlockState(pos, Blocks.AIR.getDefaultState, 3)
+      world.setBlockState(pos, Blocks.CAVE_AIR.getDefaultState, 3)
       world.getBlockEntity(pos.down) match {
-        case chest: ChestBlockEntity => chest.setLootTable(new Identifier(str.substring(5)), rand.nextLong)
+        case chest: LootableContainerBlockEntity => chest.setLootTable(new Identifier(str.substring(5)), rand.nextLong)
         case _ =>
       }
     }
@@ -77,12 +77,13 @@ object MegadungeonGenerator {
   registerPool("megadungeon/entrance", ("megadungeon/entrance", 1, false))
   registerPool("megadungeon/shafts", ("megadungeon/shaft_vertical", 4, false), ("megadungeon/shaft_bottom", 1, false))
   registerPool("megadungeon/halls",
-    ("megadungeon/hallway", 4, true),
-    ("megadungeon/corner", 2, true),
-    ("megadungeon/tee", 2, true),
+    ("megadungeon/hallway", 6, true),
+    ("megadungeon/corner", 3, true),
+    ("megadungeon/tee", 3, true),
     // ("megadungeon/staircase", 2, true), // causes massive vertical gen if enabled
     ("megadungeon/alcove", 1, true),
     ("megadungeon/spawner_room", 1, true),
+    ("megadungeon/trap", 1, true),
     ("megadungeon/dead_end", 1, true))
 
   def initialize(): Unit = {}
