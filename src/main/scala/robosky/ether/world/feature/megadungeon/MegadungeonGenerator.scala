@@ -75,7 +75,13 @@ object MegadungeonGenerator {
   }
 
   registerPool("megadungeon/entrance", ("megadungeon/entrance", 1, false))
-  registerPool("megadungeon/shafts", ("megadungeon/shaft_vertical", 5, false), ("megadungeon/shaft_bottom", 1, false))
+  registerPool("megadungeon/shafts", ("megadungeon/shaft_vertical", 4, false), ("megadungeon/shaft_bottom", 1, false))
+  registerPool("megadungeon/halls",
+    ("megadungeon/hallway", 4, true),
+    ("megadungeon/corner", 2, true),
+    ("megadungeon/tee", 2, true),
+    ("megadungeon/alcove", 1, true),
+    ("megadungeon/dead_end", 1, true))
 
   def initialize(): Unit = {}
 }
