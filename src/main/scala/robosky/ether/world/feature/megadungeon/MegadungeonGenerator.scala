@@ -1,13 +1,16 @@
 package robosky.ether.world.feature.megadungeon
 
+import com.mojang.brigadier.StringReader
+import com.mojang.brigadier.exceptions.CommandSyntaxException
+
 import java.util
 import java.util.Random
-
 import com.google.common.collect.ImmutableList
 import com.mojang.datafixers.util.Pair
 import net.minecraft.block.Blocks
 import net.minecraft.block.entity.LootableContainerBlockEntity
 import net.minecraft.block.enums.StructureBlockMode
+import net.minecraft.command.arguments.BlockStateArgumentType
 import net.minecraft.structure.pool.StructurePool.Projection
 import net.minecraft.structure.pool.StructurePoolBasedGenerator.PieceFactory
 import net.minecraft.structure.pool._
@@ -58,22 +61,32 @@ object MegadungeonGenerator {
     override def disableRotation: Boolean = !rotateable
   }
 
+  private val blockStateParser: BlockStateArgumentType = BlockStateArgumentType.blockState()
 
   def handleMetadata(str: String, pos: BlockPos, world: IWorld, rand: Random, bbox: MutableIntBoundingBox): Unit = {
     val (a, b) = str.split(';') match {
-      case Array(pt1, pt2) => (pt1, pt2)
       case Array(pt1) => (pt1, "")
+      case Array(pt1, pt2, _*) => (pt1, pt2)
     }
     if (a.startsWith("loot!")) {
       world.getBlockEntity(pos.down) match {
         case chest: LootableContainerBlockEntity =>
-          val id = str.substring(5)
+          val id = a.substring(5)
           chest.setLootTable(new Identifier(id), rand.nextLong)
         case _ =>
       }
     }
-    val tgt = if(b.startsWith("to!")) Registry.BLOCK.get(new Identifier(b.substring(3))) else Blocks.CAVE_AIR
-    world.setBlockState(pos, tgt.getDefaultState, 3)
+    val tgt = if (b.startsWith("to!")) {
+      val reader = new StringReader(b.substring(3))
+      try {
+        blockStateParser.method_9654(reader).getBlockState
+      } catch {
+        case _: CommandSyntaxException => Blocks.CAVE_AIR.getDefaultState
+      }
+    } else {
+      Blocks.CAVE_AIR.getDefaultState
+    }
+    world.setBlockState(pos, tgt, 3)
   }
 
   private def registerPool(name: String, pieces: (String, Int, Boolean)*): Unit = {
