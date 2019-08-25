@@ -14,6 +14,7 @@ import net.minecraft.structure.pool._
 import net.minecraft.structure.processor.JigsawReplacementStructureProcessor
 import net.minecraft.structure.{Structure, StructureManager, StructurePiece, StructurePlacementData}
 import net.minecraft.util.math.{BlockPos, MutableIntBoundingBox}
+import net.minecraft.util.registry.Registry
 import net.minecraft.util.{BlockRotation, Identifier}
 import net.minecraft.world.IWorld
 import net.minecraft.world.gen.ChunkRandom
@@ -59,8 +60,11 @@ object MegadungeonGenerator {
 
 
   def handleMetadata(str: String, pos: BlockPos, world: IWorld, rand: Random, bbox: MutableIntBoundingBox): Unit = {
-    if (str.startsWith("loot!")) {
-      world.setBlockState(pos, Blocks.CAVE_AIR.getDefaultState, 3)
+    val (a, b) = str.split(';') match {
+      case Array(pt1, pt2) => (pt1, pt2)
+      case Array(pt1) => (pt1, "")
+    }
+    if (a.startsWith("loot!")) {
       world.getBlockEntity(pos.down) match {
         case chest: LootableContainerBlockEntity =>
           val id = str.substring(5)
@@ -68,6 +72,8 @@ object MegadungeonGenerator {
         case _ =>
       }
     }
+    val tgt = if(b.startsWith("to!")) Registry.BLOCK.get(new Identifier(b.substring(3))) else Blocks.CAVE_AIR
+    world.setBlockState(pos, tgt.getDefaultState, 3)
   }
 
   private def registerPool(name: String, pieces: (String, Int, Boolean)*): Unit = {
