@@ -11,7 +11,7 @@ import net.minecraft.block.enums.StructureBlockMode
 import net.minecraft.structure.pool.StructurePool.Projection
 import net.minecraft.structure.pool.StructurePoolBasedGenerator.PieceFactory
 import net.minecraft.structure.pool._
-import net.minecraft.structure.processor.{BlockIgnoreStructureProcessor, JigsawReplacementStructureProcessor}
+import net.minecraft.structure.processor.JigsawReplacementStructureProcessor
 import net.minecraft.structure.{Structure, StructureManager, StructurePiece, StructurePlacementData}
 import net.minecraft.util.math.{BlockPos, MutableIntBoundingBox}
 import net.minecraft.util.{BlockRotation, Identifier}
@@ -28,8 +28,8 @@ object MegadungeonGenerator {
       manager, startPos, pieces, random, UplandsMod :/ "megadungeon/boss_room")
   }
 
-  private def createSingleElement(name: String, rotateable: Boolean = true): StructurePoolElement = new SinglePoolElement((UplandsMod :/ name).toString,
-    ImmutableList.of(), Projection.RIGID) with UplanderPoolElement {
+  case class MetadataCapableSinglePoolElement(name: String, rotateable: Boolean) extends SinglePoolElement((UplandsMod :/ name).toString, ImmutableList.of(), Projection.RIGID)
+    with UplanderPoolElement {
 
     // Metadata shenanigans so your data structure blocks do something!
     // The if statement in this method is probably unneeded based on the implementations of the methods that call this,
@@ -45,7 +45,7 @@ object MegadungeonGenerator {
       data.setRotation(rot)
       data.method_15131(true)
       data.setIgnoreEntities(false)
-      data.addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS)
+      //      data.addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS)
       data.addProcessor(JigsawReplacementStructureProcessor.INSTANCE)
       this.processors.forEach(p => data.addProcessor(p))
       this.getProjection.getProcessors.forEach(p => data.addProcessor(p))
@@ -62,14 +62,17 @@ object MegadungeonGenerator {
     if (str.startsWith("loot!")) {
       world.setBlockState(pos, Blocks.CAVE_AIR.getDefaultState, 3)
       world.getBlockEntity(pos.down) match {
-        case chest: LootableContainerBlockEntity => chest.setLootTable(new Identifier(str.substring(5)), rand.nextLong)
+        case chest: LootableContainerBlockEntity =>
+          val id = str.substring(5)
+          chest.setLootTable(new Identifier(id), rand.nextLong)
         case _ =>
       }
     }
   }
 
   private def registerPool(name: String, pieces: (String, Int, Boolean)*): Unit = {
-    val array: Array[Pair[StructurePoolElement, Integer]] = pieces.map { case (s, i, b) => Pair.of(createSingleElement(s, b), Int.box(i)) }.toArray
+    val array: Array[Pair[StructurePoolElement, Integer]] = pieces.map { case (s, i, b) =>
+      Pair.of(MetadataCapableSinglePoolElement(s, b).asInstanceOf[StructurePoolElement], Int.box(i)) }.toArray
     StructurePoolBasedGenerator.REGISTRY.add(new StructurePool(UplandsMod :/ name, new Identifier("minecraft", "empty"),
       ImmutableList.copyOf(array), Projection.RIGID))
   }
