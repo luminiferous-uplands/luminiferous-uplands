@@ -9,6 +9,7 @@ import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.registry.Registry
 import robosky.ether.UplandsMod
 import robosky.ether.block.bossroom._
+import robosky.ether.block.unbreakable
 import robosky.ether.world.feature.trees.EtherSaplingGenerator
 
 object BlockRegistry {
@@ -29,6 +30,8 @@ object BlockRegistry {
     val ETHER_STONE_BRICK_STAIRS: StairsBlock = register("uplander_stone_brick_stairs")(new ModStairsBlock(ETHER_STONE_BRICKS, ETHER_STONE_SETTINGS))
     val ETHER_STONE_BRICK_SLAB: SlabBlock = register("uplander_stone_brick_slab")(new SlabBlock(ETHER_STONE_SETTINGS))
     val ETHER_STONE_BRICK_WALL: WallBlock = register("uplander_stone_brick_wall")(new WallBlock(ETHER_STONE_SETTINGS))
+
+    val UNBREAKABLE_ETHER_STONE_BRICKS: Block = register("unbreakable_uplander_stone_bricks")(new unbreakable.Block(ETHER_STONE_BRICKS))
 
     val ETHER_ORES: Map[EtherOreBlock.EtherOreType, EtherOreBlock] = EtherOreBlock.oreTypes.map(t => t ->
       register(s"${t.name}_ore")(new EtherOreBlock(t))).toMap
