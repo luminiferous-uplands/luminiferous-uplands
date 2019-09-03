@@ -3,6 +3,8 @@ package robosky.ether.block.bossroom
 import java.util.UUID
 import java.util.stream.Collectors.toList
 
+import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable
+
 import net.minecraft.block.entity.{BlockEntity, BlockEntityType}
 import net.minecraft.entity.{Entity, EntityType, SpawnType}
 import net.minecraft.nbt.CompoundTag
@@ -14,6 +16,7 @@ import net.minecraft.world.World
 
 import robosky.ether.UplandsMod
 import robosky.ether.block.unbreakable.Unbreakable
+import robosky.ether.util.IntBox
 
 import scala.collection.JavaConverters._
 
@@ -24,18 +27,16 @@ object ControlBlockEntity {
 /**
  * Controls boss room mechanics.
  */
-class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE) {
+class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE) with BlockEntityClientSerializable {
 
   /**
    * The bounds of the boss room, relative to the position of this instance.
    */
-  private val room: MutableIntBoundingBox = new MutableIntBoundingBox()
+  def bounds: IntBox = _bounds
 
-  /**
-   * The rotation of the boss room.
-   */
-  // is this needed?
-  private var rotation: BlockRotation = BlockRotation.NONE
+  private def bounds_=(value: IntBox) = { _bounds = value }
+
+  private[this] var _bounds: IntBox = IntBox.Empty
 
   /**
    * The boss entity to spawn on command.
@@ -77,14 +78,13 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE) {
    * unbreakable blocks with their breakable counterparts.
    */
   def onBossDefeat(): Unit = {
-    // TODO: rotation
     val ls = BlockPos.iterate(
-        this.pos.getX + room.minX,
-        this.pos.getY + room.minY,
-        this.pos.getZ + room.minZ,
-        this.pos.getX + room.maxX,
-        this.pos.getY + room.maxY,
-        this.pos.getZ + room.maxZ).asScala
+        this.pos.getX + bounds.minX,
+        this.pos.getY + bounds.minY,
+        this.pos.getZ + bounds.minZ,
+        this.pos.getX + bounds.maxX,
+        this.pos.getY + bounds.maxY,
+        this.pos.getZ + bounds.maxZ).asScala
     for {
       pos <- ls
       state = this.world.getBlockState(pos)
@@ -92,10 +92,35 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE) {
     } this.world.setBlockState(pos, block.toBreakable(state))
   }
 
+  override def applyRotation(rot: BlockRotation): Unit = {
+    import net.minecraft.util.BlockRotation._
+    bounds = rot match {
+      case NONE => bounds
+      case COUNTERCLOCKWISE_90 => bounds.copy(
+        minX = bounds.minZ,
+        minZ = -bounds.minX + 1,
+        maxX = bounds.maxZ,
+        maxZ = -bounds.maxX + 1)
+      case CLOCKWISE_180 => bounds.copy(
+        minX = -bounds.minX + 1,
+        minZ = -bounds.minZ + 1,
+        maxX = -bounds.maxX + 1,
+        maxZ = -bounds.maxZ + 1)
+      case CLOCKWISE_90 => bounds.copy(
+        minX = -bounds.minZ + 1,
+        minZ = bounds.minX,
+        maxX = -bounds.maxZ + 1,
+        maxZ = bounds.maxX)
+    }
+  }
+
   override def toTag(_tag: CompoundTag): CompoundTag = {
     val tag = super.toTag(_tag)
-    tag.putIntArray("Bounds", Array(room.minX, room.minY, room.minZ, room.maxX, room.maxY, room.maxZ))
-    tag.putString("Rotation", rotation.name)
+    toClientTag(tag)
+  }
+
+  override def toClientTag(tag: CompoundTag): CompoundTag = {
+    tag.putIntArray("Bounds", Array(bounds.minX, bounds.minY, bounds.minZ, bounds.maxX, bounds.maxY, bounds.maxZ))
     tag.putString("Boss", Registry.ENTITY_TYPE.getId(bossType).toString)
     bossUuid foreach {
       uuid =>
@@ -107,29 +132,13 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE) {
 
   override def fromTag(tag: CompoundTag): Unit = {
     super.fromTag(tag)
-    val bounds = tag.getIntArray("Bounds")
-    if (bounds.length == 6) {
-      room.minX = bounds(0)
-      room.minY = bounds(1)
-      room.minZ = bounds(2)
-      room.maxX = bounds(3)
-      room.maxY = bounds(4)
-      room.maxZ = bounds(5)
-    } else {
-      room.minX = 0
-      room.minY = 0
-      room.minZ = 0
-      room.maxX = 0
-      room.maxY = 0
-      room.maxZ = 0
-    }
-    rotation = {
-      val name = tag.getString("Rotation")
-      try {
-        BlockRotation.valueOf(name)
-      } catch {
-        case _: IllegalArgumentException => BlockRotation.NONE
-      }
+    fromClientTag(tag)
+  }
+
+  override def fromClientTag(tag: CompoundTag): Unit = {
+    bounds = tag.getIntArray("Bounds") match {
+      case Array(x0, y0, z0, x1, y1, z1) => IntBox(x0, y0, z0, x1, y1, z1)
+      case _ => IntBox.Empty
     }
     bossType = {
       for {
