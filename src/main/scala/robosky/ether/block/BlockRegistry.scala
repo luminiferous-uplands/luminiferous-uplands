@@ -9,7 +9,6 @@ import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.registry.Registry
 import robosky.ether.UplandsMod
 import robosky.ether.block.bossroom._
-import robosky.ether.block.unbreakable
 import robosky.ether.world.feature.trees.EtherSaplingGenerator
 
 object BlockRegistry {
@@ -105,6 +104,9 @@ object BlockRegistry {
 
     val BOSS_CONTROL: ControlBlock.type = register("boss_control", itemGroup = null)(ControlBlock)
     Registry.register(Registry.BLOCK_ENTITY, UplandsMod :/ "boss_control", ControlBlockEntity.TYPE)
+
+    val BOSS_DOORWAY: DoorwayBlock = register("boss_doorway", itemGroup = null)(new DoorwayBlock(Block.Settings.copy(BOSS_CONTROL)))
+    Registry.register(Registry.BLOCK_ENTITY, UplandsMod :/ "boss_doorway", DoorwayBlockEntity.TYPE)
 
     def init(): Unit = {}
 

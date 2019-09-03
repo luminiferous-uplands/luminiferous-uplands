@@ -33,7 +33,8 @@ object ControlBlockEntityRenderer extends BlockEntityRenderer[ControlBlockEntity
         GlStateManager.DestFactor.ZERO)
       this.disableLightmap(true)
       GlStateManager.lineWidth(2.0F)
-      buffer.begin(3, VertexFormats.POSITION_COLOR);
+      buffer.begin(3, VertexFormats.POSITION_COLOR)
+      WorldRenderer.buildBoxOutline(buffer, camX, camY, camZ, camX + 1, camY + 1, camZ + 1, 1.0f, 1.0f, 0.0f, 1.0f)
       WorldRenderer.buildBoxOutline(buffer, minX, minY, minZ, maxX, maxY, maxZ, 0.0f, 0.0f, 0.0f, 1.0f)
       WorldRenderer.buildBoxOutline(buffer, minX, minY, minZ, maxX, maxY, maxZ, 1.0f, 1.0f, 1.0f, 1.0f)
       tez.draw()

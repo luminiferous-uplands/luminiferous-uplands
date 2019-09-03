@@ -15,5 +15,6 @@ object BlockEntityRenderingRegistry {
 
   def init(): Unit = {
     register(ControlBlockEntityRenderer)
+    register(DoorwayBlockEntityRenderer)
   }
 }
