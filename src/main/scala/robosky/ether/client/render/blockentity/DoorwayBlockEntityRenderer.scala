@@ -22,12 +22,12 @@ object DoorwayBlockEntityRenderer extends BlockEntityRenderer[DoorwayBlockEntity
         val model = renderManager.getModel(state)
         GlStateManager.pushMatrix()
         GlStateManager.translated(camX, camY, camZ)
-        this.bindTexture(SpriteAtlasTexture.BLOCK_ATLAS_TEX);
+        this.bindTexture(SpriteAtlasTexture.BLOCK_ATLAS_TEX)
         GlStateManager.rotatef(-90.0f, 0.0f, 1.0f, 0.0f)
         renderManager.getModelRenderer.render(model, state, 1.0f, true)
         GlStateManager.popMatrix()
       }
-    } else if (MinecraftClient.getInstance.player.getMainHandStack.getItem == BlockRegistry.BOSS_DOORWAY.asItem) {
+    } else if (playerIsHoldingDoorwayItem) {
       val minX = camX + (4.0 / 16.0) - 0.005
       val minY = camY + (4.0 / 16.0) - 0.005
       val minZ = camZ + (4.0 / 16.0) - 0.005
@@ -59,5 +59,11 @@ object DoorwayBlockEntityRenderer extends BlockEntityRenderer[DoorwayBlockEntity
       GlStateManager.depthMask(true)
       GlStateManager.enableFog()
     }
+  }
+
+  private def playerIsHoldingDoorwayItem: Boolean = {
+    val player = MinecraftClient.getInstance.player
+    val item = BlockRegistry.BOSS_DOORWAY.asItem
+    (player.isCreativeLevelTwoOp || player.isSpectator) && player.getMainHandStack.getItem == item
   }
 }
