@@ -9,6 +9,7 @@ import net.minecraft.client.render.block.entity.BlockEntityRenderer
 import net.minecraft.client.texture.SpriteAtlasTexture
 import net.minecraft.item.ItemStack
 
+import robosky.ether.UplandsMod
 import robosky.ether.block.BlockRegistry
 import robosky.ether.block.bossroom.{DoorwayBlock, DoorwayBlockEntity, DoorwayState}
 
@@ -80,6 +81,6 @@ object DoorwayBlockEntityRenderer extends BlockEntityRenderer[DoorwayBlockEntity
 
   private def playerIsHoldingDoorwayItem: Boolean = {
     val player = MinecraftClient.getInstance.player
-    (player.isCreativeLevelTwoOp || player.isSpectator) && player.inventory.contains(doorwayItem)
+    (player.isCreativeLevelTwoOp || player.isSpectator) && player.inventory.contains(UplandsMod.BOSSROOM_TECHNICAL_TAG)
   }
 }

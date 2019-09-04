@@ -6,6 +6,7 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.client.render.block.entity.BlockEntityRenderer
 import net.minecraft.client.render.{BufferBuilder, Tessellator, VertexFormats, WorldRenderer}
 
+import robosky.ether.UplandsMod
 import robosky.ether.block.BlockRegistry
 import robosky.ether.block.bossroom.ControlBlockEntity
 
@@ -13,7 +14,7 @@ object ControlBlockEntityRenderer extends BlockEntityRenderer[ControlBlockEntity
 
   override def render(be: ControlBlockEntity, camX: Double, camY: Double, camZ: Double, partialTicks: Float, crackIdx: Int): Unit = {
     val player = MinecraftClient.getInstance.player
-    if ((player.isCreativeLevelTwoOp || player.isSpectator) && player.getMainHandStack.getItem == BlockRegistry.BOSS_CONTROL.asItem) {
+    if ((player.isCreativeLevelTwoOp || player.isSpectator) && player.inventory.contains(UplandsMod.BOSSROOM_TECHNICAL_TAG)) {
       val minX = camX + be.bounds.minX
       val minY = camY + be.bounds.minY
       val minZ = camZ + be.bounds.minZ

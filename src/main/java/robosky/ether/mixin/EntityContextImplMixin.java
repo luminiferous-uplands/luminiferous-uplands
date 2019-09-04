@@ -12,18 +12,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import robosky.ether.block.BlockRegistry;
+import robosky.ether.UplandsMod;
 import robosky.ether.iface.BossDoorwayContext;
 
 @Mixin(EntityContextImpl.class)
 public abstract class EntityContextImplMixin implements BossDoorwayContext {
-
-    // it is very important that the lazy is only initialized after
-    // item registration. EntityContextImpl is loaded before Uplands registers
-    // its items, so a lazy field is needed.
-    @Unique
-    private static final Lazy<ItemStack> doorway =
-        new Lazy<>(() -> new ItemStack(BlockRegistry.BOSS_DOORWAY().asItem()));
 
     @Unique
     private boolean shouldSeeDoorwayOutlines;
@@ -38,7 +31,7 @@ public abstract class EntityContextImplMixin implements BossDoorwayContext {
         if(entity instanceof PlayerEntity) {
           PlayerEntity player = (PlayerEntity)entity;
           shouldSeeDoorwayOutlines = player.isCreativeLevelTwoOp() &&
-              player.inventory.contains(doorway.get());
+              player.inventory.contains(UplandsMod.BOSSROOM_TECHNICAL_TAG());
         } else {
           shouldSeeDoorwayOutlines = false;
         }

@@ -2,7 +2,8 @@ package robosky.ether
 
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
-import net.minecraft.item.{ItemGroup, ItemStack}
+import net.minecraft.item.{Item, ItemGroup, ItemStack}
+import net.minecraft.tag.{Tag, ItemTags}
 import net.minecraft.util.Identifier
 import robosky.ether.block.BlockRegistry
 import robosky.ether.block.machine.{MachineRegistry, RecipeRegistry}
@@ -17,6 +18,8 @@ object UplandsMod extends ModInitializer {
     .create(this :/ "general")
     .icon(() => new ItemStack(BlockRegistry.ETHER_GRASS))
     .build()
+
+  val BOSSROOM_TECHNICAL_TAG: Tag[Item] = new ItemTags.CachingTag(this :/ "bossroom_technical")
 
   override def onInitialize(): Unit = {
     ItemRegistry.init()

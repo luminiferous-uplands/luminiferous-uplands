@@ -68,7 +68,7 @@ class DoorwayBlock(settings: Block.Settings) extends Block(settings) with BlockE
         new ItemPlacementContext(new ItemUsageContext(player, hand, ctx))
       )
       val validMimic = (heldStack.isEmpty && hand == Hand.MAIN_HAND) ||
-        block.getRenderType == BlockRenderType.MODEL
+        (block != null && block.getRenderType == BlockRenderType.MODEL)
       if (validMimic && !world.isClient) {
         doorway(world, pos) foreach {
           be =>
