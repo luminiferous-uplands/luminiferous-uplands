@@ -4,7 +4,7 @@ import net.minecraft.block.{Block, Blocks, BlockEntityProvider, BlockRenderType,
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.entity.EntityContext
 import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.item.Items
+import net.minecraft.item.{ItemPlacementContext, Items, ItemUsageContext}
 import net.minecraft.state.StateFactory
 import net.minecraft.state.property.{EnumProperty, Property}
 import net.minecraft.util.Hand
@@ -60,18 +60,24 @@ class DoorwayBlock(settings: Block.Settings) extends Block(settings) with BlockE
   }
 
   override def activate(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand, ctx: BlockHitResult): Boolean = {
-    val heldStack = player.getStackInHand(hand)
-    val block = Block.getBlockFromItem(heldStack.getItem).getDefaultState
-    val validMimic = (heldStack.isEmpty && hand == Hand.MAIN_HAND) ||
-      block.getRenderType == BlockRenderType.MODEL
-    if (validMimic && !world.isClient) {
-      doorway(world, pos) foreach {
-        be =>
-          be.mimicState = block
-          be.markDirty()
-          world.updateListeners(pos, state, state, 3)
+    if (state.get(DoorwayBlock.STATE) == DoorwayState.BLOCKED) {
+      false
+    } else {
+      val heldStack = player.getStackInHand(hand)
+      val block = Block.getBlockFromItem(heldStack.getItem).getPlacementState(
+        new ItemPlacementContext(new ItemUsageContext(player, hand, ctx))
+      )
+      val validMimic = (heldStack.isEmpty && hand == Hand.MAIN_HAND) ||
+        block.getRenderType == BlockRenderType.MODEL
+      if (validMimic && !world.isClient) {
+        doorway(world, pos) foreach {
+          be =>
+            be.mimicState = block
+            be.markDirty()
+            world.updateListeners(pos, state, state, 3)
+        }
       }
+      validMimic
     }
-    validMimic
   }
 }
