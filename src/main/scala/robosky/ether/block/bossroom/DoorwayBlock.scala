@@ -1,15 +1,20 @@
 package robosky.ether.block.bossroom
 
-import net.minecraft.block.{Block, BlockEntityProvider, BlockRenderType, BlockState}
+import net.minecraft.block.{Block, Blocks, BlockEntityProvider, BlockRenderType, BlockState}
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.entity.EntityContext
+import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.item.Items
 import net.minecraft.state.StateFactory
 import net.minecraft.state.property.{EnumProperty, Property}
+import net.minecraft.util.Hand
+import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.shape.{VoxelShape, VoxelShapes}
-import net.minecraft.world.BlockView
+import net.minecraft.world.{BlockView, World}
 
 import robosky.ether.block.BlockRegistry
+import robosky.ether.iface.BossDoorwayContext
 
 object DoorwayBlock {
 
@@ -33,7 +38,10 @@ class DoorwayBlock(settings: Block.Settings) extends Block(settings) with BlockE
 
   override def getOutlineShape(state: BlockState, world: BlockView, pos: BlockPos, ctx: EntityContext): VoxelShape = {
     if (state.get(DoorwayBlock.STATE) == DoorwayState.OPEN) {
-      if (ctx == EntityContext.absent || ctx.isHolding(this.asItem)) DoorwayBlock.SHAPE else VoxelShapes.empty
+      if (ctx == EntityContext.absent || ctx.asInstanceOf[BossDoorwayContext].uplands_shouldSeeDoorwayOutlines)
+        DoorwayBlock.SHAPE
+      else
+        VoxelShapes.empty
     } else {
       doorway(world, pos)
         .map(_.mimicState.getOutlineShape(world, pos, ctx))
@@ -49,5 +57,21 @@ class DoorwayBlock(settings: Block.Settings) extends Block(settings) with BlockE
         .map(_.mimicState.getCollisionShape(world, pos, ctx))
         .getOrElse(VoxelShapes.fullCube)
     }
+  }
+
+  override def activate(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand, ctx: BlockHitResult): Boolean = {
+    val heldStack = player.getStackInHand(hand)
+    val block = Block.getBlockFromItem(heldStack.getItem).getDefaultState
+    val validMimic = (heldStack.isEmpty && hand == Hand.MAIN_HAND) ||
+      block.getRenderType == BlockRenderType.MODEL
+    if (validMimic && !world.isClient) {
+      doorway(world, pos) foreach {
+        be =>
+          be.mimicState = block
+          be.markDirty()
+          world.updateListeners(pos, state, state, 3)
+      }
+    }
+    validMimic
   }
 }

@@ -5,6 +5,7 @@
   "mixins": [
     "LocateCommandMixin",
     "CriterionsMixin",
+    "EntityContextImplMixin",
     "PlayerMixin",
     "WorldMixin"
   ],

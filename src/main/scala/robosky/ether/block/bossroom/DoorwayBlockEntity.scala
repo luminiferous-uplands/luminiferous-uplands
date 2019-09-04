@@ -22,7 +22,22 @@ class DoorwayBlockEntity extends BlockEntity(DoorwayBlockEntity.TYPE) with Block
    */
   def mimicState: BlockState = _mimicState
 
+  def mimicState_=(value: BlockState): Unit = {
+    _mimicState = value
+    if (this.hasWorld) {
+      _lastMimicUpdate = this.world.getTime
+    }
+  }
+
   private[this] var _mimicState: BlockState = Blocks.AIR.getDefaultState
+
+  /**
+   * The last time the mimic state was updated.
+   */
+  def lastMimicUpdate: Long = _lastMimicUpdate
+
+  @transient
+  private[this] var _lastMimicUpdate: Long = 0L
 
   override def toClientTag(tag: CompoundTag): CompoundTag = {
     tag.putString("Mimic", Registry.BLOCK.getId(mimicState.getBlock).toString)
@@ -34,7 +49,7 @@ class DoorwayBlockEntity extends BlockEntity(DoorwayBlockEntity.TYPE) with Block
   }
 
   override def fromClientTag(tag: CompoundTag): Unit = {
-    _mimicState = {
+    mimicState = {
       for {
         id <- Option(Identifier.tryParse(tag.getString("Mimic")))
         block <- Option(Registry.BLOCK.get(id))
