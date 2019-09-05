@@ -108,6 +108,10 @@ object BlockRegistry {
     val BOSS_DOORWAY: DoorwayBlock = register("boss_doorway", itemGroup = null)(new DoorwayBlock(Block.Settings.copy(BOSS_CONTROL)))
     Registry.register(Registry.BLOCK_ENTITY, UplandsMod :/ "boss_doorway", DoorwayBlockEntity.TYPE)
 
+    val BOSS_ALTER: Block = register("boss_alter")(new Block(ETHER_STONE_SETTINGS))
+
+    val ACTIVE_BOSS_ALTER: Block = register("active_boss_alter")(new ActiveAlterBlock())
+
     def init(): Unit = {}
 
     def register[B <: Block](name: String, item: Boolean = true, itemGroup: ItemGroup = UplandsMod.GROUP)(b: B): B = {

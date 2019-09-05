@@ -16,6 +16,8 @@ import net.minecraft.util.math.{BlockPos, Box}
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.World
 
+import org.apache.logging.log4j.{Logger, LogManager}
+
 import robosky.ether.UplandsMod
 import robosky.ether.block.BlockRegistry
 import robosky.ether.block.unbreakable.Unbreakable
@@ -24,7 +26,10 @@ import robosky.ether.util.IntBox
 import scala.collection.JavaConverters._
 
 object ControlBlockEntity {
+
   val TYPE = BlockEntityType.Builder.create(() => new ControlBlockEntity(), ControlBlock).build(null)
+
+  private val logger: Logger = LogManager.getLogger
 }
 
 /**
@@ -33,6 +38,8 @@ object ControlBlockEntity {
 class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
     with BlockEntityClientSerializable
     with Tickable {
+
+  import ControlBlockEntity.logger
 
   /**
    * The bounds of the boss room, relative to the position of this instance.
@@ -66,18 +73,28 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
   private var bossType: EntityType[_] = EntityType.PIG
 
   /**
-   * The boss entity.
+   * The boss entity UUID.
    */
+  private var bossUuid: Option[UUID] = None
+
+  /**
+   * The boss entity. Late-initialized on the first tick.
+   */
+  @transient
   private var bossEntity: Option[Entity] = None
 
-  private def bossRoomPositions: Iterable[BlockPos] =
+  // this is an Iterator (rather than an Iterable) to preserve
+  // the behavior of BlockPos.iterate. BlockPos.iterate internally
+  // (re)uses a BlockPos.Mutable instance for each value, which
+  // means that we can't store multiple values for later computation.
+  private def bossRoomPositions: Iterator[BlockPos] =
     BlockPos.iterate(
       this.pos.getX + bounds.minX,
       this.pos.getY + bounds.minY,
       this.pos.getZ + bounds.minZ,
       this.pos.getX + bounds.maxX,
       this.pos.getY + bounds.maxY,
-      this.pos.getZ + bounds.maxZ).asScala
+      this.pos.getZ + bounds.maxZ).iterator.asScala
 
   /**
    * Spawns the boss at the specified BlockPos.
@@ -89,7 +106,10 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
         state = this.world.getBlockState(pos)
         if state.getBlock == BlockRegistry.BOSS_DOORWAY
       } this.world.setBlockState(pos, state.`with`(DoorwayBlock.STATE, DoorwayState.BLOCKED))
-      bossEntity = Some(bossType.spawn(this.world, null, null, null, spawn, SpawnType.SPAWNER, false, false))
+      val boss = bossType.spawn(this.world, null, null, null, spawn, SpawnType.SPAWNER, false, false)
+      bossEntity = Some(boss)
+      bossUuid = Some(boss.getUuid)
+      logger.info("Activated boss at {}", spawn)
     }
   }
 
@@ -104,12 +124,13 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
           case _ =>
         }
       }
-      bossEntity = None
+      bossUuid = None
       for {
         pos <- bossRoomPositions
         state = this.world.getBlockState(pos)
         if state.getBlock == BlockRegistry.BOSS_DOORWAY
       } this.world.setBlockState(pos, state.`with`(DoorwayBlock.STATE, DoorwayState.OPEN))
+      logger.info("Deactivated boss")
     }
   }
 
@@ -118,7 +139,7 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
    * unbreakable blocks with their breakable counterparts.
    */
   def onBossDefeat(): Unit = {
-    bossEntity = None
+    bossUuid = None
     if (!this.world.isClient) {
       for {
         pos <- bossRoomPositions
@@ -132,11 +153,26 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
           case _ =>
         }
       }
+      logger.info("Detected boss defeat")
     }
   }
 
   override def tick(): Unit = {
     if (!this.world.isClient) {
+      // initialize bossEntity if it is not already
+      // this is done in tick() to ensure that the entity
+      // is loaded
+      if (bossUuid.nonEmpty) {
+        if (bossEntity.isEmpty) {
+          this.world match {
+            case server: ServerWorld =>
+              bossEntity = bossUuid.map(server.getEntity)
+            case _ =>
+          }
+        }
+      } else {
+        bossEntity = None
+      }
       bossEntity foreach {
         boss =>
           if (!boss.isAlive) {
@@ -182,7 +218,7 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
   override def toClientTag(tag: CompoundTag): CompoundTag = {
     tag.putIntArray("Bounds", Array(bounds.minX, bounds.minY, bounds.minZ, bounds.maxX, bounds.maxY, bounds.maxZ))
     tag.putString("Boss", Registry.ENTITY_TYPE.getId(bossType).toString)
-    bossEntity.map(_.getUuid) foreach {
+    bossUuid foreach {
       uuid =>
         tag.putLong("BossUUIDMost", uuid.getMostSignificantBits)
         tag.putLong("BossUUIDLeast", uuid.getLeastSignificantBits)
@@ -206,15 +242,11 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
         etyp <- Option[EntityType[_]](Registry.ENTITY_TYPE.get(id))
       } yield etyp
     } getOrElse EntityType.PIG
-    val bossUuid = {
+    bossUuid = {
       if (tag.containsKey("BossUUIDMost") && tag.containsKey("BossUUIDLeast"))
         Some(new UUID(tag.getLong("BossUUIDMost"), tag.getLong("BossUUIDLeast")))
       else
         None
-    }
-    bossEntity = this.world match {
-      case server: ServerWorld => bossUuid.map(server.getEntity)
-      case _ => None
     }
   }
 }
