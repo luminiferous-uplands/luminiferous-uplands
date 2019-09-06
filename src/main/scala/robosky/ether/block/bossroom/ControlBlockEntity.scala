@@ -70,7 +70,7 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
   /**
    * The boss entity to spawn on command.
    */
-  private var bossType: EntityType[_] = EntityType.PIG
+  var bossType: EntityType[_] = EntityType.PIG
 
   /**
    * The boss entity UUID.
@@ -82,6 +82,42 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
    */
   @transient
   private var bossEntity: Option[Entity] = None
+
+  def adjustBoundsDown(blocks: Int): Unit = {
+    if (bounds.minY - blocks <= bounds.maxY) {
+      bounds = bounds.copy(minY = bounds.minY - blocks)
+    }
+  }
+
+  def adjustBoundsUp(blocks: Int): Unit = {
+    if (bounds.maxY + blocks >= bounds.minY) {
+      bounds = bounds.copy(maxY = bounds.maxY + blocks)
+    }
+  }
+
+  def adjustBoundsNorth(blocks: Int): Unit = {
+    if (bounds.minZ - blocks <= bounds.maxZ) {
+      bounds = bounds.copy(minZ = bounds.minZ - blocks)
+    }
+  }
+
+  def adjustBoundsSouth(blocks: Int): Unit = {
+    if (bounds.maxZ + blocks >= bounds.minZ) {
+      bounds = bounds.copy(maxZ = bounds.maxZ + blocks)
+    }
+  }
+
+  def adjustBoundsWest(blocks: Int): Unit = {
+    if (bounds.minX - blocks <= bounds.maxX) {
+      bounds = bounds.copy(minX = bounds.minX - blocks)
+    }
+  }
+
+  def adjustBoundsEast(blocks: Int): Unit = {
+    if (bounds.maxX + blocks >= bounds.minX) {
+      bounds = bounds.copy(maxX = bounds.maxX + blocks)
+    }
+  }
 
   // this is an Iterator (rather than an Iterable) to preserve
   // the behavior of BlockPos.iterate. BlockPos.iterate internally
@@ -233,7 +269,9 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
 
   override def fromClientTag(tag: CompoundTag): Unit = {
     bounds = tag.getIntArray("Bounds") match {
-      case Array(x0, y0, z0, x1, y1, z1) => IntBox(x0, y0, z0, x1, y1, z1)
+      case Array(x0, y0, z0, x1, y1, z1)
+          if x0 <= x1 && y0 <= y1 && z0 <= z1 =>
+        IntBox(x0, y0, z0, x1, y1, z1)
       case _ => IntBox.Empty
     }
     bossType = {
