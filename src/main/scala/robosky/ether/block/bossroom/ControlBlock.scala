@@ -7,6 +7,8 @@ import net.minecraft.block.entity.BlockEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.SpawnEggItem
 import net.minecraft.sound.BlockSoundGroup
+import net.minecraft.state.StateFactory
+import net.minecraft.state.property.{EnumProperty, Property}
 import net.minecraft.util.Hand
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.{BlockPos, Direction}
@@ -14,10 +16,14 @@ import net.minecraft.world.{BlockView, World}
 
 import robosky.ether.UplandsMod
 
+object ControlBlock {
+  val ADJUST: Property[ControlAdjustment] = EnumProperty.of("adjust", classOf[ControlAdjustment])
+}
+
 /**
  * Block for the boss controller. The important bits are on the block entity.
  */
-object ControlBlock extends Block(
+class ControlBlock extends Block(
   FabricBlockSettings.of(Material.STONE)
     .sounds(BlockSoundGroup.STONE)
     .strength(-1.0f, 3600000.0f).build()) with BlockEntityProvider {
@@ -29,6 +35,19 @@ object ControlBlock extends Block(
    */
   def control(world: World, pos: BlockPos): Option[ControlBlockEntity] =
     Option(world.getBlockEntity(pos)) collect { case ctrl: ControlBlockEntity => ctrl }
+
+  override def appendProperties(builder: StateFactory.Builder[Block, BlockState]): Unit = {
+    builder.add(ControlBlock.ADJUST)
+  }
+
+  private val adjustmentMapping = {
+    import net.minecraft.util.math.Direction._
+    Array(
+      Array(WEST, NORTH, EAST, SOUTH), // DOWN/UP
+      Array(WEST, DOWN, EAST, UP), // NORTH/SOUTH
+      Array(NORTH, DOWN, SOUTH, UP) // WEST/EAST
+    )
+  }
 
   override def activate(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand, ctx: BlockHitResult): Boolean = {
     val shouldEdit = player.isCreativeLevelTwoOp &&
@@ -44,30 +63,30 @@ object ControlBlock extends Block(
             case _ =>
               val hitSide = ctx.getSide
               val hitPos = ctx.getPos
-              val blocks = if (player.isSneaking) -1 else 1
-              hitSide match {
-                // horizontal adjustment
-                case Direction.DOWN | Direction.UP =>
-                  val x = Math.abs(hitPos.getX - pos.getX) - 0.5
-                  val z = Math.abs(hitPos.getZ - pos.getZ) - 0.5
-                  val theta = Math.atan2(z, x) / Math.PI
-                  if (-0.75 <= theta && theta < -0.25) {
-                    ctrl.adjustBoundsNorth(blocks)
-                  } else if (-0.25 <= theta && theta < 0.25) {
-                    ctrl.adjustBoundsEast(blocks)
-                  } else if (0.25 <= theta && theta < 0.75) {
-                    ctrl.adjustBoundsSouth(blocks)
-                  } else {
-                    ctrl.adjustBoundsWest(blocks)
-                  }
-                // vertical adjustment
+              val u = hitSide match {
+                case Direction.WEST | Direction.EAST =>
+                  (hitPos.getZ - pos.getZ).abs - 0.5
                 case _ =>
-                  val y = hitPos.getY - pos.getY
-                  if (y <= 0.5) {
-                    ctrl.adjustBoundsDown(blocks)
-                  } else {
-                    ctrl.adjustBoundsUp(blocks)
-                  }
+                  (hitPos.getX - pos.getX).abs - 0.5
+              }
+              val v = hitSide match {
+                case Direction.DOWN | Direction.UP =>
+                  (hitPos.getZ - pos.getZ).abs - 0.5
+                case _ =>
+                  (hitPos.getY - pos.getY).abs - 0.5
+              }
+              val rSq = u * u + v * v
+              // u and v range from [-0.5, 0.5], this is the inner third
+              // of that range, i.e. < 1/6 ^ 2
+              val centerThird = 0.17 * 0.17
+              if (rSq < centerThird) {
+                world.setBlockState(pos, state.cycle(ControlBlock.ADJUST))
+              } else {
+                val theta = Math.atan2(v, u) / Math.PI
+                val dir = adjustmentMapping(hitSide.getId / 2)(((theta + 1.25) * 2).toInt % 4)
+                val adj = state.get(ControlBlock.ADJUST)
+                val blocks = if (adj == ControlAdjustment.IN) -1 else 1
+                ctrl.adjustBounds(dir, blocks)
               }
           }
       }

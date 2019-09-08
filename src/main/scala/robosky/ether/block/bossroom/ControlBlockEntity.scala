@@ -12,7 +12,7 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.{BlockRotation, Identifier, Tickable}
-import net.minecraft.util.math.{BlockPos, Box}
+import net.minecraft.util.math.{BlockPos, Box, Direction}
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.World
 
@@ -27,7 +27,7 @@ import scala.collection.JavaConverters._
 
 object ControlBlockEntity {
 
-  val TYPE = BlockEntityType.Builder.create(() => new ControlBlockEntity(), ControlBlock).build(null)
+  val TYPE = BlockEntityType.Builder.create(() => new ControlBlockEntity(), BlockRegistry.BOSS_CONTROL).build(null)
 
   private val logger: Logger = LogManager.getLogger
 }
@@ -83,39 +83,32 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
   @transient
   private var bossEntity: Option[Entity] = None
 
-  def adjustBoundsDown(blocks: Int): Unit = {
-    if (bounds.minY - blocks <= bounds.maxY) {
-      bounds = bounds.copy(minY = bounds.minY - blocks)
-    }
-  }
-
-  def adjustBoundsUp(blocks: Int): Unit = {
-    if (bounds.maxY + blocks >= bounds.minY) {
-      bounds = bounds.copy(maxY = bounds.maxY + blocks)
-    }
-  }
-
-  def adjustBoundsNorth(blocks: Int): Unit = {
-    if (bounds.minZ - blocks <= bounds.maxZ) {
-      bounds = bounds.copy(minZ = bounds.minZ - blocks)
-    }
-  }
-
-  def adjustBoundsSouth(blocks: Int): Unit = {
-    if (bounds.maxZ + blocks >= bounds.minZ) {
-      bounds = bounds.copy(maxZ = bounds.maxZ + blocks)
-    }
-  }
-
-  def adjustBoundsWest(blocks: Int): Unit = {
-    if (bounds.minX - blocks <= bounds.maxX) {
-      bounds = bounds.copy(minX = bounds.minX - blocks)
-    }
-  }
-
-  def adjustBoundsEast(blocks: Int): Unit = {
-    if (bounds.maxX + blocks >= bounds.minX) {
-      bounds = bounds.copy(maxX = bounds.maxX + blocks)
+  def adjustBounds(dir: Direction, blocks: Int): Unit = {
+    dir match {
+      case Direction.DOWN =>
+        if (bounds.minY - blocks <= bounds.maxY) {
+          bounds = bounds.copy(minY = bounds.minY - blocks)
+        }
+      case Direction.UP =>
+        if (bounds.maxY + blocks >= bounds.minY) {
+          bounds = bounds.copy(maxY = bounds.maxY + blocks)
+        }
+      case Direction.NORTH =>
+        if (bounds.minZ - blocks <= bounds.maxZ) {
+          bounds = bounds.copy(minZ = bounds.minZ - blocks)
+        }
+      case Direction.SOUTH =>
+        if (bounds.maxZ + blocks >= bounds.minZ) {
+          bounds = bounds.copy(maxZ = bounds.maxZ + blocks)
+        }
+      case Direction.WEST =>
+        if (bounds.minX - blocks <= bounds.maxX) {
+          bounds = bounds.copy(minX = bounds.minX - blocks)
+        }
+      case Direction.EAST =>
+        if (bounds.maxX + blocks >= bounds.minX) {
+          bounds = bounds.copy(maxX = bounds.maxX + blocks)
+        }
     }
   }
 

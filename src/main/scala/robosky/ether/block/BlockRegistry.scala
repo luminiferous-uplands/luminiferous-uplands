@@ -102,7 +102,7 @@ object BlockRegistry {
           .breakByTool(FabricToolTags.PICKAXES, 2)
           .build()))
 
-    val BOSS_CONTROL: ControlBlock.type = register("boss_control", itemGroup = null)(ControlBlock)
+    val BOSS_CONTROL: ControlBlock = register("boss_control", itemGroup = null)(new ControlBlock())
     Registry.register(Registry.BLOCK_ENTITY, UplandsMod :/ "boss_control", ControlBlockEntity.TYPE)
 
     val BOSS_DOORWAY: DoorwayBlock = register("boss_doorway", itemGroup = null)(new DoorwayBlock(Block.Settings.copy(BOSS_CONTROL)))

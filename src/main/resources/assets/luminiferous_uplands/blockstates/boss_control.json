@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
-      "model": "$modid:block/uplander_stone_bricks"
+    "adjust=out": {
+      "model": "$modid:block/boss_control_out"
+    },
+    "adjust=in": {
+      "model": "$modid:block/boss_control_in"
     }
   }
 }
