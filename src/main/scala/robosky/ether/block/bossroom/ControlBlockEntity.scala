@@ -223,18 +223,18 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
       case NONE => bounds
       case COUNTERCLOCKWISE_90 => bounds.copy(
         minX = bounds.minZ,
-        minZ = -bounds.minX + 1,
+        minZ = -bounds.maxX + 1,
         maxX = bounds.maxZ,
-        maxZ = -bounds.maxX + 1)
+        maxZ = -bounds.minX + 1)
       case CLOCKWISE_180 => bounds.copy(
-        minX = -bounds.minX + 1,
-        minZ = -bounds.minZ + 1,
-        maxX = -bounds.maxX + 1,
-        maxZ = -bounds.maxZ + 1)
+        minX = -bounds.maxX + 1,
+        minZ = -bounds.maxZ + 1,
+        maxX = -bounds.minX + 1,
+        maxZ = -bounds.minZ + 1)
       case CLOCKWISE_90 => bounds.copy(
-        minX = -bounds.minZ + 1,
+        minX = -bounds.maxZ + 1,
         minZ = bounds.minX,
-        maxX = -bounds.maxZ + 1,
+        maxX = -bounds.minZ + 1,
         maxZ = bounds.maxX)
     }
   }
