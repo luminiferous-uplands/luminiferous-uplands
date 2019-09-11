@@ -106,6 +106,7 @@ object MegadungeonGenerator {
     ("megadungeon/alcove", 1, true),
     ("megadungeon/spawner_room", 1, true),
     ("megadungeon/trap", 1, true),
+    ("megadungeon/boss_room", 1, true),
     ("megadungeon/dead_end", 1, true))
 
   def initialize(): Unit = {}

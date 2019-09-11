@@ -124,7 +124,7 @@ public class MegadungeonPoolGenerator {
                             break;
                         }
                         if (element1 instanceof UplanderPoolElement && ((UplanderPoolElement) element1).getName().equals(requiredRoom)) {
-                            if (requiredRoomAdded) break;
+                            if (requiredRoomAdded) continue;
                             else requiredRoomAdded = true;
                         }
 
