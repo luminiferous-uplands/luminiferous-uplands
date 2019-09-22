@@ -1,5 +1,6 @@
 package robosky.ether.mixin;
 
+import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,8 +14,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import robosky.ether.TickableItem;
-import robosky.ether.world.WorldRegistry;
+import robosky.ether.UplandsTeleporter;
 import robosky.ether.iface.UplanderBeaconUser;
+import robosky.ether.world.WorldRegistry;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerMixin extends LivingEntity implements UplanderBeaconUser {
@@ -58,13 +60,17 @@ public abstract class PlayerMixin extends LivingEntity implements UplanderBeacon
     @Inject(method = "tickMovement", at = @At("TAIL"))
     private void onTickMovement(CallbackInfo info) {
         if (this.dimension == WorldRegistry.UPLANDS_DIMENSION() && this.y <= -60) {
-            changeDimension(DimensionType.OVERWORLD);
+            FabricDimensions.teleport(this, DimensionType.OVERWORLD, UplandsTeleporter.FromUplands$.MODULE$);
         } else if (this.dimension == DimensionType.OVERWORLD && this.y >= 300.0) {
-            changeDimension(WorldRegistry.UPLANDS_DIMENSION());
+            if (uplands_isUsingBeacon()) {
+                FabricDimensions.teleport(this, WorldRegistry.UPLANDS_DIMENSION(), UplandsTeleporter.ToUplandsBeacon$.MODULE$);
+            } else {
+                FabricDimensions.teleport(this, WorldRegistry.UPLANDS_DIMENSION(), UplandsTeleporter.ToUplandsFlying$.MODULE$);
+            }
         }
         if (uplands_isUsingBeacon()) {
             Vec3d vel = this.getVelocity();
-            if(vel.y < 0.1) {
+            if (vel.y < 0.1) {
                 uplands_setUsingBeacon(false);
             } else {
                 this.setVelocity(vel.x, VERTICAL_SPEED, vel.z);
