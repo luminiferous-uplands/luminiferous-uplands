@@ -45,6 +45,6 @@
     "fabric": "*",
     "fabric-language-scala": "*",
     "libgui": "*",
-    "extrapieces": ">=2.5.3"
+    "extrapieces": ">=2.8.3"
   }
 }
