@@ -20,5 +20,5 @@ class CloudDaisiesBlock (val settings: Block.Settings) extends FlowerBlock(Statu
         blockState_1.matches(BlockTags.DIRT_LIKE);
 
     override def getOutlineShape(blockState_1: BlockState, blockView_1: BlockView, blockPos_1: BlockPos,
-                                 entityContext_1: EntityContext): VoxelShape = EtherSaplingBlock.SHAPE
+                                 entityContext_1: EntityContext): VoxelShape = CloudDaisiesBlock.SHAPE
 }
