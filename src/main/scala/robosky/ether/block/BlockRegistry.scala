@@ -108,6 +108,17 @@ object BlockRegistry {
           .breakByTool(FabricToolTags.PICKAXES, 2)
           .build()))
 
+    val AZOTE_MUSHROOM: AzoteMushroomBlock = register("azote_mushroom")(new AzoteMushroomBlock(
+        FabricBlockSettings.of(Material.ORGANIC)
+          .sounds(BlockSoundGroup.NETHER_WART)
+          .breakInstantly()
+          .collidable(false)
+          .ticksRandomly()
+          .build()))
+
+    val POTTED_AZOTE_MUSHROOM: Block = Registry.register(Registry.BLOCK, UplandsMod :/ "potted_azote_mushroom",
+        new FlowerPotBlock(AZOTE_MUSHROOM, FabricBlockSettings.of(Material.PART).breakInstantly().build()))
+
     def init(): Unit = {}
 
     def register[B <: Block](name: String, item: Boolean = true, itemGroup: ItemGroup = UplandsMod.GROUP)(b: B): B = {
