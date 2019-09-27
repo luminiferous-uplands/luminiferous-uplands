@@ -14,8 +14,9 @@ object EtherOreFeatureConfig {
     val size = dyn.get("size").asInt(0)
     val min = dyn.get("min").asInt(0)
     val max = dyn.get("max").asInt(0)
-    val state = dyn.get("state") map[BlockState]
-      { d => BlockState.deserialize(d) } orElse { Blocks.AIR.getDefaultState }
+    val state = dyn.get("state") map[BlockState] { d => BlockState.deserialize(d) } orElse {
+      Blocks.AIR.getDefaultState
+    }
     new EtherOreFeatureConfig(size, min, max, state)
   }
 
@@ -24,10 +25,10 @@ object EtherOreFeatureConfig {
 }
 
 case class EtherOreFeatureConfig(
-    size: Int,
-    minHeight: Int,
-    maxHeight: Int,
-    state: BlockState) extends FeatureConfig {
+  size: Int,
+  minHeight: Int,
+  maxHeight: Int,
+  state: BlockState) extends FeatureConfig {
 
   override def serialize[T](ops: DynamicOps[T]): Dynamic[T] = {
     return new Dynamic(ops, ops.createMap(ImmutableMap.of(

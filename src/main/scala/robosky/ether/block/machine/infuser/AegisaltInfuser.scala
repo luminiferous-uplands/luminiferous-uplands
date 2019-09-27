@@ -161,8 +161,8 @@ class AegisaltInfuser extends BaseMachineBlockEntity(MachineRegistry.aegisaltInf
   }
 
   override def fromClientTag(tag: CompoundTag): Unit = {
-    recipe = if (tag.getBoolean("HasRecipe"))
-      Some(world.getRecipeManager.get(new Identifier(tag.getString("recipe"))).get().asInstanceOf[AegisaltRecipe])
+    recipe = if (tag.containsKey("Recipe"))
+      Some(world.getRecipeManager.get(new Identifier(tag.getString("Recipe"))).get().asInstanceOf[AegisaltRecipe])
     else
       None
 
@@ -174,7 +174,6 @@ class AegisaltInfuser extends BaseMachineBlockEntity(MachineRegistry.aegisaltInf
   }
 
   override def toClientTag(tag: CompoundTag): CompoundTag = {
-    tag.putBoolean("HasRecipe", recipe.nonEmpty)
     recipe.foreach(r => tag.putString("Recipe", r.getId.toString))
     inputStacks.zipWithIndex.foreach { case (s, i) => tag.put(s"InputStack$i", s.toTag(new CompoundTag)) }
     tag.put("OutputStack", outputStack.toTag(new CompoundTag))

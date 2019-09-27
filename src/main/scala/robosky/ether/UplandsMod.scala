@@ -26,7 +26,6 @@ object UplandsMod extends ModInitializer {
     WorldRegistry.init()
     MachineRegistry.init()
     RecipeRegistry.init()
-    MixinHack.HOOKS = MixinHackHooksImpl
   }
 
   def :/(name: String) = new Identifier("luminiferous_uplands", name)

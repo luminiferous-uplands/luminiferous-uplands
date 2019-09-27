@@ -4,7 +4,6 @@ import net.fabricmc.fabric.api.block.FabricBlockSettings
 import net.fabricmc.fabric.api.tools.FabricToolTags
 import net.minecraft.block.{Block, BlockState, Material}
 import net.minecraft.entity.EntityContext
-import net.minecraft.entity.effect.{StatusEffect, StatusEffectInstance, StatusEffects}
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.util.Hand
 import net.minecraft.util.hit.BlockHitResult
@@ -13,7 +12,6 @@ import net.minecraft.util.shape.VoxelShape
 import net.minecraft.world.dimension.DimensionType
 import net.minecraft.world.{BlockView, World}
 import robosky.ether.iface.UplanderBeaconUser
-import robosky.ether.world.WorldRegistry
 
 object EtherBeaconBlock extends Block(FabricBlockSettings.of(Material.STONE).strength(3, 3)
   .breakByTool(FabricToolTags.PICKAXES, 2).build()) {

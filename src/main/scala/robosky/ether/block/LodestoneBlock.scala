@@ -23,9 +23,9 @@ class LodestoneBlock(settings: Block.Settings) extends Block(settings) {
   }
 
   override def onScheduledTick(state: BlockState, world: World, pos: BlockPos, rand: Random): Unit = {
-    if(!world.isClient) {
-      if(state.get(DISTANCE) == 4) {
-        if(FallingBlock.canFallThrough(world.getBlockState(pos.down)) && pos.getY >= 0) {
+    if (!world.isClient) {
+      if (state.get(DISTANCE) == 4) {
+        if (FallingBlock.canFallThrough(world.getBlockState(pos.down)) && pos.getY >= 0) {
           val fallingEntity = new FallingBlockEntity(
             world,
             pos.getX + 0.5,
@@ -43,28 +43,28 @@ class LodestoneBlock(settings: Block.Settings) extends Block(settings) {
     this.getDefaultState.`with`(DISTANCE, Int.box(updatedDistance(ctx.getWorld, ctx.getBlockPos)))
 
   override def onBlockAdded(state: BlockState, world: World, pos: BlockPos, previous: BlockState,
-      idk: Boolean): Unit = {
+    idk: Boolean): Unit = {
     world.getBlockTickScheduler.schedule(pos, this, 1)
   }
 
   override def getStateForNeighborUpdate(
-      state: BlockState,
-      dir: Direction,
-      neighbor: BlockState,
-      world: IWorld,
-      pos: BlockPos,
-      neighborPos: BlockPos): BlockState =
+    state: BlockState,
+    dir: Direction,
+    neighbor: BlockState,
+    world: IWorld,
+    pos: BlockPos,
+    neighborPos: BlockPos): BlockState =
     state.`with`(DISTANCE, Int.box(updatedDistance(world, pos)))
 
   override def neighborUpdate(state: BlockState, world: World, pos: BlockPos, neighbor: Block,
-      neighborPos: BlockPos, idk: Boolean): Unit = {
+    neighborPos: BlockPos, idk: Boolean): Unit = {
     world.getBlockTickScheduler.schedule(pos, this, 1)
   }
 
   private def updatedDistance(world: BlockView, pos: BlockPos): Int = {
-    for { dir <- Direction.values } yield {
+    for {dir <- Direction.values} yield {
       val neighbor = world.getBlockState(pos.offset(dir))
-      if(dir == Direction.DOWN) {
+      if (dir == Direction.DOWN) {
         // is supported from below?
         if (neighbor.getBlock == this) Int.unbox(neighbor.get(DISTANCE))
         else if (!FallingBlock.canFallThrough(neighbor)) 0
@@ -73,10 +73,10 @@ class LodestoneBlock(settings: Block.Settings) extends Block(settings) {
         // is supported by a like block
         if (neighbor.getBlock == this) neighbor.get(DISTANCE) + 1
         // is supported by a solid wall, or ceiling
-        else if(this.isFullOpaque(neighbor, world, pos.offset(dir))) 1
+        else if (this.isFullOpaque(neighbor, world, pos.offset(dir))) 1
         // unsupported from this side
         else 4
       }
     }
-  }.min
+    }.min
 }

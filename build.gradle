@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'scala'
-    id 'fabric-loom' version '0.2.4-SNAPSHOT'
+    id 'fabric-loom' version '0.2.5-SNAPSHOT'
 //    id "com.github.johnrengelman.shadow" version "5.1.0"
 //    id "com.matthewprenger.cursegradle" version "1.3.0"
 }
@@ -11,6 +11,9 @@ version project.mod_version
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
+
+sourceSets.main.scala.srcDir "src/main/java"
+sourceSets.main.java.srcDirs = []
 
 minecraft {
 }
@@ -32,8 +35,8 @@ dependencies {
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    modCompile "net.fabricmc:fabric-language-scala:${project.scala_adapter_version}"
-    include "net.fabricmc:fabric-language-scala:${project.scala_adapter_version}"
+    modCompile "fabric-language-scala:fabric-language-scala:${project.scala_adapter_version}:fat@jar"
+    include "fabric-language-scala:fabric-language-scala:${project.scala_adapter_version}:fat@jar"
     compile "org.scala-lang:scala-library:${project.scala_version}"
     compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
     modRuntime("com.jamieswhiteshirt:developer-mode:1.0.14") {
@@ -41,7 +44,7 @@ dependencies {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
         exclude group: 'net.minecraft'
     }
-    modCompile("me.shedaniel:RoughlyEnoughItems:2.9.7+build.143") {
+    modCompile("me.shedaniel:RoughlyEnoughItems:3.1.3+build.15") {
         exclude group: 'net.fabricmc.fabric-api'
         exclude group: 'net.fabricmc', module: 'fabric-loader'
         exclude group: 'net.minecraft'

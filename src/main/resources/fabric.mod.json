@@ -20,13 +20,18 @@
         "value": "robosky.ether.UplandsMod"
       }
     ],
-    "rei_plugins": [
+    "client": [
+      {
+        "adapter": "scala",
+        "value": "robosky.ether.UplandsModClient"
+      }
+    ],
+    "rei_plugins_v0": [
       "robosky.ether.interop.EtherREIPlugin"
     ]
   },
   "mixins": [
     "luminiferous_uplands.mixins.json",
-    "dimension_fixes.mixins.json",
     {
       "config": "luminiferous_uplands.client-mixins.json",
       "environment": "client"

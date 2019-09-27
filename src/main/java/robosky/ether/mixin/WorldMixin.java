@@ -9,8 +9,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import robosky.ether.MixinHack;
+import robosky.ether.world.WorldRegistry;
 
 @Mixin(World.class)
 public abstract class WorldMixin {
@@ -22,7 +21,7 @@ public abstract class WorldMixin {
      */
     @Inject(method = "getRainGradient", at = @At("HEAD"), cancellable = true)
     private void onRainGradient(CallbackInfoReturnable<Float> info) {
-        if(this.dimension.getType() == MixinHack.HOOKS.getDimensionType()) {
+        if (this.dimension.getType() == WorldRegistry.UPLANDS_DIMENSION()) {
             info.setReturnValue(0.0f);
         }
     }

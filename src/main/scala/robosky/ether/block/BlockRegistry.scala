@@ -25,11 +25,11 @@ object BlockRegistry {
     val UPLANDER_STONE_BRICKS: Block = register("uplander_stone_bricks")(new Block(UPLANDER_STONE_SETTINGS))
 
     val ETHER_ORES: Map[EtherOreBlock.EtherOreType, EtherOreBlock] = EtherOreBlock.oreTypes.map(t => t ->
-        register(s"${t.name}_ore")(new EtherOreBlock(t))).toMap
+      register(s"${t.name}_ore")(new EtherOreBlock(t))).toMap
 
     val skyroot: Block.Settings = FabricBlockSettings.of(Material.WOOD, MaterialColor.BROWN)
-        .strength(2.0F, 2.0F).sounds(BlockSoundGroup.WOOD)
-        .breakByTool(FabricToolTags.AXES, -1).build
+      .strength(2.0F, 2.0F).sounds(BlockSoundGroup.WOOD)
+      .breakByTool(FabricToolTags.AXES, -1).build
 
     val SKYROOT_LOG: LogBlock = register("skyroot_log")(new LogBlock(MaterialColor.WOOD, skyroot))
     FuelRegistry.INSTANCE.add(SKYROOT_LOG, 300)
@@ -52,10 +52,10 @@ object BlockRegistry {
         new FlowerPotBlock(SKYROOT_SAPLING, FabricBlockSettings.of(Material.PART).breakInstantly().build()))
 
     val skyrootLeavesSettings: Block.Settings = FabricBlockSettings
-        .of(Material.LEAVES)
-        .strength(0.2F, 0.2F)
-        .ticksRandomly
-        .sounds(BlockSoundGroup.GRASS).build()
+      .of(Material.LEAVES)
+      .strength(0.2F, 0.2F)
+      .ticksRandomly
+      .sounds(BlockSoundGroup.GRASS).build()
 
     val RED_SKYROOT_LEAVES: LeavesBlock = register("red_skyroot_leaves")(new LeavesBlock(skyrootLeavesSettings))
     CompostingChanceRegistry.INSTANCE.add(RED_SKYROOT_LEAVES, 0.30f)
@@ -102,11 +102,11 @@ object BlockRegistry {
             .build()))
 
     val LODESTONE: LodestoneBlock = register("lodestone")(new LodestoneBlock(
-      FabricBlockSettings.of(Material.STONE)
-        .sounds(BlockSoundGroup.STONE)
-        .strength(6.0F, 8.0F)
-        .breakByTool(FabricToolTags.PICKAXES, 2)
-        .build()))
+        FabricBlockSettings.of(Material.STONE)
+          .sounds(BlockSoundGroup.STONE)
+          .strength(6.0F, 8.0F)
+          .breakByTool(FabricToolTags.PICKAXES, 2)
+          .build()))
 
     def init(): Unit = {}
 
