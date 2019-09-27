@@ -13,6 +13,13 @@
         "extrapieces:fence",
         "extrapieces:fence_gate"
       ]
+    },
+    "uplander_stone_bricks": {
+      "base": "$modid:uplander_stone_bricks",
+      "exclude": [
+        "extrapieces:fence",
+        "extrapieces:fence_gate"
+      ]
     }
   }
 }
