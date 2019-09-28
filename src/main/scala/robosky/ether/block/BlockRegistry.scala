@@ -76,7 +76,8 @@ object BlockRegistry {
     val CLOUD_DAISIES: FlowerBlock = register("cloud_daisies")(new CloudDaisiesBlock(FLOWER_SETTINGS))
     CompostingChanceRegistry.INSTANCE.add(CLOUD_DAISIES, 0.65f)
     FlammableBlockRegistry.getDefaultInstance.add(CLOUD_DAISIES, 100, 30)
-    val POTTED_CLOUD_DAISIES: Block = Registry.register(Registry.BLOCK, UplandsMod :/ "potted_cloud_daisies",
+
+    val POTTED_CLOUD_DAISIES: FlowerPotBlock = register("potted_cloud_daisies", false)(
         new FlowerPotBlock(CLOUD_DAISIES, FabricBlockSettings.of(Material.PART).breakInstantly().build()))
 
     val farmlandSettings: Block.Settings = FabricBlockSettings.of(Material.EARTH)
@@ -92,8 +93,11 @@ object BlockRegistry {
         .sounds(BlockSoundGroup.GRASS)
         .build()
 
-    val ZEPHYR_ONION_CROP_BLOCK: Block = Registry.register(Registry.BLOCK, UplandsMod :/ "zephyr_onion_crop", new ZephyrOnionBlock(CROP_SETTINGS))
-    val WATER_CHESTNUT_CROP_BLOCK: Block = Registry.register(Registry.BLOCK, UplandsMod :/ "water_chestnut_crop", new WaterChestnutBlock(
+    val ZEPHYR_ONION_CROP_BLOCK: ZephyrOnionBlock = register("zephyr_onion_crop", false)(
+      new ZephyrOnionBlock(CROP_SETTINGS))
+
+    val WATER_CHESTNUT_CROP_BLOCK: WaterChestnutBlock = register("water_chestnut_crop", false)(
+      new WaterChestnutBlock(
         FabricBlockSettings.of(Material.PLANT)
             .breakInstantly()
             .noCollision()
@@ -116,8 +120,22 @@ object BlockRegistry {
           .ticksRandomly()
           .build()))
 
-    val POTTED_AZOTE_MUSHROOM: Block = Registry.register(Registry.BLOCK, UplandsMod :/ "potted_azote_mushroom",
+    val POTTED_AZOTE_MUSHROOM: FlowerPotBlock = register("potted_azote_mushroom", false)(
         new FlowerPotBlock(AZOTE_MUSHROOM, FabricBlockSettings.of(Material.PART).breakInstantly().build()))
+
+    val AWOKEN_AZOTE_MUSHROOM: AwokenAzoteMushroomBlock = register("awoken_azote_mushroom")(
+      new AwokenAzoteMushroomBlock(
+      FabricBlockSettings.of(Material.ORGANIC)
+        .sounds(BlockSoundGroup.NETHER_WART)
+        .breakInstantly()
+        .collidable(false)
+        .lightLevel(15)
+        .build()
+    ))
+
+    val POTTED_AWOKEN_AZOTE_MUSHROOM: FlowerPotBlock = register("potted_awoken_azote_mushroom", false)(
+      new FlowerPotBlock(AWOKEN_AZOTE_MUSHROOM, FabricBlockSettings.of(Material.PART).lightLevel(15).breakInstantly().build())
+    )
 
     def init(): Unit = {}
 
