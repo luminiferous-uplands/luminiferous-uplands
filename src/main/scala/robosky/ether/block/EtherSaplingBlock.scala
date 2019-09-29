@@ -10,7 +10,7 @@ import net.minecraft.tag.BlockTags
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.shape.VoxelShape
 import net.minecraft.world.{BlockView, IWorld, World}
-import robosky.ether.world.feature.trees.EtherSaplingGenerator
+import robosky.ether.world.feature.plants.EtherSaplingGenerator
 
 object EtherSaplingBlock {
   val STAGE: IntProperty = Properties.STAGE

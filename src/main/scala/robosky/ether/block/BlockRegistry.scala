@@ -9,7 +9,7 @@ import net.minecraft.item.{BlockItem, Item, ItemGroup}
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.registry.Registry
 import robosky.ether.{HoeHacks, UplandsMod}
-import robosky.ether.world.feature.trees.EtherSaplingGenerator
+import robosky.ether.world.feature.plants.EtherSaplingGenerator
 
 object BlockRegistry {
     val UPLANDER_GRASS: Block = register("uplander_grass")(EtherGrassBlock)

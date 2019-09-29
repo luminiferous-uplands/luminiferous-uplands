@@ -9,7 +9,7 @@ import net.minecraft.util.registry.Registry
 import net.minecraft.world.gen.feature.{DefaultFeatureConfig, Feature, LakeFeatureConfig}
 import robosky.ether.UplandsMod
 import robosky.ether.world.feature.minidungeons.{MinidungeonFeature, MinidungeonFeatureConfig}
-import robosky.ether.world.feature.trees.SkyrootTreeFeature
+import robosky.ether.world.feature.plants.SkyrootTreeFeature
 
 object FeatureRegistry {
   val oreFeature: EtherOreFeature.type = register("oregen", EtherOreFeature)

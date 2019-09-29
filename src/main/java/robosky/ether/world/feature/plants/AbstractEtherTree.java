@@ -1,4 +1,4 @@
-package robosky.ether.world.feature.trees;
+package robosky.ether.world.feature.plants;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;

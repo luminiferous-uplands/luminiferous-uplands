@@ -1,4 +1,4 @@
-package robosky.ether.world.feature.trees;
+package robosky.ether.world.feature.plants;
 
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.BlockState;
