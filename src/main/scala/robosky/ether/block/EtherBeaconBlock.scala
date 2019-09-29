@@ -65,7 +65,7 @@ object EtherBeaconBlock extends Block(FabricBlockSettings.of(Material.STONE).str
   override def randomDisplayTick(blockState_1: BlockState, world_1: World, blockPos_1: BlockPos, random_1: Random): Unit = {
     if (blockState_1.get(SMOKING).asInstanceOf[Boolean]) {
       val baseX = blockPos_1.getX.toDouble + 0.5D
-      val baseY = blockPos_1.getY.toDouble + 0.5D
+      val baseY = blockPos_1.getY.toDouble + 0.7D
       val baseZ = blockPos_1.getZ.toDouble + 0.5D
 
       world_1.addParticle(ParticleTypes.SMOKE, baseX, baseY, baseZ, 0.0D, 0.0D, 0.0D)
