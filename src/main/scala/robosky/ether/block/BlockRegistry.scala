@@ -77,7 +77,7 @@ object BlockRegistry {
     CompostingChanceRegistry.INSTANCE.add(CLOUD_DAISIES, 0.65f)
     FlammableBlockRegistry.getDefaultInstance.add(CLOUD_DAISIES, 100, 30)
 
-    val POTTED_CLOUD_DAISIES: FlowerPotBlock = register("potted_cloud_daisies", false)(
+    val POTTED_CLOUD_DAISIES: FlowerPotBlock = register("potted_cloud_daisies", item = false)(
         new FlowerPotBlock(CLOUD_DAISIES, FabricBlockSettings.of(Material.PART).breakInstantly().build()))
 
     val farmlandSettings: Block.Settings = FabricBlockSettings.of(Material.EARTH)
