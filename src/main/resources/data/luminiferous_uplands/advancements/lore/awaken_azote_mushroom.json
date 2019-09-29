@@ -1,0 +1,35 @@
+{
+  "parent": "$modid:lore/enter_with_beacon",
+  "display": {
+    "icon": {
+      "item": "$modid:awoken_azote_mushroom"
+    },
+    "title": {
+      "translate": "advancements.luminiferous_uplands.lore.awaken_azote_mushroom"
+    },
+    "description": {
+      "translate": "advancements.luminiferous_uplands.lore.awaken_azote_mushroom.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "infuser": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "$modid:awoken_azote_mushroom"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "infuser"
+    ]
+  ]
+}

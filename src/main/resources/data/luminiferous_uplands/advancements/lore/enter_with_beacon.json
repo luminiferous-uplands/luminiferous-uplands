@@ -1,5 +1,5 @@
 {
-  "parent": "$modid:lore/enter_skylands",
+  "parent": "$modid:lore/create_beacon",
   "display": {
     "icon": {
       "item": "minecraft:campfire"
@@ -29,7 +29,9 @@
   ],
   "rewards": {
     "recipes": [
-      "$modid:aegisalt_infuser"
+      "$modid:aegisalt_infuser",
+      "$modid:awoken_azote_mushroom",
+      "$modid:awoken_azote_mushroom_from_campfire_cooking"
     ]
   }
 }
