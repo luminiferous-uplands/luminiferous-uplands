@@ -59,10 +59,10 @@ public class SkyrootTreeFeature extends AbstractEtherTree<DefaultFeatureConfig> 
         // The number of mushrooms around the base, from 0 to 2
         int numberOfMushrooms;
         float randomMushrooms = rand.nextFloat();
-        if (randomMushrooms < 0.6) {
+        if (randomMushrooms < 0.7) {
             numberOfMushrooms = 0;
         } else {
-            if (randomMushrooms < 0.72) {
+            if (randomMushrooms < 0.78) {
                 numberOfMushrooms = 2;
             } else {
                 numberOfMushrooms = 1;
