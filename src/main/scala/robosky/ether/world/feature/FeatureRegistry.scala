@@ -19,7 +19,7 @@ object FeatureRegistry {
   val skyLakeFeature: SkyLakeFeature = register("sky_lake", new SkyLakeFeature((t: Dynamic[_]) =>
     LakeFeatureConfig.deserialize(t)))
 
-  val waterChestnutFeature: WaterChestnutFeature = register("water_chestnuts", new WaterChestnutFeature((t: Dynamic[_]) => WaterChestnutFeature.deserialize(t)))
+  val waterChestnutFeature: WaterChestnutFeature = register("water_chestnuts", new WaterChestnutFeature((t: Dynamic[_]) => DefaultFeatureConfig.deserialize(t)))
 
   val treehouseFeature: MinidungeonFeature = new MinidungeonFeature(MinidungeonFeatureConfig("Uplands Treehouse",
     UplandsMod :/ "minidungeons/treehouse", Optional.of(UplandsMod :/ "chests/minidungeons/treehouse")))
