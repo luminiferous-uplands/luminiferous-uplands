@@ -23,7 +23,7 @@ import net.minecraft.world.{BlockView, ViewableWorld, World}
 import robosky.ether.iface.UplanderBeaconUser
 
 object EtherBeaconBlock extends Block(FabricBlockSettings.of(Material.STONE).strength(3, 3)
-  .breakByTool(FabricToolTags.PICKAXES, 2).build()) {
+  .breakByTool(FabricToolTags.PICKAXES, 2).ticksRandomly().build()) {
   def SMOKING: BooleanProperty = BooleanProperty.of("smoking")
 
   setDefaultState(getStateFactory.getDefaultState.`with`(SMOKING,JBoolean.FALSE))
@@ -55,14 +55,14 @@ object EtherBeaconBlock extends Block(FabricBlockSettings.of(Material.STONE).str
     builder.add(SMOKING)
   }
 
-  @Environment(EnvType.SERVER)
   override def onScheduledTick(blockstate: BlockState, world: World, blockPos: BlockPos, random: Random): Unit = {
-    if (blockstate.get(SMOKING).booleanValue()) {
+    if (!world.isClient && blockstate.get(SMOKING).booleanValue()) {
       world.setBlockState(blockPos, blockstate.`with`(SMOKING, JBoolean.FALSE))
     }
   }
 
-  @Environment(EnvType.CLIENT) override def randomDisplayTick(blockState_1: BlockState, world_1: World, blockPos_1: BlockPos, random_1: Random): Unit = {
+  @Environment(EnvType.CLIENT)
+  override def randomDisplayTick(blockState_1: BlockState, world_1: World, blockPos_1: BlockPos, random_1: Random): Unit = {
     if (blockState_1.get(SMOKING).asInstanceOf[Boolean]) {
       val baseX = blockPos_1.getX.toDouble + 0.5D
       val baseY = blockPos_1.getY.toDouble + 0.5D
