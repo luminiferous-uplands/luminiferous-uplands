@@ -15,13 +15,11 @@ import robosky.ether.item.ItemRegistry
 
 import scala.collection.JavaConverters._
 
-case class AegisaltRecipeDisplay(recipe: AegisaltRecipe) extends RecipeDisplay[AegisaltRecipe] {
+case class AegisaltRecipeDisplay(recipe: AegisaltRecipe) extends RecipeDisplay {
   private val fuel: util.ArrayList[ItemStack] = Lists.newArrayList(new ItemStack(ItemRegistry.AEGISALT_CRYSTAL))
   private val input: util.List[util.List[ItemStack]] = Lists.newArrayList(recipe.ingredients
     .map(_.getStackArray.toList.asJava).asJava)
   input.add(fuel)
-
-  override def getRecipe: Optional[_ <: Recipe[_ <: Inventory]] = Optional.of(recipe)
 
   def getFuel: util.List[ItemStack] = fuel
 
