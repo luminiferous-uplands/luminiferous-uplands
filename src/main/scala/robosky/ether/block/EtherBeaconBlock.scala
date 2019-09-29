@@ -41,7 +41,7 @@ object EtherBeaconBlock extends Block(FabricBlockSettings.of(Material.STONE).str
       if (state.get(SMOKING).booleanValue()) {
         return false
       }
-      
+
       world.setBlockState(pos, BlockRegistry.UPLANDER_BEACON.getDefaultState.`with`(SMOKING, JBoolean.TRUE))
       world.getBlockTickScheduler.schedule(pos, this, this.getTickRate(world))
       world.playSound(player, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.3f, 0.6f)
