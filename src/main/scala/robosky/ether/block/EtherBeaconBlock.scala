@@ -1,6 +1,7 @@
 package robosky.ether.block
 
 import java.util.Random
+import java.lang.{Boolean => JBoolean}
 
 import net.fabricmc.api.{EnvType, Environment}
 import net.fabricmc.fabric.api.block.FabricBlockSettings
@@ -25,7 +26,7 @@ object EtherBeaconBlock extends Block(FabricBlockSettings.of(Material.STONE).str
   .breakByTool(FabricToolTags.PICKAXES, 2).build()) {
   def SMOKING: BooleanProperty = BooleanProperty.of("smoking")
 
-  setDefaultState(getStateFactory.getDefaultState.`with`(SMOKING,false))
+  setDefaultState(getStateFactory.getDefaultState.`with`(SMOKING,JBoolean.FALSE))
 
   override def getOutlineShape(blockState_1: BlockState, blockView_1: BlockView, blockPos_1: BlockPos,
     entityContext_1: EntityContext): VoxelShape =
@@ -37,8 +38,12 @@ object EtherBeaconBlock extends Block(FabricBlockSettings.of(Material.STONE).str
       player.asInstanceOf[UplanderBeaconUser].uplands_setUsingBeacon(true)
       true
     } else {
-      world.setBlockState(pos, BlockRegistry.UPLANDER_BEACON.getDefaultState.`with`(SMOKING, true))
-      world.getBlockTickScheduler.schedule(pos, this, getTickRate(world))
+      if (state.get(SMOKING).booleanValue()) {
+        return false
+      }
+      
+      world.setBlockState(pos, BlockRegistry.UPLANDER_BEACON.getDefaultState.`with`(SMOKING, JBoolean.TRUE))
+      world.getBlockTickScheduler.schedule(pos, this, this.getTickRate(world))
       world.playSound(player, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.3f, 0.6f)
       true
     }
@@ -53,14 +58,14 @@ object EtherBeaconBlock extends Block(FabricBlockSettings.of(Material.STONE).str
   @Environment(EnvType.SERVER)
   override def onScheduledTick(blockstate: BlockState, world: World, blockPos: BlockPos, random: Random): Unit = {
     if (blockstate.get(SMOKING).booleanValue()) {
-      world.setBlockState(blockPos, blockstate.`with`(SMOKING, false))
+      world.setBlockState(blockPos, blockstate.`with`(SMOKING, JBoolean.FALSE))
     }
   }
 
   @Environment(EnvType.CLIENT) override def randomDisplayTick(blockState_1: BlockState, world_1: World, blockPos_1: BlockPos, random_1: Random): Unit = {
     if (blockState_1.get(SMOKING).asInstanceOf[Boolean]) {
       val baseX = blockPos_1.getX.toDouble + 0.5D
-      val baseY = blockPos_1.getY.toDouble
+      val baseY = blockPos_1.getY.toDouble + 0.5D
       val baseZ = blockPos_1.getZ.toDouble + 0.5D
 
       world_1.addParticle(ParticleTypes.SMOKE, baseX, baseY, baseZ, 0.0D, 0.0D, 0.0D)
