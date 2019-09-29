@@ -56,6 +56,19 @@ public class SkyrootTreeFeature extends AbstractEtherTree<DefaultFeatureConfig> 
         // The number of segments this tree will generate with, from 1 to 5.
         int numberOfSegments = (rand.nextInt(4) + 1);
 
+        // The number of mushrooms around the base, from 0 to 2
+        int numberOfMushrooms;
+        float randomMushrooms = rand.nextFloat();
+        if (randomMushrooms < 0.6) {
+            numberOfMushrooms = 0;
+        } else {
+            if (randomMushrooms < 0.72) {
+                numberOfMushrooms = 2;
+            } else {
+                numberOfMushrooms = 1;
+            }
+        }
+
         // The height of the individual segments.
         int[] segmentHeights = new int[numberOfSegments];
 
@@ -96,6 +109,20 @@ public class SkyrootTreeFeature extends AbstractEtherTree<DefaultFeatureConfig> 
 
         // currentPos will represent the current trunk log being placed.
         BlockPos currentPos = startPos;
+
+        // mushrooms yo
+        for (int i = 0; i < numberOfMushrooms; i++) {
+            Direction mushroomPlacement = Direction.fromHorizontal(rand.nextInt());
+            BlockPos mushroomLocation = currentPos.add(mushroomPlacement.getVector());
+
+            if (canPlaceBlock(world, mushroomLocation)) {
+                if (!canPlaceBlock(world, mushroomLocation.down())) {
+                    setBlockState(set, world, mushroomLocation, BlockRegistry.AZOTE_MUSHROOM().getDefaultState(), bbox);
+                }
+            }
+        }
+
+        //Start on the tree
 
         // For every segment,
         for (int i = 0; i <= numberOfSegments - 1; i++) {
