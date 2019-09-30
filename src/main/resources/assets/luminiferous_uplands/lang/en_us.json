@@ -31,6 +31,8 @@
   "block.luminiferous_uplands.aegisalt_infuser": "Aegisalt Infuser",
   "block.luminiferous_uplands.boss_control": "Boss Control Block",
   "block.luminiferous_uplands.boss_doorway": "Boss Doorway",
+  "block.luminiferous_uplands.megadungeon_alter": "Alter of the Megaduneoner",
+  "block.luminiferous_uplands.active_megadungeon_alter": "Active Alter of the Megadungeoner",
 
   "advancements.luminiferous_uplands.lore.root": "The Luminiferous Uplands",
   "advancements.luminiferous_uplands.lore.root.description": "What could be up there?",

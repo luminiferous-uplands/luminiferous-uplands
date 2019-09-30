@@ -9,9 +9,11 @@ import net.minecraft.world.World
 
 import org.apache.logging.log4j.{Logger, LogManager}
 
-import robosky.ether.block.{BlockRegistry, unbreakable}
+import robosky.ether.block.BlockRegistry
+import robosky.ether.block.unbreakable.Unbreakable
 
-class ActiveAlterBlock extends unbreakable.Block(BlockRegistry.BOSS_ALTER) {
+class ActiveAlterBlock(val base: Block)
+    extends AlterBlock(Block.Settings.copy(base)) with Unbreakable {
 
   private val logger: Logger = LogManager.getLogger
 
