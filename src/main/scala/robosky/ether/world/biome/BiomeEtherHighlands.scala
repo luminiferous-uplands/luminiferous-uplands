@@ -6,7 +6,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.Biome.Category
 import net.minecraft.world.gen.GenerationStep
-import net.minecraft.world.gen.decorator.{ChanceDecoratorConfig, CountExtraChanceDecoratorConfig, Decorator, LakeDecoratorConfig, NoiseHeightmapDecoratorConfig, RangeDecoratorConfig}
+import net.minecraft.world.gen.decorator.{ChanceDecoratorConfig, CountDecoratorConfig, CountExtraChanceDecoratorConfig, Decorator, LakeDecoratorConfig, NoiseHeightmapDecoratorConfig, RangeDecoratorConfig}
 import net.minecraft.world.gen.feature._
 import net.minecraft.world.gen.surfacebuilder.SurfaceConfig
 import robosky.ether.block.{BlockRegistry, EtherOreBlock}
@@ -47,6 +47,12 @@ object BiomeEtherHighlands
 
   addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Biome.configureFeature(FeatureRegistry.uplandFlowerFeature,
     FeatureConfig.DEFAULT, Decorator.NOISE_HEIGHTMAP_32, new NoiseHeightmapDecoratorConfig(-0.8D, 15, 4)))
+
+  addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Biome.configureFeature(FeatureRegistry.tallUplandsGrassFeature,
+    new GrassFeatureConfig(BlockRegistry.TALL_UPLANDS_GRASS.getDefaultState), Decorator.COUNT_HEIGHTMAP_DOUBLE, new CountDecoratorConfig(2)))
+
+  addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Biome.configureFeature(FeatureRegistry.zephyrOnionFeature,
+    FeatureConfig.DEFAULT, Decorator.NOISE_HEIGHTMAP_32, new NoiseHeightmapDecoratorConfig(-0.5D, 8, 6)))
 
   addFeature(GenerationStep.Feature.LOCAL_MODIFICATIONS, Biome.configureFeature(FeatureRegistry.skyLakeFeature,
     new LakeFeatureConfig(Blocks.WATER.getDefaultState), Decorator.WATER_LAKE, new LakeDecoratorConfig(8)))

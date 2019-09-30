@@ -16,6 +16,11 @@ object BlockRegistry {
     val UPLANDER_DIRT: Block = register("uplander_dirt")(new Block(FabricBlockSettings.of(Material.EARTH)
         .strength(0.5f, 0.5f).sounds(BlockSoundGroup.GRAVEL).build()))
 
+    val TALL_UPLANDS_GRASS: FernBlock = register("tall_uplands_grass")(new TallUplandsGrassBlock(FabricBlockSettings.of(
+        Material.REPLACEABLE_PLANT).breakInstantly().noCollision().sounds(BlockSoundGroup.GRASS).build()))
+    FlammableBlockRegistry.getDefaultInstance.add(TALL_UPLANDS_GRASS, 5, 5)
+    CompostingChanceRegistry.INSTANCE.add(TALL_UPLANDS_GRASS, 0.3f)
+
     val UPLANDER_STONE_SETTINGS: Block.Settings = FabricBlockSettings.of(Material.STONE)
         .strength(1.5f, 6f).sounds(BlockSoundGroup.STONE)
         .breakByTool(FabricToolTags.PICKAXES, 1).build
