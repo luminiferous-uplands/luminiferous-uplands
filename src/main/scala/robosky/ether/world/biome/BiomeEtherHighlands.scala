@@ -52,7 +52,7 @@ object BiomeEtherHighlands
     new GrassFeatureConfig(BlockRegistry.TALL_UPLANDS_GRASS.getDefaultState), Decorator.COUNT_HEIGHTMAP_DOUBLE, new CountDecoratorConfig(2)))
 
   addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Biome.configureFeature(FeatureRegistry.zephyrOnionFeature,
-    FeatureConfig.DEFAULT, Decorator.NOISE_HEIGHTMAP_32, new NoiseHeightmapDecoratorConfig(-0.5D, 8, 6)))
+    FeatureConfig.DEFAULT, Decorator.COUNT_HEIGHTMAP_32, new CountDecoratorConfig(3)))
 
   addFeature(GenerationStep.Feature.LOCAL_MODIFICATIONS, Biome.configureFeature(FeatureRegistry.skyLakeFeature,
     new LakeFeatureConfig(Blocks.WATER.getDefaultState), Decorator.WATER_LAKE, new LakeDecoratorConfig(8)))
