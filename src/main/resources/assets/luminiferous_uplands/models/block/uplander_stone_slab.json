@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab",
-    "textures": {
-        "bottom": "$modid:block/uplander_stone",
-        "top": "$modid:block/uplander_stone",
-        "side": "$modid:block/uplander_stone"
-    }
-}

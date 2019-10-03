@@ -16,13 +16,13 @@ object EtherGrassBlock extends Block(FabricBlockSettings.of(Material.ORGANIC).ti
   override def onScheduledTick(state: BlockState, world: World, pos: BlockPos, rand: Random): Unit = {
     if (!world.isClient)
       if (!canSurvive(state, world, pos))
-        world.setBlockState(pos, BlockRegistry.ETHER_DIRT.getDefaultState)
+        world.setBlockState(pos, BlockRegistry.UPLANDER_DIRT.getDefaultState)
       else if (world.getLightLevel(pos.up) >= 4)
         if (world.getLightLevel(pos.up) >= 9) {
           for (_ <- 0 until 4) {
             val blockPos_2 = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3,
               rand.nextInt(3) - 1)
-            if ((world.getBlockState(blockPos_2).getBlock == BlockRegistry.ETHER_DIRT) && canSpread(getDefaultState,
+            if ((world.getBlockState(blockPos_2).getBlock == BlockRegistry.UPLANDER_DIRT) && canSpread(getDefaultState,
               world, blockPos_2))
               world.setBlockState(blockPos_2, getDefaultState)
           }

@@ -3,11 +3,11 @@
   "pattern": [
     "GGG",
     "SRS",
-    "SRS"
+    "SSS"
   ],
   "key": {
     "G": {
-      "item": "$modid:skyroot_slab"
+      "item": "extrapieces:skyroot_slab"
     },
     "R": {
       "item": "$modid:aegisalt_crystal"

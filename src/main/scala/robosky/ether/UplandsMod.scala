@@ -15,7 +15,7 @@ object UplandsMod extends ModInitializer {
 
   val GROUP: ItemGroup = FabricItemGroupBuilder
     .create(this :/ "general")
-    .icon(() => new ItemStack(BlockRegistry.ETHER_GRASS))
+    .icon(() => new ItemStack(BlockRegistry.UPLANDER_GRASS))
     .build()
 
   override def onInitialize(): Unit = {

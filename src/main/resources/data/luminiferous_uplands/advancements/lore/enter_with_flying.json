@@ -1,5 +1,5 @@
 {
-  "parent": "$modid:lore/infuse_slowfall_charm",
+  "parent": "$modid:lore/enter_with_beacon",
   "display": {
     "icon": {
       "item": "minecraft:elytra"
@@ -10,7 +10,7 @@
     "description": {
       "translate": "advancements.luminiferous_uplands.lore.enter_with_flying.description"
     },
-    "frame": "task",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false

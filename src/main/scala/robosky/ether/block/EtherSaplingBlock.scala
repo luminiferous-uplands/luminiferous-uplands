@@ -6,10 +6,11 @@ import net.minecraft.block.{Block, BlockState, Fertilizable, PlantBlock}
 import net.minecraft.entity.EntityContext
 import net.minecraft.state.StateFactory
 import net.minecraft.state.property.{IntProperty, Properties}
+import net.minecraft.tag.BlockTags
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.shape.VoxelShape
 import net.minecraft.world.{BlockView, IWorld, World}
-import robosky.ether.world.feature.trees.EtherSaplingGenerator
+import robosky.ether.world.feature.plants.EtherSaplingGenerator
 
 object EtherSaplingBlock {
   val STAGE: IntProperty = Properties.STAGE
@@ -22,7 +23,7 @@ class EtherSaplingBlock(val generator: EtherSaplingGenerator, val settings: Bloc
   this.setDefaultState(this.stateFactory.getDefaultState.`with`[Integer, Integer](EtherSaplingBlock.STAGE, 0))
 
   override def canPlantOnTop(blockState_1: BlockState, blockView_1: BlockView, blockPos_1: BlockPos): Boolean =
-    blockState_1.getBlock == BlockRegistry.ETHER_DIRT || blockState_1.getBlock == BlockRegistry.ETHER_GRASS
+    blockState_1.matches(BlockTags.DIRT_LIKE);
 
   override def getOutlineShape(blockState_1: BlockState, blockView_1: BlockView, blockPos_1: BlockPos,
     entityContext_1: EntityContext): VoxelShape = EtherSaplingBlock.SHAPE

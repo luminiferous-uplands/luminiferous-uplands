@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "RSR",
+    "SSS"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:ender_pearl"
+    },
+    "R": {
+      "item": "minecraft:feather"
+    },
+    "S": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result": {
+    "item": "$modid:uplander_beacon",
+    "count": 1
+  }
+}

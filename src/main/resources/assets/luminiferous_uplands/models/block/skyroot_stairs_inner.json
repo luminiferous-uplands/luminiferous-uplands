@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "$modid:block/skyroot_planks",
-    "top": "$modid:block/skyroot_planks",
-    "side": "$modid:block/skyroot_planks"
-  }
-}
