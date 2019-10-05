@@ -63,6 +63,7 @@ public class MegadungeonPoolGenerator {
         }
 
         private void doAddPieces(Identifier start, BlockPos pos) {
+            // decide on a starting piece
             StructurePool pool = StructurePoolBasedGenerator.REGISTRY.get(start);
             StructurePoolElement element = pool.getRandomElement(random);
             BlockRotation rotation = (element instanceof UplanderPoolElement && ((UplanderPoolElement) element)
@@ -74,6 +75,7 @@ public class MegadungeonPoolGenerator {
             int midZ = generator.method_20402(midX, midY, Heightmap.Type.WORLD_SURFACE_WG);
             piece.translate(0, midZ - (piece.getBoundingBox().minY + piece.getGroundLevelDelta()), 0);
             pieces.add(piece);
+            // branch out from the starting piece (recursively)
             if (maxRooms > 0) {
                 Box box = new Box(midX - 80, midZ - 80, midY - 80, midX + 80 + 1, midZ + 80 + 1, midY + 80 + 1);
                 this.entryQueue.addLast(new Entry(piece, new AtomicReference<>(VoxelShapes
@@ -88,6 +90,10 @@ public class MegadungeonPoolGenerator {
             }
         }
 
+        /**
+         * If the given piece has any junctions, attempts to add additional
+         * pieces to the piece queue.
+         */
         private void propagateEntry(PoolStructurePiece piece, AtomicReference<VoxelShape> shape, int int_1, int roomIndex) {
             AtomicReference<VoxelShape> shape1 = new AtomicReference<>();
             MutableIntBoundingBox bbox = piece.getBoundingBox();
@@ -112,26 +118,34 @@ public class MegadungeonPoolGenerator {
                     }
 
                     List<StructurePoolElement> elements = Lists.newArrayList();
+                    // add pieces from the pool we want to consider for generation
+                    // only add termination pieces if the boss room is fully processed
                     if (roomIndex != this.maxRooms || (requiredRoom != null && !requiredRoomAdded)) {
                         elements.addAll(mainPool.getElementIndicesInRandomOrder(this.random));
                     }
                     elements.addAll(terminatorPool.getElementIndicesInRandomOrder(this.random));
-
+                    // whether all this looping has actually added a piece yet
                     boolean added = false;
                     for (StructurePoolElement element1 : elements) {
+                        // only add one piece
                         if (added) break;
+                        // don't process the empty pool
                         if (element1 == EmptyPoolElement.INSTANCE) {
                             break;
                         }
-                        if (element1 instanceof UplanderPoolElement && ((UplanderPoolElement) element1).getName().equals(requiredRoom)) {
-                            if (requiredRoomAdded) continue;
-                            else requiredRoomAdded = true;
+                        boolean finalRoom =
+                            element1 instanceof UplanderPoolElement && ((UplanderPoolElement) element1).getName().equals(requiredRoom);
+                        // don't add more than one boss room
+                        if (finalRoom && requiredRoomAdded) {
+                            continue;
                         }
 
+                        // whether this piece can connect to its neighbors
                         boolean noJunction = false;
                         List<BlockRotation> rotations = (element1 instanceof UplanderPoolElement && ((UplanderPoolElement) element1)
                                 .disableRotation()) ? ImmutableList.of(BlockRotation.NONE) : BlockRotation.randomRotationOrder(this.random);
                         for (BlockRotation rotation : rotations) {
+                            // get a list of potential pieces of the given rotation
                             List<Structure.StructureBlockInfo> infos = element1.getStructureBlockInfos(this.manager, BlockPos.ORIGIN, rotation, this.random);
                             int maxElementHeight = element1.getBoundingBox(this.manager, BlockPos.ORIGIN, rotation).getBlockCountY() > 16 ? 0 :
                                     infos.stream().mapToInt((info1) -> {
@@ -153,6 +167,8 @@ public class MegadungeonPoolGenerator {
                             MutableIntBoundingBox bbox2 = null;
                             BlockPos pos = null;
                             int height;
+                            // determine if a structure can generate and set the
+                            // positions/dimensions to the appropriate values
                             do {
                                 Optional<Structure.StructureBlockInfo> first = infos.stream().filter(i -> JigsawBlock
                                         .attachmentMatches(info, i)).findFirst();
@@ -161,6 +177,8 @@ public class MegadungeonPoolGenerator {
                                     break;
                                 }
                                 Structure.StructureBlockInfo info2 = first.get();
+                                // remove the s tructure from future consideration
+                                // in future iterations of this do-while
                                 infos.remove(info2);
 
                                 BlockPos pos1 = new BlockPos(info.pos.offset(direction_1).getX() - info2.pos.getX(),
@@ -177,11 +195,12 @@ public class MegadungeonPoolGenerator {
                                 }
                             } while (VoxelShapes.matchesAnywhere(shape4.get(), VoxelShapes.cuboid(Box.from(bbox2).contract(0.25D)),
                                     BooleanBiFunction.ONLY_SECOND));
+                            // don't add the piece if there is no possible connection
                             if (noJunction) break;
 
                             shape4.set(VoxelShapes.combine(shape4.get(), VoxelShapes.cuboid(Box.from(bbox2)), BooleanBiFunction.ONLY_FIRST));
                             height = piece.getGroundLevelDelta();
-
+                            // get the piece to generate
                             PoolStructurePiece piece1 = this.pieceFactory.create(this.manager, element1, pos,
                                     height - relativeY, rotation, bbox2);
 
@@ -191,10 +210,15 @@ public class MegadungeonPoolGenerator {
                             piece1.addJunction(new JigsawJunction(info.pos.getX(), bbox.minY + info.pos.getY() -
                                     bbox.minY - y + height - relativeY, info.pos.getZ(), -relativeY, StructurePool.Projection.RIGID));
                             this.pieces.add(piece1);
+                            // add the new piece for recursive consideration if we should generate more
                             if (roomIndex + 1 <= this.maxRooms || (requiredRoom != null && !requiredRoomAdded)) {
                                 this.entryQueue.addLast(new Entry(piece1, shape4, minY, roomIndex + 1));
                             }
+                            // break the outer while, since we have added a piece
                             added = true;
+                            if (finalRoom) {
+                                requiredRoomAdded = true;
+                            }
                             break;
                         }
                     }
@@ -205,6 +229,9 @@ public class MegadungeonPoolGenerator {
         }
     }
 
+    /**
+     * Stores a PoolStructurePiece for potential recursive child generation.
+     */
     private static final class Entry {
         private final PoolStructurePiece piece;
         private final AtomicReference<VoxelShape> shape;
