@@ -6,12 +6,12 @@ import net.minecraft.world.World
 import net.minecraft.world.biome.source.BiomeSource
 import net.minecraft.world.dimension.DimensionType
 import net.minecraft.world.gen.chunk.{ChunkGenerator, ChunkGeneratorConfig, ChunkGeneratorType}
-import robosky.uplands.world.gen.{EtherChunkGenConfig, EtherChunkGenerator}
+import robosky.uplands.world.gen.{EtherChunkGenConfig, UplandsChunkGenerator}
 import robosky.uplands.{UplandsMod, UplandsTeleporter}
 
 object WorldRegistry {
-  val ETHER_CHUNK_GENERATOR: ChunkGeneratorType[EtherChunkGenConfig.type, EtherChunkGenerator] =
-    registerChunkGeneratorType(UplandsMod :/ "uplands_chunk_generator", new EtherChunkGenerator(_, _),
+  val ETHER_CHUNK_GENERATOR: ChunkGeneratorType[EtherChunkGenConfig.type, UplandsChunkGenerator] =
+    registerChunkGeneratorType(UplandsMod :/ "uplands_chunk_generator", new UplandsChunkGenerator(_, _),
       () => EtherChunkGenConfig, appearsOnBuffet = false)
 
   val UPLANDS_DIMENSION: FabricDimensionType = FabricDimensionType.builder()

@@ -12,7 +12,7 @@ import net.minecraft.world.gen.surfacebuilder.SurfaceConfig
 import robosky.uplands.block.{BlockRegistry, UplandsOreBlock}
 import robosky.uplands.world.biome.BiomeEtherHighlandsConfig._
 import robosky.uplands.world.feature.{UplandsOreFeatureConfig, FeatureRegistry}
-import robosky.uplands.world.gen.EtherHighlandsSurfaceBuilder
+import robosky.uplands.world.gen.UplandsHighlandsSurfaceBuilder
 
 object BiomeEtherHighlandsConfig {
 
@@ -24,7 +24,7 @@ object BiomeEtherHighlandsConfig {
       BlockRegistry.UPLANDER_DIRT.getDefaultState
   }
 
-  val ETHER_HIGHLANDS_SURFACE_BUILDER = new EtherHighlandsSurfaceBuilder()
+  val ETHER_HIGHLANDS_SURFACE_BUILDER = new UplandsHighlandsSurfaceBuilder()
 }
 
 object BiomeUplandsHighlands
