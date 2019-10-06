@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "robosky.ether.mixin",
+  "package": "robosky.uplands.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "CriterionsMixin",
