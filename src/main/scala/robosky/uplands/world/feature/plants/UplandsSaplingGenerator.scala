@@ -24,7 +24,7 @@ abstract class UplandsSaplingGenerator {
     }
   }
 
-  @Nullable protected def createTreeFeature(var1: Random): AbstractEtherTree[DefaultFeatureConfig]
+  @Nullable protected def createTreeFeature(var1: Random): AbstractUplandsTree[DefaultFeatureConfig]
 }
 
 object UplandsSaplingGenerator {

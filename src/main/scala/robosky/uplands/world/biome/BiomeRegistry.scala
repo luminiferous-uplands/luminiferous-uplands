@@ -5,7 +5,7 @@ import net.minecraft.world.biome.Biome
 import robosky.uplands.UplandsMod
 
 object BiomeRegistry {
-  val ETHER_HIGHLANDS_BIOME: BiomeUplandsHighlands.type = register("uplands_highlands")(BiomeUplandsHighlands)
+  val UPLANDS_HIGHLANDS_BIOME: UplandsAutumnBiome.type = register("uplands_autumn")(UplandsAutumnBiome)
 
   def init(): Unit = {}
 

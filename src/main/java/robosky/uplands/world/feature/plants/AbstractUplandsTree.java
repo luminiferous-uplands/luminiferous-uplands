@@ -30,8 +30,8 @@ import java.util.Random;
 import java.util.Set;
 import java.util.function.Function;
 
-public abstract class AbstractEtherTree<T extends FeatureConfig> extends Feature<T> {
-    AbstractEtherTree(Function<Dynamic<?>, ? extends T> function_1, boolean boolean_1) {
+public abstract class AbstractUplandsTree<T extends FeatureConfig> extends Feature<T> {
+    AbstractUplandsTree(Function<Dynamic<?>, ? extends T> function_1, boolean boolean_1) {
         super(function_1, boolean_1);
     }
 

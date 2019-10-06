@@ -14,7 +14,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.function.Function;
 
-public class SkyrootTreeFeature extends AbstractEtherTree<DefaultFeatureConfig> {
+public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig> {
     private final int height;
     private final BlockState log;
     private final BlockState wood;

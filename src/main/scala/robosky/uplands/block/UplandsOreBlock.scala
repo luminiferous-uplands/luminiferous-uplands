@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.util.math.{BlockPos, MathHelper}
 import net.minecraft.world.World
 
-class UplandsOreBlock(oreType: UplandsOreBlock.EtherOreType) extends Block(oreType.blockSettings) {
+class UplandsOreBlock(oreType: UplandsOreBlock.UplandsOreType) extends Block(oreType.blockSettings) {
   override def onStacksDropped(state: BlockState, world: World, pos: BlockPos, stack: ItemStack): Unit =
     if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) == 0) {
       val xp = this.getExperienceWhenMined(world.random)
@@ -21,13 +21,13 @@ class UplandsOreBlock(oreType: UplandsOreBlock.EtherOreType) extends Block(oreTy
 }
 
 object UplandsOreBlock {
-  val oreTypes: IndexedSeq[EtherOreType] = IndexedSeq(OreTypeAegisalt)
+  val oreTypes: IndexedSeq[UplandsOreType] = IndexedSeq(OreTypeAegisalt)
 
-  sealed abstract class EtherOreType(val name: String, val xp: Range) {
+  sealed abstract class UplandsOreType(val name: String, val xp: Range) {
     val blockSettings: Block.Settings
   }
 
-  case object OreTypeAegisalt extends EtherOreType("aegisalt", 2 to 5) {
+  case object OreTypeAegisalt extends UplandsOreType("aegisalt", 2 to 5) {
     override val blockSettings: Block.Settings = FabricBlockSettings.of(Material.STONE)
       .strength(3.0F, 3.0F).breakByTool(FabricToolTags.PICKAXES, 2).build()
   }

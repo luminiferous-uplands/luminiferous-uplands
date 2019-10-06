@@ -7,15 +7,15 @@ import net.minecraft.world.biome.source.BiomeSourceType
 import net.minecraft.world.dimension.{Dimension, DimensionType}
 import net.minecraft.world.gen.chunk.ChunkGenerator
 import robosky.uplands.world.biome.BiomeRegistry
-import robosky.uplands.world.gen.EtherChunkGenConfig
+import robosky.uplands.world.gen.UplandsChunkGenConfig
 
 class UplandsDimension(world: World, dimensionType: DimensionType) extends Dimension(world, dimensionType) {
   override val getForcedSpawnPoint: BlockPos = new BlockPos(0, 130, 0)
   private val colorsSunriseSunset = new Array[Float](4)
 
-  override def createChunkGenerator(): ChunkGenerator[_] = WorldRegistry.ETHER_CHUNK_GENERATOR.create(world,
-    BiomeSourceType.FIXED.applyConfig(BiomeSourceType.FIXED.getConfig.setBiome(BiomeRegistry.ETHER_HIGHLANDS_BIOME)),
-    EtherChunkGenConfig)
+  override def createChunkGenerator(): ChunkGenerator[_] = WorldRegistry.UPLANDS_CHUNK_GENERATOR.create(world,
+    BiomeSourceType.FIXED.applyConfig(BiomeSourceType.FIXED.getConfig.setBiome(BiomeRegistry.UPLANDS_HIGHLANDS_BIOME)),
+    UplandsChunkGenConfig)
 
   override def getSpawningBlockInChunk(chunkPos: ChunkPos, b: Boolean): BlockPos = null
 

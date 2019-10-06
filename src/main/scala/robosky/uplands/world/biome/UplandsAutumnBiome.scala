@@ -10,13 +10,13 @@ import net.minecraft.world.gen.decorator.{ChanceDecoratorConfig, CountDecoratorC
 import net.minecraft.world.gen.feature._
 import net.minecraft.world.gen.surfacebuilder.SurfaceConfig
 import robosky.uplands.block.{BlockRegistry, UplandsOreBlock}
-import robosky.uplands.world.biome.BiomeEtherHighlandsConfig._
+import robosky.uplands.world.biome.UplandsAutumnBiomeConfig._
 import robosky.uplands.world.feature.{UplandsOreFeatureConfig, FeatureRegistry}
-import robosky.uplands.world.gen.UplandsHighlandsSurfaceBuilder
+import robosky.uplands.world.gen.UplandsAutumnSurfaceBuilder
 
-object BiomeEtherHighlandsConfig {
+object UplandsAutumnBiomeConfig {
 
-  val ETHER_GRASS_DIRT_STONE_SURFACE: SurfaceConfig = new SurfaceConfig {
+  val UPLANDS_GRASS_DIRT_STONE_SURFACE: SurfaceConfig = new SurfaceConfig {
     override def getTopMaterial: BlockState =
       BlockRegistry.UPLANDER_GRASS.getDefaultState
 
@@ -24,17 +24,17 @@ object BiomeEtherHighlandsConfig {
       BlockRegistry.UPLANDER_DIRT.getDefaultState
   }
 
-  val ETHER_HIGHLANDS_SURFACE_BUILDER = new UplandsHighlandsSurfaceBuilder()
+  val UPLANDS_AUTUMN_SURFACE_BUILDER = new UplandsAutumnSurfaceBuilder()
 }
 
-object BiomeUplandsHighlands
-  extends Biome(new Biome.Settings().configureSurfaceBuilder(ETHER_HIGHLANDS_SURFACE_BUILDER,
-    ETHER_GRASS_DIRT_STONE_SURFACE).precipitation(Biome.Precipitation.NONE).category(Category.FOREST)
+object UplandsAutumnBiome
+  extends Biome(new Biome.Settings().configureSurfaceBuilder(UPLANDS_AUTUMN_SURFACE_BUILDER,
+    UPLANDS_GRASS_DIRT_STONE_SURFACE).precipitation(Biome.Precipitation.NONE).category(Category.FOREST)
     .depth(0.3F).scale(0.2F).temperature(0.5F).downfall(0.0F)
     .waterColor(0x9898BC).waterFogColor(0x9898BC).category(Biome.Category.FOREST)) {
 
   addFeature(GenerationStep.Feature.UNDERGROUND_ORES, Biome.configureFeature(FeatureRegistry.oreFeature,
-    UplandsOreFeatureConfig(9, 1, 128, BlockRegistry.ETHER_ORES(UplandsOreBlock.OreTypeAegisalt)),
+    UplandsOreFeatureConfig(9, 1, 128, BlockRegistry.UPLANDS_ORES(UplandsOreBlock.OreTypeAegisalt)),
     Decorator.COUNT_RANGE, new RangeDecoratorConfig(1, 0, 0, 256)))
   addFeature(GenerationStep.Feature.UNDERGROUND_ORES, Biome.configureFeature(FeatureRegistry.oreFeature,
     UplandsOreFeatureConfig(20, 1, 64, BlockRegistry.LODESTONE),

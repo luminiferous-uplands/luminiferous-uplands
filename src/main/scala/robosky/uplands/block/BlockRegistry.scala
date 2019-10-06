@@ -29,7 +29,7 @@ object BlockRegistry {
 
     val UPLANDER_STONE_BRICKS: Block = register("uplander_stone_bricks")(new Block(UPLANDER_STONE_SETTINGS))
 
-    val ETHER_ORES: Map[UplandsOreBlock.EtherOreType, UplandsOreBlock] = UplandsOreBlock.oreTypes.map(t => t ->
+    val UPLANDS_ORES: Map[UplandsOreBlock.UplandsOreType, UplandsOreBlock] = UplandsOreBlock.oreTypes.map(t => t ->
       register(s"${t.name}_ore")(new UplandsOreBlock(t))).toMap
 
     val skyroot: Block.Settings = FabricBlockSettings.of(Material.WOOD, MaterialColor.BROWN)

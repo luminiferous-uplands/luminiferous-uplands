@@ -9,7 +9,7 @@ import net.minecraft.world.chunk.Chunk
 import net.minecraft.world.gen.surfacebuilder.{SurfaceBuilder, SurfaceConfig}
 import robosky.uplands.block.BlockRegistry
 
-class UplandsHighlandsSurfaceBuilder extends SurfaceBuilder[SurfaceConfig](null) {
+class UplandsAutumnSurfaceBuilder extends SurfaceBuilder[SurfaceConfig](null) {
   def generate(rand: Random, chunk: Chunk, biome: Biome, absX: Int, absZ: Int, startHeight: Int, noise: Double,
     defaultBlock: BlockState, defaultFluid: BlockState, seaLevel: Int, seed: Long, config: SurfaceConfig): Unit = {
     var topBlock = BlockRegistry.UPLANDER_GRASS.getDefaultState

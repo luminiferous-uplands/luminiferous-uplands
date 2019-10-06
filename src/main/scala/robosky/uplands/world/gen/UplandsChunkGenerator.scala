@@ -10,8 +10,8 @@ import net.minecraft.world.chunk.Chunk
 import net.minecraft.world.gen.chunk.SurfaceChunkGenerator
 
 class UplandsChunkGenerator(world: World, biomeSource: BiomeSource)
-  extends SurfaceChunkGenerator[EtherChunkGenConfig.type](world, biomeSource, 4, 8, 128,
-    EtherChunkGenConfig, true) {
+  extends SurfaceChunkGenerator[UplandsChunkGenConfig.type](world, biomeSource, 4, 8, 128,
+    UplandsChunkGenConfig, true) {
   private val BIOME_WEIGHT_TABLE = SystemUtil.consume(
     new Array[Float](25),
     (values: Array[Float]) =>
