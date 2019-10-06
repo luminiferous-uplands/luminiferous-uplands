@@ -32,4 +32,6 @@ object UplandsMod extends ModInitializer {
   }
 
   def :/(name: String) = new Identifier("luminiferous_uplands", name)
+
+  def id(name: String) = this :/ name
 }

@@ -32,35 +32,6 @@ object MegadungeonGenerator {
       manager, startPos, pieces, random, UplandsMod :/ "megadungeon/boss_room")
   }
 
-  case class MetadataCapableSinglePoolElement(name: String, rotateable: Boolean) extends SinglePoolElement((UplandsMod :/ name).toString, ImmutableList.of(), Projection.RIGID)
-    with UplanderPoolElement {
-
-    // Metadata shenanigans so your data structure blocks do something!
-    // The if statement in this method is probably unneeded based on the implementations of the methods that call this,
-    // but I included it for safety
-    override def method_16756(world: IWorld, info: Structure.StructureBlockInfo, pos: BlockPos, rotation: BlockRotation,
-      rand: Random, bbox: MutableIntBoundingBox): Unit =
-      if (info.tag != null && StructureBlockMode.valueOf(info.tag.getString("mode")) == StructureBlockMode.DATA)
-        handleMetadata(info.tag.getString("metadata"), info.pos, world, rand, bbox)
-
-    override protected def method_16616(rot: BlockRotation, bbox: MutableIntBoundingBox): StructurePlacementData = {
-      val data = new StructurePlacementData
-      data.setBoundingBox(bbox)
-      data.setRotation(rot)
-      data.method_15131(true)
-      data.setIgnoreEntities(false)
-      //      data.addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS)
-      data.addProcessor(JigsawReplacementStructureProcessor.INSTANCE)
-      this.processors.forEach(p => data.addProcessor(p))
-      this.getProjection.getProcessors.forEach(p => data.addProcessor(p))
-      data
-    }
-
-    override def getName: Identifier = location
-
-    override def disableRotation: Boolean = !rotateable
-  }
-
   private val blockStateParser: BlockStateArgumentType = BlockStateArgumentType.blockState()
 
   def handleMetadata(str: String, pos: BlockPos, world: IWorld, rand: Random, bbox: MutableIntBoundingBox): Unit = {
@@ -91,7 +62,7 @@ object MegadungeonGenerator {
 
   private def registerPool(name: String, pieces: (String, Int, Boolean)*): Unit = {
     val array: Array[Pair[StructurePoolElement, Integer]] = pieces.map { case (s, i, b) =>
-      Pair.of(MetadataCapableSinglePoolElement(s, b).asInstanceOf[StructurePoolElement], Int.box(i)) }.toArray
+      Pair.of(new MetadataCapableSinglePoolElement(s, b).asInstanceOf[StructurePoolElement], Int.box(i)) }.toArray
     StructurePoolBasedGenerator.REGISTRY.add(new StructurePool(UplandsMod :/ name, new Identifier("minecraft", "empty"),
       ImmutableList.copyOf(array), Projection.RIGID))
   }
