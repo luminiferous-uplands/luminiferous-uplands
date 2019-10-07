@@ -1,11 +1,10 @@
 package robosky.ether.block.bossroom
 
 import java.util.UUID
-import java.util.stream.Collectors.toList
 
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable
 
-import net.minecraft.block.Blocks
+import net.minecraft.block.{Blocks, BlockState}
 import net.minecraft.block.entity.{BlockEntity, BlockEntityType}
 import net.minecraft.entity.{Entity, EntityType, SpawnType}
 import net.minecraft.entity.player.PlayerEntity
@@ -18,7 +17,7 @@ import net.minecraft.world.World
 
 import org.apache.logging.log4j.{Logger, LogManager}
 
-import robosky.ether.UplandsMod
+import robosky.ether.block
 import robosky.ether.block.BlockRegistry
 import robosky.ether.block.unbreakable.Unbreakable
 import robosky.ether.util.IntBox
@@ -83,6 +82,8 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
   @transient
   private var bossEntity: Option[Entity] = None
 
+  var replacement: BlockState = Blocks.AIR.getDefaultState
+
   def adjustBounds(dir: Direction, blocks: Int): Unit = {
     dir match {
       case Direction.DOWN =>
@@ -129,7 +130,7 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
    * Spawns the boss at the specified BlockPos.
    */
   def activateBoss(spawn: BlockPos): Unit = {
-    if (!this.world.isClient) {
+    if (!this.world.isClient && !bossUuid.isDefined) {
       for {
         pos <- bossRoomPositions
         state = this.world.getBlockState(pos)
@@ -182,6 +183,7 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
           case _ =>
         }
       }
+      this.world.setBlockState(this.pos, replacement)
       logger.info("Detected boss defeat")
     }
   }
@@ -252,6 +254,7 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
         tag.putLong("BossUUIDMost", uuid.getMostSignificantBits)
         tag.putLong("BossUUIDLeast", uuid.getLeastSignificantBits)
     }
+    tag.putString("Replacement", block.stringifyState(replacement))
     tag
   }
 
@@ -279,5 +282,6 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
       else
         None
     }
+    replacement = block.parseState(tag.getString("Replacement"))
   }
 }
