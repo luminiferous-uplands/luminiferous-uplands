@@ -17,17 +17,17 @@
     "main": [
       {
         "adapter": "scala",
-        "value": "robosky.ether.UplandsMod"
+        "value": "robosky.uplands.UplandsMod"
       }
     ],
     "client": [
       {
         "adapter": "scala",
-        "value": "robosky.ether.UplandsModClient"
+        "value": "robosky.uplands.UplandsModClient"
       }
     ],
     "rei_plugins_v0": [
-      "robosky.ether.interop.EtherREIPlugin"
+      "robosky.uplands.interop.UplandsREIPlugin"
     ]
   },
   "mixins": [
