@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "$modid:block/tall_uplands_grass"
+  }
+}

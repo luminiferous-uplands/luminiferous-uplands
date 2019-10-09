@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "$modid:zephyr_onion"
+  },
+  "result": "$modid:roasted_zephyr_onion",
+  "experience": 0.35,
+  "cookingtime": 200
+}

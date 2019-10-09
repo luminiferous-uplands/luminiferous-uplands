@@ -1,0 +1,6 @@
+{
+  "parent": "block/crop",
+  "textures": {
+    "crop": "$modid:block/zephyr_onion_crop_stage1"
+  }
+}
