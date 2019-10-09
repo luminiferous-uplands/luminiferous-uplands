@@ -58,7 +58,6 @@ dependencies {
         exclude group: 'io.github.prospector'
     }
     include "io.github.cottonmc:LibGui:1.2.3"
-    modCompile "extra-pieces:extrapieces:${project.extra_pieces_version}"
     modCompile "artificemc:artifice:${project.artifice_version}"
 }
 
