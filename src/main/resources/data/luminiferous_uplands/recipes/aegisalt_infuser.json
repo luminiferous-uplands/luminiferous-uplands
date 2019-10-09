@@ -7,7 +7,7 @@
   ],
   "key": {
     "G": {
-      "item": "extrapieces:skyroot_slab"
+      "item": "$modid:skyroot_slab"
     },
     "R": {
       "item": "$modid:aegisalt_crystal"

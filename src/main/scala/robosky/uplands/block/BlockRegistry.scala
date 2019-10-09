@@ -26,8 +26,14 @@ object BlockRegistry {
         .breakByTool(FabricToolTags.PICKAXES, 1).build
 
     val UPLANDER_STONE: Block = register("uplander_stone")(new Block(UPLANDER_STONE_SETTINGS))
+    val UPLANDER_STONE_STAIRS: StairsBlock = register("uplander_stone_stairs")(new ModStairsBlock(UPLANDER_STONE, UPLANDER_STONE_SETTINGS))
+    val UPLANDER_STONE_SLAB: SlabBlock = register("uplander_stone_slab")(new SlabBlock(UPLANDER_STONE_SETTINGS))
+    val UPLANDER_STONE_WALL: WallBlock = register("uplander_stone_wall")(new WallBlock(UPLANDER_STONE_SETTINGS))
 
     val UPLANDER_STONE_BRICKS: Block = register("uplander_stone_bricks")(new Block(UPLANDER_STONE_SETTINGS))
+    val UPLANDER_STONE_BRICK_STAIRS: StairsBlock = register("uplander_stone_brick_stairs")(new ModStairsBlock(UPLANDER_STONE_BRICKS, UPLANDER_STONE_SETTINGS))
+    val UPLANDER_STONE_BRICK_SLAB: SlabBlock = register("uplander_stone_brick_slab")(new SlabBlock(UPLANDER_STONE_SETTINGS))
+    val UPLANDER_STONE_BRICK_WALL: WallBlock = register("uplander_stone_brick_wall")(new WallBlock(UPLANDER_STONE_SETTINGS))
 
     val UPLANDS_ORES: Map[UplandsOreBlock.UplandsOreType, UplandsOreBlock] = UplandsOreBlock.oreTypes.map(t => t ->
       register(s"${t.name}_ore")(new UplandsOreBlock(t))).toMap
@@ -44,9 +50,29 @@ object BlockRegistry {
     FuelRegistry.INSTANCE.add(SKYROOT_WOOD, 300)
     FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_WOOD, 5, 5)
 
+    //val SKYROOT_DOOR: DoorBlock = register("skyroot_door")(new DoorBlock(skyroot))
+    //val SKYROOT_TRAPDOOR: TrapdoorBlock = register("skyroot_trapdoor")(new TrapdoorBlock(skyroot))
+    //val SKYROOT_BUTTON: WoodButtonBlock = register("skyroot_button")(new WoodButtonBlock(skyroot))
+
     val SKYROOT_PLANKS: Block = register("skyroot_planks")(new Block(skyroot))
     FuelRegistry.INSTANCE.add(SKYROOT_PLANKS, 300)
     FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_PLANKS, 20, 5)
+
+    val SKYROOT_SLAB: SlabBlock = register("skyroot_slab")(new SlabBlock(skyroot))
+    FuelRegistry.INSTANCE.add(SKYROOT_SLAB, 150)
+    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_SLAB, 20, 5)
+
+    val SKYROOT_STAIRS: StairsBlock = register("skyroot_stairs")(new ModStairsBlock(SKYROOT_PLANKS, skyroot))
+    FuelRegistry.INSTANCE.add(SKYROOT_STAIRS, 300)
+    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_STAIRS, 20, 5)
+
+    val SKYROOT_FENCE: FenceBlock = register("skyroot_fence")(new FenceBlock(skyroot))
+    FuelRegistry.INSTANCE.add(SKYROOT_FENCE, 300)
+    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_FENCE, 20, 5)
+
+    val SKYROOT_FENCE_GATE: FenceGateBlock = register("skyroot_fence_gate")(new FenceGateBlock(skyroot))
+    FuelRegistry.INSTANCE.add(SKYROOT_FENCE_GATE, 300)
+    FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_FENCE_GATE, 20, 5)
 
     val SKYROOT_SAPLING: UplandsSaplingBlock = register("skyroot_sapling")(new UplandsSaplingBlock(
         UplandsSaplingGenerator.SkyrootSaplingGenerator, FabricBlockSettings.of(Material.PLANT).noCollision.ticksRandomly
@@ -85,21 +111,20 @@ object BlockRegistry {
     val POTTED_CLOUD_DAISIES: FlowerPotBlock = register("potted_cloud_daisies", item = false)(
         new FlowerPotBlock(CLOUD_DAISIES, FabricBlockSettings.of(Material.PART).breakInstantly().build()))
 
-    val farmlandSettings: Block.Settings = FabricBlockSettings.of(Material.EARTH)
-        .strength(0.6f, 0.6f).sounds(BlockSoundGroup.GRAVEL).build()
-    val UPLANDER_FARMLAND: Block = register("uplander_farmland")(new UplanderFarmlandBlock(farmlandSettings))
+    val UPLANDER_FARMLAND: Block = register("uplander_farmland")(new UplanderFarmlandBlock(
+        FabricBlockSettings.of(Material.EARTH)
+      .strength(0.6f, 0.6f).sounds(BlockSoundGroup.GRAVEL).build()))
     HoeHacks.addHoeable(UPLANDER_DIRT, UPLANDER_FARMLAND.getDefaultState)
     HoeHacks.addHoeable(UPLANDER_GRASS, UPLANDER_FARMLAND.getDefaultState)
 
-    val CROP_SETTINGS: Settings = FabricBlockSettings.of(Material.PLANT)
-        .breakInstantly()
-        .collidable(false)
-        .ticksRandomly()
-        .sounds(BlockSoundGroup.GRASS)
-        .build()
-
     val ZEPHYR_ONION_CROP_BLOCK: ZephyrOnionBlock = register("zephyr_onion_crop", false)(
-      new ZephyrOnionBlock(CROP_SETTINGS))
+      new ZephyrOnionBlock(
+          FabricBlockSettings.of(Material.PLANT)
+            .breakInstantly()
+            .collidable(false)
+            .ticksRandomly()
+            .sounds(BlockSoundGroup.GRASS)
+            .build()))
 
     val WATER_CHESTNUT_CROP_BLOCK: WaterChestnutBlock = register("water_chestnut_crop", false)(
       new WaterChestnutBlock(
