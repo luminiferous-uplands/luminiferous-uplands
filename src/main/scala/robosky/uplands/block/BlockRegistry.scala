@@ -3,7 +3,6 @@ package robosky.uplands.block
 import net.fabricmc.fabric.api.block.FabricBlockSettings
 import net.fabricmc.fabric.api.registry.{CompostingChanceRegistry, FlammableBlockRegistry, FuelRegistry}
 import net.fabricmc.fabric.api.tools.FabricToolTags
-import net.minecraft.block.Block.Settings
 import net.minecraft.block._
 import net.minecraft.item.{BlockItem, Item, ItemGroup}
 import net.minecraft.sound.BlockSoundGroup
@@ -71,15 +70,17 @@ object BlockRegistry {
     FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_FENCE_GATE, 20, 5)
 
     val SKYROOT_DOOR: DoorBlock = register("skyroot_door")(b = new ModDoorBlock(FabricBlockSettings.of(Material.WOOD)
-      .strength(3.0f, 6f)
+      .strength(3.0f, 15f)
       .sounds(BlockSoundGroup.WOOD)
       .build()))
     FuelRegistry.INSTANCE.add(SKYROOT_DOOR, 200)
 
     val SKYROOT_TRAPDOOR: TrapdoorBlock = register("skyroot_trapdoor")(new ModTrapdoorBlock(FabricBlockSettings.of(Material.WOOD)
-        .strength(3.0f, 6f)
+        .strength(3.0f, 15f)
         .sounds(BlockSoundGroup.WOOD)
         .build()))
+    FuelRegistry.INSTANCE.add(SKYROOT_TRAPDOOR, 300)
+
     //val SKYROOT_BUTTON: WoodButtonBlock = register("skyroot_button")(new WoodButtonBlock(skyroot))
 
     val SKYROOT_SAPLING: UplandsSaplingBlock = register("skyroot_sapling")(new UplandsSaplingBlock(
@@ -125,7 +126,7 @@ object BlockRegistry {
     HoeHacks.addHoeable(UPLANDER_DIRT, UPLANDER_FARMLAND.getDefaultState)
     HoeHacks.addHoeable(UPLANDER_GRASS, UPLANDER_FARMLAND.getDefaultState)
 
-    val ZEPHYR_ONION_CROP_BLOCK: ZephyrOnionBlock = register("zephyr_onion_crop", false)(
+    val ZEPHYR_ONION_CROP_BLOCK: ZephyrOnionBlock = register("zephyr_onion_crop", item = false)(
       new ZephyrOnionBlock(
           FabricBlockSettings.of(Material.PLANT)
             .breakInstantly()
@@ -134,7 +135,7 @@ object BlockRegistry {
             .sounds(BlockSoundGroup.GRASS)
             .build()))
 
-    val WATER_CHESTNUT_CROP_BLOCK: WaterChestnutBlock = register("water_chestnut_crop", false)(
+    val WATER_CHESTNUT_CROP_BLOCK: WaterChestnutBlock = register("water_chestnut_crop", item = false)(
       new WaterChestnutBlock(
         FabricBlockSettings.of(Material.PLANT)
             .breakInstantly()
@@ -158,7 +159,7 @@ object BlockRegistry {
           .ticksRandomly()
           .build()))
 
-    val POTTED_AZOTE_MUSHROOM: FlowerPotBlock = register("potted_azote_mushroom", false)(
+    val POTTED_AZOTE_MUSHROOM: FlowerPotBlock = register("potted_azote_mushroom", item = false)(
         new FlowerPotBlock(AZOTE_MUSHROOM, FabricBlockSettings.of(Material.PART).breakInstantly().build()))
 
     val AWOKEN_AZOTE_MUSHROOM: AwokenAzoteMushroomBlock = register("awoken_azote_mushroom")(
@@ -171,7 +172,7 @@ object BlockRegistry {
         .build()
     ))
 
-    val POTTED_AWOKEN_AZOTE_MUSHROOM: FlowerPotBlock = register("potted_awoken_azote_mushroom", false)(
+    val POTTED_AWOKEN_AZOTE_MUSHROOM: FlowerPotBlock = register("potted_awoken_azote_mushroom", item = false)(
       new FlowerPotBlock(AWOKEN_AZOTE_MUSHROOM, FabricBlockSettings.of(Material.PART).lightLevel(15).breakInstantly().build())
     )
 
