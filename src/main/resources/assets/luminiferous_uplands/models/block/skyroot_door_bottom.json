@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_bottom",
+    "textures": {
+        "bottom": "$modid:block/skyroot_door_bottom",
+        "top": "$modid:block/skyroot_door_top"
+    }
+}
