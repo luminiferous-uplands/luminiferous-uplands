@@ -37,6 +37,7 @@ object BlockRegistry {
     val UPLANDER_STONE_BUTTON: ModStoneButtonBlock = register("uplander_stone_button")(new ModStoneButtonBlock(FabricBlockSettings.of(Material.STONE)
       .strength(0.5f, 2.5f)
       .sounds(BlockSoundGroup.STONE)
+      .noCollision()
       .build()))
 
     val UPLANDS_ORES: Map[UplandsOreBlock.UplandsOreType, UplandsOreBlock] = UplandsOreBlock.oreTypes.map(t => t ->
@@ -89,6 +90,7 @@ object BlockRegistry {
     val SKYROOT_BUTTON: WoodButtonBlock = register("skyroot_button")(new ModWoodButtonBlock(FabricBlockSettings.of(Material.WOOD)
       .strength(0.5f, 2.5f)
       .sounds(BlockSoundGroup.WOOD)
+      .noCollision()
       .build()))
     FuelRegistry.INSTANCE.add(SKYROOT_SLAB, 100)
 
