@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_fence_gate",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "$modid:skyroot_planks"
+    }
+  },
+  "result": {
+    "item": "$modid:skyroot_pressure_plate"
+  }
+}

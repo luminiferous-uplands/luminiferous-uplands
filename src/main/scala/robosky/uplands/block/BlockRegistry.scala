@@ -3,6 +3,7 @@ package robosky.uplands.block
 import net.fabricmc.fabric.api.block.FabricBlockSettings
 import net.fabricmc.fabric.api.registry.{CompostingChanceRegistry, FlammableBlockRegistry, FuelRegistry}
 import net.fabricmc.fabric.api.tools.FabricToolTags
+import net.minecraft.block.PressurePlateBlock.ActivationRule
 import net.minecraft.block._
 import net.minecraft.item.{BlockItem, Item, ItemGroup}
 import net.minecraft.sound.BlockSoundGroup
@@ -93,6 +94,15 @@ object BlockRegistry {
       .noCollision()
       .build()))
     FuelRegistry.INSTANCE.add(SKYROOT_SLAB, 100)
+
+    val SKYROOT_PRESSURE_PLATE: ModPressurePlateBlock = register("skyroot_pressure_plate")(new ModPressurePlateBlock(
+        PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.of(Material.WOOD)
+          .sounds(BlockSoundGroup.WOOD)
+          .noCollision()
+          .strength(0.5f, 2.5f)
+          .build()
+    ))
+    FuelRegistry.INSTANCE.add(SKYROOT_PRESSURE_PLATE, 300)
 
     val SKYROOT_SAPLING: UplandsSaplingBlock = register("skyroot_sapling")(new UplandsSaplingBlock(
         UplandsSaplingGenerator.SkyrootSaplingGenerator, FabricBlockSettings.of(Material.PLANT).noCollision.ticksRandomly
