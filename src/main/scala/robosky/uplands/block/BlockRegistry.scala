@@ -50,10 +50,6 @@ object BlockRegistry {
     FuelRegistry.INSTANCE.add(SKYROOT_WOOD, 300)
     FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_WOOD, 5, 5)
 
-    //val SKYROOT_DOOR: DoorBlock = register("skyroot_door")(new DoorBlock(skyroot))
-    //val SKYROOT_TRAPDOOR: TrapdoorBlock = register("skyroot_trapdoor")(new TrapdoorBlock(skyroot))
-    //val SKYROOT_BUTTON: WoodButtonBlock = register("skyroot_button")(new WoodButtonBlock(skyroot))
-
     val SKYROOT_PLANKS: Block = register("skyroot_planks")(new Block(skyroot))
     FuelRegistry.INSTANCE.add(SKYROOT_PLANKS, 300)
     FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_PLANKS, 20, 5)
@@ -73,6 +69,18 @@ object BlockRegistry {
     val SKYROOT_FENCE_GATE: FenceGateBlock = register("skyroot_fence_gate")(new FenceGateBlock(skyroot))
     FuelRegistry.INSTANCE.add(SKYROOT_FENCE_GATE, 300)
     FlammableBlockRegistry.getDefaultInstance.add(SKYROOT_FENCE_GATE, 20, 5)
+
+    val SKYROOT_DOOR: DoorBlock = register("skyroot_door")(b = new ModDoorBlock(FabricBlockSettings.of(Material.WOOD)
+      .strength(3.0f, 6f)
+      .sounds(BlockSoundGroup.WOOD)
+      .build()))
+    FuelRegistry.INSTANCE.add(SKYROOT_DOOR, 200)
+
+    val SKYROOT_TRAPDOOR: TrapdoorBlock = register("skyroot_trapdoor")(new ModTrapdoorBlock(FabricBlockSettings.of(Material.WOOD)
+        .strength(3.0f, 6f)
+        .sounds(BlockSoundGroup.WOOD)
+        .build()))
+    //val SKYROOT_BUTTON: WoodButtonBlock = register("skyroot_button")(new WoodButtonBlock(skyroot))
 
     val SKYROOT_SAPLING: UplandsSaplingBlock = register("skyroot_sapling")(new UplandsSaplingBlock(
         UplandsSaplingGenerator.SkyrootSaplingGenerator, FabricBlockSettings.of(Material.PLANT).noCollision.ticksRandomly
