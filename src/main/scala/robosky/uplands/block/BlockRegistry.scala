@@ -2,7 +2,7 @@ package robosky.uplands.block
 
 import net.fabricmc.fabric.api.block.FabricBlockSettings
 import net.fabricmc.fabric.api.registry.{CompostingChanceRegistry, FlammableBlockRegistry, FuelRegistry}
-import net.fabricmc.fabric.api.tools.FabricToolTagsgit add 
+import net.fabricmc.fabric.api.tools.FabricToolTags
 import net.minecraft.block._
 import net.minecraft.item.{BlockItem, Item, ItemGroup}
 import net.minecraft.sound.BlockSoundGroup
