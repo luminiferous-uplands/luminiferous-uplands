@@ -34,6 +34,11 @@ object BlockRegistry {
     val UPLANDER_STONE_BRICK_SLAB: SlabBlock = register("uplander_stone_brick_slab")(new SlabBlock(UPLANDER_STONE_SETTINGS))
     val UPLANDER_STONE_BRICK_WALL: WallBlock = register("uplander_stone_brick_wall")(new WallBlock(UPLANDER_STONE_SETTINGS))
 
+    val UPLANDER_STONE_BUTTON: ModStoneButtonBlock = register("uplander_stone_button")(new ModStoneButtonBlock(FabricBlockSettings.of(Material.STONE)
+      .strength(0.5f, 2.5f)
+      .sounds(BlockSoundGroup.STONE)
+      .build()))
+
     val UPLANDS_ORES: Map[UplandsOreBlock.UplandsOreType, UplandsOreBlock] = UplandsOreBlock.oreTypes.map(t => t ->
       register(s"${t.name}_ore")(new UplandsOreBlock(t))).toMap
 
@@ -81,7 +86,11 @@ object BlockRegistry {
         .build()))
     FuelRegistry.INSTANCE.add(SKYROOT_TRAPDOOR, 300)
 
-    //val SKYROOT_BUTTON: WoodButtonBlock = register("skyroot_button")(new WoodButtonBlock(skyroot))
+    val SKYROOT_BUTTON: WoodButtonBlock = register("skyroot_button")(new ModWoodButtonBlock(FabricBlockSettings.of(Material.WOOD)
+      .strength(0.5f, 2.5f)
+      .sounds(BlockSoundGroup.WOOD)
+      .build()))
+    FuelRegistry.INSTANCE.add(SKYROOT_SLAB, 100)
 
     val SKYROOT_SAPLING: UplandsSaplingBlock = register("skyroot_sapling")(new UplandsSaplingBlock(
         UplandsSaplingGenerator.SkyrootSaplingGenerator, FabricBlockSettings.of(Material.PLANT).noCollision.ticksRandomly

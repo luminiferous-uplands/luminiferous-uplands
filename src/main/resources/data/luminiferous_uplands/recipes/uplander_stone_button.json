@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "$modid:uplander_stone"
+    }
+  ],
+  "result": {
+    "item": "$modid:uplander_stone_button"
+  }
+}
