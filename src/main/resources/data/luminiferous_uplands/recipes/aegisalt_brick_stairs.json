@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "$modid:aegisalt_bricks"
+    }
+  },
+  "result": {
+    "item": "$modid:aegisalt_brick_stairs",
+    "count": 4
+  }
+}

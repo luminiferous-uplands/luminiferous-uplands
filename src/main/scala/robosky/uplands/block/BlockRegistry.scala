@@ -40,6 +40,15 @@ object BlockRegistry {
       .noCollision()
       .build()))
 
+    val aegisalt_bricks_settings: Block.Settings = FabricBlockSettings.of(Material.STONE)
+      .strength(1.5f, 30f)
+      .breakByTool(FabricToolTags.PICKAXES, 1)
+      .build()
+
+    val AEGISALT_BRICKS_BLOCK: Block = register("aegisalt_bricks")(new Block(aegisalt_bricks_settings))
+    val AEGISALT_BRICK_SLAB_BLOCK: SlabBlock = register("aegisalt_brick_slab")(new SlabBlock(aegisalt_bricks_settings))
+    val AEGISALT_BRICK_STAIRS_BLOCK: ModStairsBlock = register("aegisalt_brick_stairs")(new ModStairsBlock(AEGISALT_BRICKS_BLOCK, aegisalt_bricks_settings))
+
     val UPLANDS_ORES: Map[UplandsOreBlock.UplandsOreType, UplandsOreBlock] = UplandsOreBlock.oreTypes.map(t => t ->
       register(s"${t.name}_ore")(new UplandsOreBlock(t))).toMap
 

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "$modid:aegisalt_bricks"
+  },
+  "result": "$modid:aegisalt_brick_slab",
+  "count": 1
+}
