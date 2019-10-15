@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "$modid:block/block_of_aegisalt"
+    }
+  }
+}
