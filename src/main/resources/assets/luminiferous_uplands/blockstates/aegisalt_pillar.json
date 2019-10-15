@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=y": { "model": "$modid:block/aegisalt_pillar" },
+    "axis=z": { "model": "$modid:block/aegisalt_pillar", "x": 90 },
+    "axis=x": { "model": "$modid:block/aegisalt_pillar", "x": 90, "y": 90 }
+  }
+}

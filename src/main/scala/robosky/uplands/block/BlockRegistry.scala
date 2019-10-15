@@ -48,6 +48,7 @@ object BlockRegistry {
     val AEGISALT_BRICKS_BLOCK: Block = register("aegisalt_bricks")(new Block(aegisalt_bricks_settings))
     val AEGISALT_BRICK_SLAB_BLOCK: SlabBlock = register("aegisalt_brick_slab")(new SlabBlock(aegisalt_bricks_settings))
     val AEGISALT_BRICK_STAIRS_BLOCK: ModStairsBlock = register("aegisalt_brick_stairs")(new ModStairsBlock(AEGISALT_BRICKS_BLOCK, aegisalt_bricks_settings))
+    val AEGISALT_PILLAR_BLOCK: PillarBlock = register("aegisalt_pillar")(new PillarBlock(aegisalt_bricks_settings))
 
     val BLOCK_OF_AEGISALT_BLOCK: Block = register("block_of_aegisalt")(new Block(aegisalt_bricks_settings))
 
