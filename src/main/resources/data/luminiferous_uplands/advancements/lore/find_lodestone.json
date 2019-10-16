@@ -1,0 +1,35 @@
+{
+  "parent": "$modid:lore/enter_with_beacon",
+  "display": {
+    "icon": {
+      "item": "$modid:lodestone"
+    },
+    "title": {
+      "translate": "advancements.luminiferous_uplands.lore.find_lodestone"
+    },
+    "description": {
+      "translate": "advancements.luminiferous_uplands.lore.find_lodestone.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "lodestone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "$modid:lodestone"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "lodestone"
+    ]
+  ]
+}
