@@ -143,7 +143,7 @@ object BlockRegistry {
 
     val UPLANDER_BEACON: UplanderBeaconBlock.type = register("uplander_beacon")(UplanderBeaconBlock)
 
-    val FLOWER_SETTINGS: Block.Settings = FabricBlockSettings.of(Material.LEAVES).breakInstantly().collidable(false).build()
+    val FLOWER_SETTINGS: Block.Settings = FabricBlockSettings.of(Material.PLANT).breakInstantly().collidable(false).build()
 
     val CLOUD_DAISIES: FlowerBlock = register("cloud_daisies")(new CloudDaisiesBlock(FLOWER_SETTINGS))
     CompostingChanceRegistry.INSTANCE.add(CLOUD_DAISIES, 0.65f)
