@@ -14,8 +14,8 @@ import org.apache.logging.log4j.{Logger, LogManager}
 import robosky.uplands.block.BlockRegistry
 import robosky.uplands.block.unbreakable.Unbreakable
 
-class ActiveAlterBlock(val base: Block)
-    extends AlterBlock(Block.Settings.copy(base)) with Unbreakable {
+class ActiveAltarBlock(val base: Block)
+    extends AltarBlock(Block.Settings.copy(base)) with Unbreakable {
 
   private val logger: Logger = LogManager.getLogger
 

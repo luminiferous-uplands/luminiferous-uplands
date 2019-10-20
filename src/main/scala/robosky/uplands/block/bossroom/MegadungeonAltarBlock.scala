@@ -10,7 +10,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.util.shape.{VoxelShape, VoxelShapes}
 import net.minecraft.world.BlockView
 
-object MegadungeonAlterBlock extends AlterBlock(FabricBlockSettings.of(Material.STONE)
+object MegadungeonAltarBlock extends AltarBlock(FabricBlockSettings.of(Material.STONE)
     .strength(1.5f, 6f).sounds(BlockSoundGroup.STONE)
     .breakByTool(FabricToolTags.PICKAXES, 1).build) {
 
