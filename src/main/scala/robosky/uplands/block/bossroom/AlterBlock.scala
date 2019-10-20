@@ -1,6 +1,6 @@
 package robosky.uplands.block.bossroom
 
-import net.minecraft.block.{Block, BlockState, HorizontalFacingBlock}
+import net.minecraft.block.{Block, BlockRenderLayer, BlockState, HorizontalFacingBlock}
 import net.minecraft.item.ItemPlacementContext
 import net.minecraft.state.StateFactory
 
@@ -17,4 +17,6 @@ class AlterBlock(settings: Block.Settings) extends HorizontalFacingBlock(setting
   override def getPlacementState(ctx: ItemPlacementContext): BlockState = {
     this.getDefaultState.`with`(HorizontalFacingBlock.FACING, ctx.getPlayerFacing.getOpposite)
   }
+
+  override def getRenderLayer: BlockRenderLayer = BlockRenderLayer.CUTOUT_MIPPED
 }

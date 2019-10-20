@@ -176,7 +176,7 @@ object BlockRegistry {
     val BOSS_DOORWAY: DoorwayBlock = register("boss_doorway", itemGroup = null)(new DoorwayBlock(Block.Settings.copy(BOSS_CONTROL)))
     Registry.register(Registry.BLOCK_ENTITY, UplandsMod :/ "boss_doorway", DoorwayBlockEntity.TYPE)
 
-    val MEGADUNGEON_ALTER: Block = register("megadungeon_alter")(new AlterBlock(UPLANDER_STONE_SETTINGS))
+    val MEGADUNGEON_ALTER: Block = register("megadungeon_alter")(MegadungeonAlterBlock)
 
     val ACTIVE_MEGADUNGEON_ALTER: Block = register("active_megadungeon_alter")(new ActiveAlterBlock(MEGADUNGEON_ALTER))
 

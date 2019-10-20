@@ -1,11 +1,13 @@
 package robosky.uplands.block.bossroom
 
 import net.minecraft.block.{Block, BlockState}
+import net.minecraft.entity.EntityContext
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.util.Hand
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.{BlockPos, Direction}
-import net.minecraft.world.World
+import net.minecraft.util.shape.VoxelShape
+import net.minecraft.world.{BlockView, World}
 
 import org.apache.logging.log4j.{Logger, LogManager}
 
@@ -29,4 +31,7 @@ class ActiveAlterBlock(val base: Block)
     }
     true
   }
+
+  override def getOutlineShape(state: BlockState, world: BlockView, pos: BlockPos, ctx: EntityContext): VoxelShape =
+    base.getOutlineShape(state, world, pos, ctx)
 }

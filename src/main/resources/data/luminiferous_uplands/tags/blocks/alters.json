@@ -1,0 +1,7 @@
+{
+  "replace": true,
+  "values": [
+    "$modid:megadungeon_alter",
+    "$modid:active_megadungeon_alter"
+  ]
+}

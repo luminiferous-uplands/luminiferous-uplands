@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "$modid:block/megadungeon_alter" },
+        "facing=south": { "model": "$modid:block/megadungeon_alter", "y": 180 },
+        "facing=west": { "model": "$modid:block/megadungeon_alter", "y": 270 },
+        "facing=east": { "model": "$modid:block/megadungeon_alter", "y": 90 }
+    }
+}
