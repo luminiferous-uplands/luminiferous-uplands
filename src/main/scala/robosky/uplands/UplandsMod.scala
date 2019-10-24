@@ -6,6 +6,7 @@ import net.minecraft.item.{Item, ItemGroup, ItemStack}
 import net.minecraft.tag.{Tag, ItemTags}
 import net.minecraft.util.Identifier
 import robosky.uplands.block.BlockRegistry
+import robosky.uplands.entity.EntityRegistry
 import robosky.uplands.block.machine.{MachineRegistry, RecipeRegistry}
 import robosky.uplands.item.ItemRegistry
 import robosky.uplands.world.WorldRegistry
@@ -24,6 +25,7 @@ object UplandsMod extends ModInitializer {
   override def onInitialize(): Unit = {
     ItemRegistry.init()
     BlockRegistry.init()
+    EntityRegistry.init()
     FeatureRegistry.init()
     BiomeRegistry.init()
     WorldRegistry.init()
