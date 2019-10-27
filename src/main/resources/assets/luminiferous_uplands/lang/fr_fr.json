@@ -1,0 +1,64 @@
+{
+  "itemGroup.luminiferous_uplands.general": "Les Hauterres Luminifères",
+  "block.luminiferous_uplands.uplander_grass": "Hautherbe",
+  "block.luminiferous_uplands.tall_uplands_grass": "Hautherbe haute",
+  "block.luminiferous_uplands.uplander_dirt": "Hauterre",
+  "block.luminiferous_uplands.uplander_farmland": "Hauterre labourée",
+  "block.luminiferous_uplands.uplander_stone": "Hautepierre",
+  "block.luminiferous_uplands.uplander_stone_stairs": "Escaliers en hautepierre",
+  "block.luminiferous_uplands.uplander_stone_slab": "Dalle en hautepierre",
+  "block.luminiferous_uplands.uplander_stone_wall": "Muret en hautepierre",
+  "block.luminiferous_uplands.uplander_stone_bricks": "Hautpierre taillée",
+  "block.luminiferous_uplands.uplander_stone_brick_stairs": "Escaliers en hautepierre taillée",
+  "block.luminiferous_uplands.uplander_stone_brick_slab": "Dalle en hautepierre taillée",
+  "block.luminiferous_uplands.uplander_stone_brick_wall": "Muret en hautepierre taillée",
+  "block.luminiferous_uplands.aegisalt_ore": "Minerai d'égidalte",
+  "block.luminiferous_uplands.uplander_beacon": "Balise des Hauterres",
+  "block.luminiferous_uplands.skyroot_log": "Bûche d'arbreciel",
+  "block.luminiferous_uplands.skyroot_planks": "Planches d'arbreciel",
+  "block.luminiferous_uplands.skyroot_slab": "Dalle en arbreciel",
+  "block.luminiferous_uplands.skyroot_stairs": "Escaliers en arbreciel",
+  "block.luminiferous_uplands.skyroot_sapling": "Pousse d'arbreciel",
+  "block.luminiferous_uplands.red_skyroot_leaves": "Feuilles d'arbreciel rouges",
+  "block.luminiferous_uplands.orange_skyroot_leaves": "Feuilles d'arbreciel oranges",
+  "block.luminiferous_uplands.yellow_skyroot_leaves": "Feuilles d'arbreciel jaunes",
+  "block.luminiferous_uplands.skyroot_fence": "Barrière en arbreciel",
+  "block.luminiferous_uplands.skyroot_fence_gate": "Portillon en arbreciel",
+  "block.luminiferous_uplands.skyroot_wood": "Bois d'arbreciel",
+  "block.luminiferous_uplands.lodestone": "Magnétite",
+  "item.luminiferous_uplands.aegisalt_crystal": "Crystal d'égidalte",
+  "item.luminiferous_uplands.skyroot_charm": "Amulette en arbreciel",
+  "item.luminiferous_uplands.aegisalt_charm": "Amulette en égidalte",
+  "block.luminiferous_uplands.aegisalt_infuser": "Infuseur à égidalte",
+
+  "block.luminiferous_uplands.cloud_daisies": "Marguerites des nuages",
+  "item.luminiferous_uplands.zephyr_onion": "Oignon zéphyr",
+  "item.luminiferous_uplands.roasted_zephyr_onion": "Oignon zéphyr cuit",
+  "item.luminiferous_uplands.water_chestnut": "Châtaigne d'eau",
+  "item.luminiferous_uplands.water_chestnut_seeds": "Graines de châtaigne d'eau",
+  "item.luminiferous_uplands.skyroot_fruit": "Fruit d'arbreciel",
+
+  "block.luminiferous_uplands.azote_mushroom": "Champignon azote",
+  "block.luminiferous_uplands.awoken_azote_mushroom": "Champignon azote réveillé",
+
+  "advancements.luminiferous_uplands.lore.root": "Les Hauterres Luminifères",
+  "advancements.luminiferous_uplands.lore.root.description": "Qu'est ce qui pourrait bien se trouver là-haut ?",
+
+  "advancements.luminiferous_uplands.lore.enter_skylands": "Toujours plus haut!",
+  "advancements.luminiferous_uplands.lore.enter_skylands.description": "Fabriquez une balise des Hauterres.",
+
+  "advancements.luminiferous_uplands.lore.enter_with_beacon": "Un nouveau monde",
+  "advancements.luminiferous_uplands.lore.enter_with_beacon.description": "Prenez de la hauteur.",
+
+  "advancements.luminiferous_uplands.lore.enter_with_flying": "Vous montez?",
+  "advancements.luminiferous_uplands.lore.enter_with_flying.description": "Voyagez jusqu'aux Hauterres sans balise.",
+
+  "advancements.luminiferous_uplands.lore.awaken_azote_mushroom": "On se réveille!",
+  "advancements.luminiferous_uplands.lore.awaken_azote_mushroom.description": "Utilisez un four ou un feu de camp pour réveiller un champignon azote.",
+
+  "advancements.luminiferous_uplands.lore.build_infuser": "Égidal... thé?",
+  "advancements.luminiferous_uplands.lore.build_infuser.description": "Construisez un infuseur à égidalte.",
+
+  "advancements.luminiferous_uplands.lore.infuse_slowfall_charm": "Rappel sans corde",
+  "advancements.luminiferous_uplands.lore.infuse_slowfall_charm.description": "Fabriquez une amulette en égidalte."
+}
