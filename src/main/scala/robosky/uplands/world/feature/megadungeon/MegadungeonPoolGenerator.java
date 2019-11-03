@@ -71,16 +71,17 @@ public class MegadungeonPoolGenerator {
             PoolStructurePiece piece = pieceFactory.create(manager, element, pos, element.method_19308(), rotation,
                     element.getBoundingBox(manager, pos, rotation));
             int midX = (piece.getBoundingBox().maxX + piece.getBoundingBox().minX) / 2;
-            int midY = (piece.getBoundingBox().maxZ + piece.getBoundingBox().minZ) / 2;
-            int midZ = generator.method_20402(midX, midY, Heightmap.Type.WORLD_SURFACE_WG);
-            piece.translate(0, midZ - (piece.getBoundingBox().minY + piece.getGroundLevelDelta()), 0);
+            int midZ = (piece.getBoundingBox().maxZ + piece.getBoundingBox().minZ) / 2;
+            int midY = generator.method_20402(midX, midZ, Heightmap.Type.WORLD_SURFACE_WG);
+            piece.translate(0, midY - (piece.getBoundingBox().minY + piece.getGroundLevelDelta()), 0);
             pieces.add(piece);
             // branch out from the starting piece (recursively)
             if (maxRooms > 0) {
-                Box box = new Box(midX - 80, midZ - 80, midY - 80, midX + 80 + 1, midZ + 80 + 1, midY + 80 + 1);
+                final int radius = 128;
+                Box box = new Box(midX - radius, midY - radius, midZ - radius, midX + radius + 1, midY + radius + 1, midZ + radius + 1);
                 this.entryQueue.addLast(new Entry(piece, new AtomicReference<>(VoxelShapes
                         .combineAndSimplify(VoxelShapes.cuboid(box), VoxelShapes.cuboid(Box.from(piece.getBoundingBox())),
-                                BooleanBiFunction.ONLY_FIRST)), midZ + 80, 0));
+                                BooleanBiFunction.ONLY_FIRST)), midY + 80, 0));
 
                 while (!this.entryQueue.isEmpty()) {
                     Entry entry = this.entryQueue.removeFirst();
@@ -176,19 +177,19 @@ public class MegadungeonPoolGenerator {
                                     noJunction = true;
                                     break;
                                 }
-                                Structure.StructureBlockInfo info2 = first.get();
+                                Structure.StructureBlockInfo connection = first.get();
                                 // remove the s tructure from future consideration
                                 // in future iterations of this do-while
-                                infos.remove(info2);
+                                infos.remove(connection);
 
-                                BlockPos pos1 = new BlockPos(info.pos.offset(direction_1).getX() - info2.pos.getX(),
-                                        info.pos.offset(direction_1).getY() - info2.pos.getY(), info.pos.offset(direction_1).getZ() - info2.pos.getZ());
-                                MutableIntBoundingBox bbox4 = element1.getBoundingBox(this.manager, pos1, rotation);
-                                y = info2.pos.getY();
+                                BlockPos offset = new BlockPos(info.pos.offset(direction_1).getX() - connection.pos.getX(),
+                                        info.pos.offset(direction_1).getY() - connection.pos.getY(), info.pos.offset(direction_1).getZ() - connection.pos.getZ());
+                                MutableIntBoundingBox bbox4 = element1.getBoundingBox(this.manager, offset, rotation);
+                                y = connection.pos.getY();
                                 relativeY = info.pos.getY() - bbox.minY - y + info.state.get(JigsawBlock.FACING).getOffsetY();
                                 offsetY = bbox.minY + relativeY;
                                 bbox2 = bbox4.method_19311(0, offsetY - bbox4.minY, 0);
-                                pos = pos1.add(0, offsetY - bbox4.minY, 0);
+                                pos = offset.add(0, offsetY - bbox4.minY, 0);
                                 if (maxElementHeight > 0) {
                                     height = Math.max(maxElementHeight + 1, bbox2.maxY - bbox2.minY);
                                     bbox2.maxY = bbox2.minY + height;

@@ -60,16 +60,17 @@ object MegadungeonGenerator {
     world.setBlockState(pos, tgt, 3)
   }
 
-  private def registerPool(name: String, pieces: (String, Int, Boolean)*): Unit = {
+  private def registerPool(name: String, terminators: Option[String] = None)(pieces: (String, Int, Boolean)*): Unit = {
     val array: Array[Pair[StructurePoolElement, Integer]] = pieces.map { case (s, i, b) =>
       Pair.of(new MetadataCapableSinglePoolElement(s, b).asInstanceOf[StructurePoolElement], Int.box(i)) }.toArray
-    StructurePoolBasedGenerator.REGISTRY.add(new StructurePool(UplandsMod :/ name, new Identifier("minecraft", "empty"),
+    val termId = terminators.map(UplandsMod :/ _).getOrElse(new Identifier("minecraft", "empty"))
+    StructurePoolBasedGenerator.REGISTRY.add(new StructurePool(UplandsMod :/ name, termId,
       ImmutableList.copyOf(array), Projection.RIGID))
   }
 
-  registerPool("megadungeon/entrance", ("megadungeon/entrance", 1, false))
-  registerPool("megadungeon/shafts", ("megadungeon/shaft_vertical", 4, false), ("megadungeon/shaft_bottom", 1, false))
-  registerPool("megadungeon/halls",
+  registerPool("megadungeon/entrance")(("megadungeon/entrance", 1, false))
+  registerPool("megadungeon/shafts")(("megadungeon/shaft_vertical", 4, false), ("megadungeon/shaft_bottom", 1, false))
+  registerPool("megadungeon/halls", Some("megadungeon/dead_ends"))(
     ("megadungeon/hallway", 6, true),
     ("megadungeon/corner", 3, true),
     ("megadungeon/tee", 3, true),
@@ -79,6 +80,7 @@ object MegadungeonGenerator {
     ("megadungeon/trap", 1, true),
     ("megadungeon/boss_room", 1, true),
     ("megadungeon/dead_end", 1, true))
+  registerPool("megadungeon/dead_ends")(("megadungeon/dead_end", 1, true))
 
   def initialize(): Unit = {}
 }
