@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "$modid:aegisalt_bricks"
+    }
+  },
+  "result": {
+    "item": "$modid:aegisalt_brick_slab",
+    "count": 6
+  }
+}

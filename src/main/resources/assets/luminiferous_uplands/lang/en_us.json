@@ -1,10 +1,13 @@
 {
   "itemGroup.luminiferous_uplands.general": "The Luminiferous Uplands",
+
   "block.luminiferous_uplands.uplander_grass": "Uplander Grass",
   "block.luminiferous_uplands.tall_uplands_grass": "Tall Uplands Grass",
   "block.luminiferous_uplands.uplander_dirt": "Uplander Dirt",
   "block.luminiferous_uplands.uplander_farmland": "Uplander Farmland",
+
   "block.luminiferous_uplands.uplander_stone": "Uplander Stone",
+  "block.luminiferous_uplands.uplander_stone_button": "Uplander Stone Button",
   "block.luminiferous_uplands.uplander_stone_stairs": "Uplander Stone Stairs",
   "block.luminiferous_uplands.uplander_stone_slab": "Uplander Stone Slab",
   "block.luminiferous_uplands.uplander_stone_wall": "Uplander Stone Wall",
@@ -13,21 +16,36 @@
   "block.luminiferous_uplands.uplander_stone_brick_slab": "Uplander Stone Brick Slab",
   "block.luminiferous_uplands.uplander_stone_brick_wall": "Uplander Stone Brick Wall",
   "block.luminiferous_uplands.unbreakable_uplander_stone_bricks": "Unbreakable Uplander Stone Bricks",
+  "block.luminiferous_uplands.aegisalt_bricks": "Aegisalt Bricks",
+  "block.luminiferous_uplands.aegisalt_brick_slab": "Aegisalt Brick Slab",
+  "block.luminiferous_uplands.aegisalt_brick_stairs": "Aegisalt Brick Stairs",
+  "block.luminiferous_uplands.aegisalt_pillar": "Aegisalt Pillar",
+
   "block.luminiferous_uplands.aegisalt_ore": "Aegisalt Ore",
+  "block.luminiferous_uplands.block_of_aegisalt": "Block of Aegisalt",
+
   "block.luminiferous_uplands.uplander_beacon": "Uplander Beacon",
+  "block.luminiferous_uplands.aegisalt_infuser": "Aegisalt Infuser",
+
   "block.luminiferous_uplands.skyroot_log": "Skyroot Log",
   "block.luminiferous_uplands.skyroot_planks": "Skyroot Planks",
+  "block.luminiferous_uplands.skyroot_button": "Skyroot Button",
+  "block.luminiferous_uplands.skyroot_pressure_plate": "Skyroot Pressure Plate",
+  "block.luminiferous_uplands.skyroot_door": "Skyroot Door",
+  "block.luminiferous_uplands.skyroot_trapdoor": "Skyroot Trapdoor",
   "block.luminiferous_uplands.skyroot_slab": "Skyroot Slab",
   "block.luminiferous_uplands.skyroot_stairs": "Skyroot Stairs",
   "block.luminiferous_uplands.skyroot_sapling": "Skyroot Sapling",
-  "block.luminiferous_uplands.red_skyroot_leaves": "Red Skyroot Leaves",
-  "block.luminiferous_uplands.orange_skyroot_leaves": "Orange Skyroot Leaves",
-  "block.luminiferous_uplands.yellow_skyroot_leaves": "Yellow Skyroot Leaves",
   "block.luminiferous_uplands.skyroot_fence": "Skyroot Fence",
   "block.luminiferous_uplands.skyroot_fence_gate": "Skyroot Fence Gate",
   "block.luminiferous_uplands.skyroot_wood": "Skyroot Wood",
+
+  "block.luminiferous_uplands.red_skyroot_leaves": "Red Skyroot Leaves",
+  "block.luminiferous_uplands.orange_skyroot_leaves": "Orange Skyroot Leaves",
+  "block.luminiferous_uplands.yellow_skyroot_leaves": "Yellow Skyroot Leaves",
+
   "block.luminiferous_uplands.lodestone": "Lodestone",
-  "item.luminiferous_uplands.aegisalt_crystal": "Aegisalt Crystal",
+
   "item.luminiferous_uplands.skyroot_charm": "Skyroot Charm",
   "item.luminiferous_uplands.aegisalt_charm": "Aegisalt Charm",
   "block.luminiferous_uplands.aegisalt_infuser": "Aegisalt Infuser",
@@ -55,6 +73,9 @@
 
   "advancements.luminiferous_uplands.lore.enter_with_beacon": "A Whole New World",
   "advancements.luminiferous_uplands.lore.enter_with_beacon.description": "Travel to the Uplands",
+
+  "advancements.luminiferous_uplands.lore.find_lodestone": "Magnets, how do they work?",
+  "advancements.luminiferous_uplands.lore.find_lodestone.description": "Use a compass to find a block of Lodestone",
 
   "advancements.luminiferous_uplands.lore.enter_with_flying": "Up, Up, and Away",
   "advancements.luminiferous_uplands.lore.enter_with_flying.description": "Travel to the Uplands without a beacon",
