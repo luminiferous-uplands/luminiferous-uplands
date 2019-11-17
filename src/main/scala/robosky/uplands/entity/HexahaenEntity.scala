@@ -1,6 +1,6 @@
 package robosky.uplands.entity
 
-import net.minecraft.entity.{EntityData, EntityType, LivingEntity, SpawnType}
+import net.minecraft.entity.{EntityData, EntityGroup, EntityType, LivingEntity, SpawnType}
 import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.damage.DamageSource
 import net.minecraft.entity.data.{DataTracker, TrackedData, TrackedDataHandlerRegistry}
@@ -29,6 +29,8 @@ class HexahaenEntity(typ: EntityType[HexahaenEntity], world: World) extends Host
     setMaxHealthFromData()
     setDamageFromData()
   }
+
+  override def getGroup: EntityGroup = EntityGroup.UNDEAD
 
   private def initStrength(value: Int): Unit = {
     strength = value

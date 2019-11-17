@@ -66,5 +66,8 @@
   "advancements.luminiferous_uplands.lore.build_infuser.description": "Build an Aegisalt Infuser",
 
   "advancements.luminiferous_uplands.lore.infuse_slowfall_charm": "It's a Long Way Down",
-  "advancements.luminiferous_uplands.lore.infuse_slowfall_charm.description": "Build an Aegisalt Charm"
+  "advancements.luminiferous_uplands.lore.infuse_slowfall_charm.description": "Build an Aegisalt Charm",
+
+  "advancements.luminiferous_uplands.lore.kill_hexahaen": "Dicey Dungeon",
+  "advancements.luminiferous_uplands.lore.kill_hexahaen.description": "Kill a Hexahaen"
 }
