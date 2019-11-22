@@ -4,6 +4,8 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "CriterionsMixin",
+    "BaseFluidMixin",
+    "FluidBlockMixin",
     "PlayerMixin",
     "WorldMixin"
   ],
