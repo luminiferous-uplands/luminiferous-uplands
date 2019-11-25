@@ -1,21 +1,21 @@
 package robosky.uplands.mixin;
 
-import net.minecraft.fluid.BaseFluid;
-import net.minecraft.world.World;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.IWorld;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.util.math.BlockPos;
-import org.spongepowered.asm.mixin.Unique;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FluidBlock;
+import net.minecraft.fluid.BaseFluid;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.state.StateFactory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
