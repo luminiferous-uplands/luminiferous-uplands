@@ -110,7 +110,9 @@ public abstract class FluidBlockMixin extends Block {
                 // source (still) block. Update non-falling water from all sides
                 if (dir == Direction.UP || !falling || neighborFluidState.isStill()) {
                     int neighborFall = neighborBlockState.get(UplandsWaterBlock.FALL());
-                    if (neighborFall < fall) {
+                    int neighborLevel = neighborBlockState.get(FluidBlock.LEVEL);
+                    boolean neighborFalling = neighborFluidState.get(BaseFluid.FALLING);
+                    if ((neighborFalling || neighborLevel < level) && neighborFall < fall) {
                         // propagate fall state across horizontal surfaces
                         fall = neighborFall;
                         if (dir == Direction.UP) {
