@@ -45,12 +45,6 @@ public abstract class FluidBlockMixin extends Block {
         }
     }
 
-    // so we can see the block state property values
-    @Inject(method = "getOutlineShape", at = @At("RETURN"), cancellable = true)
-    private void replaceOutlineShape(CallbackInfoReturnable<VoxelShape> info) {
-        info.setReturnValue(VoxelShapes.fullCube());
-    }
-
     @Inject(method = "onBlockAdded", at = @At("RETURN"))
     private void updateUplandsStateOnAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean idk, CallbackInfo info) {
         if (world.getDimension().getType() == WorldRegistry.UPLANDS_DIMENSION() &&
