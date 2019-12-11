@@ -3,7 +3,9 @@
   "package": "robosky.uplands.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "BaseFluidMixin",
     "CriterionsMixin",
+    "FluidBlockMixin",
     "PlayerMixin",
     "WorldMixin"
   ],
