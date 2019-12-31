@@ -6,12 +6,13 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.Biome.Category
 import net.minecraft.world.gen.GenerationStep
-import net.minecraft.world.gen.decorator.{ChanceDecoratorConfig, CountDecoratorConfig, CountExtraChanceDecoratorConfig, Decorator, LakeDecoratorConfig, NoiseHeightmapDecoratorConfig, RangeDecoratorConfig}
+import net.minecraft.world.gen.decorator.{ChanceDecoratorConfig, CountDecoratorConfig, CountExtraChanceDecoratorConfig, Decorator, LakeDecoratorConfig, NoiseHeightmapDecoratorConfig, NopeDecoratorConfig, RangeDecoratorConfig}
 import net.minecraft.world.gen.feature._
 import net.minecraft.world.gen.surfacebuilder.SurfaceConfig
 import robosky.uplands.block.{BlockRegistry, UplandsOreBlock}
 import robosky.uplands.world.biome.UplandsAutumnBiomeConfig._
 import robosky.uplands.world.feature.{UplandsOreFeatureConfig, FeatureRegistry}
+import robosky.uplands.world.feature.megadungeon.MegadungeonFeature
 import robosky.uplands.world.gen.UplandsAutumnSurfaceBuilder
 
 object UplandsAutumnBiomeConfig {
@@ -60,6 +61,10 @@ object UplandsAutumnBiome
   addStructureFeature(FeatureRegistry.treehouseFeature, FeatureConfig.DEFAULT)
   addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, Biome.configureFeature(FeatureRegistry.treehouseFeature,
     FeatureConfig.DEFAULT, Decorator.CHANCE_PASSTHROUGH, new ChanceDecoratorConfig(100)))
+
+  addStructureFeature(MegadungeonFeature, FeatureConfig.DEFAULT)
+  addFeature(GenerationStep.Feature.UNDERGROUND_STRUCTURES, Biome.configureFeature(MegadungeonFeature,
+    FeatureConfig.DEFAULT, Decorator.NOPE, new NopeDecoratorConfig()))
 
   @Environment(EnvType.CLIENT)
   override def getSkyColor(currentTemperature: Float) = 12632319

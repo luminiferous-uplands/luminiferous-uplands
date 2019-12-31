@@ -15,12 +15,12 @@
   "block.luminiferous_uplands.uplander_stone_brick_stairs": "Uplander Stone Brick Stairs",
   "block.luminiferous_uplands.uplander_stone_brick_slab": "Uplander Stone Brick Slab",
   "block.luminiferous_uplands.uplander_stone_brick_wall": "Uplander Stone Brick Wall",
-
-  "item.luminiferous_uplands.aegisalt_crystal": "Aegisalt Crystal",
+  "block.luminiferous_uplands.unbreakable_uplander_stone_bricks": "Unbreakable Uplander Stone Bricks",
   "block.luminiferous_uplands.aegisalt_bricks": "Aegisalt Bricks",
   "block.luminiferous_uplands.aegisalt_brick_slab": "Aegisalt Brick Slab",
   "block.luminiferous_uplands.aegisalt_brick_stairs": "Aegisalt Brick Stairs",
   "block.luminiferous_uplands.aegisalt_pillar": "Aegisalt Pillar",
+
   "block.luminiferous_uplands.aegisalt_ore": "Aegisalt Ore",
   "block.luminiferous_uplands.block_of_aegisalt": "Block of Aegisalt",
 
@@ -48,6 +48,11 @@
 
   "item.luminiferous_uplands.skyroot_charm": "Skyroot Charm",
   "item.luminiferous_uplands.aegisalt_charm": "Aegisalt Charm",
+  "block.luminiferous_uplands.aegisalt_infuser": "Aegisalt Infuser",
+  "block.luminiferous_uplands.boss_control": "Boss Control Block",
+  "block.luminiferous_uplands.boss_doorway": "Boss Doorway",
+  "block.luminiferous_uplands.megadungeon_altar": "Altar of the Megaduneoner",
+  "block.luminiferous_uplands.active_megadungeon_altar": "Active Altar of the Megadungeoner",
 
   "block.luminiferous_uplands.cloud_daisies": "Cloud Daisies",
   "item.luminiferous_uplands.zephyr_onion": "Zephyr Onion",
@@ -55,6 +60,7 @@
   "item.luminiferous_uplands.water_chestnut": "Water Chestnut",
   "item.luminiferous_uplands.water_chestnut_seeds": "Water Chestnut Seeds",
   "item.luminiferous_uplands.skyroot_fruit": "Skyroot Fruit",
+  "item.luminiferous_uplands.hexahaen_spawn_egg": "Hexahaen Spawn Egg",
 
   "block.luminiferous_uplands.azote_mushroom": "Azote Mushroom",
   "block.luminiferous_uplands.awoken_azote_mushroom": "Awoken Azote Mushroom",
@@ -81,5 +87,8 @@
   "advancements.luminiferous_uplands.lore.build_infuser.description": "Build an Aegisalt Infuser",
 
   "advancements.luminiferous_uplands.lore.infuse_slowfall_charm": "It's a Long Way Down",
-  "advancements.luminiferous_uplands.lore.infuse_slowfall_charm.description": "Build an Aegisalt Charm"
+  "advancements.luminiferous_uplands.lore.infuse_slowfall_charm.description": "Build an Aegisalt Charm",
+
+  "advancements.luminiferous_uplands.lore.kill_hexahaen": "Dicey Dungeon",
+  "advancements.luminiferous_uplands.lore.kill_hexahaen.description": "Kill a Hexahaen"
 }

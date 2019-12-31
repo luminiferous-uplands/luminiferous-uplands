@@ -1,0 +1,31 @@
+{
+  "parent": "$modid:lore/enter_with_beacon",
+  "display": {
+    "icon": {
+      "item": "minecraft:feather"
+    },
+    "title": {
+      "translate": "advancements.luminiferous_uplands.lore.kill_hexahaen"
+    },
+    "description": {
+      "translate": "advancements.luminiferous_uplands.lore.kill_hexahaen.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_hexahaen": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "$modid:hexahaen"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [ "kill_hexahaen" ]
+  ]
+}

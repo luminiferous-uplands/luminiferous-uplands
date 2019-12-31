@@ -8,6 +8,7 @@ import net.minecraft.item.{BlockItem, Item, ItemGroup}
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.registry.Registry
 import robosky.uplands.{HoeHacks, UplandsMod}
+import robosky.uplands.block.bossroom._
 import robosky.uplands.world.feature.plants.UplandsSaplingGenerator
 
 object BlockRegistry {
@@ -33,6 +34,8 @@ object BlockRegistry {
     val UPLANDER_STONE_BRICK_STAIRS: StairsBlock = register("uplander_stone_brick_stairs")(new ModStairsBlock(UPLANDER_STONE_BRICKS, UPLANDER_STONE_SETTINGS))
     val UPLANDER_STONE_BRICK_SLAB: SlabBlock = register("uplander_stone_brick_slab")(new SlabBlock(UPLANDER_STONE_SETTINGS))
     val UPLANDER_STONE_BRICK_WALL: WallBlock = register("uplander_stone_brick_wall")(new WallBlock(UPLANDER_STONE_SETTINGS))
+
+    val UNBREAKABLE_UPLANDER_STONE_BRICKS: Block = register("unbreakable_uplander_stone_bricks")(new unbreakable.Block(UPLANDER_STONE_BRICKS))
 
     val UPLANDER_STONE_BUTTON: ModStoneButtonBlock = register("uplander_stone_button")(new ModStoneButtonBlock(FabricBlockSettings.of(Material.STONE)
       .strength(0.5f, 2.5f)
@@ -207,6 +210,16 @@ object BlockRegistry {
     val POTTED_AWOKEN_AZOTE_MUSHROOM: FlowerPotBlock = register("potted_awoken_azote_mushroom", item = false)(
       new FlowerPotBlock(AWOKEN_AZOTE_MUSHROOM, FabricBlockSettings.of(Material.PART).lightLevel(15).breakInstantly().build())
     )
+
+    val BOSS_CONTROL: ControlBlock = register("boss_control", itemGroup = null)(new ControlBlock())
+    Registry.register(Registry.BLOCK_ENTITY, UplandsMod :/ "boss_control", ControlBlockEntity.TYPE)
+
+    val BOSS_DOORWAY: DoorwayBlock = register("boss_doorway", itemGroup = null)(new DoorwayBlock(Block.Settings.copy(BOSS_CONTROL)))
+    Registry.register(Registry.BLOCK_ENTITY, UplandsMod :/ "boss_doorway", DoorwayBlockEntity.TYPE)
+
+    val MEGADUNGEON_ALTAR: Block = register("megadungeon_altar")(MegadungeonAltarBlock)
+
+    val ACTIVE_MEGADUNGEON_ALTAR: Block = register("active_megadungeon_altar")(new ActiveAltarBlock(MEGADUNGEON_ALTAR))
 
     def init(): Unit = {}
 

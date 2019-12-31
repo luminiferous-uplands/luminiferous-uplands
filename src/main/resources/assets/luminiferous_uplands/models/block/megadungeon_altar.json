@@ -1,0 +1,95 @@
+{
+    "parent": "block/block",
+    "textures": {
+        "particle": "$modid:block/megadungeon_altar_top",
+        "top": "$modid:block/megadungeon_altar_top",
+        "side": "$modid:block/megadungeon_altar_side",
+        "inside": "$modid:block/megadungeon_altar_inside",
+        "drape": "$modid:block/megadungeon_altar_drape"
+    },
+    "elements": [
+        {
+            "from": [0,0,0],
+            "to": [16,1,16],
+            "faces": {
+                "down": { "texture": "#inside" },
+                "up": { "texture": "#inside" },
+                "north": { "texture": "#side" },
+                "south": { "texture": "#side" },
+                "west": { "texture": "#side" },
+                "east": { "texture": "#side" }
+            }
+        },
+        {
+            "from": [2,1,2],
+            "to": [14,2,14],
+            "faces": {
+                "up": { "texture": "#inside" },
+                "north": { "texture": "#side" },
+                "south": { "texture": "#side" },
+                "west": { "texture": "#side" },
+                "east": { "texture": "#side" }
+            }
+        },
+        {
+            "from": [4,2,4],
+            "to": [12,4,12],
+            "faces": {
+                "up": { "texture": "#inside" },
+                "north": { "texture": "#side" },
+                "south": { "texture": "#side" },
+                "west": { "texture": "#side" },
+                "east": { "texture": "#side" }
+            }
+        },
+        {
+            "from": [5,4,5],
+            "to": [11,14,11],
+            "faces": {
+                "north": { "texture": "#side" },
+                "south": { "texture": "#side" },
+                "west": { "texture": "#side" },
+                "east": { "texture": "#side" }
+            }
+        },
+        {
+            "from": [3,14,3],
+            "to": [13,15,13],
+            "faces": {
+                "down": { "texture": "#inside" },
+                "north": { "texture": "#side" },
+                "south": { "texture": "#side" },
+                "west": { "texture": "#side" },
+                "east": { "texture": "#side" }
+            }
+        },
+        {
+            "from": [0.005,15,0.005],
+            "to": [15.995,16,15.995],
+            "faces": {
+                "down": { "texture": "#inside" },
+                "up": { "texture": "#top" },
+                "north": { "texture": "#side" },
+                "south": { "texture": "#side" },
+                "west": { "texture": "#side" },
+                "east": { "texture": "#side" }
+            }
+        },
+        {
+            "from": [0,8,0],
+            "to": [0,16,16],
+            "faces": {
+                "west": { "texture": "#drape" },
+                "east": { "texture": "#drape" }
+            }
+        },
+        {
+            "from": [16,8,0],
+            "to": [16,16,16],
+            "faces": {
+                "west": { "texture": "#drape" },
+                "east": { "texture": "#drape" }
+            }
+        }
+    ]
+}

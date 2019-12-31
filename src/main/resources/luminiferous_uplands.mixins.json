@@ -5,7 +5,9 @@
   "mixins": [
     "BaseFluidMixin",
     "CriterionsMixin",
+    "EntityContextImplMixin",
     "FluidBlockMixin",
+    "LocateCommandMixin",
     "PlayerMixin",
     "WorldMixin"
   ],

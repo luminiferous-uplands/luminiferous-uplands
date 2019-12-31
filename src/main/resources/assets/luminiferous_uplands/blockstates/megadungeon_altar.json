@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "$modid:block/megadungeon_altar" },
+        "facing=south": { "model": "$modid:block/megadungeon_altar", "y": 180 },
+        "facing=west": { "model": "$modid:block/megadungeon_altar", "y": 270 },
+        "facing=east": { "model": "$modid:block/megadungeon_altar", "y": 90 }
+    }
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "adjust=out": {
+      "model": "$modid:block/boss_control_out"
+    },
+    "adjust=in": {
+      "model": "$modid:block/boss_control_in"
+    }
+  }
+}

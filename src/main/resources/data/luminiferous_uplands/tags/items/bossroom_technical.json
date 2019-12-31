@@ -1,0 +1,7 @@
+{
+  "replace": true,
+  "values": [
+    "$modid:boss_control",
+    "$modid:boss_doorway"
+  ]
+}
