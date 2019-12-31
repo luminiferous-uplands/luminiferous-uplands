@@ -3,9 +3,11 @@
   "package": "robosky.uplands.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "LocateCommandMixin",
+    "BaseFluidMixin",
     "CriterionsMixin",
     "EntityContextImplMixin",
+    "FluidBlockMixin",
+    "LocateCommandMixin",
     "PlayerMixin",
     "WorldMixin"
   ],
