@@ -1,5 +1,6 @@
 package robosky.uplands.world.feature.minidungeons;
 
+import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ChestBlockEntity;
@@ -11,7 +12,7 @@ import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.MutableIntBoundingBox;
+import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.IWorld;
@@ -44,7 +45,7 @@ public class MinidungeonGenerator {
             super(tpe, tag);
             this.rotation = BlockRotation.valueOf(tag.getString("Rot"));
             this.template = new Identifier(tag.getString("Template"));
-            if (tag.containsKey("LootTable")) {
+            if (tag.contains("LootTable")) {
                 this.loot = new Identifier(tag.getString("LootTable"));
             }
             initializeStructureData(mgr);
@@ -69,7 +70,7 @@ public class MinidungeonGenerator {
 
         @Override
         protected void handleMetadata(String dataName, BlockPos pos, IWorld world, Random rand,
-                                      MutableIntBoundingBox bbox) {
+                                      BlockBox bbox) {
             if ("chest".equals(dataName)) {
                 world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
                 BlockEntity blockEntity_1 = world.getBlockEntity(pos.down());
@@ -80,8 +81,8 @@ public class MinidungeonGenerator {
         }
 
         @Override
-        public boolean generate(IWorld world, Random rand, MutableIntBoundingBox bbox, ChunkPos chunkPos) {
-            int yHeight = world.getTop(Heightmap.Type.WORLD_SURFACE_WG, this.pos.getX() + 8, this.pos.getZ() + 8);
+        public boolean generate(IWorld world, ChunkGenerator<?> chunkGenerator, Random rand, BlockBox bbox, ChunkPos chunkPos) {
+            int yHeight = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, this.pos.add(8, 0, 8)).getY();
 
             this.pos = this.pos.add(0, yHeight - 1, 0);
 
@@ -94,7 +95,7 @@ public class MinidungeonGenerator {
                 }
             }
 
-            return super.generate(world, rand, bbox, chunkPos);
+            return super.generate(world, chunkGenerator, rand, bbox, chunkPos);
         }
     }
 

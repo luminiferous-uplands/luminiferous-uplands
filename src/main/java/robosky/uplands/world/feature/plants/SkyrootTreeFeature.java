@@ -4,7 +4,7 @@ import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MutableIntBoundingBox;
+import net.minecraft.util.math.BlockBox;
 import net.minecraft.world.ModifiableTestableWorld;
 import net.minecraft.world.TestableWorld;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -36,7 +36,7 @@ public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig
     }
 
     public boolean generate(Set<BlockPos> set, ModifiableTestableWorld world, Random rand,
-                            BlockPos startPos, MutableIntBoundingBox bbox) {
+                            BlockPos startPos, BlockBox bbox) {
         // Leaves have to be obtained in generate because we need access to the RNG
         float randomLeaves = rand.nextFloat();
 

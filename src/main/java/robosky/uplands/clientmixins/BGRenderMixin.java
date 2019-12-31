@@ -19,19 +19,19 @@ public class BGRenderMixin {
     private MinecraftClient client;
 
     @ModifyVariable(
-            method = "renderBackground",
-            at = @At(value = "STORE", ordinal = 0),
-            ordinal = 0
+        method = "render",
+        at = @At(value = "STORE", ordinal = 0),
+        ordinal = 0
     )
-    private double modifyVoidColor(double scale) {
-        if (client.world.dimension.getType() == WorldRegistry.UPLANDS_DIMENSION()) {
+    private static double modifyVoidColor(double scale) {
+        if (MinecraftClient.getInstance().world.dimension.getType() == WorldRegistry.UPLANDS_DIMENSION()) {
             scale = 1.0;
         }
         return scale;
     }
 
-    @Inject(at = @At("HEAD"), method = "renderBackground")
-    private void heckLoom(Camera unused1, float unused2, CallbackInfo info) {
+    @Inject(at = @At("HEAD"), method = "render")
+    private static void heckLoom(CallbackInfo info) {
 
     }
 }

@@ -23,7 +23,7 @@ public abstract class WorldRendererMixin {
         method = "renderSky",
         at = @At(
             value = "INVOKE",
-            target = "Lcom/mojang/blaze3d/platform/GlStateManager;color4f(FFFF)V",
+            target = "Lcom/mojang/blaze3d/systems/RenderSystem;color4f(FFFF)V",
             ordinal = 0
         ),
         index = 3,

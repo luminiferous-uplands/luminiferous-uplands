@@ -6,7 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.fluid.BaseFluid;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.state.StateFactory;
+import net.minecraft.state.StateManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -32,7 +32,7 @@ public abstract class FluidBlockMixin extends Block {
     }
 
     @Inject(method = "appendProperties", at = @At("RETURN"))
-    private void onAppendProperties(StateFactory.Builder<Block, BlockState> builder, CallbackInfo info) {
+    private void onAppendProperties(StateManager.Builder<Block, BlockState> builder, CallbackInfo info) {
         // You see...since this is called in the superclass constructor,
         // none of this object's fields has been initialized (including this.fluid),
         // so we can't use the fluid to determine if this object is water or lava.
