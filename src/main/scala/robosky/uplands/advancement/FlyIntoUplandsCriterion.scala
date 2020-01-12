@@ -44,7 +44,7 @@ object FlyIntoUplandsCriterion extends Criterion[FlyIntoUplandsConditions.type] 
     FlyIntoUplandsConditions.type = FlyIntoUplandsConditions
 
   def handle(player: ServerPlayerEntity): Unit = {
-    handlers.get(player.getAdvancementManager) foreach { _.handle() }
+    handlers.get(player.getAdvancementTracker) foreach { _.handle() }
   }
 
   private class Handler(val manager: PlayerAdvancementTracker) {

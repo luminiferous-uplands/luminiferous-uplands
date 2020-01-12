@@ -12,10 +12,10 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.FlowerFeature;
+import net.minecraft.world.gen.feature.Feature;
 import robosky.uplands.block.BlockRegistry;
 
-public class UplandFlowerFeature extends FlowerFeature {
+public class UplandFlowerFeature extends Feature<DefaultFeatureConfig> {
     private static final Block[] FLOWERS;
 
     public UplandFlowerFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> function_1) {
@@ -23,11 +23,12 @@ public class UplandFlowerFeature extends FlowerFeature {
     }
 
     public BlockState getFlowerToPlace(Random random_1, BlockPos blockPos_1) {
-        double double_1 = MathHelper.clamp((1.0D + Biome.FOLIAGE_NOISE.sample((double)blockPos_1.getX() / 48.0D, (double)blockPos_1.getZ() / 48.0D)) / 2.0D, 0.0D, 0.9999D);
+        double double_1 = MathHelper.clamp((1.0D + Biome.FOLIAGE_NOISE.sample((double)blockPos_1.getX() / 48.0D, (double)blockPos_1.getZ() / 48.0D, false)) / 2.0D, 0.0D, 0.9999D);
         Block block_1 = FLOWERS[(int)(double_1 * (double)FLOWERS.length)];
         return block_1.getDefaultState();
     }
 
+    @Override
     public boolean generate(IWorld iWorld_1, ChunkGenerator<? extends ChunkGeneratorConfig> chunkGenerator_1, Random random_1, BlockPos blockPos_1, DefaultFeatureConfig defaultFeatureConfig_1) {
         BlockState blockState_1 = this.getFlowerToPlace(random_1, blockPos_1);
         int int_1 = 0;

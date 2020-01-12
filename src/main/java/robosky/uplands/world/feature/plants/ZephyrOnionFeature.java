@@ -11,11 +11,11 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.FlowerFeature;
+import net.minecraft.world.gen.feature.Feature;
 import robosky.uplands.block.BlockRegistry;
 import robosky.uplands.block.ZephyrOnionBlock;
 
-public class ZephyrOnionFeature extends FlowerFeature {
+public class ZephyrOnionFeature extends Feature<DefaultFeatureConfig> {
     public ZephyrOnionFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> function_1) {
         super(function_1);
     }
@@ -24,6 +24,7 @@ public class ZephyrOnionFeature extends FlowerFeature {
         return BlockRegistry.ZEPHYR_ONION_CROP_BLOCK().getDefaultState().with(ZephyrOnionBlock.AGE, random_1.nextInt(5));
     }
 
+    @Override
     public boolean generate(IWorld iWorld_1, ChunkGenerator<? extends ChunkGeneratorConfig> chunkGenerator_1, Random random_1, BlockPos blockPos_1, DefaultFeatureConfig defaultFeatureConfig_1) {
         for(BlockState blockState_1 = iWorld_1.getBlockState(blockPos_1); (blockState_1.isAir() || blockState_1.matches(BlockTags.LEAVES)) && blockPos_1.getY() > 0; blockState_1 = iWorld_1.getBlockState(blockPos_1)) {
             blockPos_1 = blockPos_1.down();

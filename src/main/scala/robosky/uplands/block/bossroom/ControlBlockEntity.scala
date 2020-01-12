@@ -209,7 +209,7 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
           if (!boss.isAlive) {
             onBossDefeat()
           } else {
-            val players = this.world.getEntities(classOf[PlayerEntity], worldBoundsBox)
+            val players = this.world.getEntities(classOf[PlayerEntity], worldBoundsBox, player => true)
             if (players.isEmpty) {
               // everyone died (or escaped)
               deactivateBoss()
@@ -277,7 +277,7 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
       } yield etyp
     } getOrElse EntityType.PIG
     bossUuid = {
-      if (tag.containsKey("BossUUIDMost") && tag.containsKey("BossUUIDLeast"))
+      if (tag.contains("BossUUIDMost") && tag.contains("BossUUIDLeast"))
         Some(new UUID(tag.getLong("BossUUIDMost"), tag.getLong("BossUUIDLeast")))
       else
         None

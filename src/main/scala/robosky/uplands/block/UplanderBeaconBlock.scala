@@ -11,7 +11,7 @@ import net.minecraft.entity.EntityContext
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.particle.ParticleTypes
 import net.minecraft.sound.{SoundCategory, SoundEvents}
-import net.minecraft.state.StateFactory.Builder
+import net.minecraft.state.StateManager.Builder
 import net.minecraft.state.property.{BooleanProperty, IntProperty}
 import net.minecraft.util.Hand
 import net.minecraft.util.hit.BlockHitResult
@@ -19,14 +19,14 @@ import net.minecraft.util.math.Direction.Axis
 import net.minecraft.util.math.{BlockPos, Direction}
 import net.minecraft.util.shape.VoxelShape
 import net.minecraft.world.dimension.DimensionType
-import net.minecraft.world.{BlockView, ViewableWorld, World}
+import net.minecraft.world.{BlockView, WorldView, World}
 import robosky.uplands.iface.UplanderBeaconUser
 
 object UplanderBeaconBlock extends Block(FabricBlockSettings.of(Material.STONE).strength(3, 3)
   .breakByTool(FabricToolTags.PICKAXES, 2).ticksRandomly().build()) {
   def SMOKING: BooleanProperty = BooleanProperty.of("smoking")
 
-  setDefaultState(getStateFactory.getDefaultState.`with`(SMOKING,JBoolean.FALSE))
+  setDefaultState(getStateManager.getDefaultState.`with`(SMOKING,JBoolean.FALSE))
 
   override def getOutlineShape(blockState_1: BlockState, blockView_1: BlockView, blockPos_1: BlockPos,
     entityContext_1: EntityContext): VoxelShape =
@@ -49,7 +49,7 @@ object UplanderBeaconBlock extends Block(FabricBlockSettings.of(Material.STONE).
     }
   }
 
-  override def getTickRate(viewableWorld_1: ViewableWorld): Int = 35
+  override def getTickRate(WorldView_1: WorldView): Int = 35
 
   override def appendProperties(builder: Builder[Block, BlockState]): Unit = {
     builder.add(SMOKING)

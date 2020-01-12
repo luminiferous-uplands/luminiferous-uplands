@@ -7,7 +7,7 @@ import net.minecraft.block.entity.BlockEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.SpawnEggItem
 import net.minecraft.sound.BlockSoundGroup
-import net.minecraft.state.StateFactory
+import net.minecraft.state.StateManager
 import net.minecraft.state.property.{EnumProperty, Property}
 import net.minecraft.util.Hand
 import net.minecraft.util.hit.BlockHitResult
@@ -36,7 +36,7 @@ class ControlBlock extends Block(
   def control(world: World, pos: BlockPos): Option[ControlBlockEntity] =
     Option(world.getBlockEntity(pos)) collect { case ctrl: ControlBlockEntity => ctrl }
 
-  override def appendProperties(builder: StateFactory.Builder[Block, BlockState]): Unit = {
+  override def appendProperties(builder: StateManager.Builder[Block, BlockState]): Unit = {
     builder.add(ControlBlock.ADJUST)
   }
 

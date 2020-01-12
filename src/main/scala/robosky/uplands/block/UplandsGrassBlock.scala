@@ -8,7 +8,7 @@ import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.tag.FluidTags
 import net.minecraft.util.math.{BlockPos, Direction}
 import net.minecraft.world.chunk.light.ChunkLightProvider
-import net.minecraft.world.{ViewableWorld, World}
+import net.minecraft.world.{WorldView, World}
 
 object UplandsGrassBlock extends Block(FabricBlockSettings.of(Material.ORGANIC).ticksRandomly
   .strength(0.6f, 0.6f).sounds(BlockSoundGroup.GRASS).build()) {
@@ -29,15 +29,15 @@ object UplandsGrassBlock extends Block(FabricBlockSettings.of(Material.ORGANIC).
         }
   }
 
-  private def canSpread(state: BlockState, world: ViewableWorld, pos: BlockPos) = {
+  private def canSpread(state: BlockState, world: WorldView, pos: BlockPos) = {
     val blockPos_2 = pos.up
     canSurvive(state, world, pos) && !world.getFluidState(blockPos_2).matches(FluidTags.WATER)
   }
 
-  private def canSurvive(state: BlockState, world: ViewableWorld, pos: BlockPos) = {
+  private def canSurvive(state: BlockState, world: WorldView, pos: BlockPos) = {
     val blockPos_2 = pos.up
     val blockState_2 = world.getBlockState(blockPos_2)
-    val int_1 = ChunkLightProvider.method_20049(world, state, pos, blockState_2, blockPos_2, Direction.UP,
+    val int_1 = ChunkLightProvider.getRealisticOpacity(world, state, pos, blockState_2, blockPos_2, Direction.UP,
       blockState_2.getLightSubtracted(world, blockPos_2))
     int_1 < world.getMaxLightLevel
   }

@@ -23,7 +23,7 @@ object UplandsTeleporter {
     override def placeEntity(entity: Entity, world: ServerWorld, direction: Direction, v: Double, v1: Double): BlockPattern.TeleportTarget = {
       // teleport to the spawn platform
       val tag = world.getLevelProperties.getWorldData(WorldRegistry.UPLANDS_DIMENSION)
-      val pos = if (tag.containsKey("SpawnPlatform")) {
+      val pos = if (tag.contains("SpawnPlatform")) {
         val ptag = tag.getIntArray("SpawnPlatform")
         new Vec3d(ptag(0), ptag(1), ptag(2))
       } else {
@@ -45,7 +45,7 @@ object UplandsTeleporter {
         structure.generate(
           world,
           new Random(),
-          new MutableIntBoundingBox(
+          new BlockBox(
             cp.getStartX,
             cp.getStartZ,
             cp.getEndX,
@@ -73,13 +73,13 @@ object UplandsTeleporter {
         case se: ServerPlayerEntity =>
           FlyIntoUplandsCriterion.handle(se)
       }
-      new BlockPattern.TeleportTarget(new Vec3d(entity.x, -40.0, entity.z), entity.getVelocity, entity.yaw.toInt)
+      new BlockPattern.TeleportTarget(new Vec3d(entity.getX, -40.0, entity.getZ), entity.getVelocity, entity.yaw.toInt)
     }
   }
 
   object FromUplands extends EntityPlacer {
     override def placeEntity(entity: Entity, serverWorld: ServerWorld, direction: Direction, v: Double, v1: Double): BlockPattern.TeleportTarget = {
-      new BlockPattern.TeleportTarget(new Vec3d(entity.x, 256, entity.z), entity.getVelocity, entity.yaw.toInt)
+      new BlockPattern.TeleportTarget(new Vec3d(entity.getX, 256, entity.getZ), entity.getVelocity, entity.yaw.toInt)
     }
   }
 

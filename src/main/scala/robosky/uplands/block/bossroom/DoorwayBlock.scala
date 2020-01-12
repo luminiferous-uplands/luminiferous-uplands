@@ -5,7 +5,7 @@ import net.minecraft.block.entity.BlockEntity
 import net.minecraft.entity.EntityContext
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.{ItemPlacementContext, Items, ItemUsageContext}
-import net.minecraft.state.StateFactory
+import net.minecraft.state.StateManager
 import net.minecraft.state.property.{EnumProperty, Property}
 import net.minecraft.util.Hand
 import net.minecraft.util.hit.BlockHitResult
@@ -28,7 +28,7 @@ class DoorwayBlock(settings: Block.Settings) extends Block(settings) with BlockE
   def doorway(world: BlockView, pos: BlockPos): Option[DoorwayBlockEntity] =
     Option(world.getBlockEntity(pos)) collect { case d: DoorwayBlockEntity => d }
 
-  override def appendProperties(builder: StateFactory.Builder[Block, BlockState]): Unit = {
+  override def appendProperties(builder: StateManager.Builder[Block, BlockState]): Unit = {
     builder.add(DoorwayBlock.STATE)
   }
 

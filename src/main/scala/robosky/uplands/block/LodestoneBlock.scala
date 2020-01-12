@@ -5,7 +5,7 @@ import java.util.Random
 import net.minecraft.block.{Block, BlockState, FallingBlock}
 import net.minecraft.entity.FallingBlockEntity
 import net.minecraft.item.ItemPlacementContext
-import net.minecraft.state.StateFactory
+import net.minecraft.state.StateManager
 import net.minecraft.state.property.{IntProperty, Property}
 import net.minecraft.util.math.{BlockPos, Direction}
 import net.minecraft.world.{BlockView, IWorld, World}
@@ -18,7 +18,7 @@ class LodestoneBlock(settings: Block.Settings) extends Block(settings) {
 
   import LodestoneBlock.DISTANCE
 
-  override protected def appendProperties(builder: StateFactory.Builder[Block, BlockState]): Unit = {
+  override protected def appendProperties(builder: StateManager.Builder[Block, BlockState]): Unit = {
     builder.add(DISTANCE)
   }
 

@@ -10,7 +10,7 @@ import net.minecraft.tag.BlockTags
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.shape.VoxelShape
-import net.minecraft.world.{BlockView, ViewableWorld, World}
+import net.minecraft.world.{BlockView, WorldView, World}
 
 object AzoteMushroomBlock {
   val SHAPE: VoxelShape = Block.createCuboidShape(5.0D, 0.0D, 5.0D, 11.0D, 6.0D, 11.0D)
@@ -21,7 +21,7 @@ class AzoteMushroomBlock(val settings: Block.Settings) extends MushroomPlantBloc
     blockState_1.matches(UplandsBlockTags.AzoteMushroomSpreadable) ||
       blockState_1.matches(TagRegistry.block(new Identifier("luminiferous_uplands:azote_mushroom_spreadable")))
 
-  override def canPlaceAt(blockState_1: BlockState, viewableWorld_1: ViewableWorld, blockPos_1: BlockPos): Boolean = {
+  override def canPlaceAt(blockState_1: BlockState, viewableWorld_1: WorldView, blockPos_1: BlockPos): Boolean = {
     val blockState_2 = viewableWorld_1.getBlockState(blockPos_1.down())
     blockState_2.matches(BlockTags.DIRT_LIKE) ||
       blockState_2.matches(TagRegistry.block(new Identifier("luminiferous_uplands:azote_mushroom_spreadable")))

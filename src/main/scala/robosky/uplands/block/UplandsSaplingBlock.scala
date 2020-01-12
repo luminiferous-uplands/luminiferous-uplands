@@ -4,7 +4,7 @@ import java.util.Random
 
 import net.minecraft.block.{Block, BlockState, Fertilizable, PlantBlock}
 import net.minecraft.entity.EntityContext
-import net.minecraft.state.StateFactory
+import net.minecraft.state.StateManager
 import net.minecraft.state.property.{IntProperty, Properties}
 import net.minecraft.tag.BlockTags
 import net.minecraft.util.math.BlockPos
@@ -20,7 +20,7 @@ object UplandsSaplingBlock {
 
 class UplandsSaplingBlock(val generator: UplandsSaplingGenerator, val settings: Block.Settings) extends PlantBlock(settings)
   with Fertilizable {
-  this.setDefaultState(this.stateFactory.getDefaultState.`with`[Integer, Integer](UplandsSaplingBlock.STAGE, 0))
+  this.setDefaultState(this.stateManager.getDefaultState.`with`[Integer, Integer](UplandsSaplingBlock.STAGE, 0))
 
   override def canPlantOnTop(blockState_1: BlockState, blockView_1: BlockView, blockPos_1: BlockPos): Boolean =
     blockState_1.matches(BlockTags.DIRT_LIKE);
@@ -49,7 +49,7 @@ class UplandsSaplingBlock(val generator: UplandsSaplingGenerator, val settings: 
     else this.generator.generate(iWorld_1, blockPos_1, blockState_1, random_1)
   }
 
-  override protected def appendProperties(builder: StateFactory.Builder[Block, BlockState]): Unit =
+  override protected def appendProperties(builder: StateManager.Builder[Block, BlockState]): Unit =
     builder.add(UplandsSaplingBlock.STAGE)
 
 }
