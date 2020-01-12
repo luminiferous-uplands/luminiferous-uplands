@@ -5,7 +5,7 @@ import java.util.Random
 import com.mojang.datafixers.Dynamic
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.structure.{StructureManager, StructurePieceType, StructureStart}
-import net.minecraft.util.math.{BlockPos, MutableIntBoundingBox}
+import net.minecraft.util.math.{BlockPos, BlockBox}
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.Heightmap
 import net.minecraft.world.biome.Biome
@@ -44,7 +44,7 @@ object MegadungeonFeature extends AbstractTempleFeature[DefaultFeatureConfig]((d
       super.shouldStartAt(chunkGenerator_1, random_1, int_1, int_2)
   }
 
-  private case class Start(feature: StructureFeature[_], x: Int, z: Int, biome: Biome, bbox: MutableIntBoundingBox, refs: Int, seed: Long)
+  private case class Start(feature: StructureFeature[_], x: Int, z: Int, biome: Biome, bbox: BlockBox, refs: Int, seed: Long)
     extends StructureStart(feature, x, z, biome, bbox, refs, seed) {
     override def initialize(chunkGenerator_1: ChunkGenerator[_], structureManager_1: StructureManager, int_1: Int, int_2: Int, biome_1: Biome): Unit = {
       val blockPos_1 = new BlockPos(int_1 * 16, 90, int_2 * 16)

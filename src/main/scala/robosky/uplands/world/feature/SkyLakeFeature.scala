@@ -4,21 +4,21 @@ import java.util.Random
 import java.util.function.Function
 
 import com.mojang.datafixers.Dynamic
-import net.minecraft.world.gen.feature.{Feature, LakeFeatureConfig}
+import net.minecraft.world.gen.feature.{Feature, BushFeatureConfig}
 import robosky.uplands.block.BlockRegistry
 
-class SkyLakeFeature($f: Function[Dynamic[_], LakeFeatureConfig])
-  extends Feature[LakeFeatureConfig]($f) {
+class SkyLakeFeature($f: Function[Dynamic[_], BushFeatureConfig])
+  extends Feature[BushFeatureConfig]($f) {
 
   import net.minecraft.block.{Block, Blocks, Material}
   import net.minecraft.util.math.{BlockPos, ChunkPos}
   import net.minecraft.world.chunk.ChunkStatus
   import net.minecraft.world.gen.chunk.{ChunkGenerator, ChunkGeneratorConfig}
-  import net.minecraft.world.gen.feature.{Feature, LakeFeatureConfig}
+  import net.minecraft.world.gen.feature.{Feature, BushFeatureConfig}
   import net.minecraft.world.{IWorld, LightType}
 
   def generate(world: IWorld, generator: ChunkGenerator[_ <: ChunkGeneratorConfig], random: Random, st: BlockPos,
-    config: LakeFeatureConfig): Boolean = {
+    config: BushFeatureConfig): Boolean = {
     var start = st
     while ( {
       start.getY > 5 && world.isAir(start)
