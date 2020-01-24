@@ -6,13 +6,13 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.Biome.Category
 import net.minecraft.world.gen.GenerationStep
-import net.minecraft.world.gen.decorator.{ChanceDecoratorConfig, CountDecoratorConfig, CountExtraChanceDecoratorConfig, Decorator, BushDecoratorConfig, NoiseHeightmapDecoratorConfig, NopeDecoratorConfig, RangeDecoratorConfig}
+import net.minecraft.world.gen.decorator._
 import net.minecraft.world.gen.feature._
 import net.minecraft.world.gen.surfacebuilder.SurfaceConfig
 import robosky.uplands.block.{BlockRegistry, UplandsOreBlock}
 import robosky.uplands.world.biome.UplandsAutumnBiomeConfig._
-import robosky.uplands.world.feature.{UplandsOreFeatureConfig, FeatureRegistry}
 import robosky.uplands.world.feature.megadungeon.MegadungeonFeature
+import robosky.uplands.world.feature.{FeatureRegistry, UplandsOreFeatureConfig}
 import robosky.uplands.world.gen.UplandsAutumnSurfaceBuilder
 
 object UplandsAutumnBiomeConfig {
@@ -54,7 +54,7 @@ object UplandsAutumnBiome
 
   addFeature(GenerationStep.Feature.LOCAL_MODIFICATIONS, FeatureRegistry.skyLakeFeature.configure(
     new SingleStateFeatureConfig(Blocks.WATER.getDefaultState))
-    .createDecoratedFeature(Decorator.WATER_LAKE.configure(new BushDecoratorConfig(8))))
+    .createDecoratedFeature(Decorator.WATER_LAKE.configure(new ChanceDecoratorConfig(8))))
 
   addStructureFeature(FeatureRegistry.treehouseFeature.configure(FeatureConfig.DEFAULT))
   addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, FeatureRegistry.treehouseFeature.configure(FeatureConfig.DEFAULT)
@@ -65,7 +65,7 @@ object UplandsAutumnBiome
     .createDecoratedFeature(Decorator.NOPE.configure(new NopeDecoratorConfig())))
 
   @Environment(EnvType.CLIENT)
-  override def getSkyColor() = 12632319
+  override def getSkyColor = 12632319
 
   override def getGrassColorAt(double_1: Double, double_2: Double) = 15382866
 

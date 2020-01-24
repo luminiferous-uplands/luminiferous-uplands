@@ -6,7 +6,7 @@ import com.mojang.datafixers.Dynamic
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.structure.{StructureManager, StructurePieceType}
 import net.minecraft.util.registry.Registry
-import net.minecraft.world.gen.feature.{BushFeatureConfig, DefaultFeatureConfig, Feature, RandomPatchFeatureConfig}
+import net.minecraft.world.gen.feature.{DefaultFeatureConfig, Feature, RandomPatchFeatureConfig, SingleStateFeatureConfig}
 import robosky.uplands.UplandsMod
 import robosky.uplands.world.feature.megadungeon.{MegadungeonFeature, MegadungeonGenerator}
 import robosky.uplands.world.feature.minidungeons.{MinidungeonFeature, MinidungeonFeatureConfig}
@@ -18,7 +18,7 @@ object FeatureRegistry {
     (t: Dynamic[_]) => DefaultFeatureConfig.deserialize(t), false))
 
   val skyLakeFeature: SkyLakeFeature = register("sky_lake", new SkyLakeFeature((t: Dynamic[_]) =>
-    BushFeatureConfig.deserialize(t)))
+    SingleStateFeatureConfig.deserialize(t)))
 
   val waterChestnutFeature: WaterChestnutFeature = register("wild_water_chestnuts", new WaterChestnutFeature((t: Dynamic[_]) => DefaultFeatureConfig.deserialize(t)))
 

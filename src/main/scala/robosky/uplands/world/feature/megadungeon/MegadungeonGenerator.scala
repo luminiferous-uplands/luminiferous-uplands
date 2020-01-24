@@ -1,24 +1,21 @@
 package robosky.uplands.world.feature.megadungeon
 
-import com.mojang.brigadier.StringReader
-import com.mojang.brigadier.exceptions.CommandSyntaxException
-
 import java.util
 import java.util.Random
+
 import com.google.common.collect.ImmutableList
+import com.mojang.brigadier.StringReader
+import com.mojang.brigadier.exceptions.CommandSyntaxException
 import com.mojang.datafixers.util.Pair
 import net.minecraft.block.Blocks
 import net.minecraft.block.entity.LootableContainerBlockEntity
-import net.minecraft.block.enums.StructureBlockMode
 import net.minecraft.command.arguments.BlockStateArgumentType
 import net.minecraft.structure.pool.StructurePool.Projection
 import net.minecraft.structure.pool.StructurePoolBasedGenerator.PieceFactory
 import net.minecraft.structure.pool._
-import net.minecraft.structure.processor.JigsawReplacementStructureProcessor
-import net.minecraft.structure.{Structure, StructureManager, StructurePiece, StructurePlacementData}
-import net.minecraft.util.math.{BlockPos, MutableIntBoundingBox}
-import net.minecraft.util.registry.Registry
-import net.minecraft.util.{BlockRotation, Identifier}
+import net.minecraft.structure.{StructureManager, StructurePiece}
+import net.minecraft.util.Identifier
+import net.minecraft.util.math.{BlockBox, BlockPos}
 import net.minecraft.world.IWorld
 import net.minecraft.world.gen.ChunkRandom
 import net.minecraft.world.gen.chunk.ChunkGenerator
@@ -34,7 +31,7 @@ object MegadungeonGenerator {
 
   private val blockStateParser: BlockStateArgumentType = BlockStateArgumentType.blockState()
 
-  def handleMetadata(str: String, pos: BlockPos, world: IWorld, rand: Random, bbox: MutableIntBoundingBox): Unit = {
+  def handleMetadata(str: String, pos: BlockPos, world: IWorld, rand: Random, bbox: BlockBox): Unit = {
     val (a, b) = str.split(';') match {
       case Array(pt1) => (pt1, "")
       case Array(pt1, pt2, _*) => (pt1, pt2)
@@ -50,7 +47,7 @@ object MegadungeonGenerator {
     val tgt = if (b.startsWith("to!")) {
       val reader = new StringReader(b.substring(3))
       try {
-        blockStateParser.method_9654(reader).getBlockState
+        blockStateParser.parse(reader).getBlockState
       } catch {
         case _: CommandSyntaxException => Blocks.CAVE_AIR.getDefaultState
       }

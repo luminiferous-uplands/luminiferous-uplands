@@ -24,7 +24,7 @@ object AegisaltRecipeCategory extends RecipeCategory[AegisaltRecipeDisplay] {
   override def getCategoryName: String = "Aegisalt Infusion"
 
   // Is there a way to cast a MachineEntry to an ItemStack?
-  override def getIcon: EntryStack = EntryStack.create(MachineRegistry.aegisaltInfuser)
+  override def getLogo: EntryStack = EntryStack.create(MachineRegistry.aegisaltInfuser.block)
 
   override def getSimpleRenderer(recipe: AegisaltRecipeDisplay): RecipeEntry =
     SimpleRecipeEntry.create(() => (0 to 1).map(recipe.getInputEntries.get(_)).toList.asJava, () => recipe.getOutputEntries)
@@ -42,7 +42,7 @@ object AegisaltRecipeCategory extends RecipeCategory[AegisaltRecipeDisplay] {
       true, true))
     widgets.add(new SlotWidget(startPoint.x + 68, startPoint.y + 19, Renderer.fromItemStacks(recipeDisplaySupplier.get.getFuel),
       true, true, true))
-    widgets.add(new SlotWidget(startPoint.x + 98, startPoint.y + 1, Renderer.fromItemStacks(recipeDisplaySupplier.get.getOutput),
+    widgets.add(new SlotWidget(startPoint.x + 98, startPoint.y + 1, Renderer.fromItemStacks(recipeDisplaySupplier.get.getOutputEntries),
       true, true, true))
     widgets
   }
