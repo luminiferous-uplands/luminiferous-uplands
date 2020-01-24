@@ -1,8 +1,7 @@
 package robosky.uplands.client.render.entity
 
-import net.fabricmc.fabric.api.client.render.EntityRendererRegistry
-
-import net.minecraft.client.render.entity.{EntityRenderer, EntityRenderDispatcher}
+import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry
+import net.minecraft.client.render.entity.{EntityRenderDispatcher, EntityRenderer}
 import net.minecraft.entity.Entity
 
 import scala.reflect.{ClassTag, classTag}

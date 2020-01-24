@@ -37,7 +37,7 @@ object DoorwayBlockEntityRenderer extends BlockEntityRenderer[DoorwayBlockEntity
       val model = renderManager.getModel(state)
       GlStateManager.pushMatrix()
       GlStateManager.translated(camX, camY, camZ)
-      this.bindTexture(SpriteAtlasTexture.BLOCK_ATLAS_TEX)
+      this.bindTextureInner(SpriteAtlasTexture.BLOCK_ATLAS_TEX)
       GlStateManager.rotatef(-90.0f, 0.0f, 1.0f, 0.0f)
       renderManager.getModelRenderer.render(model, state, 1.0f, true)
       GlStateManager.popMatrix()
@@ -52,21 +52,21 @@ object DoorwayBlockEntityRenderer extends BlockEntityRenderer[DoorwayBlockEntity
     val maxY = camY + (12.0 / 16.0) + 0.005
     val maxZ = camZ + (12.0 / 16.0) + 0.005
     val tez = Tessellator.getInstance()
-    val buffer = tez.getBufferBuilder()
+    val buffer = tez.getBuffer()
     GlStateManager.disableFog()
     GlStateManager.disableLighting()
     GlStateManager.disableTexture()
     GlStateManager.enableBlend()
     GlStateManager.blendFuncSeparate(
-      GlStateManager.SourceFactor.SRC_ALPHA,
-      GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA,
-      GlStateManager.SourceFactor.ONE,
-      GlStateManager.DestFactor.ZERO)
+      GlStateManager.SrcFactor.SRC_ALPHA.value,
+      GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA.value,
+      GlStateManager.SrcFactor.ONE.value,
+      GlStateManager.DstFactor.ZERO.value)
     this.disableLightmap(true)
     GlStateManager.lineWidth(2.0F)
     buffer.begin(3, VertexFormats.POSITION_COLOR);
-    WorldRenderer.buildBoxOutline(buffer, minX, minY, minZ, maxX, maxY, maxZ, 0.0f, 0.0f, 0.0f, 1.0f)
-    WorldRenderer.buildBoxOutline(buffer, minX, minY, minZ, maxX, maxY, maxZ, 1.0f, 1.0f, 0.0f, 1.0f)
+    WorldRenderer.drawBox(buffer, minX, minY, minZ, maxX, maxY, maxZ, 0.0f, 0.0f, 0.0f, 1.0f)
+    WorldRenderer.drawBox(buffer, minX, minY, minZ, maxX, maxY, maxZ, 1.0f, 1.0f, 0.0f, 1.0f)
     tez.draw()
     this.disableLightmap(false)
     GlStateManager.lineWidth(1.0F)

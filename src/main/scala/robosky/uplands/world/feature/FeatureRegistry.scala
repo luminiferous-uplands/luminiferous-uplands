@@ -6,7 +6,7 @@ import com.mojang.datafixers.Dynamic
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.structure.{StructureManager, StructurePieceType}
 import net.minecraft.util.registry.Registry
-import net.minecraft.world.gen.feature.{DefaultFeatureConfig, Feature, BushFeatureConfig}
+import net.minecraft.world.gen.feature.{BushFeatureConfig, DefaultFeatureConfig, Feature, RandomPatchFeatureConfig}
 import robosky.uplands.UplandsMod
 import robosky.uplands.world.feature.megadungeon.{MegadungeonFeature, MegadungeonGenerator}
 import robosky.uplands.world.feature.minidungeons.{MinidungeonFeature, MinidungeonFeatureConfig}
@@ -26,7 +26,7 @@ object FeatureRegistry {
 
   val zephyrOnionFeature: ZephyrOnionFeature = register("wild_zephyr_onion", new ZephyrOnionFeature((t: Dynamic[_]) => DefaultFeatureConfig.deserialize(t)))
 
-  val tallUplandsGrassFeature: TallUplandsGrassFeature = register("tall_uplands_grass", new TallUplandsGrassFeature((t: Dynamic[_]) => DefaultFeatureConfig.deserialize(t)))
+  val tallUplandsGrassFeature: TallUplandsGrassFeature = register("tall_uplands_grass", new TallUplandsGrassFeature((t: Dynamic[_]) => RandomPatchFeatureConfig.deserialize(t)))
 
   val treehouseFeature: MinidungeonFeature = new MinidungeonFeature(MinidungeonFeatureConfig("Uplands Treehouse",
     UplandsMod :/ "minidungeons/treehouse", Optional.of(UplandsMod :/ "chests/minidungeons/treehouse")))

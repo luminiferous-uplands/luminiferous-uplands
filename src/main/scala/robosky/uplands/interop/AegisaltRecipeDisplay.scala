@@ -18,16 +18,16 @@ import scala.collection.JavaConverters._
 case class AegisaltRecipeDisplay(recipe: AegisaltRecipe) extends RecipeDisplay {
   private val fuel: util.ArrayList[ItemStack] = Lists.newArrayList(new ItemStack(ItemRegistry.AEGISALT_CRYSTAL))
   private val input: util.List[util.List[ItemStack]] = Lists.newArrayList(recipe.ingredients
-    .map(_.getStackArray.toList.asJava).asJava)
+    .map(_.getMatchingStacksClient.toList.asJava).asJava)
   input.add(fuel)
 
   def getFuel: util.List[ItemStack] = fuel
 
-  override def getOutput: util.List[ItemStack] = Lists.newArrayList(recipe.getOutput)
+  override def getOutputEntries: util.List[ItemStack] = Lists.newArrayList(recipe.getOutput)
 
   override def getRecipeCategory: Identifier = UplandsMod :/ "plugins/aegisalt_infusions"
 
-  override def getRequiredItems: util.List[util.List[ItemStack]] = getInput
+  override def getRequiredEntries: util.List[util.List[ItemStack]] = getInputEntries
 
-  override def getInput: util.List[util.List[ItemStack]] = input
+  override def getInputEntries: util.List[util.List[ItemStack]] = input
 }

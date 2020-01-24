@@ -46,17 +46,14 @@ object UplandsAutumnBiome
   addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.waterChestnutFeature.configure(FeatureConfig.DEFAULT)
     .createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP.configure(new CountExtraChanceDecoratorConfig(2, 0.1f, 1))))
 
-  // addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.uplandFlowerFeature.configure(FeatureConfig.DEFAULT)
-  //   .createDecoratedFeature(Decorator.NOISE_HEIGHTMAP_32.configure(new NoiseHeightmapDecoratorConfig(-0.8D, 15, 4))))
-
-  addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.tallUplandsGrassFeature.configure(new DefaultFeatureConfig())
+  addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.tallUplandsGrassFeature.configure(new RandomPatchFeatureConfig())
     .createDecoratedFeature(Decorator.COUNT_HEIGHTMAP_DOUBLE.configure(new CountDecoratorConfig(2))))
 
   addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.zephyrOnionFeature.configure(FeatureConfig.DEFAULT)
     .createDecoratedFeature(Decorator.COUNT_HEIGHTMAP_32.configure(new CountDecoratorConfig(3))))
 
   addFeature(GenerationStep.Feature.LOCAL_MODIFICATIONS, FeatureRegistry.skyLakeFeature.configure(
-    new BushFeatureConfig(Blocks.WATER.getDefaultState))
+    new SingleStateFeatureConfig(Blocks.WATER.getDefaultState))
     .createDecoratedFeature(Decorator.WATER_LAKE.configure(new BushDecoratorConfig(8))))
 
   addStructureFeature(FeatureRegistry.treehouseFeature.configure(FeatureConfig.DEFAULT))
@@ -68,11 +65,11 @@ object UplandsAutumnBiome
     .createDecoratedFeature(Decorator.NOPE.configure(new NopeDecoratorConfig())))
 
   @Environment(EnvType.CLIENT)
-  override def getSkyColor(currentTemperature: Float) = 12632319
+  override def getSkyColor() = 12632319
 
-  override def getGrassColorAt(pos: BlockPos) = 15382866
+  override def getGrassColorAt(double_1: Double, double_2: Double) = 15382866
 
-  override def getFoliageColorAt(pos: BlockPos) = 15382866
+  override def getFoliageColor = 15382866
 
   override def computeTemperature(blockPos_1: BlockPos): Float = getTemperature()
 }

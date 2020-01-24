@@ -22,22 +22,22 @@ object ControlBlockEntityRenderer extends BlockEntityRenderer[ControlBlockEntity
       val maxY = camY + be.bounds.maxY
       val maxZ = camZ + be.bounds.maxZ
       val tez = Tessellator.getInstance()
-      val buffer = tez.getBufferBuilder()
+      val buffer = tez.getBuffer()
       GlStateManager.disableFog()
       GlStateManager.disableLighting()
       GlStateManager.disableTexture()
       GlStateManager.enableBlend()
       GlStateManager.blendFuncSeparate(
-        GlStateManager.SourceFactor.SRC_ALPHA,
-        GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA,
-        GlStateManager.SourceFactor.ONE,
-        GlStateManager.DestFactor.ZERO)
+        GlStateManager.SrcFactor.SRC_ALPHA.value,
+        GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA.value,
+        GlStateManager.SrcFactor.ONE.value,
+        GlStateManager.DstFactor.ZERO.value)
       this.disableLightmap(true)
       GlStateManager.lineWidth(2.0F)
       buffer.begin(3, VertexFormats.POSITION_COLOR)
-      WorldRenderer.buildBoxOutline(buffer, camX, camY, camZ, camX + 1, camY + 1, camZ + 1, 1.0f, 1.0f, 0.0f, 1.0f)
-      WorldRenderer.buildBoxOutline(buffer, minX, minY, minZ, maxX, maxY, maxZ, 0.0f, 0.0f, 0.0f, 1.0f)
-      WorldRenderer.buildBoxOutline(buffer, minX, minY, minZ, maxX, maxY, maxZ, 1.0f, 1.0f, 1.0f, 1.0f)
+      WorldRenderer.drawBox(buffer, camX, camY, camZ, camX + 1, camY + 1, camZ + 1, 1.0f, 1.0f, 0.0f, 1.0f)
+      WorldRenderer.drawBox(buffer, minX, minY, minZ, maxX, maxY, maxZ, 0.0f, 0.0f, 0.0f, 1.0f)
+      WorldRenderer.drawBox(buffer, minX, minY, minZ, maxX, maxY, maxZ, 1.0f, 1.0f, 1.0f, 1.0f)
       tez.draw()
       this.disableLightmap(false)
       GlStateManager.lineWidth(1.0F)
