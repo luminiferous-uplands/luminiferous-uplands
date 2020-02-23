@@ -5,6 +5,7 @@ import java.util.Random
 import net.minecraft.block.{Block, BlockState, FallingBlock}
 import net.minecraft.entity.FallingBlockEntity
 import net.minecraft.item.ItemPlacementContext
+import net.minecraft.server.world.ServerWorld
 import net.minecraft.state.StateManager
 import net.minecraft.state.property.{IntProperty, Property}
 import net.minecraft.util.math.{BlockPos, Direction}
@@ -22,19 +23,17 @@ class LodestoneBlock(settings: Block.Settings) extends Block(settings) {
     builder.add(DISTANCE)
   }
 
-  override def onScheduledTick(state: BlockState, world: World, pos: BlockPos, rand: Random): Unit = {
-    if (!world.isClient) {
-      if (state.get(DISTANCE) == 4) {
-        if (FallingBlock.canFallThrough(world.getBlockState(pos.down)) && pos.getY >= 0) {
-          val fallingEntity = new FallingBlockEntity(
-            world,
-            pos.getX + 0.5,
-            pos.getY,
-            pos.getZ + 0.5,
-            state.`with`(DISTANCE, Int.box(0)))
-          fallingEntity.setHurtEntities(true)
-          world.spawnEntity(fallingEntity)
-        }
+  override def scheduledTick(state: BlockState, world: ServerWorld, pos: BlockPos, rand: Random): Unit = {
+    if (state.get(DISTANCE) == 4) {
+      if (FallingBlock.canFallThrough(world.getBlockState(pos.down)) && pos.getY >= 0) {
+        val fallingEntity = new FallingBlockEntity(
+          world,
+          pos.getX + 0.5,
+          pos.getY,
+          pos.getZ + 0.5,
+          state.`with`(DISTANCE, Int.box(0)))
+        fallingEntity.setHurtEntities(true)
+        world.spawnEntity(fallingEntity)
       }
     }
   }

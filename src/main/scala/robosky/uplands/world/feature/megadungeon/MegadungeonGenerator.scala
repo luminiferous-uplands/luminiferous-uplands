@@ -9,7 +9,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException
 import com.mojang.datafixers.util.Pair
 import net.minecraft.block.Blocks
 import net.minecraft.block.entity.LootableContainerBlockEntity
-import net.minecraft.command.arguments.BlockStateArgumentType
+import net.minecraft.command.arguments.{BlockStateArgument, BlockStateArgumentType}
 import net.minecraft.structure.pool.StructurePool.Projection
 import net.minecraft.structure.pool.StructurePoolBasedGenerator.PieceFactory
 import net.minecraft.structure.pool._
@@ -47,7 +47,7 @@ object MegadungeonGenerator {
     val tgt = if (b.startsWith("to!")) {
       val reader = new StringReader(b.substring(3))
       try {
-        blockStateParser.parse(reader).getBlockState
+        (blockStateParser.parse(reader): BlockStateArgument).getBlockState
       } catch {
         case _: CommandSyntaxException => Blocks.CAVE_AIR.getDefaultState
       }

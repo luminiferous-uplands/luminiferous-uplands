@@ -9,12 +9,12 @@ import net.minecraft.world.gen.chunk.ChunkGenerator
 import robosky.uplands.world.biome.BiomeRegistry
 import robosky.uplands.world.gen.UplandsChunkGenConfig
 
-class UplandsDimension(world: World, dimensionType: DimensionType) extends Dimension(world, dimensionType) {
+class UplandsDimension(world: World, dimensionType: DimensionType) extends Dimension(world, dimensionType, 0.0f) {
   override val getForcedSpawnPoint: BlockPos = new BlockPos(0, 130, 0)
   private val colorsSunriseSunset = new Array[Float](4)
 
   override def createChunkGenerator(): ChunkGenerator[_] = WorldRegistry.UPLANDS_CHUNK_GENERATOR.create(world,
-    BiomeSourceType.FIXED.applyConfig(BiomeSourceType.FIXED.getConfig.setBiome(BiomeRegistry.UPLANDS_HIGHLANDS_BIOME)),
+    BiomeSourceType.FIXED.applyConfig(BiomeSourceType.FIXED.getConfig(world.getLevelProperties).setBiome(BiomeRegistry.UPLANDS_HIGHLANDS_BIOME)),
     UplandsChunkGenConfig)
 
   override def getSpawningBlockInChunk(chunkPos: ChunkPos, b: Boolean): BlockPos = null
@@ -46,7 +46,7 @@ class UplandsDimension(world: World, dimensionType: DimensionType) extends Dimen
 
   override def canPlayersSleep: Boolean = true
 
-  override def shouldRenderFog(i: Int, i1: Int): Boolean = false
+  override def isFogThick(i: Int, i1: Int): Boolean = false
 
   override def getHorizonShadingRatio: Double = 1
 
@@ -54,10 +54,4 @@ class UplandsDimension(world: World, dimensionType: DimensionType) extends Dimen
 
   @Environment(EnvType.CLIENT)
   override def getBackgroundColor(celestialAngle: Float, partialTicks: Float): Array[Float] = null
-
-  override protected def initializeLightLevelToBrightness(): Unit =
-    for (level <- 0 until 16) {
-      val brightness = 1.0F - level / 15.0F
-      lightLevelToBrightness(level) = (1.0F - brightness) / (brightness * 3.0F + 1.0F) * 0.9F + 0.1F
-    }
 }

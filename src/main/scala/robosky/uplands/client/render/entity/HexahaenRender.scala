@@ -20,9 +20,6 @@ class HexahaenRender(dispatcher: EntityRenderDispatcher)
     UplandsMod :/ "textures/entity/hexahaen/level_5.png"
   )
 
-  /**
-   * Shadow rendering method.
-   */
   override def render(entity: HexahaenEntity, f1: Float, f2: Float, matrix: MatrixStack, provider: VertexConsumerProvider, var1: Int): Unit = {
     // set shadow size to 87.5% of normal
     this.shadowSize = 0.875f

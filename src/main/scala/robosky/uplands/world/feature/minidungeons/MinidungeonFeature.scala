@@ -17,8 +17,8 @@ import robosky.uplands.world.feature.FeatureRegistry
 class MinidungeonFeature(conf: MinidungeonFeatureConfig)
   extends StructureFeature[DefaultFeatureConfig](dyn => DefaultFeatureConfig.deserialize(dyn)) {
 
-  case class Start private[minidungeons](feature: StructureFeature[_], chunkX: Int, chunkZ: Int, biome: Biome,
-    bbox: BlockBox, references: Int, seed: Long) extends StructureStart(feature, chunkX, chunkZ, biome,
+  case class Start private[minidungeons](feature: StructureFeature[_], chunkX: Int, chunkZ: Int,
+    bbox: BlockBox, references: Int, seed: Long) extends StructureStart(feature, chunkX, chunkZ,
     bbox, references, seed) {
 
     override def initialize(generator: ChunkGenerator[_], mgr: StructureManager, chunkX: Int, chunkZ: Int,
@@ -44,7 +44,7 @@ class MinidungeonFeature(conf: MinidungeonFeatureConfig)
 
   override def shouldStartAt(var1: BiomeAccess, var2: ChunkGenerator[_], var3: Random, var4: Int, var5: Int, var6: Biome) = true
 
-  override def getStructureStartFactory: StructureFeature.StructureStartFactory = Start.apply
+  override def getStructureStartFactory: StructureFeature.StructureStartFactory = Start.apply: StructureFeature.StructureStartFactory
 
   override def getName: String = conf.name
 

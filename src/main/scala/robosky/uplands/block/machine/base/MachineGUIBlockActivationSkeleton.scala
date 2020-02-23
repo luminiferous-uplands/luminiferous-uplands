@@ -9,7 +9,7 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.registry.Registry
-import net.minecraft.util.{Hand, PacketByteBuf}
+import net.minecraft.util.{ActionResult, Hand, PacketByteBuf}
 import net.minecraft.world.World
 
 import scala.reflect.ClassTag
@@ -17,8 +17,8 @@ import scala.reflect.ClassTag
 trait MachineGUIBlockActivationSkeleton[A <: BlockEntity] {
   self: Block =>
 
-  override def activate(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand, hitResult: BlockHitResult): Boolean = {
-    if (world.isClient) return true
+  override def onUse(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand, hitResult: BlockHitResult): ActionResult = {
+    if (world.isClient) return ActionResult.SUCCESS
     world.getBlockEntity(pos) match {
       case a if beCTag.runtimeClass.isInstance(a) =>
         ContainerProviderRegistry.INSTANCE.openContainer(
@@ -31,7 +31,7 @@ trait MachineGUIBlockActivationSkeleton[A <: BlockEntity] {
         )
       case _ =>
     }
-    true
+    ActionResult.SUCCESS
   }
 
   protected def beCTag: ClassTag[A]

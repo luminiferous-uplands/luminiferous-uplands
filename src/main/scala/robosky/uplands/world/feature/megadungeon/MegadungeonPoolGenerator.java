@@ -15,7 +15,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MutableIntBoundingBox;
+import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.Heightmap;
@@ -97,7 +97,7 @@ public class MegadungeonPoolGenerator {
          */
         private void propagateEntry(PoolStructurePiece piece, AtomicReference<VoxelShape> shape, int int_1, int roomIndex) {
             AtomicReference<VoxelShape> shape1 = new AtomicReference<>();
-            MutableIntBoundingBox bbox = piece.getBoundingBox();
+            BlockBox bbox = piece.getBoundingBox();
 
             for (Structure.StructureBlockInfo info : piece.getPoolElement().getStructureBlockInfos(this.manager,
                     piece.getPos(), piece.getRotation(), this.random)) {
@@ -165,7 +165,7 @@ public class MegadungeonPoolGenerator {
                             int y = 0;
                             int relativeY = 0;
                             int offsetY;
-                            MutableIntBoundingBox bbox2 = null;
+                            BlockBox bbox2 = null;
                             BlockPos pos = null;
                             int height;
                             // determine if a structure can generate and set the
@@ -184,11 +184,11 @@ public class MegadungeonPoolGenerator {
 
                                 BlockPos offset = new BlockPos(info.pos.offset(direction_1).getX() - connection.pos.getX(),
                                         info.pos.offset(direction_1).getY() - connection.pos.getY(), info.pos.offset(direction_1).getZ() - connection.pos.getZ());
-                                MutableIntBoundingBox bbox4 = element1.getBoundingBox(this.manager, offset, rotation);
+                                BlockBox bbox4 = element1.getBoundingBox(this.manager, offset, rotation);
                                 y = connection.pos.getY();
                                 relativeY = info.pos.getY() - bbox.minY - y + info.state.get(JigsawBlock.FACING).getOffsetY();
                                 offsetY = bbox.minY + relativeY;
-                                bbox2 = bbox4.method_19311(0, offsetY - bbox4.minY, 0);
+                                bbox2 = bbox4.translated(0, offsetY - bbox4.minY, 0);
                                 pos = offset.add(0, offsetY - bbox4.minY, 0);
                                 if (maxElementHeight > 0) {
                                     height = Math.max(maxElementHeight + 1, bbox2.maxY - bbox2.minY);

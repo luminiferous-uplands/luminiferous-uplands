@@ -34,7 +34,7 @@ class AzoteMushroomBlock(val settings: Block.Settings) extends MushroomPlantBloc
 
   override def isFertilizable(blockView_1: BlockView, blockPos_1: BlockPos, blockState_1: BlockState, boolean_1: Boolean): Boolean = false
 
-  override def scheduledTick(blockState_1: BlockState, serverWorld_1: ServerWorld, blockPos_1: BlockPos, random_1: Random): Any = {
+  override def scheduledTick(blockState_1: BlockState, serverWorld_1: ServerWorld, blockPos_1: BlockPos, random_1: Random): Unit = {
     // If it should spread this frame
     if (random_1.nextInt(25) == 0) {
       // The number of mushrooms that can be in close proximity, before it stops spreading.

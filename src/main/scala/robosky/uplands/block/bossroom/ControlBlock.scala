@@ -9,7 +9,7 @@ import net.minecraft.item.SpawnEggItem
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.state.StateManager
 import net.minecraft.state.property.{EnumProperty, Property}
-import net.minecraft.util.Hand
+import net.minecraft.util.{ActionResult, Hand}
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.{BlockPos, Direction}
 import net.minecraft.world.{BlockView, World}
@@ -49,7 +49,7 @@ class ControlBlock extends Block(
     )
   }
 
-  override def activate(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand, ctx: BlockHitResult): Boolean = {
+  override def onUse(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand, ctx: BlockHitResult): ActionResult = {
     val shouldEdit = player.isCreativeLevelTwoOp &&
       player.inventory.contains(UplandsMod.BOSSROOM_TECHNICAL_TAG)
     if (shouldEdit) {
@@ -91,6 +91,6 @@ class ControlBlock extends Block(
           }
       }
     }
-    shouldEdit
+    if (shouldEdit) ActionResult.SUCCESS else ActionResult.PASS
   }
 }

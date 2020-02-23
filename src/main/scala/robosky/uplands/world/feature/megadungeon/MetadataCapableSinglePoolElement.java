@@ -16,7 +16,7 @@ import net.minecraft.structure.processor.JigsawReplacementStructureProcessor;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableIntBoundingBox;
+import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.IWorld;
 
@@ -57,14 +57,14 @@ public class MetadataCapableSinglePoolElement extends SinglePoolElement implemen
     // but I included it for safety
     @Override
     public void method_16756(IWorld world, Structure.StructureBlockInfo info, BlockPos pos, BlockRotation rotation,
-      Random rand, MutableIntBoundingBox bbox) {
+      Random rand, BlockBox bbox) {
         if (info.tag != null && StructureBlockMode.valueOf(info.tag.getString("mode")) == StructureBlockMode.DATA) {
             MegadungeonGenerator.handleMetadata(info.tag.getString("metadata"), info.pos, world, rand, bbox);
         }
     }
 
     @Override
-    protected StructurePlacementData method_16616(BlockRotation rot, MutableIntBoundingBox bbox) {
+    protected StructurePlacementData method_16616(BlockRotation rot, BlockBox bbox) {
       StructurePlacementData data = new StructurePlacementData();
       data.setBoundingBox(bbox);
       data.setRotation(rot);

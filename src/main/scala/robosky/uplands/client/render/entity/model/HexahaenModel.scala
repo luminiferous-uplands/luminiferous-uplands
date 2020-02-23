@@ -19,4 +19,6 @@ object HexahaenModel extends CompositeEntityModel[HexahaenEntity] {
   model.addCuboid(-10, 4, -10, 20, 20, 20)
 
   override def getParts: java.lang.Iterable[ModelPart] = Collections.singletonList(model)
+
+  override def setAngles(entity: HexahaenEntity, f1: Float, f2: Float, f3: Float, f4: Float, f5: Float): Unit = {}
 }

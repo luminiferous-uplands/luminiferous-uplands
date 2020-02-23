@@ -9,6 +9,7 @@ import net.minecraft.util.math.{BlockPos, BlockBox}
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.Heightmap
 import net.minecraft.world.biome.Biome
+import net.minecraft.world.biome.source.BiomeAccess
 import net.minecraft.world.gen.chunk.ChunkGenerator
 import net.minecraft.world.gen.feature.{AbstractTempleFeature, DefaultFeatureConfig, Feature, StructureFeature}
 import robosky.uplands.UplandsMod
@@ -28,24 +29,24 @@ object MegadungeonFeature extends AbstractTempleFeature[DefaultFeatureConfig]((d
 
   override def getSeedModifier: Int = 165745296
 
-  override def getStructureStartFactory: StructureFeature.StructureStartFactory = Start.apply
+  override def getStructureStartFactory: StructureFeature.StructureStartFactory = Start.apply: StructureFeature.StructureStartFactory
 
   override def getName: String = "uplands_megadungeon"
 
   override def getRadius: Int = 8
 
 
-  override def shouldStartAt(chunkGenerator_1: ChunkGenerator[_], random_1: Random, int_1: Int, int_2: Int): Boolean = {
+  override def shouldStartAt(access: BiomeAccess, chunkGenerator_1: ChunkGenerator[_], random_1: Random, int_1: Int, int_2: Int, biome: Biome): Boolean = {
     val cpos = this.getStart(chunkGenerator_1, random_1, int_1, int_2, 0, 0)
     val center = cpos.getCenterBlockPos
     if (chunkGenerator_1.getHeightOnGround(center.getX, center.getZ, Heightmap.Type.WORLD_SURFACE_WG) < 30)
       false
     else
-      super.shouldStartAt(chunkGenerator_1, random_1, int_1, int_2)
+      super.shouldStartAt(access, chunkGenerator_1, random_1, int_1, int_2, biome)
   }
 
-  private case class Start(feature: StructureFeature[_], x: Int, z: Int, biome: Biome, bbox: BlockBox, refs: Int, seed: Long)
-    extends StructureStart(feature, x, z, biome, bbox, refs, seed) {
+  private case class Start(feature: StructureFeature[_], x: Int, z: Int, bbox: BlockBox, refs: Int, seed: Long)
+    extends StructureStart(feature, x, z, bbox, refs, seed) {
     override def initialize(chunkGenerator_1: ChunkGenerator[_], structureManager_1: StructureManager, int_1: Int, int_2: Int, biome_1: Biome): Unit = {
       val blockPos_1 = new BlockPos(int_1 * 16, 90, int_2 * 16)
       MegadungeonGenerator.addPieces(chunkGenerator_1, structureManager_1, blockPos_1, this.children, this.random)

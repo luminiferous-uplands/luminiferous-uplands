@@ -10,10 +10,11 @@ import net.minecraft.block.{Block, BlockState, Material}
 import net.minecraft.entity.EntityContext
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.particle.ParticleTypes
+import net.minecraft.server.world.ServerWorld
 import net.minecraft.sound.{SoundCategory, SoundEvents}
 import net.minecraft.state.StateManager.Builder
 import net.minecraft.state.property.{BooleanProperty, IntProperty}
-import net.minecraft.util.Hand
+import net.minecraft.util.{ActionResult, Hand}
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.Direction.Axis
 import net.minecraft.util.math.{BlockPos, Direction}
@@ -32,20 +33,20 @@ object UplanderBeaconBlock extends Block(FabricBlockSettings.of(Material.STONE).
     entityContext_1: EntityContext): VoxelShape =
     Block.createCuboidShape(2, 0, 2, 14, 16, 14)
 
-  override def activate(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand,
-    result: BlockHitResult): Boolean = {
+  override def onUse(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand,
+    result: BlockHitResult): ActionResult = {
     if (player.world.dimension.getType == DimensionType.OVERWORLD) {
       player.asInstanceOf[UplanderBeaconUser].uplands_setUsingBeacon(true)
-      true
+      ActionResult.SUCCESS
     } else {
       if (state.get(SMOKING).booleanValue()) {
-        return false
+        return ActionResult.FAIL
       }
 
       world.setBlockState(pos, BlockRegistry.UPLANDER_BEACON.getDefaultState.`with`(SMOKING, JBoolean.TRUE))
       world.getBlockTickScheduler.schedule(pos, this, this.getTickRate(world))
       world.playSound(player, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.3f, 0.6f)
-      true
+      ActionResult.SUCCESS
     }
   }
 
@@ -55,7 +56,7 @@ object UplanderBeaconBlock extends Block(FabricBlockSettings.of(Material.STONE).
     builder.add(SMOKING)
   }
 
-  override def onScheduledTick(blockstate: BlockState, world: World, blockPos: BlockPos, random: Random): Unit = {
+  override def scheduledTick(blockstate: BlockState, world: ServerWorld, blockPos: BlockPos, random: Random): Unit = {
     if (!world.isClient && blockstate.get(SMOKING).booleanValue()) {
       world.setBlockState(blockPos, blockstate.`with`(SMOKING, JBoolean.FALSE))
     }
