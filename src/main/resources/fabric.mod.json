@@ -26,7 +26,7 @@
         "value": "robosky.uplands.UplandsModClient"
       }
     ],
-    "rei_plugins_v0": [
+    "__rei_plugins_v0": [
       "robosky.uplands.interop.UplandsREIPlugin"
     ]
   },

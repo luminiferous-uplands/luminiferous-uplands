@@ -1,6 +1,6 @@
 package robosky.uplands.block.machine.infuser
 
-import io.github.cottonmc.cotton.gui.CottonScreenController
+import io.github.cottonmc.cotton.gui.CottonCraftingController
 import io.github.cottonmc.cotton.gui.widget.{WGridPanel, WItemSlot, WLabel}
 import net.minecraft.container.BlockContext
 import net.minecraft.entity.player.PlayerInventory
@@ -8,8 +8,8 @@ import net.minecraft.text.TranslatableText
 import robosky.uplands.block.machine.RecipeRegistry
 
 class InfuserContainer(syncId: Int, playerInventory: PlayerInventory, ctx: BlockContext)
-  extends CottonScreenController(RecipeRegistry.aegisaltRecipe, syncId, playerInventory,
-    CottonScreenController.getBlockInventory(ctx), CottonScreenController.getBlockPropertyDelegate(ctx)) {
+  extends CottonCraftingController(RecipeRegistry.aegisaltRecipe, syncId, playerInventory,
+    CottonCraftingController.getBlockInventory(ctx), CottonCraftingController.getBlockPropertyDelegate(ctx)) {
 
   private val be: AegisaltInfuser =
     ctx.run((w, p) => w.getBlockEntity(p).asInstanceOf[AegisaltInfuser]).get()

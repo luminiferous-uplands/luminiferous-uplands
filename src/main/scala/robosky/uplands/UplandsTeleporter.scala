@@ -44,7 +44,7 @@ object UplandsTeleporter {
         val cp = new ChunkPos(pos)
         structure.generate(
           world,
-          // Need chunk generator here
+          ???, // Need chunk generator here
           new Random(),
           new BlockBox(
             cp.getStartX,

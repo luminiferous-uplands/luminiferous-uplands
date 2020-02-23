@@ -1,6 +1,8 @@
 package robosky.uplands.client.render.entity
 
 import net.minecraft.client.render.entity.{EntityRenderDispatcher, MobEntityRenderer}
+import net.minecraft.client.render.VertexConsumerProvider
+import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.Identifier
 
 import robosky.uplands.UplandsMod
@@ -21,10 +23,15 @@ class HexahaenRender(dispatcher: EntityRenderDispatcher)
   /**
    * Shadow rendering method.
    */
-  override def method_4072(entity: HexahaenEntity, x: Double, y: Double, z: Double, bOop: Float, partialTicks: Float): Unit = {
+  override def render(entity: HexahaenEntity, f1: Float, f2: Float, matrix: MatrixStack, provider: VertexConsumerProvider, var1: Int): Unit = {
     // set shadow size to 87.5% of normal
-    this.field_4673 = 0.875f
-    super.method_4072(entity, x, y, z, bOop, partialTicks)
+    this.shadowSize = 0.875f
+    matrix.push()
+    if(entity.isLeftHanded) {
+      matrix.scale(-1.0f, 1.0f, 1.0f)
+    }
+    super.render(entity, f1, f2, matrix, provider, var1)
+    matrix.pop()
   }
 
   override protected def getTexture(entity: HexahaenEntity): Identifier = TEXTURES(entity.strength - 1)

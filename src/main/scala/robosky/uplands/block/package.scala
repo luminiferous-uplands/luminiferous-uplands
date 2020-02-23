@@ -3,7 +3,7 @@ package robosky.uplands
 import com.mojang.brigadier.StringReader
 
 import net.minecraft.block.{Blocks, BlockState}
-import net.minecraft.command.arguments.BlockStateArgumentType
+import net.minecraft.command.arguments.{BlockStateArgument, BlockStateArgumentType}
 import net.minecraft.state.property.Property
 import net.minecraft.util.registry.Registry
 
@@ -18,7 +18,7 @@ package object block {
 
   def parseState(str: String): BlockState = {
     val rd = new StringReader(str)
-    Try(blockStateParser.parse(rd))
+    Try(blockStateParser.parse(rd): BlockStateArgument)
       .map(_.getBlockState)
       .getOrElse(Blocks.AIR.getDefaultState)
   }

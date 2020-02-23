@@ -209,7 +209,7 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
           if (!boss.isAlive) {
             onBossDefeat()
           } else {
-            val players = this.world.getEntities(classOf[PlayerEntity], worldBoundsBox, player => true)
+            val players = this.world.getEntities(classOf[PlayerEntity], worldBoundsBox, null)
             if (players.isEmpty) {
               // everyone died (or escaped)
               deactivateBoss()

@@ -1,7 +1,7 @@
 package robosky.uplands.block.machine
 
 import com.google.common.collect.ImmutableSet
-import io.github.cottonmc.cotton.gui.CottonScreenController
+import io.github.cottonmc.cotton.gui.CottonCraftingController
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.container.BlockContext
@@ -21,13 +21,13 @@ object MachineRegistry {
   val aegisaltInfuser: MachineEntry[AegisaltInfuserBlock.type, AegisaltInfuser, InfuserContainer] =
     register("aegisalt_infuser", Machine(AegisaltInfuserBlock, () => new AegisaltInfuser, Some(new InfuserContainer(_, _, _))))
 
-  def register[B <: BaseMachineBlock, E <: BaseMachineBlockEntity, C <: CottonScreenController](name: String,
+  def register[B <: BaseMachineBlock, E <: BaseMachineBlockEntity, C <: CottonCraftingController](name: String,
     m: Machine[B, E, C]): MachineEntry[B, E, C] = {
     BlockRegistry.register(name)(m.b)
     register(m)
   }
 
-  def register[B <: BaseMachineBlock, E <: BaseMachineBlockEntity, C <: CottonScreenController](
+  def register[B <: BaseMachineBlock, E <: BaseMachineBlockEntity, C <: CottonCraftingController](
     m: Machine[B, E, C]): MachineEntry[B, E, C] = m match {
     case Machine(b, e, gui) =>
       val id = Registry.BLOCK.getId(b)
@@ -38,7 +38,7 @@ object MachineRegistry {
       MachineEntry(m, t)
   }
 
-  def registerGui[C <: CottonScreenController](id: Identifier, ctrl: (Int, PlayerInventory, BlockContext) => C): Unit = {
+  def registerGui[C <: CottonCraftingController](id: Identifier, ctrl: (Int, PlayerInventory, BlockContext) => C): Unit = {
     ContainerProviderRegistry.INSTANCE.registerFactory(id, (syncId: Int, _: Identifier, player: PlayerEntity,
       buf: PacketByteBuf) => ctrl(syncId, player.inventory, BlockContext.create(player.world,
       buf.readBlockPos())))
@@ -46,10 +46,10 @@ object MachineRegistry {
 
   def init(): Unit = {}
 
-  case class Machine[B <: BaseMachineBlock, E <: BaseMachineBlockEntity, C <: CottonScreenController](b: B, e: () => E,
+  case class Machine[B <: BaseMachineBlock, E <: BaseMachineBlockEntity, C <: CottonCraftingController](b: B, e: () => E,
     gui: Option[(Int, PlayerInventory, BlockContext) => C] = None)
 
-  case class MachineEntry[B <: BaseMachineBlock, E <: BaseMachineBlockEntity, C <: CottonScreenController](
+  case class MachineEntry[B <: BaseMachineBlock, E <: BaseMachineBlockEntity, C <: CottonCraftingController](
     machine: Machine[B, E, C], blockEntityType: BlockEntityType[E]) {
     val block: B = machine.b
     val be: () => E = machine.e

@@ -52,7 +52,7 @@ object FlyIntoUplandsCriterion extends Criterion[FlyIntoUplandsConditions.type] 
     val conditions: mutable.Set[Criterion.ConditionsContainer[FlyIntoUplandsConditions.type]] = mutable.HashSet()
 
     def handle(): Unit = {
-      conditions foreach { _(manager) }
+      conditions foreach { _.grant(manager) }
     }
   }
 }
