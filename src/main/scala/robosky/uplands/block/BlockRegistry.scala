@@ -93,12 +93,14 @@ object BlockRegistry {
     val SKYROOT_DOOR: DoorBlock = register("skyroot_door")(b = new ModDoorBlock(FabricBlockSettings.of(Material.WOOD)
       .strength(3.0f, 15f)
       .sounds(BlockSoundGroup.WOOD)
+      .nonOpaque
       .build()))
     FuelRegistry.INSTANCE.add(SKYROOT_DOOR, 200)
 
     val SKYROOT_TRAPDOOR: TrapdoorBlock = register("skyroot_trapdoor")(new ModTrapdoorBlock(FabricBlockSettings.of(Material.WOOD)
         .strength(3.0f, 15f)
         .sounds(BlockSoundGroup.WOOD)
+        .nonOpaque
         .build()))
     FuelRegistry.INSTANCE.add(SKYROOT_TRAPDOOR, 300)
 
@@ -130,6 +132,7 @@ object BlockRegistry {
       .of(Material.LEAVES)
       .strength(0.2F, 0.2F)
       .ticksRandomly
+      .nonOpaque
       .sounds(BlockSoundGroup.GRASS).build()
 
     val RED_SKYROOT_LEAVES: LeavesBlock = register("red_skyroot_leaves")(new LeavesBlock(skyrootLeavesSettings))

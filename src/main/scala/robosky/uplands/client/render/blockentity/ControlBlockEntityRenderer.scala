@@ -18,39 +18,16 @@ class ControlBlockEntityRenderer(dispatcher: BlockEntityRenderDispatcher)
     val player = MinecraftClient.getInstance.player
     if ((player.isCreativeLevelTwoOp || player.isSpectator) && player.inventory.contains(UplandsMod.BOSSROOM_TECHNICAL_TAG)) {
       matrix.push()
-      val pos = be.getPos
-      val minX: Double = pos.getX + be.bounds.minX
-      val minY: Double = pos.getY + be.bounds.minY
-      val minZ: Double = pos.getZ + be.bounds.minZ
-      val maxX: Double = pos.getX + be.bounds.maxX
-      val maxY: Double = pos.getY + be.bounds.maxY
-      val maxZ: Double = pos.getZ + be.bounds.maxZ
-      val tez = Tessellator.getInstance()
-      val buffer = tez.getBuffer()
+      val minX: Double = be.bounds.minX
+      val minY: Double = be.bounds.minY
+      val minZ: Double = be.bounds.minZ
+      val maxX: Double = be.bounds.maxX
+      val maxY: Double = be.bounds.maxY
+      val maxZ: Double = be.bounds.maxZ
       val consumer: VertexConsumer = provider.getBuffer(RenderLayer.getLines)
-      // RenderSystem.disableFog()
-      // RenderSystem.disableLighting()
-      // RenderSystem.disableTexture()
-      // RenderSystem.enableBlend()
-      // RenderSystem.blendFuncSeparate(
-      //   GlStateManager.SrcFactor.SRC_ALPHA.value,
-      //   GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA.value,
-      //   GlStateManager.SrcFactor.ONE.value,
-      //   GlStateManager.DstFactor.ZERO.value)
-      // RenderSystem.disableLighting()
-      // RenderSystem.lineWidth(2.0F)
-      // buffer.begin(3, VertexFormats.POSITION_COLOR)
-      WorldRenderer.drawBox(matrix, consumer, pos.getX, pos.getY, pos.getZ, pos.getX + 1, pos.getY + 1, pos.getZ + 1, 1.0f, 1.0f, 0.0f, 1.0f)
+      WorldRenderer.drawBox(matrix, consumer, 0, 0, 0, 1, 1, 1, 1.0f, 1.0f, 0.0f, 1.0f)
       WorldRenderer.drawBox(matrix, consumer, minX, minY, minZ, maxX, maxY, maxZ, 0.0f, 0.0f, 0.0f, 1.0f)
       WorldRenderer.drawBox(matrix, consumer, minX, minY, minZ, maxX, maxY, maxZ, 1.0f, 1.0f, 1.0f, 1.0f)
-      // tez.draw()
-      // RenderSystem.enableLighting()
-      // RenderSystem.lineWidth(1.0F)
-      // RenderSystem.enableLighting()
-      // RenderSystem.enableTexture()
-      // RenderSystem.enableDepthTest()
-      // RenderSystem.depthMask(true)
-      // RenderSystem.enableFog()
       matrix.pop()
     }
   }

@@ -40,11 +40,11 @@ dependencies {
     include "fabric-language-scala:fabric-language-scala:${project.scala_adapter_version}:fat@jar"
     compile "org.scala-lang:scala-library:${project.scala_version}"
     compileOnly group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
-    modRuntime("com.jamieswhiteshirt:developer-mode:${project.devmode_version}") {
-        exclude group: 'net.fabricmc.fabric-api'
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-        exclude group: 'net.minecraft'
-    }
+//    modRuntime("com.jamieswhiteshirt:developer-mode:${project.devmode_version}") {
+//        exclude group: 'net.fabricmc.fabric-api'
+//        exclude group: 'net.fabricmc', module: 'fabric-loader'
+//        exclude group: 'net.minecraft'
+//    }
     modCompileOnly("me.shedaniel:RoughlyEnoughItems:${project.rei_version}") {
         exclude group: 'net.fabricmc.fabric-api'
         exclude group: 'net.fabricmc', module: 'fabric-loader'
@@ -63,7 +63,6 @@ dependencies {
         exclude group: 'io.github.prospector'
     }
     include "io.github.cottonmc:LibGui:${project.libgui_version}"
-    modRuntime "artificemc:artifice:${project.artifice_version}"
 }
 
 processResources {

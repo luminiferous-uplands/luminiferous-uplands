@@ -8,7 +8,7 @@ import net.minecraft.block.Blocks
 import net.minecraft.block.pattern.BlockPattern
 import net.minecraft.entity.Entity
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.server.world.ServerWorld
+import net.minecraft.server.world.{ServerChunkManager, ServerWorld}
 import net.minecraft.util.math._
 import net.minecraft.world.World
 import robosky.uplands.advancement.FlyIntoUplandsCriterion
@@ -44,7 +44,7 @@ object UplandsTeleporter {
         val cp = new ChunkPos(pos)
         structure.generate(
           world,
-          ???, // Need chunk generator here
+          (sw.getChunkManager: ServerChunkManager).getChunkGenerator,
           new Random(),
           new BlockBox(
             cp.getStartX,

@@ -14,9 +14,6 @@ import robosky.uplands.world.WorldRegistry;
 
 @Mixin(BackgroundRenderer.class)
 public class BGRenderMixin {
-    @Shadow
-    @Final
-    private MinecraftClient client;
 
     @ModifyVariable(
         method = "render",

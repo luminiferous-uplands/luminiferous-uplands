@@ -23,12 +23,15 @@ class HexahaenRender(dispatcher: EntityRenderDispatcher)
   override def render(entity: HexahaenEntity, f1: Float, f2: Float, matrix: MatrixStack, provider: VertexConsumerProvider, var1: Int): Unit = {
     // set shadow size to 87.5% of normal
     this.shadowSize = 0.875f
-    matrix.push()
-    if(entity.isLeftHanded) {
+    super.render(entity, f1, f2, matrix, provider, var1)
+  }
+
+  // TODO: reflecting causes weird lighting artifacts
+  override protected def scale(entity: HexahaenEntity, matrix: MatrixStack, f1: Float): Unit = {
+    if (entity.isLeftHanded) {
       matrix.scale(-1.0f, 1.0f, 1.0f)
     }
-    super.render(entity, f1, f2, matrix, provider, var1)
-    matrix.pop()
+    super.scale(entity, matrix, f1)
   }
 
   override protected def getTexture(entity: HexahaenEntity): Identifier = TEXTURES(entity.strength - 1)
