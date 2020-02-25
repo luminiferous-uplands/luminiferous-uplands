@@ -12,8 +12,6 @@ import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.RandomPatchFeatureConfig;
 
-// TDOD: statrt updating here - BlockPlacer looks promising
-
 public class TallUplandsGrassFeature extends Feature<RandomPatchFeatureConfig> {
     public TallUplandsGrassFeature(Function<Dynamic<?>, ? extends RandomPatchFeatureConfig> function_1) {
         super(function_1);

@@ -8,6 +8,8 @@ import net.minecraft.world.biome.Biome.Category
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator._
 import net.minecraft.world.gen.feature._
+import net.minecraft.world.gen.placer.SimpleBlockPlacer
+import net.minecraft.world.gen.stateprovider.WeightedStateProvider
 import net.minecraft.world.gen.surfacebuilder.SurfaceConfig
 import robosky.uplands.block.{BlockRegistry, UplandsOreBlock}
 import robosky.uplands.world.biome.UplandsAutumnBiomeConfig._
@@ -46,9 +48,14 @@ object UplandsAutumnBiome
   addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.waterChestnutFeature.configure(FeatureConfig.DEFAULT)
     .createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP.configure(new CountExtraChanceDecoratorConfig(2, 0.1f, 1))))
 
-  // check how to use RandomPatchFeatureConfig
-  // addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.tallUplandsGrassFeature.configure(new RandomPatchFeatureConfig())
-  //   .createDecoratedFeature(Decorator.COUNT_HEIGHTMAP_DOUBLE.configure(new CountDecoratorConfig(2))))
+  addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.tallUplandsGrassFeature.configure(
+    new RandomPatchFeatureConfig.Builder(
+      new WeightedStateProvider()
+        .addState(BlockRegistry.TALL_UPLANDS_GRASS.getDefaultState, 7)
+        .addState(BlockRegistry.CLOUD_DAISIES.getDefaultState, 1),
+      new SimpleBlockPlacer()
+    ).tries(32).build())
+    .createDecoratedFeature(Decorator.COUNT_HEIGHTMAP_DOUBLE.configure(new CountDecoratorConfig(2))))
 
   addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.zephyrOnionFeature.configure(FeatureConfig.DEFAULT)
     .createDecoratedFeature(Decorator.COUNT_HEIGHTMAP_32.configure(new CountDecoratorConfig(3))))
