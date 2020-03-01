@@ -7,7 +7,7 @@ plugins {
 }
 
 group 'robosky.mods'
-version project.mod_version
+version "${project.mod_version}+mc.${project.minecraft_version}"
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
