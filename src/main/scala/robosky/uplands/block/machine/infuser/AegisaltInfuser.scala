@@ -161,7 +161,7 @@ class AegisaltInfuser extends BaseMachineBlockEntity(MachineRegistry.aegisaltInf
   }
 
   override def fromClientTag(tag: CompoundTag): Unit = {
-    recipe = if (tag.containsKey("Recipe"))
+    recipe = if (tag.contains("Recipe"))
       Some(world.getRecipeManager.get(new Identifier(tag.getString("Recipe"))).get().asInstanceOf[AegisaltRecipe])
     else
       None

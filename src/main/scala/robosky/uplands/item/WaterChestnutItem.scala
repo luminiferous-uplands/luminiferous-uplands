@@ -44,7 +44,7 @@ class WaterChestnutItem(itemSettings: Item.Settings) extends Item(itemSettings) 
                 world.setBlockState(cropBlockPos, BlockRegistry.WATER_CHESTNUT_CROP_BLOCK.getDefaultState, 11)
 
                 player match {
-                    case entity: ServerPlayerEntity => Criterions.PLACED_BLOCK.handle(entity, cropBlockPos, itemStack_1)
+                    case entity: ServerPlayerEntity => Criterions.PLACED_BLOCK.trigger(entity, cropBlockPos, itemStack_1)
                     case _ =>
                 }
 

@@ -12,7 +12,7 @@ import net.minecraft.structure.Structure;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MutableIntBoundingBox;
+import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.shape.BitSetVoxelSet;
 import net.minecraft.util.shape.VoxelSet;
 import net.minecraft.world.IWorld;
@@ -31,8 +31,12 @@ import java.util.Set;
 import java.util.function.Function;
 
 public abstract class AbstractUplandsTree<T extends FeatureConfig> extends Feature<T> {
+
+    private final boolean emitNeighborBlockUpdates;
+
     AbstractUplandsTree(Function<Dynamic<?>, ? extends T> function_1, boolean boolean_1) {
-        super(function_1, boolean_1);
+        super(function_1);
+        this.emitNeighborBlockUpdates = boolean_1;
     }
 
     static boolean canTreeReplace(TestableWorld testableWorld_1, BlockPos blockPos_1) {
@@ -45,7 +49,7 @@ public abstract class AbstractUplandsTree<T extends FeatureConfig> extends Featu
     }
 
     private static boolean isNaturalDirt(TestableWorld testableWorld_1, BlockPos blockPos_1) {
-        return testableWorld_1.testBlockState(blockPos_1, (blockState_1) -> Block.isNaturalDirt(blockState_1.getBlock()));
+        return testableWorld_1.testBlockState(blockPos_1, (blockState_1) -> blockState_1.getBlock() == BlockRegistry.UPLANDER_DIRT());
     }
 
     static boolean isAirOrLeaves(TestableWorld testableWorld_1, BlockPos blockPos_1) {
@@ -77,9 +81,9 @@ public abstract class AbstractUplandsTree<T extends FeatureConfig> extends Featu
         this.setBlockStateWithoutUpdatingNeighbors(modifiableWorld_1, blockPos_1, blockState_1);
     }
 
-    final void setBlockState(Set<BlockPos> set_1, ModifiableWorld modifiableWorld_1, BlockPos blockPos_1, BlockState blockState_1, MutableIntBoundingBox mutableIntBoundingBox_1) {
+    final void setBlockState(Set<BlockPos> set_1, ModifiableWorld modifiableWorld_1, BlockPos blockPos_1, BlockState blockState_1, BlockBox BlockBox_1) {
         this.setBlockStateWithoutUpdatingNeighbors(modifiableWorld_1, blockPos_1, blockState_1);
-        mutableIntBoundingBox_1.setFrom(new MutableIntBoundingBox(blockPos_1, blockPos_1));
+        BlockBox_1.encompass(new BlockBox(blockPos_1, blockPos_1));
         if (BlockTags.LOGS.contains(blockState_1.getBlock())) {
             set_1.add(blockPos_1.toImmutable());
         }
@@ -97,9 +101,9 @@ public abstract class AbstractUplandsTree<T extends FeatureConfig> extends Featu
 
     public final boolean generate(IWorld iWorld_1, ChunkGenerator<? extends ChunkGeneratorConfig> chunkGenerator_1, Random random_1, BlockPos blockPos_1, T featureConfig_1) {
         Set<BlockPos> set_1 = Sets.newHashSet();
-        MutableIntBoundingBox mutableIntBoundingBox_1 = MutableIntBoundingBox.empty();
-        boolean boolean_1 = this.generate(set_1, iWorld_1, random_1, blockPos_1, mutableIntBoundingBox_1);
-        if (mutableIntBoundingBox_1.minX > mutableIntBoundingBox_1.maxX) {
+        BlockBox BlockBox_1 = BlockBox.empty();
+        boolean boolean_1 = this.generate(set_1, iWorld_1, random_1, blockPos_1, BlockBox_1);
+        if (BlockBox_1.minX > BlockBox_1.maxX) {
             return false;
         } else {
             List<Set<BlockPos>> list_1 = Lists.newArrayList();
@@ -108,7 +112,7 @@ public abstract class AbstractUplandsTree<T extends FeatureConfig> extends Featu
                 list_1.add(Sets.newHashSet());
             }
 
-            VoxelSet voxelSet_1 = new BitSetVoxelSet(mutableIntBoundingBox_1.getBlockCountX(), mutableIntBoundingBox_1.getBlockCountY(), mutableIntBoundingBox_1.getBlockCountZ());
+            VoxelSet voxelSet_1 = new BitSetVoxelSet(BlockBox_1.getBlockCountX(), BlockBox_1.getBlockCountY(), BlockBox_1.getBlockCountZ());
             BlockPos.PooledMutable blockPos$PooledMutable_1 = BlockPos.PooledMutable.get();
             Throwable var13 = null;
 
@@ -116,19 +120,19 @@ public abstract class AbstractUplandsTree<T extends FeatureConfig> extends Featu
                 if (boolean_1 && !set_1.isEmpty()) {
 
                     for (BlockPos blockPos_2 : Lists.newArrayList(set_1)) {
-                        if (mutableIntBoundingBox_1.contains(blockPos_2)) {
-                            voxelSet_1.set(blockPos_2.getX() - mutableIntBoundingBox_1.minX, blockPos_2.getY() - mutableIntBoundingBox_1.minY, blockPos_2.getZ() - mutableIntBoundingBox_1.minZ, true, true);
+                        if (BlockBox_1.contains(blockPos_2)) {
+                            voxelSet_1.set(blockPos_2.getX() - BlockBox_1.minX, blockPos_2.getY() - BlockBox_1.minY, blockPos_2.getZ() - BlockBox_1.minZ, true, true);
                         }
 
                         for (Direction direction_1 : Direction.values()) {
-                            blockPos$PooledMutable_1.method_10114(blockPos_2).method_10118(direction_1);
+                            blockPos$PooledMutable_1.set(blockPos_2).setOffset(direction_1);
                             if (!set_1.contains(blockPos$PooledMutable_1)) {
                                 BlockState blockState_1 = iWorld_1.getBlockState(blockPos$PooledMutable_1);
                                 if (blockState_1.contains(Properties.DISTANCE_1_7)) {
                                     list_1.get(0).add(blockPos$PooledMutable_1.toImmutable());
                                     this.setBlockStateWithoutUpdatingNeighbors(iWorld_1, blockPos$PooledMutable_1, blockState_1.with(Properties.DISTANCE_1_7, 1));
-                                    if (mutableIntBoundingBox_1.contains(blockPos$PooledMutable_1)) {
-                                        voxelSet_1.set(blockPos$PooledMutable_1.getX() - mutableIntBoundingBox_1.minX, blockPos$PooledMutable_1.getY() - mutableIntBoundingBox_1.minY, blockPos$PooledMutable_1.getZ() - mutableIntBoundingBox_1.minZ, true, true);
+                                    if (BlockBox_1.contains(blockPos$PooledMutable_1)) {
+                                        voxelSet_1.set(blockPos$PooledMutable_1.getX() - BlockBox_1.minX, blockPos$PooledMutable_1.getY() - BlockBox_1.minY, blockPos$PooledMutable_1.getZ() - BlockBox_1.minZ, true, true);
                                     }
                                 }
                             }
@@ -141,12 +145,12 @@ public abstract class AbstractUplandsTree<T extends FeatureConfig> extends Featu
                     Set<BlockPos> set_3 = list_1.get(int_3);
 
                     for (BlockPos blockPos_3 : set_2) {
-                        if (mutableIntBoundingBox_1.contains(blockPos_3)) {
-                            voxelSet_1.set(blockPos_3.getX() - mutableIntBoundingBox_1.minX, blockPos_3.getY() - mutableIntBoundingBox_1.minY, blockPos_3.getZ() - mutableIntBoundingBox_1.minZ, true, true);
+                        if (BlockBox_1.contains(blockPos_3)) {
+                            voxelSet_1.set(blockPos_3.getX() - BlockBox_1.minX, blockPos_3.getY() - BlockBox_1.minY, blockPos_3.getZ() - BlockBox_1.minZ, true, true);
                         }
 
                         for (Direction direction_2 : Direction.values()) {
-                            blockPos$PooledMutable_1.method_10114(blockPos_3).method_10118(direction_2);
+                            blockPos$PooledMutable_1.set(blockPos_3).setOffset(direction_2);
                             if (!set_2.contains(blockPos$PooledMutable_1) && !set_3.contains(blockPos$PooledMutable_1)) {
                                 BlockState blockState_2 = iWorld_1.getBlockState(blockPos$PooledMutable_1);
                                 if (blockState_2.contains(Properties.DISTANCE_1_7)) {
@@ -154,8 +158,8 @@ public abstract class AbstractUplandsTree<T extends FeatureConfig> extends Featu
                                     if (int_4 > int_3 + 1) {
                                         BlockState blockState_3 = blockState_2.with(Properties.DISTANCE_1_7, int_3 + 1);
                                         this.setBlockStateWithoutUpdatingNeighbors(iWorld_1, blockPos$PooledMutable_1, blockState_3);
-                                        if (mutableIntBoundingBox_1.contains(blockPos$PooledMutable_1)) {
-                                            voxelSet_1.set(blockPos$PooledMutable_1.getX() - mutableIntBoundingBox_1.minX, blockPos$PooledMutable_1.getY() - mutableIntBoundingBox_1.minY, blockPos$PooledMutable_1.getZ() - mutableIntBoundingBox_1.minZ, true, true);
+                                        if (BlockBox_1.contains(blockPos$PooledMutable_1)) {
+                                            voxelSet_1.set(blockPos$PooledMutable_1.getX() - BlockBox_1.minX, blockPos$PooledMutable_1.getY() - BlockBox_1.minY, blockPos$PooledMutable_1.getZ() - BlockBox_1.minZ, true, true);
                                         }
 
                                         set_3.add(blockPos$PooledMutable_1.toImmutable());
@@ -183,10 +187,10 @@ public abstract class AbstractUplandsTree<T extends FeatureConfig> extends Featu
 
             }
 
-            Structure.method_20532(iWorld_1, 3, voxelSet_1, mutableIntBoundingBox_1.minX, mutableIntBoundingBox_1.minY, mutableIntBoundingBox_1.minZ);
+            Structure.method_20532(iWorld_1, 3, voxelSet_1, BlockBox_1.minX, BlockBox_1.minY, BlockBox_1.minZ);
             return boolean_1;
         }
     }
 
-    protected abstract boolean generate(Set<BlockPos> var1, ModifiableTestableWorld var2, Random var3, BlockPos var4, MutableIntBoundingBox var5);
+    protected abstract boolean generate(Set<BlockPos> var1, ModifiableTestableWorld var2, Random var3, BlockPos var4, BlockBox var5);
 }

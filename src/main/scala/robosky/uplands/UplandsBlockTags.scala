@@ -9,6 +9,7 @@ import net.minecraft.world.biome.Biome
 
 object UplandsBlockTags {
   val AzoteMushroomSpreadable = register("azote_mushroom_spreadable")
+  val PlantableOn = register("plantable_on")
 
   def init(): Unit = {}
 

@@ -1,6 +1,8 @@
 package robosky.uplands.client.render.entity
 
 import net.minecraft.client.render.entity.{EntityRenderDispatcher, MobEntityRenderer}
+import net.minecraft.client.render.VertexConsumerProvider
+import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.Identifier
 
 import robosky.uplands.UplandsMod
@@ -18,13 +20,18 @@ class HexahaenRender(dispatcher: EntityRenderDispatcher)
     UplandsMod :/ "textures/entity/hexahaen/level_5.png"
   )
 
-  /**
-   * Shadow rendering method.
-   */
-  override def method_4072(entity: HexahaenEntity, x: Double, y: Double, z: Double, bOop: Float, partialTicks: Float): Unit = {
+  override def render(entity: HexahaenEntity, f1: Float, f2: Float, matrix: MatrixStack, provider: VertexConsumerProvider, var1: Int): Unit = {
     // set shadow size to 87.5% of normal
-    this.field_4673 = 0.875f
-    super.method_4072(entity, x, y, z, bOop, partialTicks)
+    this.shadowSize = 0.875f
+    super.render(entity, f1, f2, matrix, provider, var1)
+  }
+
+  // TODO: reflecting causes weird lighting artifacts
+  override protected def scale(entity: HexahaenEntity, matrix: MatrixStack, f1: Float): Unit = {
+    if (entity.isLeftHanded) {
+      matrix.scale(-1.0f, 1.0f, 1.0f)
+    }
+    super.scale(entity, matrix, f1)
   }
 
   override protected def getTexture(entity: HexahaenEntity): Identifier = TEXTURES(entity.strength - 1)

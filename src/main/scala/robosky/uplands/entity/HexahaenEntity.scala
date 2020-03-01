@@ -1,12 +1,11 @@
 package robosky.uplands.entity
 
-import net.minecraft.entity.{EntityData, EntityGroup, EntityType, LivingEntity, SpawnType}
-import net.minecraft.entity.attribute.EntityAttributes
-import net.minecraft.entity.damage.DamageSource
-import net.minecraft.entity.data.{DataTracker, TrackedData, TrackedDataHandlerRegistry}
-import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.ai.goal._
+import net.minecraft.entity.attribute.EntityAttributes
+import net.minecraft.entity.data.{DataTracker, TrackedData, TrackedDataHandlerRegistry}
 import net.minecraft.entity.mob.HostileEntity
+import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.entity.{EntityData, EntityGroup, EntityType, SpawnType}
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.world.{IWorld, LocalDifficulty, World}
 
@@ -34,7 +33,7 @@ class HexahaenEntity(typ: EntityType[HexahaenEntity], world: World) extends Host
 
   private def initStrength(value: Int): Unit = {
     strength = value
-    this.setHealth(this.getHealthMaximum)
+    this.setHealth(this.getMaximumHealth)
   }
 
   private def setMaxHealthFromData(): Unit = {

@@ -10,7 +10,7 @@ import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableIntBoundingBox;
+import net.minecraft.util.math.BlockBox;
 import net.minecraft.world.IWorld;
 
 import java.util.Random;
@@ -36,7 +36,7 @@ public class SpawnPlatformPiece extends SimpleStructurePiece {
     }
 
     @Override
-    protected void handleMetadata(String var1, BlockPos var2, IWorld var3, Random var4, MutableIntBoundingBox var5) {
+    protected void handleMetadata(String var1, BlockPos var2, IWorld var3, Random var4, BlockBox var5) {
 
     }
 }

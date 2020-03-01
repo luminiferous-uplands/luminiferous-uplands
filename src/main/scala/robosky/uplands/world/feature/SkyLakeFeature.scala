@@ -4,21 +4,22 @@ import java.util.Random
 import java.util.function.Function
 
 import com.mojang.datafixers.Dynamic
-import net.minecraft.world.gen.feature.{Feature, LakeFeatureConfig}
+import net.minecraft.world.gen.feature.{Feature, SingleStateFeatureConfig}
 import robosky.uplands.block.BlockRegistry
+import robosky.uplands.UplandsBlockTags
 
-class SkyLakeFeature($f: Function[Dynamic[_], LakeFeatureConfig])
-  extends Feature[LakeFeatureConfig]($f) {
+class SkyLakeFeature($f: Function[Dynamic[_], SingleStateFeatureConfig])
+  extends Feature[SingleStateFeatureConfig]($f) {
 
   import net.minecraft.block.{Block, Blocks, Material}
   import net.minecraft.util.math.{BlockPos, ChunkPos}
   import net.minecraft.world.chunk.ChunkStatus
   import net.minecraft.world.gen.chunk.{ChunkGenerator, ChunkGeneratorConfig}
-  import net.minecraft.world.gen.feature.{Feature, LakeFeatureConfig}
+  import net.minecraft.world.gen.feature.{Feature, SingleStateFeatureConfig}
   import net.minecraft.world.{IWorld, LightType}
 
   def generate(world: IWorld, generator: ChunkGenerator[_ <: ChunkGeneratorConfig], random: Random, st: BlockPos,
-    config: LakeFeatureConfig): Boolean = {
+    config: SingleStateFeatureConfig): Boolean = {
     var start = st
     while ( {
       start.getY > 5 && world.isAir(start)
@@ -104,7 +105,7 @@ class SkyLakeFeature($f: Function[Dynamic[_], LakeFeatureConfig])
       if bitset((dx * 16 + dz) * 8 + dy)
     } {
       val pos = start.add(dx, dy - 1, dz)
-      if (Block.isNaturalDirt(world.getBlockState(pos).getBlock) && world
+      if (world.getBlockState(pos).getBlock.matches(UplandsBlockTags.PlantableOn) && world
         .getLightLevel(LightType.SKY, start.add(dx, dy, dz)) > 0)
         world.setBlockState(pos, BlockRegistry.UPLANDER_GRASS.getDefaultState, 2)
     }

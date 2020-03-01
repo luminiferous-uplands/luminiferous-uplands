@@ -1,51 +1,34 @@
 package robosky.uplands.client.render.blockentity
 
 import com.mojang.blaze3d.platform.GlStateManager
+import com.mojang.blaze3d.systems.RenderSystem
 
 import net.minecraft.client.MinecraftClient
-import net.minecraft.client.render.block.entity.BlockEntityRenderer
-import net.minecraft.client.render.{BufferBuilder, Tessellator, VertexFormats, WorldRenderer}
+import net.minecraft.client.render.block.entity.{BlockEntityRenderDispatcher, BlockEntityRenderer}
+import net.minecraft.client.render.{BufferBuilder, RenderLayer, Tessellator, VertexConsumer, VertexConsumerProvider, VertexFormats, WorldRenderer}
+import net.minecraft.client.util.math.MatrixStack
 
 import robosky.uplands.UplandsMod
 import robosky.uplands.block.BlockRegistry
 import robosky.uplands.block.bossroom.ControlBlockEntity
 
-object ControlBlockEntityRenderer extends BlockEntityRenderer[ControlBlockEntity] {
-
-  override def render(be: ControlBlockEntity, camX: Double, camY: Double, camZ: Double, partialTicks: Float, crackIdx: Int): Unit = {
+class ControlBlockEntityRenderer(dispatcher: BlockEntityRenderDispatcher)
+    extends BlockEntityRenderer[ControlBlockEntity](dispatcher) {
+  override def render(be: ControlBlockEntity, partialTicks: Float, matrix: MatrixStack, provider: VertexConsumerProvider, var5: Int, var6: Int): Unit = {
     val player = MinecraftClient.getInstance.player
     if ((player.isCreativeLevelTwoOp || player.isSpectator) && player.inventory.contains(UplandsMod.BOSSROOM_TECHNICAL_TAG)) {
-      val minX = camX + be.bounds.minX
-      val minY = camY + be.bounds.minY
-      val minZ = camZ + be.bounds.minZ
-      val maxX = camX + be.bounds.maxX
-      val maxY = camY + be.bounds.maxY
-      val maxZ = camZ + be.bounds.maxZ
-      val tez = Tessellator.getInstance()
-      val buffer = tez.getBufferBuilder()
-      GlStateManager.disableFog()
-      GlStateManager.disableLighting()
-      GlStateManager.disableTexture()
-      GlStateManager.enableBlend()
-      GlStateManager.blendFuncSeparate(
-        GlStateManager.SourceFactor.SRC_ALPHA,
-        GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA,
-        GlStateManager.SourceFactor.ONE,
-        GlStateManager.DestFactor.ZERO)
-      this.disableLightmap(true)
-      GlStateManager.lineWidth(2.0F)
-      buffer.begin(3, VertexFormats.POSITION_COLOR)
-      WorldRenderer.buildBoxOutline(buffer, camX, camY, camZ, camX + 1, camY + 1, camZ + 1, 1.0f, 1.0f, 0.0f, 1.0f)
-      WorldRenderer.buildBoxOutline(buffer, minX, minY, minZ, maxX, maxY, maxZ, 0.0f, 0.0f, 0.0f, 1.0f)
-      WorldRenderer.buildBoxOutline(buffer, minX, minY, minZ, maxX, maxY, maxZ, 1.0f, 1.0f, 1.0f, 1.0f)
-      tez.draw()
-      this.disableLightmap(false)
-      GlStateManager.lineWidth(1.0F)
-      GlStateManager.enableLighting()
-      GlStateManager.enableTexture()
-      GlStateManager.enableDepthTest()
-      GlStateManager.depthMask(true)
-      GlStateManager.enableFog()
+      matrix.push()
+      val minX: Double = be.bounds.minX
+      val minY: Double = be.bounds.minY
+      val minZ: Double = be.bounds.minZ
+      val maxX: Double = be.bounds.maxX
+      val maxY: Double = be.bounds.maxY
+      val maxZ: Double = be.bounds.maxZ
+      val consumer: VertexConsumer = provider.getBuffer(RenderLayer.getLines)
+      WorldRenderer.drawBox(matrix, consumer, 0, 0, 0, 1, 1, 1, 1.0f, 1.0f, 0.0f, 1.0f)
+      WorldRenderer.drawBox(matrix, consumer, minX, minY, minZ, maxX, maxY, maxZ, 0.0f, 0.0f, 0.0f, 1.0f)
+      WorldRenderer.drawBox(matrix, consumer, minX, minY, minZ, maxX, maxY, maxZ, 1.0f, 1.0f, 1.0f, 1.0f)
+      matrix.pop()
     }
   }
 }

@@ -1,19 +1,20 @@
 package robosky.uplands.client.render.entity
 
-import net.fabricmc.fabric.api.client.render.EntityRendererRegistry
+import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry
+import net.minecraft.client.render.entity.{EntityRenderDispatcher, EntityRenderer}
+import net.minecraft.entity.{Entity, EntityType}
 
-import net.minecraft.client.render.entity.{EntityRenderer, EntityRenderDispatcher}
-import net.minecraft.entity.Entity
+import robosky.uplands.entity.EntityRegistry
 
 import scala.reflect.{ClassTag, classTag}
 
 object EntityRenderingRegistry {
 
-  private def register[E <: Entity: ClassTag](f: (EntityRenderDispatcher, EntityRendererRegistry.Context) => EntityRenderer[E]): Unit = {
-    EntityRendererRegistry.INSTANCE.register(classTag[E].runtimeClass.asInstanceOf[Class[_ <: Entity]], f(_, _))
+  private def register[E <: Entity](tpe: EntityType[E], f: (EntityRenderDispatcher, EntityRendererRegistry.Context) => EntityRenderer[E]): Unit = {
+    EntityRendererRegistry.INSTANCE.register(tpe, f(_, _))
   }
 
   def init(): Unit = {
-    register((d, c) => new HexahaenRender(d))
+    register(EntityRegistry.HEXAHAEN, (d, c) => new HexahaenRender(d))
   }
 }

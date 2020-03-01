@@ -1,6 +1,6 @@
 package robosky.uplands.interop
 
-import me.shedaniel.rei.api.RecipeHelper
+import me.shedaniel.rei.api.{EntryStack, RecipeHelper}
 import me.shedaniel.rei.api.plugins.REIPluginV0
 import net.fabricmc.loader.api.SemanticVersion
 import net.minecraft.item.ItemStack
@@ -22,7 +22,7 @@ class UplandsREIPlugin extends REIPluginV0 {
   }
 
   override def registerOthers(recipeHelper: RecipeHelper): Unit = {
-    recipeHelper.registerWorkingStations(UplandsMod :/ "plugins/aegisalt_infusions", new ItemStack(MachineRegistry.aegisaltInfuser.block))
+    recipeHelper.registerWorkingStations(UplandsMod :/ "plugins/aegisalt_infusions", EntryStack.create(MachineRegistry.aegisaltInfuser.block))
   }
 
   override def getMinimumVersion: SemanticVersion = SemanticVersion.parse("3.0-pre")

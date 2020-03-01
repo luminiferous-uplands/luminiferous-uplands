@@ -44,7 +44,7 @@ object FlyIntoUplandsCriterion extends Criterion[FlyIntoUplandsConditions.type] 
     FlyIntoUplandsConditions.type = FlyIntoUplandsConditions
 
   def handle(player: ServerPlayerEntity): Unit = {
-    handlers.get(player.getAdvancementManager) foreach { _.handle() }
+    handlers.get(player.getAdvancementTracker) foreach { _.handle() }
   }
 
   private class Handler(val manager: PlayerAdvancementTracker) {
@@ -52,7 +52,7 @@ object FlyIntoUplandsCriterion extends Criterion[FlyIntoUplandsConditions.type] 
     val conditions: mutable.Set[Criterion.ConditionsContainer[FlyIntoUplandsConditions.type]] = mutable.HashSet()
 
     def handle(): Unit = {
-      conditions foreach { _(manager) }
+      conditions foreach { _.grant(manager) }
     }
   }
 }

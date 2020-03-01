@@ -5,9 +5,9 @@ import net.minecraft.block.entity.BlockEntity
 import net.minecraft.entity.EntityContext
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.{ItemPlacementContext, Items, ItemUsageContext}
-import net.minecraft.state.StateFactory
+import net.minecraft.state.StateManager
 import net.minecraft.state.property.{EnumProperty, Property}
-import net.minecraft.util.Hand
+import net.minecraft.util.{ActionResult, Hand}
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.shape.{VoxelShape, VoxelShapes}
@@ -28,7 +28,7 @@ class DoorwayBlock(settings: Block.Settings) extends Block(settings) with BlockE
   def doorway(world: BlockView, pos: BlockPos): Option[DoorwayBlockEntity] =
     Option(world.getBlockEntity(pos)) collect { case d: DoorwayBlockEntity => d }
 
-  override def appendProperties(builder: StateFactory.Builder[Block, BlockState]): Unit = {
+  override def appendProperties(builder: StateManager.Builder[Block, BlockState]): Unit = {
     builder.add(DoorwayBlock.STATE)
   }
 
@@ -59,9 +59,9 @@ class DoorwayBlock(settings: Block.Settings) extends Block(settings) with BlockE
     }
   }
 
-  override def activate(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand, ctx: BlockHitResult): Boolean = {
+  override def onUse(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand, ctx: BlockHitResult): ActionResult = {
     if (state.get(DoorwayBlock.STATE) == DoorwayState.BLOCKED) {
-      false
+      ActionResult.PASS
     } else {
       val heldStack = player.getStackInHand(hand)
       val block = Block.getBlockFromItem(heldStack.getItem).getPlacementState(
@@ -77,7 +77,7 @@ class DoorwayBlock(settings: Block.Settings) extends Block(settings) with BlockE
             world.updateListeners(pos, state, state, 3)
         }
       }
-      validMimic
+      if (validMimic) ActionResult.SUCCESS else ActionResult.PASS
     }
   }
 }

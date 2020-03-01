@@ -3,12 +3,12 @@ package robosky.uplands.clientmixins;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.BufferBuilder;
+import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.block.FluidRenderer;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ExtendedBlockView;
+import net.minecraft.world.BlockRenderView;
 import net.minecraft.world.World;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -27,8 +27,8 @@ public abstract class FluidRendererMixin {
     @Unique
     private float alpha;
 
-    @Inject(method = "tesselate", at = @At("HEAD"))
-    private void setUplandsWaterAlpha(ExtendedBlockView world, BlockPos pos, BufferBuilder builder,
+    @Inject(method = "render", at = @At("HEAD"))
+    private void setUplandsWaterAlpha(BlockRenderView world, BlockPos pos, VertexConsumer builder,
             FluidState state, CallbackInfoReturnable<Boolean> info) {
         // the number of blocks the fade takes up
         final float FADE_LENGTH = 10;
@@ -50,10 +50,10 @@ public abstract class FluidRendererMixin {
     }
 
     @ModifyArg(
-        method = "tesselate",
+        method = "vertex",
         at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/client/render/BufferBuilder;color(FFFF)Lnet/minecraft/client/render/BufferBuilder;"
+            target = "Lnet/minecraft/client/render/VertexConsumer;color(FFFF)Lnet/minecraft/client/render/VertexConsumer;"
         ),
         index = 3
     )

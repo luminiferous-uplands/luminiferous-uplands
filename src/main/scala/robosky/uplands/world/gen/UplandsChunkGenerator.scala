@@ -2,7 +2,7 @@ package robosky.uplands.world.gen
 
 import java.util.Random
 
-import net.minecraft.util.SystemUtil
+import net.minecraft.util.Util
 import net.minecraft.util.math.MathHelper
 import net.minecraft.world.World
 import net.minecraft.world.biome.source.BiomeSource
@@ -12,7 +12,7 @@ import net.minecraft.world.gen.chunk.SurfaceChunkGenerator
 class UplandsChunkGenerator(world: World, biomeSource: BiomeSource)
   extends SurfaceChunkGenerator[UplandsChunkGenConfig.type](world, biomeSource, 4, 8, 128,
     UplandsChunkGenConfig, true) {
-  private val BIOME_WEIGHT_TABLE = SystemUtil.consume(
+  private val BIOME_WEIGHT_TABLE = Util.make(
     new Array[Float](25),
     (values: Array[Float]) =>
       for {
@@ -38,16 +38,16 @@ class UplandsChunkGenerator(world: World, biomeSource: BiomeSource)
 
   override protected def method_16410 = 8.0D
 
-  protected def computeNoiseRange(x: Int, z: Int): Array[Double] = {
+  override protected def computeNoiseRange(x: Int, z: Int): Array[Double] = {
     var scaleTotal = 0.0F
     var depthTotal = 0.0F
     var weightTotal = 0.0F
-    val centerDepth = this.biomeSource.getBiomeForNoiseGen(x, z).getDepth
+    val centerDepth = this.biomeSource.getBiomeForNoiseGen(x, getSeaLevel, z).getDepth
     for {
       dx <- -2 to 2
       dz <- -2 to 2
     } {
-      val biome = this.biomeSource.getBiomeForNoiseGen(x + dx, z + dz)
+      val biome = this.biomeSource.getBiomeForNoiseGen(x + dx, getSeaLevel, z + dz)
       val depth = biome.getDepth
       val scale = biome.getScale
       var weight = BIOME_WEIGHT_TABLE(dx + 2 + (dz + 2) * 5)
