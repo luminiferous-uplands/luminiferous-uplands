@@ -224,6 +224,12 @@ object BlockRegistry {
 
     val ACTIVE_MEGADUNGEON_ALTAR: Block = register("active_megadungeon_altar")(new ActiveAltarBlock(MEGADUNGEON_ALTAR))
 
+    val SKYDUNGEON_TELEPORT_DESTINATION: Block = register("skydungeon_teleport_destination")(new Block(UPLANDER_STONE_SETTINGS))
+
+    val SKYDUNGEON_TELEPORTER: Block = register("skydungeon_teleporter")(
+      new SkyDungeonTeleporterBlock(SKYDUNGEON_TELEPORT_DESTINATION, UPLANDER_STONE_SETTINGS)
+    )
+
     def init(): Unit = {}
 
     def register[B <: Block](name: String, item: Boolean = true, itemGroup: ItemGroup = UplandsMod.GROUP)(b: B): B = {

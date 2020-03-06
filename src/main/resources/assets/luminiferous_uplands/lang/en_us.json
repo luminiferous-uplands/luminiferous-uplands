@@ -54,6 +54,8 @@
   "block.luminiferous_uplands.boss_doorway": "Boss Doorway",
   "block.luminiferous_uplands.megadungeon_altar": "Altar of the Megaduneoner",
   "block.luminiferous_uplands.active_megadungeon_altar": "Active Altar of the Megadungeoner",
+  "block.luminiferous_uplands.skydungeon_teleporter": "Skydungeon Transporter",
+  "block.luminiferous_uplands.skydungeon_teleport_destination": "Skydungeon Transport Receiver",
 
   "block.luminiferous_uplands.cloud_daisies": "Cloud Daisies",
   "item.luminiferous_uplands.zephyr_onion": "Zephyr Onion",
