@@ -2,6 +2,7 @@ package robosky.uplands.world.biome
 
 import net.fabricmc.api.{EnvType, Environment}
 import net.minecraft.block.{BlockState, Blocks}
+import net.minecraft.entity.{EntityCategory, EntityType}
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.Biome.Category
@@ -71,6 +72,8 @@ object UplandsAutumnBiome
   addStructureFeature(MegadungeonFeature.configure(FeatureConfig.DEFAULT))
   addFeature(GenerationStep.Feature.UNDERGROUND_STRUCTURES, MegadungeonFeature.configure(FeatureConfig.DEFAULT)
     .createDecoratedFeature(Decorator.NOPE.configure(new NopeDecoratorConfig())))
+
+  addSpawn(EntityCategory.MONSTER, new Biome.SpawnEntry(EntityType.ENDERMAN, 10, 1, 4))
 
   @Environment(EnvType.CLIENT)
   override def getSkyColor = 12632319
