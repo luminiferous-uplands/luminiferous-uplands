@@ -16,5 +16,6 @@ object EntityRenderingRegistry {
 
   def init(): Unit = {
     register(EntityRegistry.HEXAHAEN, (d, c) => new HexahaenRender(d))
+    register(EntityRegistry.MEGADUNGEON_BOSS, (d, c) => new MegadungeonBossRender(d))
   }
 }

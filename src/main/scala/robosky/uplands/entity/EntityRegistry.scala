@@ -16,6 +16,11 @@ object EntityRegistry {
     .size(EntityDimensions.fixed(1.25f, 1.25f))
     .build
 
+  val MEGADUNGEON_BOSS: EntityType[MegadungeonBossEntity] = FabricEntityTypeBuilder
+    .create(EntityCategory.MONSTER, new MegadungeonBossEntity(_, _))
+    .size(EntityDimensions.fixed(1.25f, 1.25f))
+    .build
+
   private def registerMob(name: String, entityType: EntityType[_], primaryColor: Int, secondaryColor: Int): Unit = {
     Registry.register(Registry.ENTITY_TYPE, UplandsMod :/ name, entityType)
     Registry.register(Registry.ITEM, UplandsMod :/ (name + "_spawn_egg"),
@@ -24,5 +29,6 @@ object EntityRegistry {
 
   def init(): Unit = {
     registerMob("hexahaen", HEXAHAEN, 0x0e7543, 0xeb8154)
+    registerMob("megadungeon_boss", MEGADUNGEON_BOSS, 0x0e7543, 0xab5154)
   }
 }
