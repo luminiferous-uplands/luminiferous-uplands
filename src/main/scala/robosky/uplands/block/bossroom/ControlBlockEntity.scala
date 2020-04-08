@@ -250,9 +250,7 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
     tag.putIntArray("Bounds", Array(bounds.minX, bounds.minY, bounds.minZ, bounds.maxX, bounds.maxY, bounds.maxZ))
     tag.putString("Boss", Registry.ENTITY_TYPE.getId(bossType).toString)
     bossUuid foreach {
-      uuid =>
-        tag.putLong("BossUUIDMost", uuid.getMostSignificantBits)
-        tag.putLong("BossUUIDLeast", uuid.getLeastSignificantBits)
+      uuid => tag.putUuid("BossUUID", uuid)
     }
     tag.putString("Replacement", block.stringifyState(replacement))
     tag
@@ -277,8 +275,8 @@ class ControlBlockEntity extends BlockEntity(ControlBlockEntity.TYPE)
       } yield etyp
     } getOrElse EntityType.PIG
     bossUuid = {
-      if (tag.contains("BossUUIDMost") && tag.contains("BossUUIDLeast"))
-        Some(new UUID(tag.getLong("BossUUIDMost"), tag.getLong("BossUUIDLeast")))
+      if (tag.containsUuid("BossUUID"))
+        Some(tag.getUuid("BossUUID"))
       else
         None
     }
