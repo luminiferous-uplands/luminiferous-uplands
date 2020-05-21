@@ -20,7 +20,7 @@ import robosky.uplands.world.feature.UplandsOreFeatureConfig;
 import robosky.uplands.world.feature.megadungeon.MegadungeonFeature$;
 import robosky.uplands.world.gen.UplandsAutumnSurfaceBuilder;
 
-public class UplandsPlainsBiome extends Biome {
+public class UplandsSavannaBiome extends Biome {
     private static final SurfaceBuilder<SurfaceConfig> UPLANDS_AUTUMN_SURFACE_BUILDER = new UplandsAutumnSurfaceBuilder();
 
     private static final SurfaceConfig UPLANDS_GRASS_DIRT_STONE_SURFACE = new SurfaceConfig() {
@@ -35,10 +35,10 @@ public class UplandsPlainsBiome extends Biome {
         }
     };
 
-    protected UplandsPlainsBiome() {
+    protected UplandsSavannaBiome() {
         super(new Settings().configureSurfaceBuilder(UPLANDS_AUTUMN_SURFACE_BUILDER,
                 UPLANDS_GRASS_DIRT_STONE_SURFACE).precipitation(Precipitation.NONE).category(Category.FOREST)
-                .depth(0.2f).scale(0.2F).temperature(0.5F).downfall(0.0F)
+                .depth(0.3f).scale(0.2F).temperature(0.5F).downfall(0.0F)
                 .waterColor(0x9898BC).waterFogColor(0x9898BC).category(Category.FOREST));
 
         addFeature(GenerationStep.Feature.UNDERGROUND_ORES, FeatureRegistry.oreFeature().configure(
@@ -48,11 +48,11 @@ public class UplandsPlainsBiome extends Biome {
                 new UplandsOreFeatureConfig(20, 1, 64, BlockRegistry.LODESTONE().getDefaultState()))
                 .createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(4, 0, 0, 256))));
 
-        addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.skyrootTreeFeature().configure(FeatureConfig.DEFAULT)
-                .createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP.configure(new CountExtraChanceDecoratorConfig(0, 0.1f, 1))));
+        addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.skyrootFlatTreeFeature().configure(FeatureConfig.DEFAULT)
+                .createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP.configure(new CountExtraChanceDecoratorConfig(0, 0.75f, 1))));
 
         addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.waterChestnutFeature().configure(FeatureConfig.DEFAULT)
-                .createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP.configure(new CountExtraChanceDecoratorConfig(4, 0.1f, 1))));
+                .createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP.configure(new CountExtraChanceDecoratorConfig(2, 0.1f, 1))));
 
         addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.tallUplandsGrassFeature().configure(
                 new RandomPatchFeatureConfig.Builder(
@@ -61,15 +61,16 @@ public class UplandsPlainsBiome extends Biome {
                                 .addState(BlockRegistry.CLOUD_DAISIES().getDefaultState(), 1),
                         new SimpleBlockPlacer()
                 ).tries(32).build())
-                .createDecoratedFeature(Decorator.COUNT_HEIGHTMAP_DOUBLE.configure(new CountDecoratorConfig(8))));
+                .createDecoratedFeature(Decorator.COUNT_HEIGHTMAP_DOUBLE.configure(new CountDecoratorConfig(4))));
 
         addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.zephyrOnionFeature().configure(FeatureConfig.DEFAULT)
-                .createDecoratedFeature(Decorator.COUNT_HEIGHTMAP_32.configure(new CountDecoratorConfig(5))));
+                .createDecoratedFeature(Decorator.COUNT_HEIGHTMAP_32.configure(new CountDecoratorConfig(1))));
 
         addFeature(GenerationStep.Feature.LOCAL_MODIFICATIONS, FeatureRegistry.skyLakeFeature().configure(
                 new SingleStateFeatureConfig(Blocks.WATER.getDefaultState()))
-                .createDecoratedFeature(Decorator.WATER_LAKE.configure(new ChanceDecoratorConfig(6))));
+                .createDecoratedFeature(Decorator.WATER_LAKE.configure(new ChanceDecoratorConfig(4))));
 
+        addStructureFeature(FeatureRegistry.treehouseFeature().configure(FeatureConfig.DEFAULT));
         addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, FeatureRegistry.treehouseFeature().configure(FeatureConfig.DEFAULT)
                 .createDecoratedFeature(Decorator.CHANCE_PASSTHROUGH.configure(new ChanceDecoratorConfig(100))));
 

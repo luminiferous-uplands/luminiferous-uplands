@@ -10,11 +10,14 @@ import net.minecraft.world.gen.feature.{DefaultFeatureConfig, Feature, RandomPat
 import robosky.uplands.UplandsMod
 import robosky.uplands.world.feature.megadungeon.{MegadungeonFeature, MegadungeonGenerator}
 import robosky.uplands.world.feature.minidungeons.{MinidungeonFeature, MinidungeonFeatureConfig}
-import robosky.uplands.world.feature.plants.{SkyrootTreeFeature, TallUplandsGrassFeature, UplandFlowerFeature, WaterChestnutFeature, ZephyrOnionFeature}
+import robosky.uplands.world.feature.plants.{SkyrootFlatTreeFeature, SkyrootTreeFeature, TallUplandsGrassFeature, UplandFlowerFeature, WaterChestnutFeature, ZephyrOnionFeature}
 
 object FeatureRegistry {
   val oreFeature: UplandsOreFeature.type = register("oregen", UplandsOreFeature)
   val skyrootTreeFeature: SkyrootTreeFeature = register("skyroot_tree", new SkyrootTreeFeature(
+    (t: Dynamic[_]) => DefaultFeatureConfig.deserialize(t), false))
+
+  val skyrootFlatTreeFeature: SkyrootFlatTreeFeature = register("flat_skyroot_tree", new SkyrootFlatTreeFeature(
     (t: Dynamic[_]) => DefaultFeatureConfig.deserialize(t), false))
 
   val skyLakeFeature: SkyLakeFeature = register("sky_lake", new SkyLakeFeature((t: Dynamic[_]) =>
