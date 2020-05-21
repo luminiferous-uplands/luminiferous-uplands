@@ -13,6 +13,7 @@ public class EntityRenderingRegistry {
         register(EntityRegistry.HEXAHAEN, HexahaenRender.class);
     }
 
+    // TODO find a way to do this without reflection
     private static void register(EntityType<?> entity, Class<? extends MobEntityRenderer<?, ?>> renderer) {
         EntityRendererRegistry.INSTANCE.register(entity, (entityRenderDispatcher, context) -> {
             MobEntityRenderer<?, ?> render = null;
