@@ -30,7 +30,7 @@ public class WaterChestnutFeature extends Feature<DefaultFeatureConfig> {
 
         for(int i = 0; i < 15; ++i) {
             BlockPos blockPos_4 = blockPos_1.add(random_1.nextInt(8) - random_1.nextInt(8), random_1.nextInt(4) - random_1.nextInt(4), random_1.nextInt(8) - random_1.nextInt(8));
-            BlockState blockState_1 = BlockRegistry.WATER_CHESTNUT_CROP_BLOCK().getDefaultState().with(WaterChestnutBlock.AGE, 7);
+            BlockState blockState_1 = BlockRegistry.WATER_CHESTNUT_CROP_BLOCK.getDefaultState().with(WaterChestnutBlock.AGE, 7);
             if (iWorld_1.isAir(blockPos_4) && blockState_1.canPlaceAt(iWorld_1, blockPos_4)) {
                 iWorld_1.setBlockState(blockPos_4, blockState_1, 2);
             }

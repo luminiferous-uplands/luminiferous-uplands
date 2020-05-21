@@ -6,7 +6,7 @@ import net.minecraft.state.StateManager
 
 import org.apache.logging.log4j.{Logger, LogManager}
 
-import robosky.uplands.block.{BlockRegistry, unbreakable}
+import robosky.uplands.block.unbreakable
 
 class AltarBlock(settings: Block.Settings) extends HorizontalFacingBlock(settings) {
 

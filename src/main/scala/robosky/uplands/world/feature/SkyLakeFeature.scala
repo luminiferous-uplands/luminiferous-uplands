@@ -5,8 +5,8 @@ import java.util.function.Function
 
 import com.mojang.datafixers.Dynamic
 import net.minecraft.world.gen.feature.{Feature, SingleStateFeatureConfig}
-import robosky.uplands.block.BlockRegistry
 import robosky.uplands.UplandsBlockTags
+import robosky.uplands.block.BlockRegistry
 
 class SkyLakeFeature($f: Function[Dynamic[_], SingleStateFeatureConfig])
   extends Feature[SingleStateFeatureConfig]($f) {

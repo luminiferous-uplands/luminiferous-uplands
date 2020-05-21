@@ -45,6 +45,6 @@ public class UplandFlowerFeature extends Feature<DefaultFeatureConfig> {
     }
 
     static {
-        FLOWERS = new Block[]{BlockRegistry.CLOUD_DAISIES()};
+        FLOWERS = new Block[]{BlockRegistry.CLOUD_DAISIES};
     }
 }

@@ -3,8 +3,7 @@ package robosky.uplands.block.bossroom
 import java.util.UUID
 
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable
-
-import net.minecraft.block.{Blocks, BlockState}
+import net.minecraft.block.{BlockState, Blocks}
 import net.minecraft.block.entity.{BlockEntity, BlockEntityType}
 import net.minecraft.entity.{Entity, EntityType, SpawnType}
 import net.minecraft.entity.player.PlayerEntity
@@ -14,9 +13,7 @@ import net.minecraft.util.{BlockRotation, Identifier, Tickable}
 import net.minecraft.util.math.{BlockPos, Box, Direction}
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.World
-
-import org.apache.logging.log4j.{Logger, LogManager}
-
+import org.apache.logging.log4j.{LogManager, Logger}
 import robosky.uplands.block
 import robosky.uplands.block.BlockRegistry
 import robosky.uplands.block.unbreakable.Unbreakable

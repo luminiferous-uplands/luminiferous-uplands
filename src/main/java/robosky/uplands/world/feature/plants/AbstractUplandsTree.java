@@ -42,14 +42,14 @@ public abstract class AbstractUplandsTree<T extends FeatureConfig> extends Featu
     static boolean canTreeReplace(TestableWorld testableWorld_1, BlockPos blockPos_1) {
         return testableWorld_1.testBlockState(blockPos_1, (blockState_1) -> {
             Block block_1 = blockState_1.getBlock();
-            return blockState_1.isAir() || blockState_1.matches(BlockTags.LEAVES) || block_1 == BlockRegistry.UPLANDER_GRASS()
-                    || block_1 == BlockRegistry.UPLANDER_DIRT() || block_1.matches(BlockTags.LOGS) ||
+            return blockState_1.isAir() || blockState_1.matches(BlockTags.LEAVES) || block_1 == BlockRegistry.UPLANDER_GRASS
+                    || block_1 == BlockRegistry.UPLANDER_DIRT || block_1.matches(BlockTags.LOGS) ||
                     block_1.matches(BlockTags.SAPLINGS) || block_1 == Blocks.VINE;
         });
     }
 
     private static boolean isNaturalDirt(TestableWorld testableWorld_1, BlockPos blockPos_1) {
-        return testableWorld_1.testBlockState(blockPos_1, (blockState_1) -> blockState_1.getBlock() == BlockRegistry.UPLANDER_DIRT());
+        return testableWorld_1.testBlockState(blockPos_1, (blockState_1) -> blockState_1.getBlock() == BlockRegistry.UPLANDER_DIRT);
     }
 
     static boolean isAirOrLeaves(TestableWorld testableWorld_1, BlockPos blockPos_1) {
@@ -59,7 +59,7 @@ public abstract class AbstractUplandsTree<T extends FeatureConfig> extends Featu
     static boolean isDirtOrGrass(TestableWorld testableWorld_1, BlockPos blockPos_1) {
         return testableWorld_1.testBlockState(blockPos_1, (blockState_1) -> {
             Block block_1 = blockState_1.getBlock();
-            return block_1 == BlockRegistry.UPLANDER_DIRT() || block_1 == BlockRegistry.UPLANDER_GRASS();
+            return block_1 == BlockRegistry.UPLANDER_DIRT || block_1 == BlockRegistry.UPLANDER_GRASS;
         });
     }
 
@@ -72,7 +72,7 @@ public abstract class AbstractUplandsTree<T extends FeatureConfig> extends Featu
 
     void setToDirt(ModifiableTestableWorld modifiableTestableWorld_1, BlockPos blockPos_1) {
         if (!isNaturalDirt(modifiableTestableWorld_1, blockPos_1)) {
-            this.setBlockState(modifiableTestableWorld_1, blockPos_1, BlockRegistry.UPLANDER_DIRT().getDefaultState());
+            this.setBlockState(modifiableTestableWorld_1, blockPos_1, BlockRegistry.UPLANDER_DIRT.getDefaultState());
         }
 
     }

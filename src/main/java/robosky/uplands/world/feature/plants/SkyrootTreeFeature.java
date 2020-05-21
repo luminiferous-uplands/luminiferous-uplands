@@ -23,8 +23,8 @@ public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig
     public SkyrootTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> deserialize, boolean sapling) {
         this(deserialize,
                 sapling,
-                BlockRegistry.SKYROOT_LOG().getDefaultState(),
-                BlockRegistry.SKYROOT_WOOD().getDefaultState());
+                BlockRegistry.SKYROOT_LOG.getDefaultState(),
+                BlockRegistry.SKYROOT_WOOD.getDefaultState());
     }
 
     private SkyrootTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> dezerialize, boolean sapling,
@@ -43,12 +43,12 @@ public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig
         // In order of rarity, leaf colors are: Orange, Red, Yellow
         if (randomLeaves < 0.8f) {
             if (randomLeaves > 0.45) {
-                leaves = BlockRegistry.RED_SKYROOT_LEAVES().getDefaultState();
+                leaves = BlockRegistry.RED_SKYROOT_LEAVES.getDefaultState();
             } else {
-                leaves = BlockRegistry.ORANGE_SKYROOT_LEAVES().getDefaultState();
+                leaves = BlockRegistry.ORANGE_SKYROOT_LEAVES.getDefaultState();
             }
         } else {
-            leaves = BlockRegistry.YELLOW_SKYROOT_LEAVES().getDefaultState();
+            leaves = BlockRegistry.YELLOW_SKYROOT_LEAVES.getDefaultState();
         }
 
         // Create variables related to the tree's trunk
@@ -117,7 +117,7 @@ public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig
 
             if (canPlaceBlock(world, mushroomLocation)) {
                 if (!canPlaceBlock(world, mushroomLocation.down())) {
-                    setBlockState(set, world, mushroomLocation, BlockRegistry.AZOTE_MUSHROOM().getDefaultState(), bbox);
+                    setBlockState(set, world, mushroomLocation, BlockRegistry.AZOTE_MUSHROOM.getDefaultState(), bbox);
                 }
             }
         }
