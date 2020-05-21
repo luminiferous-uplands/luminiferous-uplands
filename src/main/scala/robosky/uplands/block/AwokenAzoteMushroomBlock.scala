@@ -8,7 +8,6 @@ import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.shape.VoxelShape
 import net.minecraft.world.BlockView
-import robosky.uplands.UplandsBlockTags
 
 object AwokenAzoteMushroomBlock {
   val SHAPE: VoxelShape = Block.createCuboidShape(5.0D, 0.0D, 5.0D, 11.0D, 6.0D, 11.0D)
@@ -16,8 +15,8 @@ object AwokenAzoteMushroomBlock {
 
 class AwokenAzoteMushroomBlock(val settings: Block.Settings) extends PlantBlock(settings) {
   override def canPlantOnTop(blockState_1: BlockState, blockView_1: BlockView, blockPos_1: BlockPos): Boolean =
-    blockState_1.matches(UplandsBlockTags.PlantableOn) ||
-      blockState_1.matches(UplandsBlockTags.AzoteMushroomSpreadable)
+    blockState_1.matches(UplandsBlockTags.PLANTABLE_ON) ||
+      blockState_1.matches(UplandsBlockTags.AZOTE_MUSHROOM_SPREADABLE)
 
   override def getOutlineShape(blockState_1: BlockState, blockView_1: BlockView, blockPos_1: BlockPos,
                                entityContext_1: EntityContext): VoxelShape = AwokenAzoteMushroomBlock.SHAPE

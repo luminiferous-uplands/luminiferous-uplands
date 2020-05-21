@@ -31,7 +31,7 @@ public class DoorwayBlockEntityRenderer extends BlockEntityRenderer<DoorwayBlock
 
     @Override
     public void render(DoorwayBlockEntity be, float partialTicks, MatrixStack matrix, VertexConsumerProvider provider, int var5, int var6) {
-        BlockState doorwayState = be.hasWorld() ? be.getCachedState() : BlockRegistry.BOSS_DOORWAY().getDefaultState();
+        BlockState doorwayState = be.hasWorld() ? be.getCachedState() : BlockRegistry.BOSS_DOORWAY.getDefaultState();
         World world = be.getWorld();
         long time = world != null ? world.getTime() : 0L;
         boolean forceRender = time - be.lastMimicUpdate() <= 20;
