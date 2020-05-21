@@ -8,12 +8,11 @@ import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.{BlockPos, Direction}
 import net.minecraft.util.shape.VoxelShape
 import net.minecraft.world.{BlockView, World}
-
-import org.apache.logging.log4j.{Logger, LogManager}
+import org.apache.logging.log4j.{LogManager, Logger}
 import robosky.uplands.block.unbreakable.Unbreakable
 
 class ActiveAltarBlock(val base: Block)
-    extends AltarBlock(Block.Settings.copy(base)) with Unbreakable {
+    extends AltarBlock(Block.Settings.copy(base).strength(-1.0f, 3600000.0f)) with Unbreakable {
 
   private val logger: Logger = LogManager.getLogger
 

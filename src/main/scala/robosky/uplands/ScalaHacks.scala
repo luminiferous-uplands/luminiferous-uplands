@@ -9,5 +9,5 @@ import robosky.uplands.block.UplandsOreBlock.UplandsOreType
  */
 @Deprecated
 object ScalaHacks {
-  def createOreTypes(): java.util.Map[UplandsOreType, UplandsOreBlock] = UplandsOreBlock.oreTypes.map(t => t -> BlockRegistry.registerWithItem(s"${t.name}", new UplandsOreBlock(t))).toMap.asJava
+  def createOreTypes(): java.util.Map[UplandsOreType, UplandsOreBlock] = UplandsOreBlock.oreTypes.map(t => t -> BlockRegistry.registerWithItem(s"${t.name}_ore", new UplandsOreBlock(t))).toMap.asJava
 }
