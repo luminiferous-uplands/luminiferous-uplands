@@ -3,12 +3,12 @@ package robosky.uplands.world.gen;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.noise.OctavePerlinNoiseSampler;
-import net.minecraft.util.math.noise.SimplexNoiseSampler;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeSource;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.chunk.SurfaceChunkGenerator;
+import robosky.uplands.noise.OpenSimplexNoise;
 
 import java.util.Random;
 
@@ -24,13 +24,13 @@ public class UplandsChunkGenerator extends SurfaceChunkGenerator<UplandsChunkGen
     });
 
     private final OctavePerlinNoiseSampler depthNoiseSampler;
-    private final SimplexNoiseSampler noise;
+    private final OpenSimplexNoise falloffNoise;
 
     public UplandsChunkGenerator(IWorld world, BiomeSource biomeSource) {
         super(world, biomeSource, 8, 4, 128, new UplandsChunkGenConfig(), true);
         this.random.consume(2620);
         this.depthNoiseSampler = new OctavePerlinNoiseSampler(this.random, 15, 0);
-        this.noise = new SimplexNoiseSampler(this.random);
+        falloffNoise = new OpenSimplexNoise(random.nextLong());
     }
 
     protected void sampleNoiseColumn(double[] buffer, int x, int z) {
@@ -52,7 +52,7 @@ public class UplandsChunkGenerator extends SurfaceChunkGenerator<UplandsChunkGen
                 float depth = biome.getDepth();
                 float scale = biome.getScale();
 
-                float weight = BIOME_WEIGHT_TABLE[x0 + 2 + (z0 + 2) * 5];
+                float weight = BIOME_WEIGHT_TABLE[x0 + 2 + (z0 + 2) * 5]  / (depth + 2.0F);
                 if (biome.getDepth() > centerDepth) {
                     weight /= 2.0F;
                 }
@@ -65,37 +65,15 @@ public class UplandsChunkGenerator extends SurfaceChunkGenerator<UplandsChunkGen
 
         scaleTotal /= totalWeight;
         depthTotal /= totalWeight;
-        ds[0] = depthTotal + sampleExtraDepthNoise(x, z);
-        ds[1] = scaleTotal;
+//        ds[0] = getNoiseRange(x, z);
+        ds[0] = biomeSource.getNoiseRange(x, z) + sampleExtraDepthNoise(x, z);
+        ds[1] = falloffNoise.sample(x / 64.0, z / 64.0) * 4;
         return ds;
     }
 
-    public float getNoiseRange(int i, int j) {
-        int k = i / 2;
-        int l = j / 2;
-        int m = i % 2;
-        int n = j % 2;
-        float f = 100.0F - MathHelper.sqrt((float) (i * i + j * j)) * 8.0F;
-        f = MathHelper.clamp(f, -100.0F, 80.0F);
-        for(int o = -12; o <= 12; ++o) {
-            for(int p = -12; p <= 12; ++p) {
-                long q = (long)(k + o);
-                long r = (long)(l + p);
-                if (q * q + r * r > 4096L && this.noise.sample((double)q, (double)r) < -0.8999999761581421D) {
-                    float g = (MathHelper.abs((float)q) * 3439.0F + MathHelper.abs((float)r) * 147.0F) % 13.0F + 9.0F;
-                    float h = (float)(m - o * 2);
-                    float s = (float)(n - p * 2);
-                    float t = 100.0F - MathHelper.sqrt(h * h + s * s) * g;
-                    t = MathHelper.clamp(t, -100.0F, 80.0F);
-                    f = Math.max(f, t);
-                }
-            }
-        }
-        return f;
-    }
-
     protected double computeNoiseFalloff(double depth, double scale, int y) {
-        return 12 - (15 * depth);
+//        return 12 - (15 * depth);
+        return (8 + scale) - depth;
     }
 
     // top interpolation start
@@ -105,7 +83,7 @@ public class UplandsChunkGenerator extends SurfaceChunkGenerator<UplandsChunkGen
 
     // bottom interpolation start
     protected double method_16410() {
-        return 4.0D;
+        return 8.0D;
     }
 
     public int getSpawnHeight() {
