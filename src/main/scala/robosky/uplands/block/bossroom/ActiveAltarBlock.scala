@@ -10,8 +10,6 @@ import net.minecraft.util.shape.VoxelShape
 import net.minecraft.world.{BlockView, World}
 
 import org.apache.logging.log4j.{Logger, LogManager}
-
-import robosky.uplands.block.BlockRegistry
 import robosky.uplands.block.unbreakable.Unbreakable
 
 class ActiveAltarBlock(val base: Block)

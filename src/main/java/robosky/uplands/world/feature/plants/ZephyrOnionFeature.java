@@ -21,7 +21,7 @@ public class ZephyrOnionFeature extends Feature<DefaultFeatureConfig> {
     }
 
     public BlockState getFlowerToPlace(Random random_1, BlockPos blockPos_1) {
-        return BlockRegistry.ZEPHYR_ONION_CROP_BLOCK().getDefaultState().with(ZephyrOnionBlock.AGE, random_1.nextInt(5));
+        return BlockRegistry.ZEPHYR_ONION_CROP_BLOCK.getDefaultState().with(ZephyrOnionBlock.AGE, random_1.nextInt(5));
     }
 
     @Override
@@ -35,9 +35,9 @@ public class ZephyrOnionFeature extends Feature<DefaultFeatureConfig> {
         for(int int_2 = 0; int_2 < 8; ++int_2) {
             BlockPos blockPos_2 = blockPos_1.add(random_1.nextInt(8) - random_1.nextInt(8), random_1.nextInt(4) - random_1.nextInt(4), random_1.nextInt(8) - random_1.nextInt(8));
 
-            if (iWorld_1.isAir(blockPos_2) && iWorld_1.getBlockState(blockPos_2.down()) == BlockRegistry.UPLANDER_GRASS().getDefaultState()) {
-                iWorld_1.setBlockState(blockPos_2.down(), BlockRegistry.UPLANDER_FARMLAND().getDefaultState(), 2);
-                iWorld_1.setBlockState(blockPos_2, BlockRegistry.ZEPHYR_ONION_CROP_BLOCK().getDefaultState(), 2);
+            if (iWorld_1.isAir(blockPos_2) && iWorld_1.getBlockState(blockPos_2.down()) == BlockRegistry.UPLANDER_GRASS.getDefaultState()) {
+                iWorld_1.setBlockState(blockPos_2.down(), BlockRegistry.UPLANDER_FARMLAND.getDefaultState(), 2);
+                iWorld_1.setBlockState(blockPos_2, BlockRegistry.ZEPHYR_ONION_CROP_BLOCK.getDefaultState(), 2);
                 ++int_1;
             }
         }

@@ -1,12 +1,10 @@
 package robosky.uplands.block.bossroom
 
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable
-
-import net.minecraft.block.{Blocks, BlockState}
+import net.minecraft.block.{BlockState, Blocks}
 import net.minecraft.block.entity.{BlockEntity, BlockEntityType}
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.util.BlockRotation
-
 import robosky.uplands.block
 import robosky.uplands.block.BlockRegistry
 

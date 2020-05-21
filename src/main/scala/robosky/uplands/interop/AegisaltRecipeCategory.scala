@@ -12,7 +12,6 @@ import me.shedaniel.rei.gui.widget.{EntryWidget, Widget}
 import net.minecraft.item.ItemStack
 import net.minecraft.util.Identifier
 import robosky.uplands.UplandsMod
-import robosky.uplands.block.BlockRegistry
 import robosky.uplands.block.machine.MachineRegistry
 
 import scala.collection.JavaConverters._

@@ -37,7 +37,7 @@ object UplandsAutumnBiome
     .waterColor(0x9898BC).waterFogColor(0x9898BC).category(Biome.Category.FOREST)) {
 
   addFeature(GenerationStep.Feature.UNDERGROUND_ORES, FeatureRegistry.oreFeature.configure(
-    UplandsOreFeatureConfig(9, 1, 128, BlockRegistry.UPLANDS_ORES(UplandsOreBlock.OreTypeAegisalt)))
+    UplandsOreFeatureConfig(9, 1, 128, BlockRegistry.UPLANDS_ORES.get(UplandsOreBlock.OreTypeAegisalt)))
     .createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(1, 0, 0, 256))))
   addFeature(GenerationStep.Feature.UNDERGROUND_ORES, FeatureRegistry.oreFeature.configure(
     UplandsOreFeatureConfig(20, 1, 64, BlockRegistry.LODESTONE))
