@@ -16,7 +16,7 @@ public class ItemRegistry {
     public static final Item SKYROOT_CHARM = register("skyroot_charm", new CharmItem(StatusEffects.JUMP_BOOST, 1));
 
     public static final Item ZEPHYR_ONION_ITEM = register("zephyr_onion", new AliasedBlockItem(
-        BlockRegistry.ZEPHYR_ONION_CROP_BLOCK(), new Item.Settings()
+        BlockRegistry.ZEPHYR_ONION_CROP_BLOCK, new Item.Settings()
         .group(UplandsMod.GROUP())
         .food(new FoodComponent.Builder()
             .hunger(1)

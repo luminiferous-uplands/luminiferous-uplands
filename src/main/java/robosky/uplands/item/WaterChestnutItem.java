@@ -47,7 +47,7 @@ public class WaterChestnutItem extends Item {
             FluidState waterFluidState = world.getFluidState(waterBlockPos);
 
             if ((waterFluidState.getFluid() == Fluids.WATER) && world.isAir(cropBlockPos)) {
-                world.setBlockState(cropBlockPos, BlockRegistry.WATER_CHESTNUT_CROP_BLOCK().getDefaultState(), 11);
+                world.setBlockState(cropBlockPos, BlockRegistry.WATER_CHESTNUT_CROP_BLOCK.getDefaultState(), 11);
 
                 if (player instanceof ServerPlayerEntity)
                     Criterions.PLACED_BLOCK.trigger((ServerPlayerEntity)player, cropBlockPos, itemStack);

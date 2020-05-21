@@ -5,8 +5,7 @@ import java.util.function.Function
 
 import com.mojang.datafixers.Dynamic
 import net.minecraft.world.gen.feature.{Feature, SingleStateFeatureConfig}
-import robosky.uplands.UplandsBlockTags
-import robosky.uplands.block.BlockRegistry
+import robosky.uplands.block.{BlockRegistry, UplandsBlockTags}
 
 class SkyLakeFeature($f: Function[Dynamic[_], SingleStateFeatureConfig])
   extends Feature[SingleStateFeatureConfig]($f) {
@@ -105,7 +104,7 @@ class SkyLakeFeature($f: Function[Dynamic[_], SingleStateFeatureConfig])
       if bitset((dx * 16 + dz) * 8 + dy)
     } {
       val pos = start.add(dx, dy - 1, dz)
-      if (world.getBlockState(pos).getBlock.matches(UplandsBlockTags.PlantableOn) && world
+      if (world.getBlockState(pos).getBlock.matches(UplandsBlockTags.PLANTABLE_ON) && world
         .getLightLevel(LightType.SKY, start.add(dx, dy, dz)) > 0)
         world.setBlockState(pos, BlockRegistry.UPLANDER_GRASS.getDefaultState, 2)
     }

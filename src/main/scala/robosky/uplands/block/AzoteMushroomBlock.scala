@@ -1,8 +1,6 @@
 package robosky.uplands.block
 
 import java.util.Random
-
-import robosky.uplands.UplandsBlockTags
 import net.fabricmc.fabric.api.tag.TagRegistry
 import net.minecraft.block.{Block, BlockState, MushroomPlantBlock, PlantBlock}
 import net.minecraft.entity.EntityContext
@@ -19,12 +17,12 @@ object AzoteMushroomBlock {
 
 class AzoteMushroomBlock(val settings: Block.Settings) extends MushroomPlantBlock(settings) {
   override def canPlantOnTop(blockState_1: BlockState, blockView_1: BlockView, blockPos_1: BlockPos): Boolean =
-    blockState_1.matches(UplandsBlockTags.AzoteMushroomSpreadable) ||
+    blockState_1.matches(UplandsBlockTags.AZOTE_MUSHROOM_SPREADABLE) ||
       blockState_1.matches(TagRegistry.block(new Identifier("luminiferous_uplands:azote_mushroom_spreadable")))
 
   override def canPlaceAt(blockState_1: BlockState, viewableWorld_1: WorldView, blockPos_1: BlockPos): Boolean = {
     val blockState_2 = viewableWorld_1.getBlockState(blockPos_1.down())
-    blockState_2.matches(UplandsBlockTags.PlantableOn) ||
+    blockState_2.matches(UplandsBlockTags.PLANTABLE_ON) ||
       blockState_2.matches(TagRegistry.block(new Identifier("luminiferous_uplands:azote_mushroom_spreadable")))
   }
 
@@ -60,7 +58,7 @@ class AzoteMushroomBlock(val settings: Block.Settings) extends MushroomPlantBloc
       val mushroomSpawnLocation = blockPos_1.add(random_1.nextInt(3) - 1, random_1.nextInt(2) - random_1.nextInt(2), random_1.nextInt(3) - 1)
 
       // If this is a valid position, spawn there
-      if (serverWorld_1.isAir(mushroomSpawnLocation) && serverWorld_1.getBlockState(mushroomSpawnLocation.down()).matches(UplandsBlockTags.AzoteMushroomSpreadable))
+      if (serverWorld_1.isAir(mushroomSpawnLocation) && serverWorld_1.getBlockState(mushroomSpawnLocation.down()).matches(UplandsBlockTags.AZOTE_MUSHROOM_SPREADABLE))
         serverWorld_1.setBlockState(mushroomSpawnLocation, blockState_1, 2)
     }
   }

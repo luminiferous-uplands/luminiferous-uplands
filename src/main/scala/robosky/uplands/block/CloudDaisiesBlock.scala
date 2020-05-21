@@ -6,7 +6,6 @@ import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.shape.VoxelShape
 import net.minecraft.world.BlockView
-import robosky.uplands.UplandsBlockTags
 
 object CloudDaisiesBlock {
     val SHAPE: VoxelShape =
@@ -15,7 +14,7 @@ object CloudDaisiesBlock {
 
 class CloudDaisiesBlock (val settings: Block.Settings) extends FlowerBlock(StatusEffects.SLOW_FALLING, 15, settings) {
     override def canPlantOnTop(blockState_1: BlockState, blockView_1: BlockView, blockPos_1: BlockPos): Boolean =
-        blockState_1.matches(UplandsBlockTags.PlantableOn)
+        blockState_1.matches(UplandsBlockTags.PLANTABLE_ON)
 
     override def getOutlineShape(blockState_1: BlockState, blockView_1: BlockView, blockPos_1: BlockPos,
                                  entityContext_1: EntityContext): VoxelShape = CloudDaisiesBlock.SHAPE
