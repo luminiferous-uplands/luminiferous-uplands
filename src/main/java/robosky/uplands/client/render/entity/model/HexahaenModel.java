@@ -1,14 +1,12 @@
 package robosky.uplands.client.render.entity.model;
 
-import java.util.Collections;
-
-import robosky.uplands.entity.HexahaenEntity;
-
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.entity.model.CompositeEntityModel;
+import robosky.uplands.entity.HexahaenEntity;
 
-public final class HexahaenModel extends CompositeEntityModel<HexahaenEntity> {
+import java.util.Collections;
 
+public class HexahaenModel extends CompositeEntityModel<HexahaenEntity> {
     private final ModelPart model;
 
     public HexahaenModel() {

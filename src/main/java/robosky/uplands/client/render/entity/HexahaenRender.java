@@ -1,14 +1,13 @@
 package robosky.uplands.client.render.entity;
 
-import robosky.uplands.UplandsMod;
-import robosky.uplands.client.render.entity.model.HexahaenModel;
-import robosky.uplands.entity.HexahaenEntity;
-
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
+import robosky.uplands.UplandsMod;
+import robosky.uplands.client.render.entity.model.HexahaenModel;
+import robosky.uplands.entity.HexahaenEntity;
 
 public class HexahaenRender extends MobEntityRenderer<HexahaenEntity, HexahaenModel> {
 
@@ -34,14 +33,14 @@ public class HexahaenRender extends MobEntityRenderer<HexahaenEntity, HexahaenMo
     // TODO: reflecting causes weird lighting artifacts
     @Override
     protected void scale(HexahaenEntity entity, MatrixStack matrix, float f1) {
-        if (entity.isLeftHanded()) {
+        if (entity.isLeftHanded())
             matrix.scale(-1.0f, 1.0f, 1.0f);
-        }
+
         super.scale(entity, matrix, f1);
     }
 
     @Override
     public Identifier getTexture(HexahaenEntity entity) {
-        return TEXTURES[entity.strength() - 1];
+        return TEXTURES[entity.getDataTracker().get(HexahaenEntity.STRENGTH) - 1];
     }
 }
