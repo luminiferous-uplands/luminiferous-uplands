@@ -20,8 +20,6 @@ object UplandsMod extends ModInitializer {
     .icon(() => new ItemStack(BlockRegistry.UPLANDER_GRASS))
     .build()
 
-  val BOSSROOM_TECHNICAL_TAG: Tag[Item] = new ItemTags.CachingTag(this :/ "bossroom_technical")
-
   override def onInitialize(): Unit = {
     BlockRegistry.init()
     ItemRegistry.init()

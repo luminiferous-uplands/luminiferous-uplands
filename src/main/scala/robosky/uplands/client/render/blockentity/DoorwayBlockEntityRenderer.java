@@ -1,10 +1,10 @@
 package robosky.uplands.client.render.blockentity;
 
-import robosky.uplands.UplandsMod;
 import robosky.uplands.block.BlockRegistry;
 import robosky.uplands.block.bossroom.DoorwayBlock;
 import robosky.uplands.block.bossroom.DoorwayBlockEntity;
 import robosky.uplands.block.bossroom.DoorwayState;
+import robosky.uplands.item.UplandsItemTags;
 
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -72,6 +72,6 @@ public class DoorwayBlockEntityRenderer extends BlockEntityRenderer<DoorwayBlock
 
     private boolean playerIsHoldingDoorwayItem() {
         PlayerEntity player = MinecraftClient.getInstance().player;
-        return player != null && (player.isCreativeLevelTwoOp() || player.isSpectator()) && player.inventory.contains(UplandsMod.BOSSROOM_TECHNICAL_TAG());
+        return player != null && (player.isCreativeLevelTwoOp() || player.isSpectator()) && player.inventory.contains(UplandsItemTags.BOSSROOM_TECHNICAL);
     }
 }

@@ -1,7 +1,6 @@
 package robosky.uplands.block.bossroom
 
 import net.fabricmc.fabric.api.block.FabricBlockSettings
-
 import net.minecraft.block.{Block, BlockEntityProvider, BlockState, Material}
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.entity.player.PlayerEntity
@@ -13,8 +12,8 @@ import net.minecraft.util.{ActionResult, Hand}
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.{BlockPos, Direction}
 import net.minecraft.world.{BlockView, World}
-
 import robosky.uplands.UplandsMod
+import robosky.uplands.item.UplandsItemTags
 
 object ControlBlock {
   val ADJUST: Property[ControlAdjustment] = EnumProperty.of("adjust", classOf[ControlAdjustment])
@@ -51,7 +50,7 @@ class ControlBlock extends Block(
 
   override def onUse(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand, ctx: BlockHitResult): ActionResult = {
     val shouldEdit = player.isCreativeLevelTwoOp &&
-      player.inventory.contains(UplandsMod.BOSSROOM_TECHNICAL_TAG)
+      player.inventory.contains(UplandsItemTags.BOSSROOM_TECHNICAL)
     if (shouldEdit) {
       control(world, pos) foreach {
         ctrl =>

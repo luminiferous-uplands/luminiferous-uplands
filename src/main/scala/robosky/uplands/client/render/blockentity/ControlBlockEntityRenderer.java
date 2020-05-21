@@ -1,7 +1,7 @@
 package robosky.uplands.client.render.blockentity;
 
-import robosky.uplands.UplandsMod;
 import robosky.uplands.block.bossroom.ControlBlockEntity;
+import robosky.uplands.item.UplandsItemTags;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
@@ -22,7 +22,7 @@ public class ControlBlockEntityRenderer extends BlockEntityRenderer<ControlBlock
     @Override
     public void render(ControlBlockEntity be, float partialTicks, MatrixStack matrix, VertexConsumerProvider provider, int var5, int var6) {
         PlayerEntity player = MinecraftClient.getInstance().player;
-        if (player != null && (player.isCreativeLevelTwoOp() || player.isSpectator()) && player.inventory.contains(UplandsMod.BOSSROOM_TECHNICAL_TAG())) {
+        if (player != null && (player.isCreativeLevelTwoOp() || player.isSpectator()) && player.inventory.contains(UplandsItemTags.BOSSROOM_TECHNICAL)) {
             matrix.push();
             double minX = be.bounds().minX();
             double minY = be.bounds().minY();

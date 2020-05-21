@@ -1,10 +1,8 @@
 package robosky.uplands.mixin;
 
-import net.minecraft.item.ItemStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityContextImpl;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Lazy;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -12,8 +10,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import robosky.uplands.UplandsMod;
 import robosky.uplands.iface.BossDoorwayContext;
+import robosky.uplands.item.UplandsItemTags;
 
 @Mixin(EntityContextImpl.class)
 public abstract class EntityContextImplMixin implements BossDoorwayContext {
@@ -31,7 +29,7 @@ public abstract class EntityContextImplMixin implements BossDoorwayContext {
         if(entity instanceof PlayerEntity) {
           PlayerEntity player = (PlayerEntity)entity;
           shouldSeeDoorwayOutlines = player.isCreativeLevelTwoOp() &&
-              player.inventory.contains(UplandsMod.BOSSROOM_TECHNICAL_TAG());
+              player.inventory.contains(UplandsItemTags.BOSSROOM_TECHNICAL);
         } else {
           shouldSeeDoorwayOutlines = false;
         }
