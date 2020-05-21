@@ -41,6 +41,6 @@ public class HexahaenRender extends MobEntityRenderer<HexahaenEntity, HexahaenMo
 
     @Override
     public Identifier getTexture(HexahaenEntity entity) {
-        return TEXTURES[entity.strength - 1];
+        return TEXTURES[entity.getDataTracker().get(HexahaenEntity.STRENGTH) - 1];
     }
 }

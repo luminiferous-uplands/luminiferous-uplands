@@ -18,16 +18,10 @@ import javax.annotation.Nullable;
 
 public class HexahaenEntity extends HostileEntity {
 
-    private static final TrackedData<Integer> STRENGTH;
-    public int strength;
-
-    static {
-        STRENGTH = DataTracker.registerData(HexahaenEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    }
+    public static final TrackedData<Integer> STRENGTH = DataTracker.registerData(HexahaenEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
     public HexahaenEntity(EntityType<? extends HexahaenEntity> entityType, World world) {
         super(entityType, world);
-        this.strength = this.dataTracker.get(STRENGTH);
     }
 
     public HexahaenEntity(World world) {
@@ -40,6 +34,12 @@ public class HexahaenEntity extends HostileEntity {
         this.setHealth(this.getMaximumHealth());
         super.initialize(world, difficulty, spawnType, data, tag);
         return data;
+    }
+
+    @Override
+    protected void initAttributes() {
+        super.initAttributes();
+        this.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED).setBaseValue(0.23);
     }
 
     @Override
@@ -62,13 +62,13 @@ public class HexahaenEntity extends HostileEntity {
     @Override
     public void writeCustomDataToTag(CompoundTag tag) {
         super.writeCustomDataToTag(tag);
-        tag.putInt("Strength", this.strength);
+        tag.putInt("Strength", this.dataTracker.get(STRENGTH));
     }
 
     @Override
     public void readCustomDataFromTag(CompoundTag tag) {
         super.readCustomDataFromTag(tag);
-        tag.putInt("Strength", this.strength);
+        setStrength(tag.getInt("Strength"));
     }
 
     @Override
@@ -78,13 +78,15 @@ public class HexahaenEntity extends HostileEntity {
 
     // Use this when setting the strength value except in the constructor obviously
     private void setStrength(int value) {
-        if (value < 1)
-            this.strength = 1;
-        else
-            this.strength = Math.min(value, 5);
+        int strength;
 
-        this.dataTracker.set(HexahaenEntity.STRENGTH, this.strength);
-        this.experiencePoints = this.strength;
+        if (value < 1)
+            strength = 1;
+        else
+            strength = Math.min(value, 5);
+
+        this.dataTracker.set(HexahaenEntity.STRENGTH, strength);
+        this.experiencePoints = strength;
         this.setMaxHealthFromData();
         this.setDamageFromData();
     }
@@ -99,7 +101,7 @@ public class HexahaenEntity extends HostileEntity {
         else
             leftHandedStrengthBonus = 1.0F;
 
-        float adjStrength = leftHandedStrengthBonus * this.strength;
+        float adjStrength = leftHandedStrengthBonus * this.dataTracker.get(HexahaenEntity.STRENGTH);
         float maxHealth = baseHealth + adjStrength * adjStrength;
         this.getAttributeInstance(EntityAttributes.MAX_HEALTH).setBaseValue(maxHealth);
     }
@@ -114,7 +116,7 @@ public class HexahaenEntity extends HostileEntity {
             leftHandedDamageBonus = 1.5F;
         else
             leftHandedDamageBonus = 1.0F;
-        float damage = baseDamage + this.strength * damageCompressionFactor * leftHandedDamageBonus;
+        float damage = baseDamage + this.dataTracker.get(STRENGTH) * damageCompressionFactor * leftHandedDamageBonus;
         this.getAttributeInstance(EntityAttributes.ATTACK_DAMAGE).setBaseValue(damage);
     }
 }
