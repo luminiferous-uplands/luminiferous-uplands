@@ -22,7 +22,7 @@ public class ControlBlockEntityRenderer extends BlockEntityRenderer<ControlBlock
     @Override
     public void render(ControlBlockEntity be, float partialTicks, MatrixStack matrix, VertexConsumerProvider provider, int var5, int var6) {
         PlayerEntity player = MinecraftClient.getInstance().player;
-        if ((player.isCreativeLevelTwoOp() || player.isSpectator()) && player.inventory.contains(UplandsMod.BOSSROOM_TECHNICAL_TAG())) {
+        if (player != null && (player.isCreativeLevelTwoOp() || player.isSpectator()) && player.inventory.contains(UplandsMod.BOSSROOM_TECHNICAL_TAG())) {
             matrix.push();
             double minX = be.bounds().minX();
             double minY = be.bounds().minY();

@@ -21,7 +21,7 @@ import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class DoorwayBlockEntityRenderer extends BlockEntityRenderer<DoorwayBlockEntity> {
 
@@ -32,7 +32,9 @@ public class DoorwayBlockEntityRenderer extends BlockEntityRenderer<DoorwayBlock
     @Override
     public void render(DoorwayBlockEntity be, float partialTicks, MatrixStack matrix, VertexConsumerProvider provider, int var5, int var6) {
         BlockState doorwayState = be.hasWorld() ? be.getCachedState() : BlockRegistry.BOSS_DOORWAY().getDefaultState();
-        boolean forceRender = be.getWorld().getTime() - be.lastMimicUpdate() <= 20;
+        World world = be.getWorld();
+        long time = world != null ? world.getTime() : 0L;
+        boolean forceRender = time - be.lastMimicUpdate() <= 20;
         if (doorwayState.get(DoorwayBlock.STATE()) == DoorwayState.BLOCKED) {
             renderBlockModel(be.mimicState(), matrix, provider, var5);
         } else if (playerIsHoldingDoorwayItem()) {
@@ -68,10 +70,8 @@ public class DoorwayBlockEntityRenderer extends BlockEntityRenderer<DoorwayBlock
         matrix.pop();
     }
 
-    private static final ItemStack doorwayItem = new ItemStack(BlockRegistry.BOSS_DOORWAY().asItem());
-
     private boolean playerIsHoldingDoorwayItem() {
         PlayerEntity player = MinecraftClient.getInstance().player;
-        return (player.isCreativeLevelTwoOp() || player.isSpectator()) && player.inventory.contains(UplandsMod.BOSSROOM_TECHNICAL_TAG());
+        return player != null && (player.isCreativeLevelTwoOp() || player.isSpectator()) && player.inventory.contains(UplandsMod.BOSSROOM_TECHNICAL_TAG());
     }
 }
