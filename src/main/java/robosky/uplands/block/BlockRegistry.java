@@ -80,7 +80,7 @@ public final class BlockRegistry {
 
 	public static final Block SKYROOT_FENCE_GATE = registerWithItem("skyroot_fence_gate", new FenceGateBlock(SKYROOT_BLOCK_SETTINGS));
 	public static final Block SKYROOT_DOOR = registerWithItem("skyroot_door", new ModDoorBlock(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 15f).sounds(BlockSoundGroup.WOOD).nonOpaque().build()));
-	public static final Block SKYROOT_TRAPDOOR = registerWithItem("skyroot_trapdoor", (new ModTrapdoorBlock(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 15f).sounds(BlockSoundGroup.WOOD).nonOpaque().build())));
+	public static final Block SKYROOT_TRAPDOOR = registerWithItem("skyroot_trapdoor", new ModTrapdoorBlock(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 15f).sounds(BlockSoundGroup.WOOD).nonOpaque().build()));
 	public static final Block SKYROOT_BUTTON = registerWithItem("skyroot_button", new ModWoodButtonBlock(FabricBlockSettings.of(Material.WOOD).strength(0.5f, 2.5f).sounds(BlockSoundGroup.WOOD).noCollision().build()));
 	public static final Block SKYROOT_PRESSURE_PLATE = registerWithItem("skyroot_pressure_plate", new ModPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).noCollision().strength(0.5f, 2.5f).build()));
 
