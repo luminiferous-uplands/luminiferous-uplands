@@ -14,6 +14,7 @@ import robosky.uplands.block.bossroom.ActiveAltarBlock;
 import robosky.uplands.block.bossroom.ControlBlock;
 import robosky.uplands.block.bossroom.DoorwayBlock;
 import robosky.uplands.block.bossroom.MegadungeonAltarBlock$;
+import robosky.uplands.block.unbreakable.UnbreakableBlock;
 import robosky.uplands.world.feature.plants.UplandsSaplingGenerator;
 
 import net.minecraft.block.Block;
@@ -61,7 +62,7 @@ public final class BlockRegistry {
 	public static final Block UPLANDER_STONE_BRICK_STAIRS = registerWithItem("uplander_stone_brick_stairs", new ModStairsBlock(UPLANDER_STONE_BRICKS, UPLANDER_STONE_SETTINGS));
 	public static final Block UPLANDER_STONE_BRICK_SLAB = registerWithItem("uplander_stone_brick_slab", new SlabBlock(UPLANDER_STONE_SETTINGS));
 	public static final Block UPLANDER_STONE_BRICK_WALL = registerWithItem("uplander_stone_brick_wall", new WallBlock(UPLANDER_STONE_SETTINGS));
-	public static final Block UNBREAKABLE_UPLANDER_STONE_BRICKS = registerWithItem("unbreakable_uplander_stone_bricks", new robosky.uplands.block.unbreakable.Block(UPLANDER_STONE_BRICKS));
+	public static final Block UNBREAKABLE_UPLANDER_STONE_BRICKS = registerWithItem("unbreakable_uplander_stone_bricks", new UnbreakableBlock(UPLANDER_STONE_BRICKS));
 
 	// Aegisalt blocks
 	public static final Block AEGISALT_BRICKS = registerWithItem("aegisalt_bricks", new Block(AEGISALT_BRICKS_SETTINGS));
@@ -86,7 +87,7 @@ public final class BlockRegistry {
 
 	// Skywood shrubs
 	public static final Block SKYROOT_SAPLING = registerWithItem("skyroot_sapling", new UplandsSaplingBlock(UplandsSaplingGenerator.SkyrootSaplingGenerator$.MODULE$, FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).build()));
-	public static final Block POTTED_SKYROOT_SAPLING = registerWithItem("potted_skyroot_sapling", new FlowerPotBlock(SKYROOT_SAPLING, FabricBlockSettings.of(Material.PART).breakInstantly().build()));
+	public static final Block POTTED_SKYROOT_SAPLING = register("potted_skyroot_sapling", new FlowerPotBlock(SKYROOT_SAPLING, FabricBlockSettings.of(Material.PART).breakInstantly().build()));
 
 	public static final Block RED_SKYROOT_LEAVES = registerWithItem("red_skyroot_leaves", new LeavesBlock(SKYROOT_LEAVES_SETTINGS));
 	public static final Block ORANGE_SKYROOT_LEAVES = registerWithItem("orange_skyroot_leaves", new LeavesBlock(SKYROOT_LEAVES_SETTINGS));
@@ -102,7 +103,7 @@ public final class BlockRegistry {
 
 	// Shrooms
 	public static final Block AZOTE_MUSHROOM = registerWithItem("azote_mushroom", new AzoteMushroomBlock(FabricBlockSettings.of(Material.ORGANIC).sounds(BlockSoundGroup.NETHER_WART).breakInstantly().collidable(false).ticksRandomly().build()));
-	public static final Block AWOKEN_AZOTE_MUSHROOM = register("awoken_azote_mushroom", new AwokenAzoteMushroomBlock(FabricBlockSettings.of(Material.ORGANIC).sounds(BlockSoundGroup.NETHER_WART).breakInstantly().collidable(false).lightLevel(15).build()));
+	public static final Block AWOKEN_AZOTE_MUSHROOM = registerWithItem("awoken_azote_mushroom", new AwokenAzoteMushroomBlock(FabricBlockSettings.of(Material.ORGANIC).sounds(BlockSoundGroup.NETHER_WART).breakInstantly().collidable(false).lightLevel(15).build()));
 	public static final Block POTTED_AZOTE_MUSHROOM = register("potted_azote_mushroom", new FlowerPotBlock(AZOTE_MUSHROOM, FabricBlockSettings.of(Material.PART).breakInstantly().build()));
 	public static final Block POTTED_AWOKEN_AZOTE_MUSHROOM = register("potted_awoken_azote_mushroom", new FlowerPotBlock(AWOKEN_AZOTE_MUSHROOM, FabricBlockSettings.of(Material.PART).lightLevel(15).breakInstantly().build()));
 
