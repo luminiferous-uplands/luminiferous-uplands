@@ -157,7 +157,7 @@ public final class ControlBlockEntity extends BlockEntity implements BlockEntity
             for (BlockPos pos : bossRoomPositions()) {
                 BlockState state = this.world.getBlockState(pos);
                 if (state.getBlock() == BlockRegistry.BOSS_DOORWAY) {
-                    this.world.setBlockState(pos, state.with(DoorwayBlock.STATE(), DoorwayState.BLOCKED));
+                    this.world.setBlockState(pos, state.with(DoorwayBlock.STATE, DoorwayState.BLOCKED));
                 }
             }
             bossEntity = bossType.spawn(this.world, null, null, null, spawn, SpawnType.SPAWNER, false, false);
@@ -180,7 +180,7 @@ public final class ControlBlockEntity extends BlockEntity implements BlockEntity
             for (BlockPos pos : bossRoomPositions()) {
                 BlockState state = this.world.getBlockState(pos);
                 if (state.getBlock() == BlockRegistry.BOSS_DOORWAY) {
-                    this.world.setBlockState(pos, state.with(DoorwayBlock.STATE(), DoorwayState.OPEN));
+                    this.world.setBlockState(pos, state.with(DoorwayBlock.STATE, DoorwayState.OPEN));
                 }
             }
             logger.info("Deactivated boss");

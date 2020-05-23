@@ -112,10 +112,10 @@ public final class BlockRegistry {
 
 	// Boss blocks
 	public static final Block BOSS_CONTROL = registerWithItem("boss_control", new ControlBlock(), null);
-	public static final Block BOSS_DOORWAY = registerWithItem("boss_doorway", new DoorwayBlock(Block.Settings.copy(BOSS_CONTROL)), null);
+	public static final Block BOSS_DOORWAY = registerWithItem("boss_doorway", new DoorwayBlock(FabricBlockSettings.copy(BOSS_CONTROL).dynamicBounds().nonOpaque().build()), null);
 	static {
 		Registry.register(Registry.BLOCK_ENTITY, UplandsMod.id("boss_control"), ControlBlockEntity.TYPE);
-		Registry.register(Registry.BLOCK_ENTITY, UplandsMod.id("boss_doorway"), DoorwayBlockEntity.TYPE());
+		Registry.register(Registry.BLOCK_ENTITY, UplandsMod.id("boss_doorway"), DoorwayBlockEntity.TYPE);
 	}
 
 	// Altars
