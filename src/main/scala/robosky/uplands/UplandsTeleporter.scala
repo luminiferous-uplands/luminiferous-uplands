@@ -17,7 +17,7 @@ import robosky.uplands.world.feature.SpawnPlatformPiece
 
 object UplandsTeleporter {
 
-  def getUplandsCriterion: Criterion[_] = FlyIntoUplandsCriterion
+  def getUplandsCriterion: Criterion[_] = FlyIntoUplandsCriterion.INSTANCE
 
   object ToUplandsBeacon extends EntityPlacer {
     override def placeEntity(entity: Entity, world: ServerWorld, direction: Direction, v: Double, v1: Double): BlockPattern.TeleportTarget = {
@@ -72,7 +72,7 @@ object UplandsTeleporter {
     override def placeEntity(entity: Entity, serverWorld: ServerWorld, direction: Direction, v: Double, v1: Double): BlockPattern.TeleportTarget = {
       entity match {
         case se: ServerPlayerEntity =>
-          FlyIntoUplandsCriterion.handle(se)
+          FlyIntoUplandsCriterion.INSTANCE.handle(se)
       }
       new BlockPattern.TeleportTarget(new Vec3d(entity.getX, -40.0, entity.getZ), entity.getVelocity, entity.yaw.toInt)
     }
