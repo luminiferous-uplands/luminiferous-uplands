@@ -35,7 +35,7 @@ public class DoorwayBlockEntityRenderer extends BlockEntityRenderer<DoorwayBlock
         World world = be.getWorld();
         long time = world != null ? world.getTime() : 0L;
         boolean forceRender = time - be.lastMimicUpdate() <= 20;
-        if (doorwayState.get(DoorwayBlock.STATE()) == DoorwayState.BLOCKED) {
+        if (doorwayState.get(DoorwayBlock.STATE) == DoorwayState.BLOCKED) {
             renderBlockModel(be.mimicState(), matrix, provider, var5);
         } else if (playerIsHoldingDoorwayItem()) {
             if (be.mimicState().getRenderType() == BlockRenderType.MODEL &&

@@ -1,10 +1,8 @@
 package robosky.uplands.client.render.blockentity
 
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry
-
 import net.minecraft.block.entity.{BlockEntity, BlockEntityType}
 import net.minecraft.client.render.block.entity.{BlockEntityRenderDispatcher, BlockEntityRenderer}
-
 import robosky.uplands.block.bossroom.{ControlBlockEntity, DoorwayBlockEntity}
 
 import scala.reflect.{ClassTag, classTag}

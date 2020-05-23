@@ -12,8 +12,10 @@ import robosky.uplands.ScalaHacks;
 import robosky.uplands.UplandsMod;
 import robosky.uplands.block.bossroom.ActiveAltarBlock;
 import robosky.uplands.block.bossroom.ControlBlock;
+import robosky.uplands.block.bossroom.ControlBlockEntity;
 import robosky.uplands.block.bossroom.DoorwayBlock;
-import robosky.uplands.block.bossroom.MegadungeonAltarBlock$;
+import robosky.uplands.block.bossroom.DoorwayBlockEntity;
+import robosky.uplands.block.bossroom.MegadungeonAltarBlock;
 import robosky.uplands.block.unbreakable.UnbreakableBlock;
 import robosky.uplands.world.feature.plants.UplandsSaplingGenerator;
 
@@ -29,6 +31,7 @@ import net.minecraft.block.PillarBlock;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.WallBlock;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -109,10 +112,14 @@ public final class BlockRegistry {
 
 	// Boss blocks
 	public static final Block BOSS_CONTROL = registerWithItem("boss_control", new ControlBlock(), null);
-	public static final Block BOSS_DOORWAY = registerWithItem("boss_doorway", new DoorwayBlock(Block.Settings.copy(BOSS_CONTROL)), null);
+	public static final Block BOSS_DOORWAY = registerWithItem("boss_doorway", new DoorwayBlock(FabricBlockSettings.copy(BOSS_CONTROL).dynamicBounds().nonOpaque().build()), null);
+	static {
+		Registry.register(Registry.BLOCK_ENTITY, UplandsMod.id("boss_control"), ControlBlockEntity.TYPE);
+		Registry.register(Registry.BLOCK_ENTITY, UplandsMod.id("boss_doorway"), DoorwayBlockEntity.TYPE);
+	}
 
 	// Altars
-	public static final Block MEGADUNGEON_ALTAR = registerWithItem("megadungeon_altar", MegadungeonAltarBlock$.MODULE$);
+	public static final Block MEGADUNGEON_ALTAR = registerWithItem("megadungeon_altar", new MegadungeonAltarBlock());
 	public static final Block ACTIVE_MEGADUNGEON_ALTAR = registerWithItem("active_megadungeon_altar", new ActiveAltarBlock(MEGADUNGEON_ALTAR));
 
 	// Misc
