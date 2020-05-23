@@ -15,7 +15,7 @@ import robosky.uplands.block.bossroom.ControlBlock;
 import robosky.uplands.block.bossroom.ControlBlockEntity;
 import robosky.uplands.block.bossroom.DoorwayBlock;
 import robosky.uplands.block.bossroom.DoorwayBlockEntity;
-import robosky.uplands.block.bossroom.MegadungeonAltarBlock$;
+import robosky.uplands.block.bossroom.MegadungeonAltarBlock;
 import robosky.uplands.block.unbreakable.UnbreakableBlock;
 import robosky.uplands.world.feature.plants.UplandsSaplingGenerator;
 
@@ -119,7 +119,7 @@ public final class BlockRegistry {
 	}
 
 	// Altars
-	public static final Block MEGADUNGEON_ALTAR = registerWithItem("megadungeon_altar", MegadungeonAltarBlock$.MODULE$);
+	public static final Block MEGADUNGEON_ALTAR = registerWithItem("megadungeon_altar", new MegadungeonAltarBlock());
 	public static final Block ACTIVE_MEGADUNGEON_ALTAR = registerWithItem("active_megadungeon_altar", new ActiveAltarBlock(MEGADUNGEON_ALTAR));
 
 	// Misc
