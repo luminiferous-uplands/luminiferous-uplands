@@ -20,7 +20,7 @@ public class UplandsLayers {
 
     public static <T extends LayerSampler, C extends LayerSampleContext<T>> LayerFactory<T> build( LongFunction<C> contextProvider) {
         LayerFactory<T> layerFactory = BiomeDistributionLayer.INSTANCE.create(contextProvider.apply(1L));
-        layerFactory = stack(200L, ScaleLayer.NORMAL, layerFactory, 5, contextProvider);
+        layerFactory = stack(200L, ScaleLayer.NORMAL, layerFactory, 6, contextProvider);
         return layerFactory;
     }
 

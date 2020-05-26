@@ -20,7 +20,7 @@ import robosky.uplands.world.feature.UplandsOreFeatureConfig;
 import robosky.uplands.world.feature.megadungeon.MegadungeonFeature$;
 import robosky.uplands.world.gen.UplandsAutumnSurfaceBuilder;
 
-public class UplandsAutumnBiome extends Biome {
+public class UplandsAutumnBiome extends Biome implements UplandsBiome {
     private static final SurfaceBuilder<SurfaceConfig> UPLANDS_AUTUMN_SURFACE_BUILDER = new UplandsAutumnSurfaceBuilder();
 
     private static final SurfaceConfig UPLANDS_GRASS_DIRT_STONE_SURFACE = new SurfaceConfig() {

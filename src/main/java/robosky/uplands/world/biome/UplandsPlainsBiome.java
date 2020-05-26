@@ -20,7 +20,7 @@ import robosky.uplands.world.feature.UplandsOreFeatureConfig;
 import robosky.uplands.world.feature.megadungeon.MegadungeonFeature$;
 import robosky.uplands.world.gen.UplandsAutumnSurfaceBuilder;
 
-public class UplandsPlainsBiome extends Biome {
+public class UplandsPlainsBiome extends Biome implements UplandsBiome {
     private static final SurfaceBuilder<SurfaceConfig> UPLANDS_AUTUMN_SURFACE_BUILDER = new UplandsAutumnSurfaceBuilder();
 
     private static final SurfaceConfig UPLANDS_GRASS_DIRT_STONE_SURFACE = new SurfaceConfig() {
@@ -96,5 +96,10 @@ public class UplandsPlainsBiome extends Biome {
     @Override
     public int getFoliageColor() {
         return 15382866;
+    }
+
+    @Override
+    public double getIslandSize() {
+        return 20;
     }
 }
