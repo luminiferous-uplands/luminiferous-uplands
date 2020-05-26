@@ -43,7 +43,7 @@ public final class ControlBlockEntity extends BlockEntity implements BlockEntity
     /**
      * The bounds of the boss room, relative to the position of this instance.
      */
-    private IntBox bounds = IntBox.Empty();
+    private IntBox bounds = IntBox.EMPTY;
 
     /**
      * The absolute world position of the boss room bounds. Assumes that the
@@ -96,7 +96,6 @@ public final class ControlBlockEntity extends BlockEntity implements BlockEntity
             this.pos.getZ() + value.maxZ());
     }
 
-    // TODO: refactor adjustment logic to IntBox itself
     public void adjustBounds(Direction dir, int blocks) {
         int minX = bounds.minX();
         int minY = bounds.minY();
@@ -303,7 +302,7 @@ public final class ControlBlockEntity extends BlockEntity implements BlockEntity
         if (boxArr.length == 6 && boxArr[0] <= boxArr[3] && boxArr[1] <= boxArr[4] && boxArr[2] <= boxArr[5]) {
             setBounds(new IntBox(boxArr[0], boxArr[1], boxArr[2], boxArr[3], boxArr[4], boxArr[5]));
         } else {
-            setBounds(IntBox.Empty());
+            setBounds(IntBox.EMPTY);
         }
 
         Identifier id = Identifier.tryParse(tag.getString("Boss"));
