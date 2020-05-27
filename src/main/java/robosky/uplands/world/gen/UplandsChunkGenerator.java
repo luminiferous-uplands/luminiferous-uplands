@@ -28,7 +28,7 @@ public class UplandsChunkGenerator extends SurfaceChunkGenerator<UplandsChunkGen
     private final OpenSimplexNoise falloffNoise;
 
     public UplandsChunkGenerator(IWorld world, BiomeSource biomeSource) {
-        super(world, biomeSource, 8, 4, 128, new UplandsChunkGenConfig(), true);
+        super(world, biomeSource, 8, 8, 256, new UplandsChunkGenConfig(), true);
         this.random.consume(2620);
         this.depthNoiseSampler = new OctavePerlinNoiseSampler(this.random, 15, 0);
         falloffNoise = new OpenSimplexNoise(random.nextLong());
@@ -86,7 +86,7 @@ public class UplandsChunkGenerator extends SurfaceChunkGenerator<UplandsChunkGen
 
     // top interpolation start
     protected double method_16409() {
-        return this.getNoiseSizeY() / 2.0;
+        return this.getNoiseSizeY() / 4.0;
     }
 
     // bottom interpolation start
