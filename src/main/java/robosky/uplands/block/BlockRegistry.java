@@ -31,7 +31,6 @@ import net.minecraft.block.PillarBlock;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.WallBlock;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -48,7 +47,7 @@ public final class BlockRegistry {
 	public static final Block.Settings FLOWER_SETTINGS = FabricBlockSettings.of(Material.LEAVES).breakInstantly().collidable(false).build();
 
 	// Uplander Organic Blocks
-	public static final Block UPLANDER_GRASS = registerWithItem("uplander_grass", UplandsGrassBlock$.MODULE$);
+	public static final Block UPLANDER_GRASS = registerWithItem("uplander_grass", new UplandsGrassBlock());
 	public static final Block UPLANDER_DIRT = registerWithItem("uplander_dirt", new Block(FabricBlockSettings.of(Material.EARTH).strength(0.5f, 0.5f).sounds(BlockSoundGroup.GRAVEL).build()));
 	public static final Block UPLANDER_FARMLAND = registerWithItem("uplander_farmland", new UplanderFarmlandBlock(FabricBlockSettings.of(Material.EARTH).strength(0.6f, 0.6f).sounds(BlockSoundGroup.GRAVEL).build()));
 	public static final Block TALL_UPLANDS_GRASS = registerWithItem("tall_uplands_grass", new TallUplandsGrassBlock(FabricBlockSettings.of(Material.REPLACEABLE_PLANT).breakInstantly().noCollision().sounds(BlockSoundGroup.GRASS).build()));
