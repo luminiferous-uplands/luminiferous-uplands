@@ -8,7 +8,6 @@ import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.tools.FabricToolTags;
 import robosky.uplands.HoeHacks;
-import robosky.uplands.ScalaHacks;
 import robosky.uplands.UplandsMod;
 import robosky.uplands.block.bossroom.ActiveAltarBlock;
 import robosky.uplands.block.bossroom.ControlBlock;
@@ -123,9 +122,9 @@ public final class BlockRegistry {
 
 	// Misc
 	public static final Block LODESTONE = registerWithItem("lodestone", new LodestoneBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).strength(6.0F, 8.0F).breakByTool(FabricToolTags.PICKAXES, 2).build()));
-	public static final Block UPLANDER_BEACON = registerWithItem("uplander_beacon", UplanderBeaconBlock$.MODULE$);
+	public static final Block UPLANDER_BEACON = registerWithItem("uplander_beacon", new UplanderBeaconBlock());
 
-	public static final Map<UplandsOreBlock.UplandsOreType, UplandsOreBlock> UPLANDS_ORES = ScalaHacks.createOreTypes();
+	public static final Map<UplandsOreBlock.UplandsOreType, UplandsOreBlock> UPLANDS_ORES = createOreTypes();
 	private static boolean lock;
 
 	// TODO: Register machine blocks elsewhere so this isn't public?
@@ -238,6 +237,11 @@ public final class BlockRegistry {
 
 		flammable(CLOUD_DAISIES, 100, 30);
 		compostable(CLOUD_DAISIES, 0.65F);
+	}
+
+	private static Map<UplandsOreBlock.UplandsOreType, UplandsOreBlock> createOreTypes() {
+		UplandsOreBlock.oreTypes.forEach((t, b) -> BlockRegistry.registerWithItem(t.name.toLowerCase() + "_ore", b));
+		return UplandsOreBlock.oreTypes;
 	}
 
 	private BlockRegistry() {}

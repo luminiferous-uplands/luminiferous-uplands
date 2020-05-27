@@ -27,7 +27,7 @@ public abstract class BaseFluidMixin extends Fluid {
     @Inject(method = "flow", at = @At("HEAD"), cancellable = true)
     private void tweakFlow(IWorld world, BlockPos pos, BlockState state, Direction dir, FluidState fluidState, CallbackInfo info) {
         BlockState source = world.getBlockState(pos.offset(dir.getOpposite()));
-        if (source.getBlock() == Blocks.WATER && source.get(UplandsWaterBlock.FALL()) == UplandsWaterBlock.MAX_FALL()) {
+        if (source.getBlock() == Blocks.WATER && source.get(UplandsWaterBlock.FALL) == UplandsWaterBlock.MAX_FALL) {
             info.cancel();
         }
     }
