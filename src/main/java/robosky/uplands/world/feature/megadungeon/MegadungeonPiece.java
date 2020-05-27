@@ -11,7 +11,7 @@ import net.minecraft.util.math.BlockPos;
 class MegadungeonPiece extends PoolStructurePiece {
     private MegadungeonPiece(StructureManager mgr, StructurePoolElement elem, BlockPos pos, int groundLevelDelta,
                              BlockRotation rotation, BlockBox bbox) {
-        super(MegadungeonFeature.PIECE_TYPE(), mgr, elem, pos, groundLevelDelta, rotation, bbox);
+        super(MegadungeonFeature.PIECE_TYPE, mgr, elem, pos, groundLevelDelta, rotation, bbox);
     }
 
     public static MegadungeonPiece create(StructureManager mgr, StructurePoolElement elem, BlockPos pos, int groundLevelDelta,
@@ -20,6 +20,6 @@ class MegadungeonPiece extends PoolStructurePiece {
     }
 
     public MegadungeonPiece(StructureManager mgr, CompoundTag tag) {
-        super(mgr, tag, MegadungeonFeature.PIECE_TYPE());
+        super(mgr, tag, MegadungeonFeature.PIECE_TYPE);
     }
 }
