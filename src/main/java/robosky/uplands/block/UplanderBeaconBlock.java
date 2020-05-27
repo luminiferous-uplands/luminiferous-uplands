@@ -48,8 +48,9 @@ public class UplanderBeaconBlock extends Block {
         if (!world.isClient() & player.world.dimension.getType() == DimensionType.OVERWORLD) {
             ((UplanderBeaconUser)player).uplands_setUsingBeacon(true);
         } else {
-            if (blockState.get(SMOKING))
+            if (blockState.get(SMOKING)) {
                 return ActionResult.FAIL;
+            }
 
             world.setBlockState(blockPos, BlockRegistry.UPLANDER_BEACON.getDefaultState().with(SMOKING, true));
             world.getBlockTickScheduler().schedule(blockPos, this, this.getTickRate(world));
@@ -66,8 +67,9 @@ public class UplanderBeaconBlock extends Block {
 
     @Override
     public void scheduledTick(BlockState blockState, ServerWorld serverWorld, BlockPos blockPos, Random random) {
-        if (blockState.get(SMOKING))
+        if (blockState.get(SMOKING)) {
             serverWorld.setBlockState(blockPos, blockState.with(SMOKING, false));
+        }
     }
 
     @Override

@@ -53,7 +53,9 @@ public class AzoteMushroomBlock extends MushroomPlantBlock {
                 if (serverWorld.getBlockState(nextBlockPos).getBlock() == this) {
                     // If it is, count down by one, and stop if there are too many.
                     mushroomThreshold -= 1;
-                    if (mushroomThreshold <= 0) return;
+                    if (mushroomThreshold <= 0) {
+                        return;
+                    }
                 }
             }
 
@@ -61,8 +63,10 @@ public class AzoteMushroomBlock extends MushroomPlantBlock {
             BlockPos mushroomSpawnLocation = blockPos.add(random.nextInt(3) - 1, random.nextInt(2) - random.nextInt(2), random.nextInt(3) - 1);
 
             // If this is a valid position, spawn there
-            if (serverWorld.isAir(mushroomSpawnLocation) && serverWorld.getBlockState(mushroomSpawnLocation.down()).matches(UplandsBlockTags.AZOTE_MUSHROOM_SPREADABLE))
+            if (serverWorld.isAir(mushroomSpawnLocation)
+                    && serverWorld.getBlockState(mushroomSpawnLocation.down()).matches(UplandsBlockTags.AZOTE_MUSHROOM_SPREADABLE)) {
                 serverWorld.setBlockState(mushroomSpawnLocation, blockState, 2);
+            }
         }
     }
 }

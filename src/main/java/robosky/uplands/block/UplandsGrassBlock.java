@@ -22,19 +22,23 @@ public class UplandsGrassBlock extends Block {
     
     @Override
     public void scheduledTick(BlockState blockState, ServerWorld serverWorld, BlockPos blockPos, Random random) {
-        if (!serverWorld.isClient)
-            if (!canSurvive(blockState, serverWorld, blockPos))
+        if (!serverWorld.isClient) {
+            if (!canSurvive(blockState, serverWorld, blockPos)) {
                 serverWorld.setBlockState(blockPos, BlockRegistry.UPLANDER_DIRT.getDefaultState());
-            else if (serverWorld.getLightLevel(blockPos.up()) >= 4)
+            } else if (serverWorld.getLightLevel(blockPos.up()) >= 4) {
                 if (serverWorld.getLightLevel(blockPos.up()) >= 9) {
                     for (int i = 0; i < 4; i++) {
                         BlockPos pos = blockPos.add(random.nextInt(3) - 1, random.nextInt(5) - 3,
                                 random.nextInt(3) - 1);
+
                         if ((serverWorld.getBlockState(pos).getBlock() == BlockRegistry.UPLANDER_DIRT) && canSpread(this.getDefaultState(),
-                                serverWorld, pos))
+                                serverWorld, pos)) {
                             serverWorld.setBlockState(pos, this.getDefaultState());
+                        }
                     }
                 }
+            }
+        }
     }
 
     private boolean canSpread(BlockState blockState, WorldView worldView, BlockPos blockPos) {

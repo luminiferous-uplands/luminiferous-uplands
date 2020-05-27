@@ -45,8 +45,9 @@ public class UplandsSaplingBlock extends PlantBlock implements Fertilizable {
     
     @Override
     public void scheduledTick(BlockState blockState, ServerWorld serverWorld, BlockPos blockPos, Random random) {
-        if (serverWorld.getLightLevel(blockPos.up()) >= 9 && random.nextInt(7) == 0)
+        if (serverWorld.getLightLevel(blockPos.up()) >= 9 && random.nextInt(7) == 0) {
             this.generate(serverWorld, blockPos, blockState, random);
+        }
     }
 
     @Override
@@ -65,9 +66,10 @@ public class UplandsSaplingBlock extends PlantBlock implements Fertilizable {
     }
 
     private void generate(IWorld iWorld, BlockPos blockPos, BlockState blockState, Random random) {
-        if (blockState.get(UplandsSaplingBlock.STAGE) == 0)
+        if (blockState.get(UplandsSaplingBlock.STAGE) == 0) {
             iWorld.setBlockState(blockPos, blockState.cycle(UplandsSaplingBlock.STAGE), 4);
-        else
+        } else {
             this.generator.generate(iWorld, blockPos, blockState, random);
+        }
     }
 }

@@ -71,21 +71,26 @@ public class LodestoneBlock extends Block {
         for (Direction dir : Direction.values()) {
             BlockState neighbor = world.getBlockState(pos.offset(dir));
             if (dir == Direction.DOWN) {
-                if (neighbor.getBlock() == this) neighbor.get(DISTANCE);
-                else if (!FallingBlock.canFallThrough(neighbor))
+                if (neighbor.getBlock() == this) {
+                    neighbor.get(DISTANCE);
+                } else if (!FallingBlock.canFallThrough(neighbor)) {
                     return 0;
-                else
+                } else {
                     return 4;
+                }
             } else {
-                if (neighbor.getBlock() == this)
+                if (neighbor.getBlock() == this) {
                     return neighbor.get(DISTANCE) + 1;
-                else if (this.isFullOpaque(neighbor, world, pos.offset(dir)))
+                }
+                else if (this.isFullOpaque(neighbor, world, pos.offset(dir))) {
                     return 1;
-                else
+                }
+                else {
                     return 4;
+                }
             }
         }
 
-        return 4;
+        return 0;
     }
 }

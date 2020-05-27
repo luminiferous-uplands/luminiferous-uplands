@@ -21,7 +21,13 @@ public class UplandsOreBlock extends Block {
 
     private final UplandsOreType oreType;
     public static final OreTypeAegisalt oreTypeAegisalt = new OreTypeAegisalt();
-    public static final Map<UplandsOreBlock.UplandsOreType, UplandsOreBlock> oreTypes = initMap();
+    public static final Map<UplandsOreBlock.UplandsOreType, UplandsOreBlock> oreTypes;
+
+    static  {
+        Map<UplandsOreBlock.UplandsOreType, UplandsOreBlock> map = new HashMap<>();
+        map.put(oreTypeAegisalt, new UplandsOreBlock(oreTypeAegisalt));
+        oreTypes = map;
+    }
 
     public UplandsOreBlock(UplandsOreType oreType) {
         super(oreType.blockSettings);
@@ -32,21 +38,14 @@ public class UplandsOreBlock extends Block {
     public void onStacksDropped(BlockState blockState, World world, BlockPos blockPos, ItemStack itemStack) {
         if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, itemStack) == 0) {
             int xp = this.getExperienceWhenMined(world.random);
-            if (xp > 0)
+            if (xp > 0) {
                 this.dropExperience(world, blockPos, xp);
+            }
         }
     }
 
     private int getExperienceWhenMined(Random random) {
         return MathHelper.nextInt(random, oreType.start, oreType.end);
-    }
-
-    // There has to be a better way at doing this?
-    private static Map<UplandsOreBlock.UplandsOreType, UplandsOreBlock> initMap() {
-        Map<UplandsOreBlock.UplandsOreType, UplandsOreBlock> oreTypes = new HashMap<>();
-        oreTypes.put(oreTypeAegisalt, new UplandsOreBlock(oreTypeAegisalt));
-
-        return oreTypes;
     }
 
     public static class OreTypeAegisalt extends UplandsOreType {
