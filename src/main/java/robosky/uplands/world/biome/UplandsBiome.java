@@ -5,7 +5,7 @@ public interface UplandsBiome {
         return 50;
     }
 
-    default double topInterpolationStart() {
-        return 8;
+    default double getTopInterpolationStart() {
+        return 0;
     }
 }

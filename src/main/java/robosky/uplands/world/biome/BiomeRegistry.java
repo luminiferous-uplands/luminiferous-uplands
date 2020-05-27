@@ -9,7 +9,6 @@ public class BiomeRegistry {
     public static final Biome UPLANDS_AUTUMN_BIOME = register("uplands_autumn", new UplandsAutumnBiome());
     public static final Biome UPLANDS_PLAINS_BIOME = register("uplands_plains", new UplandsPlainsBiome());
     public static final Biome UPLANDS_SAVANNA_BIOME = register("uplands_savanna", new UplandsSavannaBiome());
-    public static final Biome UPLANDS_MOUNTAINS_BIOME = register("uplands_mountains", new UplandsMountainsBiome());
 
     public static void init() {
 

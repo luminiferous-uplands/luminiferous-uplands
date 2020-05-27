@@ -38,7 +38,7 @@ public class UplandsSavannaBiome extends Biome implements UplandsBiome {
     protected UplandsSavannaBiome() {
         super(new Settings().configureSurfaceBuilder(UPLANDS_AUTUMN_SURFACE_BUILDER,
                 UPLANDS_GRASS_DIRT_STONE_SURFACE).precipitation(Precipitation.NONE).category(Category.FOREST)
-                .depth(0.3f).scale(0.2F).temperature(0.5F).downfall(0.0F)
+                .depth(0.1f).scale(0.2F).temperature(0.5F).downfall(0.0F)
                 .waterColor(0x9898BC).waterFogColor(0x9898BC).category(Category.FOREST));
 
         addFeature(GenerationStep.Feature.UNDERGROUND_ORES, FeatureRegistry.oreFeature().configure(
