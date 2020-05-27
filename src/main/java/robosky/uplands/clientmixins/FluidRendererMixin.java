@@ -23,7 +23,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import robosky.uplands.block.UplandsWaterBlock;
 import robosky.uplands.world.WorldRegistry;
 
-@Mixin(FluidRenderer.class) @Environment(EnvType.CLIENT)
+@Mixin(FluidRenderer.class)
+@Environment(EnvType.CLIENT)
 public abstract class FluidRendererMixin {
 
     @Unique
