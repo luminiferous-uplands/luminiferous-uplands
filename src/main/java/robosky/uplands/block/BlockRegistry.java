@@ -8,7 +8,6 @@ import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.tools.FabricToolTags;
 import robosky.uplands.HoeHacks;
-import robosky.uplands.ScalaHacks;
 import robosky.uplands.UplandsMod;
 import robosky.uplands.block.bossroom.ActiveAltarBlock;
 import robosky.uplands.block.bossroom.ControlBlock;
@@ -31,7 +30,6 @@ import net.minecraft.block.PillarBlock;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.WallBlock;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -48,7 +46,7 @@ public final class BlockRegistry {
 	public static final Block.Settings FLOWER_SETTINGS = FabricBlockSettings.of(Material.LEAVES).breakInstantly().collidable(false).build();
 
 	// Uplander Organic Blocks
-	public static final Block UPLANDER_GRASS = registerWithItem("uplander_grass", UplandsGrassBlock$.MODULE$);
+	public static final Block UPLANDER_GRASS = registerWithItem("uplander_grass", new UplandsGrassBlock());
 	public static final Block UPLANDER_DIRT = registerWithItem("uplander_dirt", new Block(FabricBlockSettings.of(Material.EARTH).strength(0.5f, 0.5f).sounds(BlockSoundGroup.GRAVEL).build()));
 	public static final Block UPLANDER_FARMLAND = registerWithItem("uplander_farmland", new UplanderFarmlandBlock(FabricBlockSettings.of(Material.EARTH).strength(0.6f, 0.6f).sounds(BlockSoundGroup.GRAVEL).build()));
 	public static final Block TALL_UPLANDS_GRASS = registerWithItem("tall_uplands_grass", new TallUplandsGrassBlock(FabricBlockSettings.of(Material.REPLACEABLE_PLANT).breakInstantly().noCollision().sounds(BlockSoundGroup.GRASS).build()));
@@ -124,9 +122,9 @@ public final class BlockRegistry {
 
 	// Misc
 	public static final Block LODESTONE = registerWithItem("lodestone", new LodestoneBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).strength(6.0F, 8.0F).breakByTool(FabricToolTags.PICKAXES, 2).build()));
-	public static final Block UPLANDER_BEACON = registerWithItem("uplander_beacon", UplanderBeaconBlock$.MODULE$);
+	public static final Block UPLANDER_BEACON = registerWithItem("uplander_beacon", new UplanderBeaconBlock());
 
-	public static final Map<UplandsOreBlock.UplandsOreType, UplandsOreBlock> UPLANDS_ORES = ScalaHacks.createOreTypes();
+	public static final Map<UplandsOreBlock.UplandsOreType, UplandsOreBlock> UPLANDS_ORES = createOreTypes();
 	private static boolean lock;
 
 	// TODO: Register machine blocks elsewhere so this isn't public?
@@ -239,6 +237,11 @@ public final class BlockRegistry {
 
 		flammable(CLOUD_DAISIES, 100, 30);
 		compostable(CLOUD_DAISIES, 0.65F);
+	}
+
+	private static Map<UplandsOreBlock.UplandsOreType, UplandsOreBlock> createOreTypes() {
+		UplandsOreBlock.oreTypes.forEach((t, b) -> BlockRegistry.registerWithItem(t.name.toLowerCase() + "_ore", b));
+		return UplandsOreBlock.oreTypes;
 	}
 
 	private BlockRegistry() {}

@@ -12,6 +12,7 @@ import net.minecraft.world.gen.feature._
 import net.minecraft.world.gen.placer.SimpleBlockPlacer
 import net.minecraft.world.gen.stateprovider.WeightedStateProvider
 import net.minecraft.world.gen.surfacebuilder.SurfaceConfig
+import robosky.uplands.block.UplandsOreBlock.OreTypeAegisalt
 import robosky.uplands.block.{BlockRegistry, UplandsOreBlock}
 import robosky.uplands.world.biome.UplandsAutumnBiomeConfig._
 import robosky.uplands.world.feature.megadungeon.MegadungeonFeature
@@ -38,7 +39,7 @@ object UplandsAutumnBiome
     .waterColor(0x9898BC).waterFogColor(0x9898BC).category(Biome.Category.FOREST)) {
 
   addFeature(GenerationStep.Feature.UNDERGROUND_ORES, FeatureRegistry.oreFeature.configure(
-    UplandsOreFeatureConfig(9, 1, 128, BlockRegistry.UPLANDS_ORES.get(UplandsOreBlock.OreTypeAegisalt)))
+    UplandsOreFeatureConfig(9, 1, 128, BlockRegistry.UPLANDS_ORES.get(UplandsOreBlock.oreTypeAegisalt)))
     .createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(1, 0, 0, 256))))
   addFeature(GenerationStep.Feature.UNDERGROUND_ORES, FeatureRegistry.oreFeature.configure(
     UplandsOreFeatureConfig(20, 1, 64, BlockRegistry.LODESTONE))

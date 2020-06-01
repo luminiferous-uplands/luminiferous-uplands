@@ -1,5 +1,7 @@
 package robosky.uplands.clientmixins;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
@@ -22,6 +24,7 @@ import robosky.uplands.block.UplandsWaterBlock;
 import robosky.uplands.world.WorldRegistry;
 
 @Mixin(FluidRenderer.class)
+@Environment(EnvType.CLIENT)
 public abstract class FluidRendererMixin {
 
     @Unique
@@ -34,10 +37,10 @@ public abstract class FluidRendererMixin {
         final float FADE_LENGTH = 10;
         alpha = 1.0f;
         if (state.getFluid().matchesType(Fluids.WATER)) {
-            int adjustedFall = UplandsWaterBlock.MAX_FALL();
+            int adjustedFall = UplandsWaterBlock.MAX_FALL;
             BlockState blockState = world.getBlockState(pos);
             if (blockState.getBlock() == Blocks.WATER) {
-                adjustedFall -= blockState.get(UplandsWaterBlock.FALL());
+                adjustedFall -= blockState.get(UplandsWaterBlock.FALL);
             }
             // fade out into the void as well
             if (MinecraftClient.getInstance().world.getDimension().getType() == WorldRegistry.UPLANDS_DIMENSION()) {
