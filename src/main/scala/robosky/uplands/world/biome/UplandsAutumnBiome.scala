@@ -70,8 +70,8 @@ object UplandsAutumnBiome
   addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, FeatureRegistry.treehouseFeature.configure(FeatureConfig.DEFAULT)
     .createDecoratedFeature(Decorator.CHANCE_PASSTHROUGH.configure(new ChanceDecoratorConfig(100))))
 
-  addStructureFeature(MegadungeonFeature.configure(FeatureConfig.DEFAULT))
-  addFeature(GenerationStep.Feature.UNDERGROUND_STRUCTURES, MegadungeonFeature.configure(FeatureConfig.DEFAULT)
+  addStructureFeature(MegadungeonFeature.INSTANCE.configure(FeatureConfig.DEFAULT))
+  addFeature(GenerationStep.Feature.UNDERGROUND_STRUCTURES, MegadungeonFeature.INSTANCE.configure(FeatureConfig.DEFAULT)
     .createDecoratedFeature(Decorator.NOPE.configure(new NopeDecoratorConfig())))
 
   addSpawn(EntityCategory.MONSTER, new Biome.SpawnEntry(EntityType.ENDERMAN, 10, 1, 4))
