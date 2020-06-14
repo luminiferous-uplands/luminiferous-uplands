@@ -5,6 +5,6 @@ import robosky.uplands.block.BlockRegistry;
 
 public class UplandsChunkGenConfig extends ChunkGeneratorConfig {
     public UplandsChunkGenConfig() {
-        setDefaultBlock(BlockRegistry.UPLANDER_STONE().getDefaultState());
+        setDefaultBlock(BlockRegistry.UPLANDER_STONE.getDefaultState());
     }
 }
