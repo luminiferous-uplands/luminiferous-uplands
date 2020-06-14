@@ -2,6 +2,8 @@ package robosky.uplands.world.biome;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.EntityCategory;
+import net.minecraft.entity.EntityType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStep;
@@ -76,6 +78,8 @@ public class UplandsAutumnBiome extends Biome implements UplandsBiome {
         addStructureFeature(MegadungeonFeature$.MODULE$.configure(FeatureConfig.DEFAULT));
         addFeature(GenerationStep.Feature.UNDERGROUND_STRUCTURES, MegadungeonFeature$.MODULE$.configure(FeatureConfig.DEFAULT)
                 .createDecoratedFeature(Decorator.NOPE.configure(new NopeDecoratorConfig())));
+
+        addSpawn(EntityCategory.MONSTER, new Biome.SpawnEntry(EntityType.ENDERMAN, 10, 1, 4));
     }
 
     @Override

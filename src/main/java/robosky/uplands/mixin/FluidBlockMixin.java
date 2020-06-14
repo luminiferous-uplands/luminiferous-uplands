@@ -39,7 +39,7 @@ public abstract class FluidBlockMixin extends Block {
         // first, so it is null when the water block is being created and is
         // nonnull on every subsequent execution of this method.
         if(Blocks.WATER == null) {
-            builder.add(UplandsWaterBlock.FALL());
+            builder.add(UplandsWaterBlock.FALL);
         }
     }
 
@@ -48,10 +48,10 @@ public abstract class FluidBlockMixin extends Block {
         if (world.getDimension().getType() == WorldRegistry.UPLANDS_DIMENSION() &&
                 !state.getFluidState().isStill() && state.getBlock() == Blocks.WATER) {
             int fall = getUplandsFall(state, world, pos);
-            if (fall > UplandsWaterBlock.MAX_FALL()) {
+            if (fall > UplandsWaterBlock.MAX_FALL) {
                 state = Blocks.AIR.getDefaultState();
             } else {
-                state = state.with(UplandsWaterBlock.FALL(), fall);
+                state = state.with(UplandsWaterBlock.FALL, fall);
             }
             world.setBlockState(pos, state);
         }
@@ -63,10 +63,10 @@ public abstract class FluidBlockMixin extends Block {
             state = info.getReturnValue();
             if (!state.getFluidState().isStill() && state.getBlock() == Blocks.WATER) {
                 int fall = getUplandsFall(state, world, pos);
-                if (fall > UplandsWaterBlock.MAX_FALL()) {
+                if (fall > UplandsWaterBlock.MAX_FALL) {
                     state = Blocks.AIR.getDefaultState();
                 } else {
-                    state = state.with(UplandsWaterBlock.FALL(), fall);
+                    state = state.with(UplandsWaterBlock.FALL, fall);
                 }
                 info.setReturnValue(state);
             }
@@ -101,7 +101,7 @@ public abstract class FluidBlockMixin extends Block {
                 // only update falling water from the side if the source is a
                 // source (still) block. Update non-falling water from all sides
                 if (dir == Direction.UP || !falling || neighborFluidState.isStill()) {
-                    int neighborFall = neighborBlockState.get(UplandsWaterBlock.FALL());
+                    int neighborFall = neighborBlockState.get(UplandsWaterBlock.FALL);
                     int neighborLevel = neighborBlockState.get(FluidBlock.LEVEL);
                     boolean neighborFalling = neighborFluidState.get(BaseFluid.FALLING);
                     if ((neighborFalling || neighborLevel < level) && neighborFall < fall) {
@@ -118,7 +118,7 @@ public abstract class FluidBlockMixin extends Block {
         // Fallback to the current value if there are no water blocks around.
         // This allows water to keep its fall while draining.
         if (fall == Integer.MAX_VALUE) {
-            fall = state.get(UplandsWaterBlock.FALL());
+            fall = state.get(UplandsWaterBlock.FALL);
         }
         return fall;
     }

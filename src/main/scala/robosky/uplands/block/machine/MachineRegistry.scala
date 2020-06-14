@@ -23,7 +23,7 @@ object MachineRegistry {
 
   def register[B <: BaseMachineBlock, E <: BaseMachineBlockEntity, C <: CottonCraftingController](name: String,
     m: Machine[B, E, C]): MachineEntry[B, E, C] = {
-    BlockRegistry.register(name)(m.b)
+    BlockRegistry.registerWithItem(name, m.b)
     register(m)
   }
 
