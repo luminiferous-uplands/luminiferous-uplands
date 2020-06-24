@@ -9,7 +9,7 @@ object RecipeRegistry {
   def init(): Unit = {}
 
   val aegisaltRecipe: RecipeType[AegisaltRecipe] =
-    register[AegisaltRecipe]("aegisalt_infusion", AegisaltRecipe.Serializer)
+    register[AegisaltRecipe]("aegisalt_infusion", AegisaltRecipe.Serializer.INSTANCE)
 
   def register[A <: Recipe[_]](name: String, ser: RecipeSerializer[A]): RecipeType[A] = {
     val identifier = UplandsMod :/ name

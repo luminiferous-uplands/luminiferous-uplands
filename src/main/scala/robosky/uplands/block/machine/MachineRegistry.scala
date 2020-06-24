@@ -18,8 +18,8 @@ object MachineRegistry {
 
   val MACHINES: mutable.HashMap[Identifier, BlockEntityType[_ <: BaseMachineBlockEntity]] = mutable.HashMap.empty
 
-  val aegisaltInfuser: MachineEntry[AegisaltInfuserBlock.type, AegisaltInfuser, InfuserContainer] =
-    register("aegisalt_infuser", Machine(AegisaltInfuserBlock, () => new AegisaltInfuser, Some(new InfuserContainer(_, _, _))))
+  val aegisaltInfuser: MachineEntry[AegisaltInfuserBlock, AegisaltInfuser, InfuserContainer] =
+    register("aegisalt_infuser", Machine(new AegisaltInfuserBlock(), () => new AegisaltInfuser, Some(new InfuserContainer(_, _, _))))
 
   def register[B <: BaseMachineBlock, E <: BaseMachineBlockEntity, C <: CottonCraftingController](name: String,
     m: Machine[B, E, C]): MachineEntry[B, E, C] = {
