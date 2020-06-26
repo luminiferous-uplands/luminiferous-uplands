@@ -1,7 +1,7 @@
 package robosky.uplands.block.bossroom;
 
 import robosky.uplands.block.BlockRegistry;
-import robosky.uplands.block.package$;
+import robosky.uplands.util.BlockUtil;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -36,7 +36,7 @@ public class DoorwayBlockEntity extends BlockEntity implements BlockEntityClient
 
     public void setMimicState(BlockState value) {
         this.mimicState = value;
-        if (this.hasWorld()) {
+        if(this.hasWorld()) {
             this.lastMimicUpdate = this.world.getTime();
         }
     }
@@ -53,7 +53,7 @@ public class DoorwayBlockEntity extends BlockEntity implements BlockEntityClient
 
     @Override
     public CompoundTag toClientTag(CompoundTag tag) {
-        tag.putString("Mimic", package$.MODULE$.stringifyState(this.mimicState));
+        tag.putString("Mimic", BlockUtil.stringifyState(this.mimicState));
         tag.putLong("LastMimicUpdate", this.lastMimicUpdate);
         return tag;
     }
@@ -65,7 +65,7 @@ public class DoorwayBlockEntity extends BlockEntity implements BlockEntityClient
 
     @Override
     public void fromClientTag(CompoundTag tag) {
-        this.mimicState = package$.MODULE$.parseState(tag.getString("Mimic"));
+        this.mimicState = BlockUtil.parseState(tag.getString("Mimic"));
         this.lastMimicUpdate = tag.getLong("LastMimicUpdate");
     }
 

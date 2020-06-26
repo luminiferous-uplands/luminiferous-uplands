@@ -6,8 +6,8 @@ import java.util.UUID;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import robosky.uplands.block.BlockRegistry;
-import robosky.uplands.block.package$;
 import robosky.uplands.block.unbreakable.Unbreakable;
+import robosky.uplands.util.BlockUtil;
 import robosky.uplands.util.IntBox;
 
 import net.minecraft.block.Block;
@@ -286,7 +286,7 @@ public final class ControlBlockEntity extends BlockEntity implements BlockEntity
         if (bossUuid != null) {
             tag.putUuid("BossUUID", bossUuid);
         }
-        tag.putString("Replacement", package$.MODULE$.stringifyState(replacement));
+        tag.putString("Replacement", BlockUtil.stringifyState(replacement));
         return tag;
     }
 
@@ -317,6 +317,6 @@ public final class ControlBlockEntity extends BlockEntity implements BlockEntity
         } else {
             bossUuid = null;
         }
-        replacement = package$.MODULE$.parseState(tag.getString("Replacement"));
+        replacement = BlockUtil.parseState(tag.getString("Replacement"));
     }
 }
