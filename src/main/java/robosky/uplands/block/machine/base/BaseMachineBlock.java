@@ -16,6 +16,6 @@ public abstract class BaseMachineBlock extends Block implements BlockEntityProvi
 
     @Override
     public BlockEntity createBlockEntity(BlockView world) {
-        return MachineRegistry.MACHINES().apply(Registry.BLOCK.getId(this)).instantiate();
+        return MachineRegistry.MACHINES.get(Registry.BLOCK.getId(this)).instantiate();
     }
 }

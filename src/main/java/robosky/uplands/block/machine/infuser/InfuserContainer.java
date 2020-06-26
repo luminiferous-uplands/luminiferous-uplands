@@ -13,7 +13,7 @@ import net.minecraft.text.TranslatableText;
 public class InfuserContainer extends CottonCraftingController {
 
     public InfuserContainer(int syncId, PlayerInventory playerInventory, BlockContext ctx) {
-        super(RecipeRegistry.aegisaltRecipe(), syncId, playerInventory,
+        super(RecipeRegistry.AEGISALT_INFUSION, syncId, playerInventory,
             CottonCraftingController.getBlockInventory(ctx), CottonCraftingController.getBlockPropertyDelegate(ctx));
         init();
     }

@@ -27,7 +27,7 @@ public class AegisaltInfuser extends BaseMachineBlockEntity
     implements InventoryProvider, RecipeInputProvider, Tickable, BlockEntityClientSerializable {
 
     public AegisaltInfuser() {
-        super(MachineRegistry.aegisaltInfuser().blockEntityType());
+        super(MachineRegistry.AEGISALT_INFUSER.type);
     }
 
     private final ItemStack[] inputStacks = { ItemStack.EMPTY, ItemStack.EMPTY };
@@ -55,7 +55,7 @@ public class AegisaltInfuser extends BaseMachineBlockEntity
         if(!world.isClient) {
             if(recipe == null) {
                 recipe = world.getRecipeManager()
-                    .getFirstMatch(RecipeRegistry.aegisaltRecipe(), new InfuserInventory(), world)
+                    .getFirstMatch(RecipeRegistry.AEGISALT_INFUSION, new InfuserInventory(), world)
                     .orElse(null);
             }
             boolean shouldMark = false;

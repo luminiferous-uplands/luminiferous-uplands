@@ -83,7 +83,7 @@ public final class AegisaltRecipe implements Recipe<Inventory> {
 
     @Override
     public RecipeType<?> getType() {
-        return RecipeRegistry.aegisaltRecipe();
+        return RecipeRegistry.AEGISALT_INFUSION;
     }
 
     @Override
@@ -106,7 +106,7 @@ public final class AegisaltRecipe implements Recipe<Inventory> {
     @Environment(EnvType.CLIENT)
     @Override
     public ItemStack getRecipeKindIcon() {
-        return new ItemStack(MachineRegistry.aegisaltInfuser().block());
+        return new ItemStack(MachineRegistry.AEGISALT_INFUSER.block);
     }
 
     public static class Serializer implements RecipeSerializer<AegisaltRecipe> {
