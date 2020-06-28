@@ -32,7 +32,7 @@ public final class AegisaltRecipeCategory implements RecipeCategory<AegisaltReci
     // Is there a way to cast a MachineEntry to an ItemStack?
     @Override
     public EntryStack getLogo() {
-        return EntryStack.create(MachineRegistry.aegisaltInfuser().block());
+        return EntryStack.create(MachineRegistry.AEGISALT_INFUSER.block);
     }
 
     @Override

@@ -9,7 +9,6 @@ import me.shedaniel.rei.api.RecipeDisplay;
 import robosky.uplands.UplandsMod;
 import robosky.uplands.block.machine.infuser.AegisaltRecipe;
 import robosky.uplands.item.ItemRegistry;
-import scala.collection.Iterator;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
@@ -25,10 +24,9 @@ public final class AegisaltRecipeDisplay implements RecipeDisplay {
         this.recipe = recipe;
         this.fuel = Collections.singletonList(EntryStack.create(ItemRegistry.AEGISALT_CRYSTAL));
         List<List<EntryStack>> ls = new ArrayList<>();
-        Iterator<Ingredient> itr = recipe.ingredients().iterator();
-        while (itr.hasNext()) {
+        for(Ingredient ingredient : recipe.getIngredients()) {
             List<EntryStack> stacks = new ArrayList<>();
-            for (ItemStack stack : itr.next().getMatchingStacksClient()) {
+            for(ItemStack stack : ingredient.getMatchingStacksClient()) {
                 stacks.add(EntryStack.create(stack));
             }
             ls.add(Collections.unmodifiableList(stacks));
