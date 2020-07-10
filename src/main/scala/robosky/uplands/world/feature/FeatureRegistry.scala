@@ -31,7 +31,7 @@ object FeatureRegistry {
 
   val tallUplandsGrassFeature: TallUplandsGrassFeature = register("tall_uplands_grass", new TallUplandsGrassFeature((t: Dynamic[_]) => RandomPatchFeatureConfig.deserialize(t)))
 
-  val treehouseFeature: MinidungeonFeature = new MinidungeonFeature(MinidungeonFeatureConfig("Uplands Treehouse",
+  val treehouseFeature: MinidungeonFeature = new MinidungeonFeature(new MinidungeonFeatureConfig("Uplands Treehouse",
     UplandsMod :/ "minidungeons/treehouse", Optional.of(UplandsMod :/ "chests/minidungeons/treehouse")))
     .register("treehouse")
 
