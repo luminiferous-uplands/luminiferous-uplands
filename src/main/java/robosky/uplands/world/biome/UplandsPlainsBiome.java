@@ -29,13 +29,13 @@ public class UplandsPlainsBiome extends Biome implements UplandsBiome {
             .depth(0.1f).scale(0.2F).temperature(0.5F).downfall(0.0F)
             .waterColor(0x9898BC).waterFogColor(0x9898BC).category(Category.FOREST));
 
-        addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.skyrootTreeFeature().configure(FeatureConfig.DEFAULT)
+        addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.SKYROOT_TREE.configure(FeatureConfig.DEFAULT)
             .createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP.configure(new CountExtraChanceDecoratorConfig(0, 0.1f, 1))));
 
-        addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.waterChestnutFeature().configure(FeatureConfig.DEFAULT)
+        addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.WILD_WATER_CHESTNUTS.configure(FeatureConfig.DEFAULT)
             .createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP.configure(new CountExtraChanceDecoratorConfig(4, 0.1f, 1))));
 
-        addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.tallUplandsGrassFeature().configure(
+        addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.TALL_UPLANDS_GRASS.configure(
             new RandomPatchFeatureConfig.Builder(
                 new WeightedStateProvider()
                     .addState(BlockRegistry.TALL_UPLANDS_GRASS.getDefaultState(), 7)
@@ -44,14 +44,14 @@ public class UplandsPlainsBiome extends Biome implements UplandsBiome {
             ).tries(32).build())
             .createDecoratedFeature(Decorator.COUNT_HEIGHTMAP_DOUBLE.configure(new CountDecoratorConfig(8))));
 
-        addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.zephyrOnionFeature().configure(FeatureConfig.DEFAULT)
+        addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.WILD_ZEPHYR_ONION.configure(FeatureConfig.DEFAULT)
             .createDecoratedFeature(Decorator.COUNT_HEIGHTMAP_32.configure(new CountDecoratorConfig(5))));
 
-        addFeature(GenerationStep.Feature.LOCAL_MODIFICATIONS, FeatureRegistry.skyLakeFeature().configure(
+        addFeature(GenerationStep.Feature.LOCAL_MODIFICATIONS, FeatureRegistry.SKY_LAKE.configure(
             new SingleStateFeatureConfig(Blocks.WATER.getDefaultState()))
             .createDecoratedFeature(Decorator.WATER_LAKE.configure(new ChanceDecoratorConfig(6))));
 
-        addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, FeatureRegistry.treehouseFeature().configure(FeatureConfig.DEFAULT)
+        addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, FeatureRegistry.TREEHOUSE.configure(FeatureConfig.DEFAULT)
             .createDecoratedFeature(Decorator.CHANCE_PASSTHROUGH.configure(new ChanceDecoratorConfig(100))));
 
         addStructureFeature(MegadungeonFeature.INSTANCE.configure(FeatureConfig.DEFAULT));

@@ -21,7 +21,7 @@ public abstract class WorldMixin {
      */
     @Inject(method = "getRainGradient", at = @At("HEAD"), cancellable = true)
     private void onRainGradient(CallbackInfoReturnable<Float> info) {
-        if (this.dimension.getType() == WorldRegistry.UPLANDS_DIMENSION()) {
+        if (this.dimension.getType() == WorldRegistry.UPLANDS_DIMENSION) {
             info.setReturnValue(0.0f);
         }
     }

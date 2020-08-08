@@ -32,11 +32,11 @@ public class MinidungeonGenerator {
         private Identifier loot = null;
 
         Piece(StructureManager mgr, BlockPos pos, BlockRotation rotation, MinidungeonFeatureConfig conf) {
-            super(Registry.STRUCTURE_PIECE.get(conf.template()), 0);
+            super(Registry.STRUCTURE_PIECE.get(conf.getTemplate()), 0);
             this.rotation = rotation;
             this.pos = pos;
-            this.template = conf.template();
-            this.loot = conf.loot().orElse(null);
+            this.template = conf.getTemplate();
+            this.loot = conf.getLoot().orElse(null);
 
             initializeStructureData(mgr);
         }

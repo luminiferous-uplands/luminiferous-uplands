@@ -15,7 +15,7 @@ public class CharmItem extends Item implements TickableItem {
     private final int level;
 
     public CharmItem(StatusEffect effect, int level) {
-        super(new Item.Settings().group(UplandsMod.GROUP()).maxCount(1).maxDamage(2400));
+        super(new Item.Settings().group(UplandsMod.GROUP).maxCount(1).maxDamage(2400));
         this.effect = effect;
         this.level = level;
     }

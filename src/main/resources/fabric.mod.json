@@ -15,16 +15,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      {
-        "adapter": "scala",
-        "value": "robosky.uplands.UplandsMod"
-      }
+      "robosky.uplands.UplandsMod"
     ],
     "client": [
-      {
-        "adapter": "scala",
-        "value": "robosky.uplands.UplandsModClient"
-      }
+      "robosky.uplands.UplandsModClient"
     ],
     "rei_plugins_v0": [
       "robosky.uplands.interop.UplandsREIPlugin"
@@ -40,7 +34,6 @@
   "depends": {
     "fabricloader": ">=0.4.0",
     "fabric": "*",
-    "fabric-language-scala": "*",
     "libgui": "*"
   }
 }

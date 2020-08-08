@@ -45,7 +45,7 @@ public abstract class FluidBlockMixin extends Block {
 
     @Inject(method = "onBlockAdded", at = @At("RETURN"))
     private void updateUplandsStateOnAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean idk, CallbackInfo info) {
-        if (world.getDimension().getType() == WorldRegistry.UPLANDS_DIMENSION() &&
+        if (world.getDimension().getType() == WorldRegistry.UPLANDS_DIMENSION &&
                 !state.getFluidState().isStill() && state.getBlock() == Blocks.WATER) {
             int fall = getUplandsFall(state, world, pos);
             if (fall > UplandsWaterBlock.MAX_FALL) {
@@ -59,7 +59,7 @@ public abstract class FluidBlockMixin extends Block {
 
     @Inject(method = "getStateForNeighborUpdate", at = @At("RETURN"), cancellable = true)
     private void updateUplandsState(BlockState state, Direction dir, BlockState neighbor, IWorld world, BlockPos pos, BlockPos neighborPos, CallbackInfoReturnable<BlockState> info) {
-        if (world.getDimension().getType() == WorldRegistry.UPLANDS_DIMENSION()) {
+        if (world.getDimension().getType() == WorldRegistry.UPLANDS_DIMENSION) {
             state = info.getReturnValue();
             if (!state.getFluidState().isStill() && state.getBlock() == Blocks.WATER) {
                 int fall = getUplandsFall(state, world, pos);
