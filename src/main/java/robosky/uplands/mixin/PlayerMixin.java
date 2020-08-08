@@ -60,13 +60,13 @@ public abstract class PlayerMixin extends LivingEntity implements UplanderBeacon
     @Inject(method = "tickMovement", at = @At("TAIL"))
     private void onTickMovement(CallbackInfo info) {
         if (!world.isClient) {
-            if (this.dimension == WorldRegistry.UPLANDS_DIMENSION() && this.getY() <= -60) {
+            if (this.dimension == WorldRegistry.UPLANDS_DIMENSION && this.getY() <= -60) {
                 FabricDimensions.teleport(this, DimensionType.OVERWORLD, UplandsTeleporter.FromUplands$.MODULE$);
             } else if (this.dimension == DimensionType.OVERWORLD && this.getY() >= 300.0) {
                 if (uplands_isUsingBeacon()) {
-                    FabricDimensions.teleport(this, WorldRegistry.UPLANDS_DIMENSION(), UplandsTeleporter.ToUplandsBeacon$.MODULE$);
+                    FabricDimensions.teleport(this, WorldRegistry.UPLANDS_DIMENSION, UplandsTeleporter.ToUplandsBeacon$.MODULE$);
                 } else {
-                    FabricDimensions.teleport(this, WorldRegistry.UPLANDS_DIMENSION(), UplandsTeleporter.ToUplandsFlying$.MODULE$);
+                    FabricDimensions.teleport(this, WorldRegistry.UPLANDS_DIMENSION, UplandsTeleporter.ToUplandsFlying$.MODULE$);
                 }
             }
         }

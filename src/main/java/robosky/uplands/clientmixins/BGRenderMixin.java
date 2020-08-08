@@ -18,7 +18,7 @@ public class BGRenderMixin {
         ordinal = 0
     )
     private static double modifyVoidColor(double scale) {
-        if (MinecraftClient.getInstance().world.dimension.getType() == WorldRegistry.UPLANDS_DIMENSION()) {
+        if (MinecraftClient.getInstance().world.dimension.getType() == WorldRegistry.UPLANDS_DIMENSION) {
             scale = 1.0;
         }
         return scale;

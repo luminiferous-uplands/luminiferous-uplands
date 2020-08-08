@@ -20,7 +20,7 @@ public abstract class WorldMixin extends World {
     @Environment(EnvType.CLIENT)
     @Inject(at = @At("HEAD"), method = "getSkyDarknessHeight", cancellable = true)
     public void getHorizonHeight(final CallbackInfoReturnable<Double> cb) {
-        if (this.dimension != null && this.dimension.getType() == WorldRegistry.UPLANDS_DIMENSION()) {
+        if (this.dimension != null && this.dimension.getType() == WorldRegistry.UPLANDS_DIMENSION) {
             cb.setReturnValue(Double.NEGATIVE_INFINITY);
         }
     }
