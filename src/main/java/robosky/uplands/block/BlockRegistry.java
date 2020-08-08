@@ -129,7 +129,7 @@ public final class BlockRegistry {
 
 	// TODO: Register machine blocks elsewhere so this isn't public?
 	public static <B extends Block> B registerWithItem(String name, B block) {
-		return registerWithItem(name, block, UplandsMod.GROUP());
+		return registerWithItem(name, block, UplandsMod.GROUP);
 	}
 
 	private static <B extends Block> B registerWithItem(String name, B block, ItemGroup group) {
