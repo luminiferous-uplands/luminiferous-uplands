@@ -25,18 +25,18 @@ public class UplandsVoidBiome extends Biome {
             .depth(0).scale(0.2F).temperature(0.5F).downfall(0.0F)
             .waterColor(0x9898BC).waterFogColor(0x9898BC).category(Category.FOREST));
 
-        addFeature(GenerationStep.Feature.UNDERGROUND_ORES, FeatureRegistry.oreFeature().configure(
+        addFeature(GenerationStep.Feature.UNDERGROUND_ORES, FeatureRegistry.ORE_FEATURE.configure(
             new UplandsOreFeatureConfig(9, 1, 128, BlockRegistry.UPLANDS_ORES.get(UplandsOreBlock.oreTypeAegisalt).getDefaultState()))
             .createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(1, 0, 0, 256))));
-        addFeature(GenerationStep.Feature.UNDERGROUND_ORES, FeatureRegistry.oreFeature().configure(
+        addFeature(GenerationStep.Feature.UNDERGROUND_ORES, FeatureRegistry.ORE_FEATURE.configure(
             new UplandsOreFeatureConfig(20, 1, 64, BlockRegistry.LODESTONE.getDefaultState()))
             .createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(4, 0, 0, 256))));
 
-        addFeature(GenerationStep.Feature.LOCAL_MODIFICATIONS, FeatureRegistry.skyLakeFeature().configure(
+        addFeature(GenerationStep.Feature.LOCAL_MODIFICATIONS, FeatureRegistry.SKY_LAKE.configure(
             new SingleStateFeatureConfig(Blocks.WATER.getDefaultState()))
             .createDecoratedFeature(Decorator.WATER_LAKE.configure(new ChanceDecoratorConfig(8))));
 
-        addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, FeatureRegistry.treehouseFeature().configure(FeatureConfig.DEFAULT)
+        addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, FeatureRegistry.TREEHOUSE.configure(FeatureConfig.DEFAULT)
             .createDecoratedFeature(Decorator.CHANCE_PASSTHROUGH.configure(new ChanceDecoratorConfig(100))));
 
         addSpawn(EntityCategory.MONSTER, new Biome.SpawnEntry(EntityType.ENDERMAN, 10, 1, 4));

@@ -32,20 +32,20 @@ public class UplandsSavannaBiome extends Biome implements UplandsBiome {
             .depth(0.1f).scale(0.2F).temperature(0.5F).downfall(0.0F)
             .waterColor(0x9898BC).waterFogColor(0x9898BC).category(Category.FOREST));
 
-        addFeature(GenerationStep.Feature.UNDERGROUND_ORES, FeatureRegistry.oreFeature().configure(
+        addFeature(GenerationStep.Feature.UNDERGROUND_ORES, FeatureRegistry.ORE_FEATURE.configure(
             new UplandsOreFeatureConfig(9, 1, 128, BlockRegistry.UPLANDS_ORES.get(UplandsOreBlock.oreTypeAegisalt).getDefaultState()))
             .createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(1, 0, 0, 256))));
-        addFeature(GenerationStep.Feature.UNDERGROUND_ORES, FeatureRegistry.oreFeature().configure(
+        addFeature(GenerationStep.Feature.UNDERGROUND_ORES, FeatureRegistry.ORE_FEATURE.configure(
             new UplandsOreFeatureConfig(20, 1, 64, BlockRegistry.LODESTONE.getDefaultState()))
             .createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(4, 0, 0, 256))));
 
-        addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.skyrootFlatTreeFeature().configure(FeatureConfig.DEFAULT)
+        addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.FLAT_SKYROOT_TREE.configure(FeatureConfig.DEFAULT)
             .createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP.configure(new CountExtraChanceDecoratorConfig(0, 0.75f, 1))));
 
-        addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.waterChestnutFeature().configure(FeatureConfig.DEFAULT)
+        addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.WILD_WATER_CHESTNUTS.configure(FeatureConfig.DEFAULT)
             .createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP.configure(new CountExtraChanceDecoratorConfig(2, 0.1f, 1))));
 
-        addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.tallUplandsGrassFeature().configure(
+        addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.TALL_UPLANDS_GRASS.configure(
             new RandomPatchFeatureConfig.Builder(
                 new WeightedStateProvider()
                     .addState(BlockRegistry.TALL_UPLANDS_GRASS.getDefaultState(), 7)
@@ -54,15 +54,15 @@ public class UplandsSavannaBiome extends Biome implements UplandsBiome {
             ).tries(32).build())
             .createDecoratedFeature(Decorator.COUNT_HEIGHTMAP_DOUBLE.configure(new CountDecoratorConfig(4))));
 
-        addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.zephyrOnionFeature().configure(FeatureConfig.DEFAULT)
+        addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FeatureRegistry.WILD_ZEPHYR_ONION.configure(FeatureConfig.DEFAULT)
             .createDecoratedFeature(Decorator.COUNT_HEIGHTMAP_32.configure(new CountDecoratorConfig(1))));
 
-        addFeature(GenerationStep.Feature.LOCAL_MODIFICATIONS, FeatureRegistry.skyLakeFeature().configure(
+        addFeature(GenerationStep.Feature.LOCAL_MODIFICATIONS, FeatureRegistry.SKY_LAKE.configure(
             new SingleStateFeatureConfig(Blocks.WATER.getDefaultState()))
             .createDecoratedFeature(Decorator.WATER_LAKE.configure(new ChanceDecoratorConfig(4))));
 
-        addStructureFeature(FeatureRegistry.treehouseFeature().configure(FeatureConfig.DEFAULT));
-        addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, FeatureRegistry.treehouseFeature().configure(FeatureConfig.DEFAULT)
+        addStructureFeature(FeatureRegistry.TREEHOUSE.configure(FeatureConfig.DEFAULT));
+        addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, FeatureRegistry.TREEHOUSE.configure(FeatureConfig.DEFAULT)
             .createDecoratedFeature(Decorator.CHANCE_PASSTHROUGH.configure(new ChanceDecoratorConfig(100))));
 
         addStructureFeature(MegadungeonFeature.INSTANCE.configure(FeatureConfig.DEFAULT));

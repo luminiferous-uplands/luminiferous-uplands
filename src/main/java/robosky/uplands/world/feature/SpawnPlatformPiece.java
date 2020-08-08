@@ -17,13 +17,13 @@ import java.util.Random;
 
 public class SpawnPlatformPiece extends SimpleStructurePiece {
     public SpawnPlatformPiece(StructureManager mgr, BlockPos pos) {
-        super(FeatureRegistry.spawnPlatformPiece(), 0);
+        super(FeatureRegistry.SPAWN_PLATFORM, 0);
         this.pos = pos;
         initializeStructureData(mgr);
     }
 
     public SpawnPlatformPiece(StructureManager mgr, CompoundTag compoundTag_1) {
-        super(FeatureRegistry.spawnPlatformPiece(), compoundTag_1);
+        super(FeatureRegistry.SPAWN_PLATFORM, compoundTag_1);
         initializeStructureData(mgr);
     }
 
