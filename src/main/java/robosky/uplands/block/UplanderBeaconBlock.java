@@ -45,9 +45,9 @@ public class UplanderBeaconBlock extends Block {
 
     @Override
     public ActionResult onUse(BlockState blockState, World world, BlockPos blockPos, PlayerEntity player, Hand hand, BlockHitResult result) {
-        if (!world.isClient() & player.world.dimension.getType() == DimensionType.OVERWORLD) {
+        if (player.world.dimension.getType() == DimensionType.OVERWORLD) {
             ((UplanderBeaconUser)player).uplands_setUsingBeacon(true);
-        } else {
+        } else if (!world.isClient()) {
             if (blockState.get(SMOKING)) {
                 return ActionResult.FAIL;
             }
