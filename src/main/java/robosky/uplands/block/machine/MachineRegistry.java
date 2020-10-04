@@ -16,8 +16,8 @@ import robosky.uplands.block.machine.infuser.AegisaltInfuserBlock;
 import robosky.uplands.block.machine.infuser.InfuserContainer;
 
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.container.BlockContext;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -43,11 +43,11 @@ public final class MachineRegistry {
     MachineEntry<B, E, C> register(B b, Supplier<E> e, @Nullable MachineScreenFactory<C> gui) {
         Identifier id = Registry.BLOCK.getId(b);
         BlockEntityType<E> t = new BlockEntityType<>(e, ImmutableSet.of(b), null);
-        Registry.register(Registry.BLOCK_ENTITY, id, t);
+        Registry.register(Registry.BLOCK_ENTITY_TYPE, id, t);
         MACHINES.put(id, t);
         if(gui != null) {
             ContainerProviderRegistry.INSTANCE.registerFactory(id, (syncId, id2, player, buf) ->
-                gui.create(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())));
+                gui.create(syncId, player.inventory, ScreenHandlerContext.create(player.world, buf.readBlockPos())));
         }
         return new MachineEntry<>(b, e, gui, t);
     }
@@ -57,7 +57,7 @@ public final class MachineRegistry {
 
     @FunctionalInterface
     public interface MachineScreenFactory<C extends CottonCraftingController> {
-        C create(int syncId, PlayerInventory inv, BlockContext ctx);
+        C create(int syncId, PlayerInventory inv, ScreenHandlerContext ctx);
     }
 
     public static final class MachineEntry<B extends BaseMachineBlock, E extends BaseMachineBlockEntity, C extends CottonCraftingController> {

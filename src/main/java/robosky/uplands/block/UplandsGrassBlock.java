@@ -17,7 +17,7 @@ import java.util.Random;
 public class UplandsGrassBlock extends Block {
 
     public UplandsGrassBlock() {
-        super(FabricBlockSettings.of(Material.ORGANIC).ticksRandomly().strength(0.6f, 0.6f).sounds(BlockSoundGroup.GRASS).build());
+        super(FabricBlockSettings.of(Material.SOLID_ORGANIC).ticksRandomly().strength(0.6f, 0.6f).sounds(BlockSoundGroup.GRASS).build());
     }
     
     @Override
@@ -43,7 +43,7 @@ public class UplandsGrassBlock extends Block {
 
     private boolean canSpread(BlockState blockState, WorldView worldView, BlockPos blockPos) {
         BlockPos blockUpper = blockPos.up();
-        return canSurvive(blockState, worldView, blockPos) && !worldView.getFluidState(blockUpper).matches(FluidTags.WATER);
+        return canSurvive(blockState, worldView, blockPos) && !worldView.getFluidState(blockUpper).isIn(FluidTags.WATER);
     }
 
     private boolean canSurvive(BlockState blockState, WorldView worldView, BlockPos blockPos) {

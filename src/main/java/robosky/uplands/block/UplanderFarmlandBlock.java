@@ -1,11 +1,11 @@
 package robosky.uplands.block;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockPlacementEnvironment;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityContext;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -22,19 +22,19 @@ public class UplanderFarmlandBlock extends Block {
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState blockState, BlockView blockView, BlockPos blockPos, EntityContext entityContext) {
+    public VoxelShape getOutlineShape(BlockState blockState, BlockView blockView, BlockPos blockPos, ShapeContext entityContext) {
         return SHAPE;
     }
 
     @Override
-    public boolean canPlaceAtSide(BlockState blockState, BlockView blockView, BlockPos blockPos, BlockPlacementEnvironment blockPlacementEnvironment) {
+    public boolean canPathfindThrough(BlockState blockState, BlockView blockView, BlockPos blockPos, NavigationType blockPlacementEnvironment) {
         return false;
     }
     
     @Override
     public void onLandedUpon(World world, BlockPos blockPos, Entity entity, float f) {
         if (!world.isClient && world.random.nextFloat() < f - 0.5F && entity instanceof LivingEntity
-                && (entity instanceof PlayerEntity || world.getGameRules().getBoolean(GameRules.MOB_GRIEFING))
+                && (entity instanceof PlayerEntity || world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING))
                 && entity.getWidth() * entity.getWidth() * entity.getHeight() > 0.512F) {
 
             setToDirt(world.getBlockState(blockPos), world, blockPos);

@@ -6,7 +6,7 @@ import java.util.function.Function;
 import net.minecraft.block.BlockState;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.WorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.Feature;
@@ -17,7 +17,7 @@ public class TallUplandsGrassFeature extends Feature<RandomPatchFeatureConfig> {
         super(function_1);
     }
 
-    public boolean generate(IWorld iWorld_1, ChunkGenerator<? extends ChunkGeneratorConfig> chunkGenerator_1, Random random_1, BlockPos blockPos_1, RandomPatchFeatureConfig grassFeatureConfig_1) {
+    public boolean generate(WorldAccess iWorld_1, ChunkGenerator<? extends ChunkGeneratorConfig> chunkGenerator_1, Random random_1, BlockPos blockPos_1, RandomPatchFeatureConfig grassFeatureConfig_1) {
         for(BlockState blockState_1 = iWorld_1.getBlockState(blockPos_1); (blockState_1.isAir() || blockState_1.matches(BlockTags.LEAVES)) && blockPos_1.getY() > 0; blockState_1 = iWorld_1.getBlockState(blockPos_1)) {
             blockPos_1 = blockPos_1.down();
         }

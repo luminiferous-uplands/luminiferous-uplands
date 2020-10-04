@@ -8,7 +8,7 @@ import robosky.uplands.block.BlockRegistry;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.WorldAccess;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
@@ -35,7 +35,7 @@ public final class UplandsOreFeature extends Feature<UplandsOreFeatureConfig> {
     };
 
     @Override
-    public boolean generate(IWorld world, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random rand, BlockPos pos, UplandsOreFeatureConfig config) {
+    public boolean generate(WorldAccess world, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random rand, BlockPos pos, UplandsOreFeatureConfig config) {
         Chunk toGenerateIn = world.getChunk(pos);
         int overbleed = 0;
         int radius = (int)Math.log(config.getSize()) + 1;
@@ -61,7 +61,7 @@ public final class UplandsOreFeature extends Feature<UplandsOreFeatureConfig> {
         return generatedThisCluster > 0;
     }
 
-    private int generateVeinPartGaussianClump(IWorld world, int x, int y, int z, int clumpSize, int radius, Set<BlockState> states, int density, Random rand) {
+    private int generateVeinPartGaussianClump(WorldAccess world, int x, int y, int z, int clumpSize, int radius, Set<BlockState> states, int density, Random rand) {
         int radIndex = radius - 1;
         Clump clump;
         if(radIndex < SPHERES.length) {
@@ -84,7 +84,7 @@ public final class UplandsOreFeature extends Feature<UplandsOreFeatureConfig> {
         return replaced;
     }
 
-    private int generateVeinPart(IWorld world, int x, int y, int z, int clumpSize, int radius, Set<BlockState> states, int density, Random rand) {
+    private int generateVeinPart(WorldAccess world, int x, int y, int z, int clumpSize, int radius, Set<BlockState> states, int density, Random rand) {
         int rad2 = radius * radius;
         BlockState[] blocks = states.toArray(new BlockState[0]);
         int replaced = 0;
@@ -112,7 +112,7 @@ public final class UplandsOreFeature extends Feature<UplandsOreFeatureConfig> {
         return replaced;
     }
 
-    private boolean replace(IWorld world, int x, int y, int z, BlockState[] states, Random rand) {
+    private boolean replace(WorldAccess world, int x, int y, int z, BlockState[] states, Random rand) {
         BlockPos pos = new BlockPos(x, y, z);
         BlockState toReplace = world.getBlockState(pos);
         BlockState replaceWith = states[rand.nextInt(states.length)];
@@ -123,7 +123,7 @@ public final class UplandsOreFeature extends Feature<UplandsOreFeatureConfig> {
         return true;
     }
 
-    private int generateVeinPartGaussian(IWorld world, int x, int y, int z, int clumpSize, int radius, Set<BlockState> states, int density, Random rand) {
+    private int generateVeinPartGaussian(WorldAccess world, int x, int y, int z, int clumpSize, int radius, Set<BlockState> states, int density, Random rand) {
         int rad2 = radius * radius;
         BlockState[] blocks = states.toArray(new BlockState[0]);
         int replaced = 0;

@@ -2,7 +2,7 @@ package robosky.uplands.block;
 
 import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.block.*;
-import net.minecraft.entity.EntityContext;
+import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -22,14 +22,14 @@ public class AzoteMushroomBlock extends MushroomPlantBlock {
     }
 
     @Override
-    public boolean canPlaceAtSide(BlockState blockState, BlockView blockView, BlockPos blockPos, BlockPlacementEnvironment environment) {
+    public boolean canPathfindThrough(BlockState blockState, BlockView blockView, BlockPos blockPos, NavigationType environment) {
         BlockState blockBelow = blockView.getBlockState(blockPos.down());
         return blockBelow.matches(UplandsBlockTags.PLANTABLE_ON) ||
                 blockBelow.matches(TagRegistry.block(new Identifier("luminiferous_uplands:azote_mushroom_spreadable")));
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState blockState, BlockView blockView, BlockPos blockPos, EntityContext entityContext) {
+    public VoxelShape getOutlineShape(BlockState blockState, BlockView blockView, BlockPos blockPos, ShapeContext entityContext) {
         return SHAPE;
     }
 

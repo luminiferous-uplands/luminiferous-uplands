@@ -4,14 +4,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FluidBlock;
-import net.minecraft.fluid.BaseFluid;
+import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-
+import net.minecraft.world.WorldAccess;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -58,7 +57,7 @@ public abstract class FluidBlockMixin extends Block {
     }
 
     @Inject(method = "getStateForNeighborUpdate", at = @At("RETURN"), cancellable = true)
-    private void updateUplandsState(BlockState state, Direction dir, BlockState neighbor, IWorld world, BlockPos pos, BlockPos neighborPos, CallbackInfoReturnable<BlockState> info) {
+    private void updateUplandsState(BlockState state, Direction dir, BlockState neighbor, WorldAccess world, BlockPos pos, BlockPos neighborPos, CallbackInfoReturnable<BlockState> info) {
         if (world.getDimension().getType() == WorldRegistry.UPLANDS_DIMENSION) {
             state = info.getReturnValue();
             if (!state.getFluidState().isStill() && state.getBlock() == Blocks.WATER) {
@@ -89,10 +88,10 @@ public abstract class FluidBlockMixin extends Block {
      * (level=8) pass their fall state incremented by 1.
      */
     @Unique
-    private int getUplandsFall(BlockState state, IWorld world, BlockPos pos) {
+    private int getUplandsFall(BlockState state, WorldAccess world, BlockPos pos) {
         int level = state.get(FluidBlock.LEVEL);
         int fall = Integer.MAX_VALUE;
-        boolean falling = state.getFluidState().get(BaseFluid.FALLING);
+        boolean falling = state.getFluidState().get(FlowableFluid.FALLING);
         for (Direction dir : SOURCES) {
             FluidState neighborFluidState = world.getFluidState(pos.offset(dir));
             BlockState neighborBlockState = world.getBlockState(pos.offset(dir));
@@ -103,7 +102,7 @@ public abstract class FluidBlockMixin extends Block {
                 if (dir == Direction.UP || !falling || neighborFluidState.isStill()) {
                     int neighborFall = neighborBlockState.get(UplandsWaterBlock.FALL);
                     int neighborLevel = neighborBlockState.get(FluidBlock.LEVEL);
-                    boolean neighborFalling = neighborFluidState.get(BaseFluid.FALLING);
+                    boolean neighborFalling = neighborFluidState.get(FlowableFluid.FALLING);
                     if ((neighborFalling || neighborLevel < level) && neighborFall < fall) {
                         // propagate fall state across horizontal surfaces
                         fall = neighborFall;

@@ -6,8 +6,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.EntityContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
@@ -50,9 +50,9 @@ public class DoorwayBlock extends Block implements BlockEntityProvider {
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, EntityContext ctx) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext ctx) {
         if (state.get(DoorwayBlock.STATE) == DoorwayState.OPEN) {
-            if (ctx == EntityContext.absent() || ((BossDoorwayContext) ctx).uplands_shouldSeeDoorwayOutlines()) {
+            if (ctx == ShapeContext.absent() || ((BossDoorwayContext) ctx).uplands_shouldSeeDoorwayOutlines()) {
                 return DoorwayBlock.SHAPE;
             } else {
                 return VoxelShapes.empty();
@@ -68,7 +68,7 @@ public class DoorwayBlock extends Block implements BlockEntityProvider {
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, EntityContext ctx) {
+    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext ctx) {
         if (state.get(DoorwayBlock.STATE) == DoorwayState.OPEN) {
             return VoxelShapes.empty();
         } else {

@@ -2,9 +2,9 @@ package robosky.uplands.entity;
 
 import net.fabricmc.fabric.api.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCategory;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnGroup;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.SpawnEggItem;
@@ -14,7 +14,7 @@ import robosky.uplands.UplandsMod;
 public class EntityRegistry {
 
     public static final EntityType<HexahaenEntity> HEXAHAEN = FabricEntityTypeBuilder
-        .create(EntityCategory.MONSTER, (EntityType.EntityFactory<HexahaenEntity>)HexahaenEntity::new)
+        .create(SpawnGroup.MONSTER, (EntityType.EntityFactory<HexahaenEntity>)HexahaenEntity::new)
         .size(EntityDimensions.fixed(1.25f, 1.25f)).build();
 
     public static void init() {

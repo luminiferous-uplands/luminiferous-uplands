@@ -1,7 +1,7 @@
 package robosky.uplands.mixin;
 
+import net.minecraft.block.EntityShapeContext;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityContextImpl;
 import net.minecraft.entity.player.PlayerEntity;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import robosky.uplands.iface.BossDoorwayContext;
 import robosky.uplands.item.UplandsItemTags;
 
-@Mixin(EntityContextImpl.class)
+@Mixin(EntityShapeContext.class)
 public abstract class EntityContextImplMixin implements BossDoorwayContext {
 
     @Unique

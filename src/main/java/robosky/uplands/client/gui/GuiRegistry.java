@@ -8,8 +8,8 @@ import robosky.uplands.block.machine.MachineRegistry;
 import robosky.uplands.block.machine.infuser.InfuserContainer;
 
 import net.minecraft.block.Block;
-import net.minecraft.container.BlockContext;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -36,7 +36,7 @@ public final class GuiRegistry {
         assert ctrl != null : "null machine screen factory";
         ScreenProviderRegistry.INSTANCE.registerFactory(id,
             (syncId, unused, player, buf) ->
-                screen.apply(ctrl.create(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())), player));
+                screen.apply(ctrl.create(syncId, player.inventory, ScreenHandlerContext.create(player.world, buf.readBlockPos())), player));
     }
 
     public static void init() {

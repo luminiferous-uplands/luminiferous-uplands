@@ -17,7 +17,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnType;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.world.ServerWorld;
@@ -159,7 +159,7 @@ public final class ControlBlockEntity extends BlockEntity implements BlockEntity
                     this.world.setBlockState(pos, state.with(DoorwayBlock.STATE, DoorwayState.BLOCKED));
                 }
             }
-            bossEntity = bossType.spawn(this.world, null, null, null, spawn, SpawnType.SPAWNER, false, false);
+            bossEntity = bossType.spawn(this.world, null, null, null, spawn, SpawnReason.SPAWNER, false, false);
             bossUuid = bossEntity.getUuid();
             logger.info("Activated boss at {}", spawn);
         }
@@ -224,7 +224,7 @@ public final class ControlBlockEntity extends BlockEntity implements BlockEntity
                     if (!bossEntity.isAlive()) {
                         onBossDefeat();
                     } else {
-                        List<PlayerEntity> players = this.world.getEntities(PlayerEntity.class, worldBoundsBox, null);
+                        List<PlayerEntity> players = this.world.getEntitiesByClass(PlayerEntity.class, worldBoundsBox, null);
                         if (players.isEmpty()) {
                             // everyone died (or escaped)
                             deactivateBoss();

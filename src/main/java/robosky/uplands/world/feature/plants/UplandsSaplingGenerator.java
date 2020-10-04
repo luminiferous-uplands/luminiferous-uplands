@@ -7,12 +7,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.server.world.ServerChunkManager;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.WorldAccess;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.FeatureConfig;
 
 public abstract class UplandsSaplingGenerator {
-    public boolean generate(IWorld world, BlockPos pos, BlockState state, Random rand) {
+    public boolean generate(WorldAccess world, BlockPos pos, BlockState state, Random rand) {
         AbstractUplandsTree<DefaultFeatureConfig> abstractTreeFeature_1 = this.createTreeFeature(rand);
         if(abstractTreeFeature_1 == null) {
             return false;

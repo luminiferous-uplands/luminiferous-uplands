@@ -19,8 +19,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Tickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.IWorld;
-
+import net.minecraft.world.WorldAccess;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 
 public class AegisaltInfuser extends BaseMachineBlockEntity
@@ -39,7 +38,7 @@ public class AegisaltInfuser extends BaseMachineBlockEntity
     boolean burning = false;
 
     @Override
-    public SidedInventory getInventory(BlockState state, IWorld world, BlockPos pos) {
+    public SidedInventory getInventory(BlockState state, WorldAccess world, BlockPos pos) {
         return new InfuserInventory();
     }
 
@@ -114,21 +113,21 @@ public class AegisaltInfuser extends BaseMachineBlockEntity
     private final class InfuserInventory implements SidedInventory {
 
         @Override
-        public int[] getInvAvailableSlots(Direction dir) {
+        public int[] getAvailableSlots(Direction dir) {
             return new int[] { 0, 1, 2, 3 };
         }
 
         @Override
-        public boolean canInsertInvStack(int slot, ItemStack stack, Direction dir) {
+        public boolean canInsert(int slot, ItemStack stack, Direction dir) {
             if(slot == 2 && dir == Direction.UP) {
                 return false;
             } else {
-                return isValidInvStack(slot, stack);
+                return isValid(slot, stack);
             }
         }
 
         @Override
-        public boolean isValidInvStack(int slot, ItemStack stack) {
+        public boolean isValid(int slot, ItemStack stack) {
             switch(slot) {
             case 3:
                 return false;
@@ -140,27 +139,27 @@ public class AegisaltInfuser extends BaseMachineBlockEntity
         }
 
         @Override
-        public boolean canExtractInvStack(int slot, ItemStack var2, Direction var3) {
+        public boolean canExtract(int slot, ItemStack var2, Direction var3) {
             return slot == 3;
         }
 
         @Override
-        public int getInvSize() {
+        public int size() {
             return 4;
         }
 
         @Override
-        public boolean isInvEmpty() {
+        public boolean isEmpty() {
             return crystalStack.isEmpty() && inputStacks[0].isEmpty() && inputStacks[1].isEmpty() && outputStack.isEmpty();
         }
 
         @Override
-        public ItemStack takeInvStack(int slot, int count) {
+        public ItemStack removeStack(int slot, int count) {
             ItemStack s1;
-            if(getInvStack(slot).isEmpty() || count <= 0) {
+            if(getStack(slot).isEmpty() || count <= 0) {
                 s1 = ItemStack.EMPTY;
             } else {
-                s1 = getInvStack(slot).split(count);
+                s1 = getStack(slot).split(count);
             }
             if(!s1.isEmpty()) {
                 markDirty();
@@ -174,7 +173,7 @@ public class AegisaltInfuser extends BaseMachineBlockEntity
         }
 
         @Override
-        public ItemStack getInvStack(int slot) {
+        public ItemStack getStack(int slot) {
             switch(slot) {
             case 3:
                 return outputStack;
@@ -186,17 +185,17 @@ public class AegisaltInfuser extends BaseMachineBlockEntity
         }
 
         @Override
-        public ItemStack removeInvStack(int slot) {
-            ItemStack s1 = getInvStack(slot);
+        public ItemStack removeStack(int slot) {
+            ItemStack s1 = getStack(slot);
             if(s1.isEmpty()) {
                 return ItemStack.EMPTY;
             }
-            setInvStack(slot, ItemStack.EMPTY);
+            setStack(slot, ItemStack.EMPTY);
             return s1;
         }
 
         @Override
-        public void setInvStack(int slot, ItemStack stack) {
+        public void setStack(int slot, ItemStack stack) {
             switch(slot) {
             case 3:
                 outputStack = stack;
@@ -211,7 +210,7 @@ public class AegisaltInfuser extends BaseMachineBlockEntity
         }
 
         @Override
-        public boolean canPlayerUseInv(PlayerEntity player) {
+        public boolean canPlayerUse(PlayerEntity player) {
             return player.squaredDistanceTo(
                 pos.getX() + 0.5D,
                 pos.getY() + 0.5D,

@@ -11,8 +11,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.LightType;
+import net.minecraft.world.WorldAccess;
 import net.minecraft.world.chunk.ChunkStatus;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
@@ -26,7 +26,7 @@ public class SkyLakeFeature extends Feature<SingleStateFeatureConfig> {
     }
 
     @Override
-    public boolean generate(IWorld world, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos st, SingleStateFeatureConfig config) {
+    public boolean generate(WorldAccess world, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos st, SingleStateFeatureConfig config) {
         BlockPos start = st;
         while(start.getY() > 5 && world.isAir(start)) {
             start = start.down();
@@ -107,7 +107,7 @@ public class SkyLakeFeature extends Feature<SingleStateFeatureConfig> {
                 for(int dy = 1; dy < 8; dy++) {
                     if(bitset[(dx * 16 + dz) * 8 + dy]) {
                         BlockPos pos = start.add(dx, dy - 1, dz);
-                        if(world.getBlockState(pos).getBlock().matches(UplandsBlockTags.PLANTABLE_ON) &&
+                        if(world.getBlockState(pos).getBlock().isIn(UplandsBlockTags.PLANTABLE_ON) &&
                             world.getLightLevel(LightType.SKY, start.add(dx, dy, dz)) > 0) {
                             world.setBlockState(pos, BlockRegistry.UPLANDER_GRASS.getDefaultState(), 2);
                         }
@@ -136,7 +136,7 @@ public class SkyLakeFeature extends Feature<SingleStateFeatureConfig> {
             for(int dx = 0; dx < 16; dx++) {
                 for(int dz = 0; dz < 16; dz++) {
                     BlockPos pos = start.add(dx, 4, dz);
-                    if(world.getBiome(pos).canSetSnow(world, pos, false)) {
+                    if(world.getBiome(pos).canSetIce(world, pos, false)) {
                         world.setBlockState(pos, Blocks.ICE.getDefaultState(), 2);
                     }
                 }

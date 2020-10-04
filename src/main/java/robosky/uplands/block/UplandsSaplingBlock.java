@@ -1,7 +1,6 @@
 package robosky.uplands.block;
 
 import net.minecraft.block.*;
-import net.minecraft.entity.EntityContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
@@ -10,8 +9,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import robosky.uplands.world.feature.plants.UplandsSaplingGenerator;
 
 import java.util.Random;
@@ -39,7 +38,7 @@ public class UplandsSaplingBlock extends PlantBlock implements Fertilizable {
     }
     
     @Override
-    public VoxelShape getOutlineShape(BlockState blockState, BlockView blockView, BlockPos blockPos, EntityContext entityContext) {
+    public VoxelShape getOutlineShape(BlockState blockState, BlockView blockView, BlockPos blockPos, ShapeContext entityContext) {
         return SHAPE;
     }
     
@@ -65,7 +64,7 @@ public class UplandsSaplingBlock extends PlantBlock implements Fertilizable {
         this.generate(serverWorld, blockPos, blockState, random);
     }
 
-    private void generate(IWorld iWorld, BlockPos blockPos, BlockState blockState, Random random) {
+    private void generate(WorldAccess iWorld, BlockPos blockPos, BlockState blockState, Random random) {
         if (blockState.get(UplandsSaplingBlock.STAGE) == 0) {
             iWorld.setBlockState(blockPos, blockState.cycle(UplandsSaplingBlock.STAGE), 4);
         } else {

@@ -1,6 +1,6 @@
 package robosky.uplands.item;
 
-import net.minecraft.advancement.criterion.Criterions;
+import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -17,7 +17,7 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.RayTraceContext;
+import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import robosky.uplands.block.BlockRegistry;
 
@@ -30,7 +30,7 @@ public class WaterChestnutItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
-        HitResult hitResult = Item.rayTrace(world, player, RayTraceContext.FluidHandling.SOURCE_ONLY);
+        HitResult hitResult = Item.raycast(world, player, RaycastContext.FluidHandling.SOURCE_ONLY);
 
         if (hitResult.getType() == HitResult.Type.MISS)
             return new TypedActionResult<>(ActionResult.PASS, itemStack);
@@ -50,7 +50,7 @@ public class WaterChestnutItem extends Item {
                 world.setBlockState(cropBlockPos, BlockRegistry.WATER_CHESTNUT_CROP_BLOCK.getDefaultState(), 11);
 
                 if (player instanceof ServerPlayerEntity)
-                    Criterions.PLACED_BLOCK.trigger((ServerPlayerEntity)player, cropBlockPos, itemStack);
+                    Criteria.PLACED_BLOCK.trigger((ServerPlayerEntity)player, cropBlockPos, itemStack);
 
                 if (!player.abilities.creativeMode)
                     itemStack.decrement(1);

@@ -13,15 +13,15 @@ import robosky.uplands.block.machine.RecipeRegistry;
 
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.ShapedRecipe;
-import net.minecraft.util.DefaultedList;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
-import net.minecraft.util.PacketByteBuf;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
 import net.fabricmc.api.EnvType;
@@ -47,8 +47,8 @@ public final class AegisaltRecipe implements Recipe<Inventory> {
 
     @Override
     public boolean matches(Inventory inv, World world) {
-        ItemStack one = inv.getInvStack(0);
-        ItemStack two = inv.getInvStack(1);
+        ItemStack one = inv.getStack(0);
+        ItemStack two = inv.getStack(1);
         return ingredientsMatch(one, two) || ingredientsMatch(two, one);
     }
 

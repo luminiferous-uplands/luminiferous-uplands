@@ -15,8 +15,7 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
-import net.minecraft.world.IWorld;
-
+import net.minecraft.world.WorldAccess;
 import java.util.List;
 import java.util.Random;
 
@@ -63,13 +62,13 @@ public class MinidungeonGenerator {
         private void initializeStructureData(StructureManager mgr) {
             Structure structure = mgr.getStructureOrBlank(template);
             StructurePlacementData placementData = (new StructurePlacementData()).setRotation(rotation)
-                    .setMirrored(BlockMirror.NONE).setPosition(new BlockPos(0, 0, 0))
+                    .setMirror(BlockMirror.NONE).setPosition(new BlockPos(0, 0, 0))
                     .addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS);
             this.setStructureData(structure, this.pos, placementData);
         }
 
         @Override
-        protected void handleMetadata(String dataName, BlockPos pos, IWorld world, Random rand,
+        protected void handleMetadata(String dataName, BlockPos pos, WorldAccess world, Random rand,
                                       BlockBox bbox) {
             if ("chest".equals(dataName)) {
                 world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
@@ -81,7 +80,7 @@ public class MinidungeonGenerator {
         }
 
         @Override
-        public boolean generate(IWorld world, ChunkGenerator<?> chunkGenerator, Random rand, BlockBox bbox, ChunkPos chunkPos) {
+        public boolean generate(WorldAccess world, ChunkGenerator<?> chunkGenerator, Random rand, BlockBox bbox, ChunkPos chunkPos) {
             int yHeight = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, this.pos.add(8, 0, 8)).getY();
 
             this.pos = this.pos.add(0, yHeight - 1, 0);

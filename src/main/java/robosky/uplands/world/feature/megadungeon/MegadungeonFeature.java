@@ -60,8 +60,8 @@ public final class MegadungeonFeature extends AbstractTempleFeature<DefaultFeatu
     @Override
     public boolean shouldStartAt(BiomeAccess access, ChunkGenerator<?> generator, Random rand, int x, int z, Biome biome) {
         ChunkPos cpos = this.getStart(generator, rand, x, z, 0, 0);
-        BlockPos center = cpos.getCenterBlockPos();
-        if (generator.getHeightOnGround(center.getX(), center.getZ(), Heightmap.Type.WORLD_SURFACE_WG) < 30) {
+        BlockPos center = cpos.getStartPos();
+        if (generator.getHeight(center.getX(), center.getZ(), Heightmap.Type.WORLD_SURFACE_WG) < 30) {
             return false;
         } else {
             return super.shouldStartAt(access, generator, rand, x, z, biome);
@@ -75,7 +75,7 @@ public final class MegadungeonFeature extends AbstractTempleFeature<DefaultFeatu
         }
 
         @Override
-        public void initialize(ChunkGenerator<?> generator, StructureManager manager, int x, int z, Biome biome) {
+        public void init(ChunkGenerator<?> generator, StructureManager manager, int x, int z, Biome biome) {
             BlockPos blockPos_1 = new BlockPos(x * 16, 90, z * 16);
             MegadungeonGenerator.addPieces(generator, manager, blockPos_1, this.children, this.random);
             this.setBoundingBoxFromChildren();

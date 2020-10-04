@@ -18,8 +18,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.IWorld;
-
+import net.minecraft.world.WorldAccess;
 import robosky.uplands.UplandsMod;
 
 public class MetadataCapableSinglePoolElement extends SinglePoolElement implements UplanderPoolElement {
@@ -56,7 +55,7 @@ public class MetadataCapableSinglePoolElement extends SinglePoolElement implemen
     // The if statement in this method is probably unneeded based on the implementations of the methods that call this,
     // but I included it for safety
     @Override
-    public void method_16756(IWorld world, Structure.StructureBlockInfo info, BlockPos pos, BlockRotation rotation,
+    public void method_16756(WorldAccess world, Structure.StructureBlockInfo info, BlockPos pos, BlockRotation rotation,
       Random rand, BlockBox bbox) {
         if (info.tag != null && StructureBlockMode.valueOf(info.tag.getString("mode")) == StructureBlockMode.DATA) {
             MegadungeonGenerator.handleMetadata(info.tag.getString("metadata"), info.pos, world, rand, bbox);
@@ -64,11 +63,11 @@ public class MetadataCapableSinglePoolElement extends SinglePoolElement implemen
     }
 
     @Override
-    protected StructurePlacementData method_16616(BlockRotation rot, BlockBox bbox) {
+    protected StructurePlacementData createPlacementData(BlockRotation rot, BlockBox bbox) {
       StructurePlacementData data = new StructurePlacementData();
       data.setBoundingBox(bbox);
       data.setRotation(rot);
-      data.method_15131(true);
+      data.setUpdateNeighbors(true);
       data.setIgnoreEntities(false);
       //      data.addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS)
       data.addProcessor(JigsawReplacementStructureProcessor.INSTANCE);

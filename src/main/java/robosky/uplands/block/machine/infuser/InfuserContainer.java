@@ -5,14 +5,13 @@ import io.github.cottonmc.cotton.gui.widget.WGridPanel;
 import io.github.cottonmc.cotton.gui.widget.WItemSlot;
 import io.github.cottonmc.cotton.gui.widget.WLabel;
 import robosky.uplands.block.machine.RecipeRegistry;
-
-import net.minecraft.container.BlockContext;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.text.TranslatableText;
 
 public class InfuserContainer extends CottonCraftingController {
 
-    public InfuserContainer(int syncId, PlayerInventory playerInventory, BlockContext ctx) {
+    public InfuserContainer(int syncId, PlayerInventory playerInventory, ScreenHandlerContext ctx) {
         super(RecipeRegistry.AEGISALT_INFUSION, syncId, playerInventory,
             CottonCraftingController.getBlockInventory(ctx), CottonCraftingController.getBlockPropertyDelegate(ctx));
         init();

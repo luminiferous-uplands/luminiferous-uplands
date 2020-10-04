@@ -13,7 +13,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
-import net.minecraft.command.arguments.BlockStateArgumentType;
+import net.minecraft.command.argument.BlockStateArgumentType;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructurePiece;
 import net.minecraft.structure.pool.StructurePool;
@@ -24,7 +24,7 @@ import net.minecraft.structure.pool.StructurePoolElement;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.WorldAccess;
 import net.minecraft.world.gen.ChunkRandom;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 
@@ -48,7 +48,7 @@ public final class MegadungeonGenerator {
 
     private static final BlockStateArgumentType blockStateParser = BlockStateArgumentType.blockState();
 
-    public static void handleMetadata(String str, BlockPos pos, IWorld world, Random rand, BlockBox bbox) {
+    public static void handleMetadata(String str, BlockPos pos, WorldAccess world, Random rand, BlockBox bbox) {
         String a, b;
         String[] parts = str.split(";");
         if (parts.length == 1) {

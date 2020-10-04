@@ -26,7 +26,7 @@ public class HexahaenRender extends MobEntityRenderer<HexahaenEntity, HexahaenMo
     @Override
     public void render(HexahaenEntity entity, float f1, float f2, MatrixStack matrix, VertexConsumerProvider provider, int var1) {
         // set shadow size to 87.5% of normal
-        this.shadowSize = 0.875f;
+        this.shadowRadius = 0.875f;
         super.render(entity, f1, f2, matrix, provider, var1);
     }
 

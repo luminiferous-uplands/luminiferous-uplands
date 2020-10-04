@@ -10,8 +10,8 @@ import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.structure.pool.StructurePoolElement;
 import net.minecraft.util.BlockRotation;
-import net.minecraft.util.BooleanBiFunction;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
@@ -22,7 +22,7 @@ import net.minecraft.world.Heightmap;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+import robosky.uplands.world.feature.megadungeon.MegadungeonPoolGenerator.Impl;
 import java.util.Deque;
 import java.util.List;
 import java.util.Optional;
@@ -68,11 +68,11 @@ public class MegadungeonPoolGenerator {
             StructurePoolElement element = pool.getRandomElement(random);
             BlockRotation rotation = (element instanceof UplanderPoolElement && ((UplanderPoolElement) element)
                     .disableRotation()) ? BlockRotation.NONE : BlockRotation.random(random);
-            PoolStructurePiece piece = pieceFactory.create(manager, element, pos, element.method_19308(), rotation,
+            PoolStructurePiece piece = pieceFactory.create(manager, element, pos, element.getGroundLevelDelta(), rotation,
                     element.getBoundingBox(manager, pos, rotation));
             int midX = (piece.getBoundingBox().maxX + piece.getBoundingBox().minX) / 2;
             int midZ = (piece.getBoundingBox().maxZ + piece.getBoundingBox().minZ) / 2;
-            int midY = generator.method_20402(midX, midZ, Heightmap.Type.WORLD_SURFACE_WG);
+            int midY = generator.getHeightOnGround(midX, midZ, Heightmap.Type.WORLD_SURFACE_WG);
             piece.translate(0, midY - (piece.getBoundingBox().minY + piece.getGroundLevelDelta()), 0);
             pieces.add(piece);
             // branch out from the starting piece (recursively)
@@ -155,10 +155,10 @@ public class MegadungeonPoolGenerator {
                                             return 0;
                                         } else {
                                             return Math.max(StructurePoolBasedGenerator.REGISTRY.get(new Identifier(info1.tag
-                                                            .getString("target_pool"))).method_19309(this.manager),
+                                                            .getString("target_pool"))).getHighestY(this.manager),
                                                     StructurePoolBasedGenerator.REGISTRY.get(StructurePoolBasedGenerator
                                                             .REGISTRY.get(new Identifier(info1.tag.getString("target_pool")))
-                                                            .getTerminatorsId()).method_19309(this.manager));
+                                                            .getTerminatorsId()).getHighestY(this.manager));
                                         }
                                     }).max().orElse(0);
 
@@ -188,7 +188,7 @@ public class MegadungeonPoolGenerator {
                                 y = connection.pos.getY();
                                 relativeY = info.pos.getY() - bbox.minY - y + info.state.get(JigsawBlock.FACING).getOffsetY();
                                 offsetY = bbox.minY + relativeY;
-                                bbox2 = bbox4.translated(0, offsetY - bbox4.minY, 0);
+                                bbox2 = bbox4.offset(0, offsetY - bbox4.minY, 0);
                                 pos = offset.add(0, offsetY - bbox4.minY, 0);
                                 if (maxElementHeight > 0) {
                                     height = Math.max(maxElementHeight + 1, bbox2.maxY - bbox2.minY);

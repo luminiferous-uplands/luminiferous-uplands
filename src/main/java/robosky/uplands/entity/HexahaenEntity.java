@@ -9,10 +9,9 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.World;
-
+import net.minecraft.world.WorldAccess;
 import javax.annotation.Nullable;
 
 public class HexahaenEntity extends HostileEntity {
@@ -28,9 +27,9 @@ public class HexahaenEntity extends HostileEntity {
     }
 
     @Override @Nullable
-    public EntityData initialize(IWorld world, LocalDifficulty difficulty, SpawnType spawnType, EntityData data, CompoundTag tag) {
+    public EntityData initialize(WorldAccess world, LocalDifficulty difficulty, SpawnReason spawnType, EntityData data, CompoundTag tag) {
         setStrength(this.random.nextInt(5) + 1);
-        this.setHealth(this.getMaximumHealth());
+        this.setHealth(this.getMaxHealth());
         super.initialize(world, difficulty, spawnType, data, tag);
         return data;
     }

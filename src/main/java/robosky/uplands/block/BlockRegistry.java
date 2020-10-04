@@ -47,8 +47,8 @@ public final class BlockRegistry {
 
 	// Uplander Organic Blocks
 	public static final Block UPLANDER_GRASS = registerWithItem("uplander_grass", new UplandsGrassBlock());
-	public static final Block UPLANDER_DIRT = registerWithItem("uplander_dirt", new Block(FabricBlockSettings.of(Material.EARTH).strength(0.5f, 0.5f).sounds(BlockSoundGroup.GRAVEL).build()));
-	public static final Block UPLANDER_FARMLAND = registerWithItem("uplander_farmland", new UplanderFarmlandBlock(FabricBlockSettings.of(Material.EARTH).strength(0.6f, 0.6f).sounds(BlockSoundGroup.GRAVEL).build()));
+	public static final Block UPLANDER_DIRT = registerWithItem("uplander_dirt", new Block(FabricBlockSettings.of(Material.SOIL).strength(0.5f, 0.5f).sounds(BlockSoundGroup.GRAVEL).build()));
+	public static final Block UPLANDER_FARMLAND = registerWithItem("uplander_farmland", new UplanderFarmlandBlock(FabricBlockSettings.of(Material.SOIL).strength(0.6f, 0.6f).sounds(BlockSoundGroup.GRAVEL).build()));
 	public static final Block TALL_UPLANDS_GRASS = registerWithItem("tall_uplands_grass", new TallUplandsGrassBlock(FabricBlockSettings.of(Material.REPLACEABLE_PLANT).breakInstantly().noCollision().sounds(BlockSoundGroup.GRASS).build()));
 
 	// Uplander stone-like blocks
@@ -88,7 +88,7 @@ public final class BlockRegistry {
 
 	// Skywood shrubs
 	public static final Block SKYROOT_SAPLING = registerWithItem("skyroot_sapling", new UplandsSaplingBlock(new UplandsSaplingGenerator.SkyrootSaplingGenerator(), FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).build()));
-	public static final Block POTTED_SKYROOT_SAPLING = register("potted_skyroot_sapling", new FlowerPotBlock(SKYROOT_SAPLING, FabricBlockSettings.of(Material.PART).breakInstantly().build()));
+	public static final Block POTTED_SKYROOT_SAPLING = register("potted_skyroot_sapling", new FlowerPotBlock(SKYROOT_SAPLING, FabricBlockSettings.of(Material.SUPPORTED).breakInstantly().build()));
 
 	public static final Block RED_SKYROOT_LEAVES = registerWithItem("red_skyroot_leaves", new LeavesBlock(SKYROOT_LEAVES_SETTINGS));
 	public static final Block ORANGE_SKYROOT_LEAVES = registerWithItem("orange_skyroot_leaves", new LeavesBlock(SKYROOT_LEAVES_SETTINGS));
@@ -96,24 +96,24 @@ public final class BlockRegistry {
 
 	// Flowers
 	public static final Block CLOUD_DAISIES = registerWithItem("cloud_daisies", new CloudDaisiesBlock(FLOWER_SETTINGS));
-	public static final Block POTTED_CLOUD_DAISIES = register("potted_cloud_daisies", new FlowerPotBlock(CLOUD_DAISIES, FabricBlockSettings.of(Material.PART).breakInstantly().build()));
+	public static final Block POTTED_CLOUD_DAISIES = register("potted_cloud_daisies", new FlowerPotBlock(CLOUD_DAISIES, FabricBlockSettings.of(Material.SUPPORTED).breakInstantly().build()));
 
 	// Crops
 	public static final Block ZEPHYR_ONION_CROP_BLOCK = register("zephyr_onion_crop", new ZephyrOnionBlock(FabricBlockSettings.of(Material.PLANT).breakInstantly().collidable(false).ticksRandomly().sounds(BlockSoundGroup.GRASS).build()));
 	public static final Block WATER_CHESTNUT_CROP_BLOCK = register("water_chestnut_crop", new WaterChestnutBlock(FabricBlockSettings.of(Material.PLANT).breakInstantly().noCollision().ticksRandomly().sounds(BlockSoundGroup.WET_GRASS).build()));
 
 	// Shrooms
-	public static final Block AZOTE_MUSHROOM = registerWithItem("azote_mushroom", new AzoteMushroomBlock(FabricBlockSettings.of(Material.ORGANIC).sounds(BlockSoundGroup.NETHER_WART).breakInstantly().collidable(false).ticksRandomly().build()));
-	public static final Block AWOKEN_AZOTE_MUSHROOM = registerWithItem("awoken_azote_mushroom", new AwokenAzoteMushroomBlock(FabricBlockSettings.of(Material.ORGANIC).sounds(BlockSoundGroup.NETHER_WART).breakInstantly().collidable(false).lightLevel(15).build()));
-	public static final Block POTTED_AZOTE_MUSHROOM = register("potted_azote_mushroom", new FlowerPotBlock(AZOTE_MUSHROOM, FabricBlockSettings.of(Material.PART).breakInstantly().build()));
-	public static final Block POTTED_AWOKEN_AZOTE_MUSHROOM = register("potted_awoken_azote_mushroom", new FlowerPotBlock(AWOKEN_AZOTE_MUSHROOM, FabricBlockSettings.of(Material.PART).lightLevel(15).breakInstantly().build()));
+	public static final Block AZOTE_MUSHROOM = registerWithItem("azote_mushroom", new AzoteMushroomBlock(FabricBlockSettings.of(Material.SOLID_ORGANIC).sounds(BlockSoundGroup.NETHER_WART).breakInstantly().collidable(false).ticksRandomly().build()));
+	public static final Block AWOKEN_AZOTE_MUSHROOM = registerWithItem("awoken_azote_mushroom", new AwokenAzoteMushroomBlock(FabricBlockSettings.of(Material.SOLID_ORGANIC).sounds(BlockSoundGroup.NETHER_WART).breakInstantly().collidable(false).lightLevel(15).build()));
+	public static final Block POTTED_AZOTE_MUSHROOM = register("potted_azote_mushroom", new FlowerPotBlock(AZOTE_MUSHROOM, FabricBlockSettings.of(Material.SUPPORTED).breakInstantly().build()));
+	public static final Block POTTED_AWOKEN_AZOTE_MUSHROOM = register("potted_awoken_azote_mushroom", new FlowerPotBlock(AWOKEN_AZOTE_MUSHROOM, FabricBlockSettings.of(Material.SUPPORTED).lightLevel(15).breakInstantly().build()));
 
 	// Boss blocks
 	public static final Block BOSS_CONTROL = registerWithItem("boss_control", new ControlBlock(), null);
 	public static final Block BOSS_DOORWAY = registerWithItem("boss_doorway", new DoorwayBlock(FabricBlockSettings.copy(BOSS_CONTROL).dynamicBounds().nonOpaque().build()), null);
 	static {
-		Registry.register(Registry.BLOCK_ENTITY, UplandsMod.id("boss_control"), ControlBlockEntity.TYPE);
-		Registry.register(Registry.BLOCK_ENTITY, UplandsMod.id("boss_doorway"), DoorwayBlockEntity.TYPE);
+		Registry.register(Registry.BLOCK_ENTITY_TYPE, UplandsMod.id("boss_control"), ControlBlockEntity.TYPE);
+		Registry.register(Registry.BLOCK_ENTITY_TYPE, UplandsMod.id("boss_doorway"), DoorwayBlockEntity.TYPE);
 	}
 
 	// Altars

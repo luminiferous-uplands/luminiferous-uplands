@@ -3,7 +3,7 @@ package robosky.uplands.world.feature.plants;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.WorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -19,7 +19,7 @@ public class WaterChestnutFeature extends Feature<DefaultFeatureConfig> {
         super(function_1);
     }
 
-    public boolean generate(IWorld iWorld_1, ChunkGenerator<? extends ChunkGeneratorConfig> chunkGenerator_1, Random random_1, BlockPos blockPos_1, DefaultFeatureConfig defaultFeatureConfig_1) {
+    public boolean generate(WorldAccess iWorld_1, ChunkGenerator<? extends ChunkGeneratorConfig> chunkGenerator_1, Random random_1, BlockPos blockPos_1, DefaultFeatureConfig defaultFeatureConfig_1) {
         BlockPos blockPos_3;
         for(BlockPos blockPos_2 = blockPos_1; blockPos_2.getY() > 0; blockPos_2 = blockPos_3) {
             blockPos_3 = blockPos_2.down();

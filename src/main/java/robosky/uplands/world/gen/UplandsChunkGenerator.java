@@ -4,17 +4,17 @@ import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.noise.OctavePerlinNoiseSampler;
 import net.minecraft.util.math.noise.PerlinNoiseSampler;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.WorldAccess;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeSource;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.gen.chunk.SurfaceChunkGenerator;
+import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
 import robosky.uplands.noise.OpenSimplexNoise;
 import robosky.uplands.world.biome.UplandsBiome;
 
 import java.util.Random;
 
-public class UplandsChunkGenerator extends SurfaceChunkGenerator<UplandsChunkGenConfig> {
+public class UplandsChunkGenerator extends NoiseChunkGenerator<UplandsChunkGenConfig> {
     private static final float[] BIOME_WEIGHT_TABLE = Util.make(new float[25], (fs) -> {
         for(int i = -2; i <= 2; ++i) {
             for(int j = -2; j <= 2; ++j) {
@@ -32,7 +32,7 @@ public class UplandsChunkGenerator extends SurfaceChunkGenerator<UplandsChunkGen
     private final OctavePerlinNoiseSampler upperInterpolationNoise;
     private final OctavePerlinNoiseSampler interpolationNoise;
 
-    public UplandsChunkGenerator(IWorld world, BiomeSource biomeSource) {
+    public UplandsChunkGenerator(WorldAccess world, BiomeSource biomeSource) {
         super(world, biomeSource, 8, 8, 256, new UplandsChunkGenConfig(), true);
         this.random.consume(2620);
         this.depthNoiseSampler = new OctavePerlinNoiseSampler(this.random, 15, 0);

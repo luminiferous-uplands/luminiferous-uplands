@@ -35,7 +35,7 @@ public class MinidungeonFeature extends StructureFeature<DefaultFeatureConfig> {
         }
 
         @Override
-        public void initialize(ChunkGenerator<?> generator, StructureManager mgr, int chunkX, int chunkZ, Biome biome) {
+        public void init(ChunkGenerator<?> generator, StructureManager mgr, int chunkX, int chunkZ, Biome biome) {
             int x = chunkX * 16;
             int z = chunkZ * 16;
             BlockPos startingPos = new BlockPos(x, 0, z);
