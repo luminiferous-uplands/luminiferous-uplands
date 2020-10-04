@@ -1,6 +1,9 @@
 package robosky.uplands.block;
 
-import com.google.common.collect.Lists;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tools.FabricToolTags;
 import net.minecraft.block.Block;
@@ -9,13 +12,9 @@ import net.minecraft.block.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
 
 public class UplandsOreBlock extends Block {
 
@@ -23,7 +22,7 @@ public class UplandsOreBlock extends Block {
     public static final OreTypeAegisalt oreTypeAegisalt = new OreTypeAegisalt();
     public static final Map<UplandsOreBlock.UplandsOreType, UplandsOreBlock> oreTypes;
 
-    static  {
+    static {
         Map<UplandsOreBlock.UplandsOreType, UplandsOreBlock> map = new HashMap<>();
         map.put(oreTypeAegisalt, new UplandsOreBlock(oreTypeAegisalt));
         oreTypes = map;
@@ -35,10 +34,10 @@ public class UplandsOreBlock extends Block {
     }
 
     @Override
-    public void onStacksDropped(BlockState blockState, World world, BlockPos blockPos, ItemStack itemStack) {
-        if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, itemStack) == 0) {
+    public void onStacksDropped(BlockState state, ServerWorld world, BlockPos blockPos, ItemStack itemStack) {
+        if(EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, itemStack) == 0) {
             int xp = this.getExperienceWhenMined(world.random);
-            if (xp > 0) {
+            if(xp > 0) {
                 this.dropExperience(world, blockPos, xp);
             }
         }

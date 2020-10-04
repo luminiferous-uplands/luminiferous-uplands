@@ -33,7 +33,7 @@ public final class MegadungeonGenerator {
     public MegadungeonGenerator() {
     }
 
-    public static void addPieces(ChunkGenerator<?> generator, StructureManager manager, BlockPos startPos, List<StructurePiece> pieces, ChunkRandom random) {
+    public static void addPieces(ChunkGenerator generator, StructureManager manager, BlockPos startPos, List<StructurePiece> pieces, ChunkRandom random) {
         PieceFactory pieceFactory = MegadungeonPiece::create;
         MegadungeonPoolGenerator.addPieces(UplandsMod.id("megadungeon/entrance"),
             32,

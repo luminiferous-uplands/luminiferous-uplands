@@ -1,7 +1,18 @@
 package robosky.uplands.entity;
 
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
+import org.jetbrains.annotations.Nullable;
+
+import net.minecraft.entity.EntityData;
+import net.minecraft.entity.EntityGroup;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.goal.FollowTargetGoal;
+import net.minecraft.entity.ai.goal.GoToWalkTargetGoal;
+import net.minecraft.entity.ai.goal.LookAroundGoal;
+import net.minecraft.entity.ai.goal.LookAtEntityGoal;
+import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.ai.goal.RevengeGoal;
+import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
@@ -10,9 +21,8 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.LocalDifficulty;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import javax.annotation.Nullable;
 
 public class HexahaenEntity extends HostileEntity {
 
@@ -26,18 +36,11 @@ public class HexahaenEntity extends HostileEntity {
         this(EntityRegistry.HEXAHAEN, world);
     }
 
-    @Override @Nullable
-    public EntityData initialize(WorldAccess world, LocalDifficulty difficulty, SpawnReason spawnType, EntityData data, CompoundTag tag) {
+    @Override
+    public @Nullable EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable CompoundTag entityTag) {
         setStrength(this.random.nextInt(5) + 1);
         this.setHealth(this.getMaxHealth());
-        super.initialize(world, difficulty, spawnType, data, tag);
-        return data;
-    }
-
-    @Override
-    protected void initAttributes() {
-        super.initAttributes();
-        this.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED).setBaseValue(0.23);
+        return super.initialize(world, difficulty, spawnReason, entityData, entityTag);
     }
 
     @Override
@@ -78,7 +81,7 @@ public class HexahaenEntity extends HostileEntity {
     private void setStrength(int value) {
         int strength;
 
-        if (value < 1)
+        if(value < 1)
             strength = 1;
         else
             strength = Math.min(value, 5);
@@ -94,14 +97,14 @@ public class HexahaenEntity extends HostileEntity {
         //         5.56, 10.25, 18.06, 29, 43.06 left handed
         float baseHealth = 4.0F;
         float leftHandedStrengthBonus;
-        if (this.isLeftHanded())
+        if(this.isLeftHanded())
             leftHandedStrengthBonus = 1.25F;
         else
             leftHandedStrengthBonus = 1.0F;
 
         float adjStrength = leftHandedStrengthBonus * this.dataTracker.get(HexahaenEntity.STRENGTH);
         float maxHealth = baseHealth + adjStrength * adjStrength;
-        this.getAttributeInstance(EntityAttributes.MAX_HEALTH).setBaseValue(maxHealth);
+        this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(maxHealth);
     }
 
     private void setDamageFromData() {
@@ -110,11 +113,11 @@ public class HexahaenEntity extends HostileEntity {
         float baseDamage = 2.0F;
         float damageCompressionFactor = 0.5F;
         float leftHandedDamageBonus;
-        if (this.isLeftHanded())
+        if(this.isLeftHanded())
             leftHandedDamageBonus = 1.5F;
         else
             leftHandedDamageBonus = 1.0F;
         float damage = baseDamage + this.dataTracker.get(STRENGTH) * damageCompressionFactor * leftHandedDamageBonus;
-        this.getAttributeInstance(EntityAttributes.ATTACK_DAMAGE).setBaseValue(damage);
+        this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE).setBaseValue(damage);
     }
 }

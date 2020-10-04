@@ -1,15 +1,19 @@
 package robosky.uplands.world.feature;
 
-import com.google.common.collect.ImmutableMap;
-import com.mojang.datafixers.Dynamic;
-import com.mojang.datafixers.types.DynamicOps;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.feature.FeatureConfig;
 
 public final class UplandsOreFeatureConfig implements FeatureConfig {
+
+    public static final Codec<UplandsOreFeatureConfig> CODEC = RecordCodecBuilder.create(inst -> inst.group(
+        Codec.INT.fieldOf("size").forGetter(c -> c.size),
+        Codec.INT.fieldOf("min").forGetter(c -> c.minHeight),
+        Codec.INT.fieldOf("max").forGetter(c -> c.maxHeight),
+        BlockState.CODEC.fieldOf("state").forGetter(c -> c.state)
+    ).apply(inst, UplandsOreFeatureConfig::new));
 
     private final int size;
     private final int minHeight;
@@ -21,14 +25,6 @@ public final class UplandsOreFeatureConfig implements FeatureConfig {
         this.minHeight = minHeight;
         this.maxHeight = maxHeight;
         this.state = state;
-    }
-
-    public static UplandsOreFeatureConfig deserialize(Dynamic<?> dyn) {
-        int size = dyn.get("size").asInt(0);
-        int min = dyn.get("min").asInt(0);
-        int max = dyn.get("max").asInt(0);
-        BlockState state = dyn.get("state").map(BlockState::deserialize).orElse(Blocks.AIR.getDefaultState());
-        return new UplandsOreFeatureConfig(size, min, max, state);
     }
 
     public int getSize() {
@@ -45,15 +41,5 @@ public final class UplandsOreFeatureConfig implements FeatureConfig {
 
     public BlockState getState() {
         return state;
-    }
-
-    @Override
-    public <T> Dynamic<T> serialize(DynamicOps<T> ops) {
-        return new Dynamic<>(ops, ops.createMap(ImmutableMap.of(
-            ops.createString("size"), ops.createInt(size),
-            ops.createString("min"), ops.createInt(minHeight),
-            ops.createString("max"), ops.createInt(maxHeight),
-            ops.createString("state"), BlockState.serialize(ops, state).getValue()
-        )));
     }
 }

@@ -23,8 +23,8 @@ import net.minecraft.util.shape.BitSetVoxelSet;
 import net.minecraft.util.shape.VoxelSet;
 import net.minecraft.world.ModifiableTestableWorld;
 import net.minecraft.world.ModifiableWorld;
+import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.TestableWorld;
-import net.minecraft.world.WorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureConfig;
@@ -98,7 +98,8 @@ public abstract class AbstractUplandsTree<T extends FeatureConfig> extends Featu
 
     }
 
-    public final boolean generate(WorldAccess iWorld_1, ChunkGenerator chunkGenerator_1, Random random_1, BlockPos blockPos_1, T featureConfig_1) {
+    @Override
+    public final boolean generate(StructureWorldAccess iWorld_1, ChunkGenerator chunkGenerator_1, Random random_1, BlockPos blockPos_1, T featureConfig_1) {
         Set<BlockPos> set_1 = Sets.newHashSet();
         BlockBox BlockBox_1 = BlockBox.empty();
         boolean boolean_1 = this.generate(set_1, iWorld_1, random_1, blockPos_1, BlockBox_1);

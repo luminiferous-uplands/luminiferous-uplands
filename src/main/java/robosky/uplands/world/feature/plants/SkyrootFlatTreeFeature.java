@@ -2,9 +2,8 @@ package robosky.uplands.world.feature.plants;
 
 import java.util.Random;
 import java.util.Set;
-import java.util.function.Function;
 
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import robosky.uplands.block.BlockRegistry;
 
 import net.minecraft.block.BlockState;
@@ -21,14 +20,14 @@ public class SkyrootFlatTreeFeature extends AbstractUplandsTree<DefaultFeatureCo
     private final BlockState wood;
     private BlockState leaves;
 
-    public SkyrootFlatTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> deserialize, boolean sapling) {
+    public SkyrootFlatTreeFeature(Codec<DefaultFeatureConfig> deserialize, boolean sapling) {
         this(deserialize,
             sapling,
             BlockRegistry.SKYROOT_LOG.getDefaultState(),
             BlockRegistry.SKYROOT_WOOD.getDefaultState());
     }
 
-    private SkyrootFlatTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> dezerialize, boolean sapling,
+    private SkyrootFlatTreeFeature(Codec<DefaultFeatureConfig> dezerialize, boolean sapling,
                                    BlockState log, BlockState wood) {
         super(dezerialize, sapling);
         this.height = 6;

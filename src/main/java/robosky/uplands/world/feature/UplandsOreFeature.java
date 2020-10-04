@@ -8,10 +8,10 @@ import robosky.uplands.block.BlockRegistry;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.Feature;
 
 public final class UplandsOreFeature extends Feature<UplandsOreFeatureConfig> {
@@ -19,7 +19,7 @@ public final class UplandsOreFeature extends Feature<UplandsOreFeatureConfig> {
     public static final UplandsOreFeature INSTANCE = new UplandsOreFeature();
 
     private UplandsOreFeature() {
-        super(UplandsOreFeatureConfig::deserialize);
+        super(UplandsOreFeatureConfig.CODEC);
     }
 
     Clump[] SPHERES = {
@@ -35,7 +35,7 @@ public final class UplandsOreFeature extends Feature<UplandsOreFeatureConfig> {
     };
 
     @Override
-    public boolean generate(WorldAccess world, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random rand, BlockPos pos, UplandsOreFeatureConfig config) {
+    public boolean generate(StructureWorldAccess world, ChunkGenerator generator, Random rand, BlockPos pos, UplandsOreFeatureConfig config) {
         Chunk toGenerateIn = world.getChunk(pos);
         int overbleed = 0;
         int radius = (int)Math.log(config.getSize()) + 1;

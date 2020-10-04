@@ -1,5 +1,7 @@
 package robosky.uplands.world.feature;
 
+import java.util.Random;
+
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.structure.SimpleStructurePiece;
 import net.minecraft.structure.Structure;
@@ -9,10 +11,9 @@ import net.minecraft.structure.processor.BlockIgnoreStructureProcessor;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.WorldAccess;
 import net.minecraft.util.math.BlockBox;
-import java.util.Random;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ServerWorldAccess;
 
 public class SpawnPlatformPiece extends SimpleStructurePiece {
     public SpawnPlatformPiece(StructureManager mgr, BlockPos pos) {
@@ -29,13 +30,13 @@ public class SpawnPlatformPiece extends SimpleStructurePiece {
     private void initializeStructureData(StructureManager structureManager_1) {
         Structure structure_1 = structureManager_1.getStructureOrBlank(new Identifier("luminiferous_uplands", "spawn_platform"));
         StructurePlacementData structurePlacementData_1 = (new StructurePlacementData()).setRotation(BlockRotation.NONE)
-                .setMirror(BlockMirror.NONE).setPosition(new BlockPos(0, 0, 0))
-                .addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS);
+            .setMirror(BlockMirror.NONE).setPosition(new BlockPos(0, 0, 0))
+            .addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS);
         this.setStructureData(structure_1, this.pos, structurePlacementData_1);
     }
 
     @Override
-    protected void handleMetadata(String var1, BlockPos var2, WorldAccess var3, Random var4, BlockBox var5) {
+    protected void handleMetadata(String metadata, BlockPos pos, ServerWorldAccess serverWorldAccess, Random random, BlockBox boundingBox) {
 
     }
 }

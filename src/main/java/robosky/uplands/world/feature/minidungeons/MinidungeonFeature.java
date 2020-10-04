@@ -55,7 +55,7 @@ public class MinidungeonFeature extends StructureFeature<DefaultFeatureConfig> {
     }
 
     @Override
-    public boolean shouldStartAt(BiomeAccess world, ChunkGenerator<?> generator, Random rand, int var4, int var5, Biome biome) {
+    public boolean shouldStartAt(BiomeAccess world, ChunkGenerator generator, Random rand, int var4, int var5, Biome biome) {
         return true;
     }
 

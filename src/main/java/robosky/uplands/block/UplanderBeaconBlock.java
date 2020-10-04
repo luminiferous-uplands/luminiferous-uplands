@@ -1,5 +1,9 @@
 package robosky.uplands.block;
 
+import java.util.Random;
+
+import robosky.uplands.iface.UplanderBeaconUser;
+
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
@@ -22,11 +26,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
 import net.minecraft.world.dimension.DimensionType;
-import robosky.uplands.iface.UplanderBeaconUser;
-
-import java.util.Random;
 
 public class UplanderBeaconBlock extends Block {
 
@@ -45,29 +45,28 @@ public class UplanderBeaconBlock extends Block {
 
     @Override
     public ActionResult onUse(BlockState blockState, World world, BlockPos blockPos, PlayerEntity player, Hand hand, BlockHitResult result) {
-        if (player.world.dimension.getType() == DimensionType.OVERWORLD) {
+        if(player.world.getDimension() == DimensionType.OVERWORLD) {
             ((UplanderBeaconUser)player).uplands_setUsingBeacon(true);
-        } else if (!world.isClient()) {
-            if (blockState.get(SMOKING)) {
+        } else if(!world.isClient()) {
+            if(blockState.get(SMOKING)) {
                 return ActionResult.FAIL;
             }
 
             world.setBlockState(blockPos, BlockRegistry.UPLANDER_BEACON.getDefaultState().with(SMOKING, true));
-            world.getBlockTickScheduler().schedule(blockPos, this, this.getTickRate(world));
+            world.getBlockTickScheduler().schedule(blockPos, this, this.getTickRate());
             world.playSound(player, blockPos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.3f, 0.6f);
         }
 
         return ActionResult.SUCCESS;
     }
 
-    @Override
-    public int getTickRate(WorldView worldView) {
+    public int getTickRate() {
         return 35;
     }
 
     @Override
     public void scheduledTick(BlockState blockState, ServerWorld serverWorld, BlockPos blockPos, Random random) {
-        if (blockState.get(SMOKING)) {
+        if(blockState.get(SMOKING)) {
             serverWorld.setBlockState(blockPos, blockState.with(SMOKING, false));
         }
     }
@@ -75,7 +74,7 @@ public class UplanderBeaconBlock extends Block {
     @Override
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState blockState, World world, BlockPos blockPos, Random random) {
-        if (blockState.get(SMOKING)) {
+        if(blockState.get(SMOKING)) {
             double baseX = blockPos.getX() + 0.5D;
             double baseY = blockPos.getY() + 0.9D;
             double baseZ = blockPos.getZ() + 0.5D;

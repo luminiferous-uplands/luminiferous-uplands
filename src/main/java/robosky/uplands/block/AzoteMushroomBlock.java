@@ -24,8 +24,8 @@ public class AzoteMushroomBlock extends MushroomPlantBlock {
     @Override
     public boolean canPathfindThrough(BlockState blockState, BlockView blockView, BlockPos blockPos, NavigationType environment) {
         BlockState blockBelow = blockView.getBlockState(blockPos.down());
-        return blockBelow.matches(UplandsBlockTags.PLANTABLE_ON) ||
-                blockBelow.matches(TagRegistry.block(new Identifier("luminiferous_uplands:azote_mushroom_spreadable")));
+        return blockBelow.isIn(UplandsBlockTags.PLANTABLE_ON) ||
+                blockBelow.isIn(TagRegistry.block(new Identifier("luminiferous_uplands:azote_mushroom_spreadable")));
     }
 
     @Override
@@ -64,7 +64,7 @@ public class AzoteMushroomBlock extends MushroomPlantBlock {
 
             // If this is a valid position, spawn there
             if (serverWorld.isAir(mushroomSpawnLocation)
-                    && serverWorld.getBlockState(mushroomSpawnLocation.down()).matches(UplandsBlockTags.AZOTE_MUSHROOM_SPREADABLE)) {
+                    && serverWorld.getBlockState(mushroomSpawnLocation.down()).isIn(UplandsBlockTags.AZOTE_MUSHROOM_SPREADABLE)) {
                 serverWorld.setBlockState(mushroomSpawnLocation, blockState, 2);
             }
         }

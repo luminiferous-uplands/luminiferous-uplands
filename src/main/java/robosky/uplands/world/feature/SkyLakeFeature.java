@@ -1,9 +1,8 @@
 package robosky.uplands.world.feature;
 
 import java.util.Random;
-import java.util.function.Function;
 
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import robosky.uplands.block.BlockRegistry;
 import robosky.uplands.block.UplandsBlockTags;
 
@@ -12,21 +11,21 @@ import net.minecraft.block.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.LightType;
-import net.minecraft.world.WorldAccess;
+import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.chunk.ChunkStatus;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.SingleStateFeatureConfig;
+import net.minecraft.world.gen.feature.StructureFeature;
 
 public class SkyLakeFeature extends Feature<SingleStateFeatureConfig> {
 
-    public SkyLakeFeature(Function<Dynamic<?>, ? extends SingleStateFeatureConfig> f) {
+    public SkyLakeFeature(Codec<SingleStateFeatureConfig> f) {
         super(f);
     }
 
     @Override
-    public boolean generate(WorldAccess world, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos st, SingleStateFeatureConfig config) {
+    public boolean generate(StructureWorldAccess world, ChunkGenerator generator, Random random, BlockPos st, SingleStateFeatureConfig config) {
         BlockPos start = st;
         while(start.getY() > 5 && world.isAir(start)) {
             start = start.down();
@@ -39,7 +38,7 @@ public class SkyLakeFeature extends Feature<SingleStateFeatureConfig> {
 
         ChunkPos chunkPos = new ChunkPos(start);
         if(!world.getChunk(chunkPos.x, chunkPos.z, ChunkStatus.STRUCTURE_REFERENCES)
-            .getStructureReferences(Feature.VILLAGE.getName())
+            .getStructureReferences(StructureFeature.VILLAGE)
             .isEmpty()) {
             return false;
         }

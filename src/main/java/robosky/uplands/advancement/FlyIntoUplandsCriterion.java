@@ -5,13 +5,14 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import robosky.uplands.UplandsMod;
 
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
 import net.minecraft.advancement.criterion.Criterion;
+import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
+import net.minecraft.predicate.entity.EntityPredicate;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
@@ -43,9 +44,9 @@ public final class FlyIntoUplandsCriterion implements Criterion<FlyIntoUplandsCr
         PlayerAdvancementTracker tracker,
         Criterion.ConditionsContainer<Conditions> conditions) {
         Handler handler = handlers.get(tracker);
-        if (handler != null) {
+        if(handler != null) {
             handler.conditions.remove(conditions);
-            if (handler.conditions.isEmpty()) {
+            if(handler.conditions.isEmpty()) {
                 handlers.remove(tracker);
             }
         }
@@ -57,13 +58,13 @@ public final class FlyIntoUplandsCriterion implements Criterion<FlyIntoUplandsCr
     }
 
     @Override
-    public Conditions conditionsFromJson(JsonObject json, JsonDeserializationContext ctx) {
+    public Conditions conditionsFromJson(JsonObject json, AdvancementEntityPredicateDeserializer ctx) {
         return Conditions.INSTANCE;
     }
 
     public void handle(ServerPlayerEntity player) {
         Handler handler = handlers.get(player.getAdvancementTracker());
-        if (handler != null) {
+        if(handler != null) {
             handler.handle();
         }
     }
@@ -73,7 +74,7 @@ public final class FlyIntoUplandsCriterion implements Criterion<FlyIntoUplandsCr
         public static final Conditions INSTANCE = new Conditions();
 
         public Conditions() {
-            super(ID);
+            super(ID, EntityPredicate.Extended.EMPTY);
         }
     }
 
@@ -88,7 +89,7 @@ public final class FlyIntoUplandsCriterion implements Criterion<FlyIntoUplandsCr
         }
 
         public void handle() {
-            for (Criterion.ConditionsContainer<Conditions> condition : conditions) {
+            for(Criterion.ConditionsContainer<Conditions> condition : conditions) {
                 condition.grant(manager);
             }
         }

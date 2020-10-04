@@ -1,19 +1,20 @@
 package robosky.uplands.block.machine.infuser;
 
-import io.github.cottonmc.cotton.gui.CottonCraftingController;
+import io.github.cottonmc.cotton.gui.SyncedGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.WGridPanel;
 import io.github.cottonmc.cotton.gui.widget.WItemSlot;
 import io.github.cottonmc.cotton.gui.widget.WLabel;
-import robosky.uplands.block.machine.RecipeRegistry;
+import robosky.uplands.block.machine.MachineRegistry;
+
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.text.TranslatableText;
 
-public class InfuserContainer extends CottonCraftingController {
+public class InfuserContainer extends SyncedGuiDescription {
 
     public InfuserContainer(int syncId, PlayerInventory playerInventory, ScreenHandlerContext ctx) {
-        super(RecipeRegistry.AEGISALT_INFUSION, syncId, playerInventory,
-            CottonCraftingController.getBlockInventory(ctx), CottonCraftingController.getBlockPropertyDelegate(ctx));
+        super(MachineRegistry.AEGISALT_INFUSER.gui, syncId, playerInventory,
+            SyncedGuiDescription.getBlockInventory(ctx), SyncedGuiDescription.getBlockPropertyDelegate(ctx));
         init();
     }
 
@@ -36,8 +37,7 @@ public class InfuserContainer extends CottonCraftingController {
         gridRoot.validate(this);
     }
 
-
-    @Override
+    @Deprecated
     public int getCraftingResultSlotIndex() {
         return -1;
     }

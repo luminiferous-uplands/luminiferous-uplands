@@ -1,18 +1,18 @@
 package robosky.uplands.world.feature.plants;
 
-import com.mojang.datafixers.Dynamic;
+import java.util.Random;
+import java.util.Set;
+
+import com.mojang.serialization.Codec;
+import robosky.uplands.block.BlockRegistry;
+
 import net.minecraft.block.BlockState;
+import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.BlockBox;
 import net.minecraft.world.ModifiableTestableWorld;
 import net.minecraft.world.TestableWorld;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import robosky.uplands.block.BlockRegistry;
-
-import java.util.Random;
-import java.util.Set;
-import java.util.function.Function;
 
 public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig> {
     private final int height;
@@ -20,14 +20,14 @@ public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig
     private final BlockState wood;
     private BlockState leaves;
 
-    public SkyrootTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> deserialize, boolean sapling) {
+    public SkyrootTreeFeature(Codec<DefaultFeatureConfig> deserialize, boolean sapling) {
         this(deserialize,
-                sapling,
-                BlockRegistry.SKYROOT_LOG.getDefaultState(),
-                BlockRegistry.SKYROOT_WOOD.getDefaultState());
+            sapling,
+            BlockRegistry.SKYROOT_LOG.getDefaultState(),
+            BlockRegistry.SKYROOT_WOOD.getDefaultState());
     }
 
-    private SkyrootTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> dezerialize, boolean sapling,
+    private SkyrootTreeFeature(Codec<DefaultFeatureConfig> dezerialize, boolean sapling,
                                BlockState log, BlockState wood) {
         super(dezerialize, sapling);
         this.height = 4;
@@ -35,14 +35,15 @@ public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig
         this.wood = wood;
     }
 
+    @Override
     public boolean generate(Set<BlockPos> set, ModifiableTestableWorld world, Random rand,
                             BlockPos startPos, BlockBox bbox) {
         // Leaves have to be obtained in generate because we need access to the RNG
         float randomLeaves = rand.nextFloat();
 
         // In order of rarity, leaf colors are: Orange, Red, Yellow
-        if (randomLeaves < 0.8f) {
-            if (randomLeaves > 0.45) {
+        if(randomLeaves < 0.8f) {
+            if(randomLeaves > 0.45) {
                 leaves = BlockRegistry.RED_SKYROOT_LEAVES.getDefaultState();
             } else {
                 leaves = BlockRegistry.ORANGE_SKYROOT_LEAVES.getDefaultState();
@@ -59,10 +60,10 @@ public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig
         // The number of mushrooms around the base, from 0 to 2
         int numberOfMushrooms;
         float randomMushrooms = rand.nextFloat();
-        if (randomMushrooms < 0.7) {
+        if(randomMushrooms < 0.7) {
             numberOfMushrooms = 0;
         } else {
-            if (randomMushrooms < 0.78) {
+            if(randomMushrooms < 0.78) {
                 numberOfMushrooms = 2;
             } else {
                 numberOfMushrooms = 1;
@@ -78,7 +79,7 @@ public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig
         // The direction the trunk will bend when the next segment begins.
         Direction[] segmentBendDirections = new Direction[numberOfSegments];
 
-        for (int i = 0; i <= numberOfSegments - 1; i++) {
+        for(int i = 0; i <= numberOfSegments - 1; i++) {
             int treeHeight = height + rand.nextInt(3);
 
             totalHeightOfTrunk += treeHeight;
@@ -86,7 +87,7 @@ public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig
             segmentBendDirections[i] = Direction.fromHorizontal(rand.nextInt(4));
 
             // Last segment needs to be taller to be sure there's enough room for the leaves.
-            if (i == numberOfSegments - 1) {
+            if(i == numberOfSegments - 1) {
                 totalHeightOfTrunk += 3;
                 segmentHeights[i] += 3;
             }
@@ -95,13 +96,13 @@ public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig
 
         // If the tree is too close to the sky limit, bail out.
         // +2 to account for the extra height of the leaves
-        if (startPos.getY() + totalHeightOfTrunk + 2 >= 256) {
+        if(startPos.getY() + totalHeightOfTrunk + 2 >= 256) {
             return false;
         }
 
         // If the spot directly below is grass, turn it to dirt.
         // Otherwise stop, or else trees can generate in the void.
-        if (isDirtOrGrass(world, startPos.down())) {
+        if(isDirtOrGrass(world, startPos.down())) {
             setToDirt(world, startPos.down());
         } else {
             return false;
@@ -111,12 +112,12 @@ public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig
         BlockPos currentPos = startPos;
 
         // mushrooms yo
-        for (int i = 0; i < numberOfMushrooms; i++) {
+        for(int i = 0; i < numberOfMushrooms; i++) {
             Direction mushroomPlacement = Direction.fromHorizontal(rand.nextInt());
             BlockPos mushroomLocation = currentPos.add(mushroomPlacement.getVector());
 
-            if (canPlaceBlock(world, mushroomLocation)) {
-                if (!canPlaceBlock(world, mushroomLocation.down())) {
+            if(canPlaceBlock(world, mushroomLocation)) {
+                if(!canPlaceBlock(world, mushroomLocation.down())) {
                     setBlockState(set, world, mushroomLocation, BlockRegistry.AZOTE_MUSHROOM.getDefaultState(), bbox);
                 }
             }
@@ -125,13 +126,13 @@ public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig
         //Start on the tree
 
         // For every segment,
-        for (int i = 0; i <= numberOfSegments - 1; i++) {
+        for(int i = 0; i <= numberOfSegments - 1; i++) {
 
             // For every block of that segment,
-            for (int j = 0; j < segmentHeights[i]; j++) {
+            for(int j = 0; j < segmentHeights[i]; j++) {
                 // Check if the block position is empty, quit if it's not.
                 // This is in case someone tries to grow a tree beneath a roof or something.
-                if (!canPlaceBlock(world, currentPos)) {
+                if(!canPlaceBlock(world, currentPos)) {
                     return true;
                 }
 
@@ -149,17 +150,17 @@ public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig
 
             // If that wasn't the last segment, add the bend direction too.
             // If this were done on the last segment, it'd cause the leaves to be placed incorrectly.
-            if (i != numberOfSegments - 1) {
+            if(i != numberOfSegments - 1) {
                 currentPos = currentPos.add(segmentBendDirections[i].getVector());
             }
         }
 
         int radius;
 
-        if (numberOfSegments == 1) {
+        if(numberOfSegments == 1) {
             radius = 3;
         } else {
-            if (numberOfSegments == 5) {
+            if(numberOfSegments == 5) {
                 radius = 6;
             } else {
                 radius = 4;
@@ -173,11 +174,11 @@ public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig
 
         for(int y = -radius; y <= radius; y++) {
             for(int x = -radius; x <= radius; x++) {
-                for (int z = -radius; z <= radius; z++) {
+                for(int z = -radius; z <= radius; z++) {
                     int squareDistance = (x * x) + (y * y) + (z * z);
 
-                    if (squareDistance <= radiusSquared) {
-                        if (isAirOrLeaves(world, currentPos.add(x, y, z))) {
+                    if(squareDistance <= radiusSquared) {
+                        if(isAirOrLeaves(world, currentPos.add(x, y, z))) {
                             setBlockState(set, world, currentPos.add(x, y, z), leaves, bbox);
                         }
                     }
@@ -189,7 +190,7 @@ public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig
     }
 
     private boolean canPlaceBlock(TestableWorld world, BlockPos blockPosition) {
-        if (!isAirOrLeaves(world, blockPosition)) {
+        if(!isAirOrLeaves(world, blockPosition)) {
             return false;
         }
 

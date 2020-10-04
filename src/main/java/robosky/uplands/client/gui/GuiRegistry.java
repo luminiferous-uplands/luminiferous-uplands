@@ -2,18 +2,14 @@ package robosky.uplands.client.gui;
 
 import java.util.function.BiFunction;
 
-import io.github.cottonmc.cotton.gui.CottonCraftingController;
+import io.github.cottonmc.cotton.gui.SyncedGuiDescription;
 import io.github.cottonmc.cotton.gui.client.CottonInventoryScreen;
 import robosky.uplands.block.machine.MachineRegistry;
 import robosky.uplands.block.machine.infuser.InfuserContainer;
 
+import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.screen.ScreenHandlerContext;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-
-import net.fabricmc.fabric.api.client.screen.ScreenProviderRegistry;
 
 // delete this class?
 class InfuserScreen extends CottonInventoryScreen<InfuserContainer> {
@@ -28,15 +24,10 @@ public final class GuiRegistry {
     private GuiRegistry() {
     }
 
-    private static <C extends CottonCraftingController> void registerGui(
+    private static <C extends SyncedGuiDescription> void registerGui(
         MachineRegistry.MachineEntry<? extends Block, ?, C> entry,
         BiFunction<C, PlayerEntity, CottonInventoryScreen<C>> screen) {
-        Identifier id = Registry.BLOCK.getId(entry.block);
-        MachineRegistry.MachineScreenFactory<C> ctrl = entry.gui;
-        assert ctrl != null : "null machine screen factory";
-        ScreenProviderRegistry.INSTANCE.registerFactory(id,
-            (syncId, unused, player, buf) ->
-                screen.apply(ctrl.create(syncId, player.inventory, ScreenHandlerContext.create(player.world, buf.readBlockPos())), player));
+        ScreenRegistry.<C, CottonInventoryScreen<C>>register(entry.gui, (handler, inventory, title) -> screen.apply(handler, inventory.player));
     }
 
     public static void init() {

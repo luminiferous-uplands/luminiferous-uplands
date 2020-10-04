@@ -14,7 +14,7 @@ import robosky.uplands.world.biome.UplandsBiome;
 
 import java.util.Random;
 
-public class UplandsChunkGenerator extends NoiseChunkGenerator<UplandsChunkGenConfig> {
+public class UplandsChunkGenerator extends NoiseChunkGenerator {
     private static final float[] BIOME_WEIGHT_TABLE = Util.make(new float[25], (fs) -> {
         for(int i = -2; i <= 2; ++i) {
             for(int j = -2; j <= 2; ++j) {

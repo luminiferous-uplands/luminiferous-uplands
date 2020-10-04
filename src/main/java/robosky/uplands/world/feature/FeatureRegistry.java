@@ -23,13 +23,13 @@ import net.minecraft.world.gen.feature.SingleStateFeatureConfig;
 
 public final class FeatureRegistry {
     public static final UplandsOreFeature ORE_FEATURE = register("oregen", UplandsOreFeature.INSTANCE);
-    public static final SkyrootTreeFeature SKYROOT_TREE = register("skyroot_tree", new SkyrootTreeFeature(DefaultFeatureConfig::deserialize, false));
-    public static final SkyrootFlatTreeFeature FLAT_SKYROOT_TREE = register("flat_skyroot_tree", new SkyrootFlatTreeFeature(DefaultFeatureConfig::deserialize, false));
-    public static final SkyLakeFeature SKY_LAKE = register("sky_lake", new SkyLakeFeature(SingleStateFeatureConfig::deserialize));
-    public static final WaterChestnutFeature WILD_WATER_CHESTNUTS = register("wild_water_chestnuts", new WaterChestnutFeature(DefaultFeatureConfig::deserialize));
-    public static final UplandFlowerFeature UPLAND_FLOWER = register("upland_flower", new UplandFlowerFeature(DefaultFeatureConfig::deserialize));
-    public static final ZephyrOnionFeature WILD_ZEPHYR_ONION = register("wild_zephyr_onion", new ZephyrOnionFeature(DefaultFeatureConfig::deserialize));
-    public static final TallUplandsGrassFeature TALL_UPLANDS_GRASS = register("tall_uplands_grass", new TallUplandsGrassFeature(RandomPatchFeatureConfig::deserialize));
+    public static final SkyrootTreeFeature SKYROOT_TREE = register("skyroot_tree", new SkyrootTreeFeature(DefaultFeatureConfig.CODEC, false));
+    public static final SkyrootFlatTreeFeature FLAT_SKYROOT_TREE = register("flat_skyroot_tree", new SkyrootFlatTreeFeature(DefaultFeatureConfig.CODEC, false));
+    public static final SkyLakeFeature SKY_LAKE = register("sky_lake", new SkyLakeFeature(SingleStateFeatureConfig.CODEC));
+    public static final WaterChestnutFeature WILD_WATER_CHESTNUTS = register("wild_water_chestnuts", new WaterChestnutFeature(DefaultFeatureConfig.CODEC));
+    public static final UplandFlowerFeature UPLAND_FLOWER = register("upland_flower", new UplandFlowerFeature(DefaultFeatureConfig.CODEC));
+    public static final ZephyrOnionFeature WILD_ZEPHYR_ONION = register("wild_zephyr_onion", new ZephyrOnionFeature(DefaultFeatureConfig.CODEC));
+    public static final TallUplandsGrassFeature TALL_UPLANDS_GRASS = register("tall_uplands_grass", new TallUplandsGrassFeature(RandomPatchFeatureConfig.CODEC));
 
     public static final MinidungeonFeature TREEHOUSE = new MinidungeonFeature(
         new MinidungeonFeatureConfig("Uplands Treehouse",

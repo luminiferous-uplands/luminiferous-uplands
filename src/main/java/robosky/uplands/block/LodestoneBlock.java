@@ -83,7 +83,7 @@ public class LodestoneBlock extends Block {
             } else {
                 if (neighbor.getBlock() == this) {
                     tmp = neighbor.get(DISTANCE) + 1;
-                } else if (neighbor.isFullOpaque(world, pos.offset(dir))) {
+                } else if (neighbor.isOpaqueFullCube(world, pos.offset(dir))) {
                     tmp = 1;
                 } else {
                     tmp = MAX_DISTANCE;

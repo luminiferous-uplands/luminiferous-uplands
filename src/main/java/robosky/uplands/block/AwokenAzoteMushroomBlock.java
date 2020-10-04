@@ -24,6 +24,6 @@ public class AwokenAzoteMushroomBlock extends PlantBlock {
 
     @Override
     protected boolean canPlantOnTop(BlockState blockState, BlockView blockView, BlockPos blockPos) {
-        return blockState.matches(UplandsBlockTags.PLANTABLE_ON) || blockState.matches(UplandsBlockTags.AZOTE_MUSHROOM_SPREADABLE);
+        return blockState.isIn(UplandsBlockTags.PLANTABLE_ON) || blockState.isIn(UplandsBlockTags.AZOTE_MUSHROOM_SPREADABLE);
     }
 }

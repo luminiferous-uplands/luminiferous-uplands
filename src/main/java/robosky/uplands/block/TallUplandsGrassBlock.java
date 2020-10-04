@@ -13,6 +13,6 @@ public class TallUplandsGrassBlock extends FernBlock {
 
     @Override
     protected boolean canPlantOnTop(BlockState blockState, BlockView blockView, BlockPos blockPos) {
-        return blockState.matches(UplandsBlockTags.PLANTABLE_ON);
+        return blockState.isIn(UplandsBlockTags.PLANTABLE_ON);
     }
 }
