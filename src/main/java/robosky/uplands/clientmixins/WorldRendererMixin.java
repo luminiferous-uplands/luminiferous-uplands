@@ -35,9 +35,10 @@ public abstract class WorldRendererMixin {
         )
     )
     private float modifySunMoonAlpha(float alpha) {
-        if (this.client.world.dimension.getType() == WorldRegistry.UPLANDS_DIMENSION) {
-            alpha = 0.0f;
-        }
+        // todo
+//        if (this.client.world.dimension.getType() == WorldRegistry.UPLANDS_DIMENSION) {
+//            alpha = 0.0f;
+//        }
         return alpha;
     }
 }

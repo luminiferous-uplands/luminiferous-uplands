@@ -1,27 +1,38 @@
 package robosky.uplands.world.gen;
 
-import com.google.common.collect.ImmutableSet;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.noise.PerlinNoiseSampler;
-import net.minecraft.util.math.noise.SimplexNoiseSampler;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.source.BiomeLayerSampler;
-import net.minecraft.world.biome.source.BiomeSource;
+import com.google.common.collect.ImmutableList;
+import com.mojang.serialization.Codec;
 import robosky.uplands.world.biome.BiomeRegistry;
 import robosky.uplands.world.layer.UplandsLayers;
 
-import java.util.Random;
-import java.util.Set;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.source.BiomeLayerSampler;
+import net.minecraft.world.biome.source.BiomeSource;
 
 public class UplandsBiomeSource extends BiomeSource {
+
     private final BiomeLayerSampler biomeSampler;
-    public UplandsBiomeSource(long seed) {
-        super(ImmutableSet.of(BiomeRegistry.UPLANDS_AUTUMN_BIOME));
+    private final Registry<Biome> registry;
+
+    public UplandsBiomeSource(long seed, Registry<Biome> registry) {
+        super(ImmutableList.of(registry.get(BiomeRegistry.UPLANDS_AUTUMN)));
         biomeSampler = UplandsLayers.build(seed);
+        this.registry = registry;
     }
 
     @Override
     public Biome getBiomeForNoiseGen(int x, int y, int z) {
-        return biomeSampler.sample(x, z);
+        return biomeSampler.sample(this.registry, x, z);
+    }
+
+    @Override
+    protected Codec<? extends BiomeSource> getCodec() {
+        throw new UnsupportedOperationException("getCodec");
+    }
+
+    @Override
+    public BiomeSource withSeed(long seed) {
+        return new UplandsBiomeSource(seed, this.registry);
     }
 }

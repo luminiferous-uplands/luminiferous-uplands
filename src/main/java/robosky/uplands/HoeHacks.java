@@ -9,7 +9,7 @@ import net.minecraft.item.ToolMaterials;
 public final class HoeHacks extends HoeItem {
 
     private HoeHacks() {
-        super(ToolMaterials.WOOD, 0f, new Item.Settings());
+        super(ToolMaterials.WOOD, 0, 1.0f, new Item.Settings());
     }
 
     public static void addHoeable(Block source, BlockState tgt) {

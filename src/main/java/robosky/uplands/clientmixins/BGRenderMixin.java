@@ -1,13 +1,12 @@
 package robosky.uplands.clientmixins;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.BackgroundRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import robosky.uplands.world.WorldRegistry;
+
+import net.minecraft.client.render.BackgroundRenderer;
 
 @Mixin(BackgroundRenderer.class)
 public class BGRenderMixin {
@@ -18,9 +17,10 @@ public class BGRenderMixin {
         ordinal = 0
     )
     private static double modifyVoidColor(double scale) {
-        if (MinecraftClient.getInstance().world.dimension.getType() == WorldRegistry.UPLANDS_DIMENSION) {
-            scale = 1.0;
-        }
+        // todo
+//        if (MinecraftClient.getInstance().world.dimension.getType() == WorldRegistry.UPLANDS_DIMENSION) {
+//            scale = 1.0;
+//        }
         return scale;
     }
 

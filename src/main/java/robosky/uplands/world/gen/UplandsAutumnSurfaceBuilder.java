@@ -11,16 +11,17 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilder.SurfaceConfig;
+import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig;
 
-public class UplandsAutumnSurfaceBuilder extends SurfaceBuilder<SurfaceConfig> {
+public class UplandsAutumnSurfaceBuilder extends SurfaceBuilder<TernarySurfaceConfig> {
 
     public UplandsAutumnSurfaceBuilder() {
-        super(null);
+        super(TernarySurfaceConfig.CODEC);
     }
 
     @Override
     public void generate(Random rand, Chunk chunk, Biome biome, int absX, int absZ, int startHeight, double noise,
-                         BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, SurfaceConfig config) {
+                         BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, TernarySurfaceConfig config) {
         BlockState topBlock = BlockRegistry.UPLANDER_GRASS.getDefaultState();
         BlockState underBlock = BlockRegistry.UPLANDER_DIRT.getDefaultState();
         BlockPos.Mutable pos = new BlockPos.Mutable();

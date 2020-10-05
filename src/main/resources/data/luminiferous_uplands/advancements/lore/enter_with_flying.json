@@ -17,7 +17,7 @@
   },
   "criteria": {
     "fly_into_uplands": {
-      "trigger": "$modid:fly_into_uplands"
+      "trigger": "minecraft:impossible"
     }
   },
   "requirements": [

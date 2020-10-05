@@ -1,22 +1,19 @@
 package robosky.uplands.mixin;
 
-import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import robosky.uplands.TickableItem;
-import robosky.uplands.UplandsTeleporter;
 import robosky.uplands.iface.UplanderBeaconUser;
-import robosky.uplands.world.WorldRegistry;
+
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.Hand;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerMixin extends LivingEntity implements UplanderBeaconUser {
@@ -39,7 +36,7 @@ public abstract class PlayerMixin extends LivingEntity implements UplanderBeacon
     @Override
     public void uplands_setUsingBeacon(boolean using) {
         usingBeacon = using;
-        if (using) {
+        if(using) {
             Vec3d vel = this.getVelocity();
             this.setVelocity(vel.x, VERTICAL_SPEED, vel.z);
         }
@@ -47,32 +44,32 @@ public abstract class PlayerMixin extends LivingEntity implements UplanderBeacon
 
     @SuppressWarnings("ConstantConditions")
     @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;updateTurtleHelmet()V"),
-            method = "tick")
+        method = "tick")
     private void updateParachute(CallbackInfo info) {
-        if (getMainHandStack().getItem() instanceof TickableItem) {
-            ((TickableItem) getMainHandStack().getItem()).tick((PlayerEntity) (Object) this, getMainHandStack(), Hand.MAIN_HAND);
+        if(getMainHandStack().getItem() instanceof TickableItem) {
+            ((TickableItem)getMainHandStack().getItem()).tick((PlayerEntity)(Object)this, getMainHandStack(), Hand.MAIN_HAND);
         }
-        if (getOffHandStack().getItem() instanceof TickableItem) {
-            ((TickableItem) getOffHandStack().getItem()).tick((PlayerEntity) (Object) this, getOffHandStack(), Hand.OFF_HAND);
+        if(getOffHandStack().getItem() instanceof TickableItem) {
+            ((TickableItem)getOffHandStack().getItem()).tick((PlayerEntity)(Object)this, getOffHandStack(), Hand.OFF_HAND);
         }
     }
 
     @Inject(method = "tickMovement", at = @At("TAIL"))
     private void onTickMovement(CallbackInfo info) {
-        if (!world.isClient) {
-            if (this.dimension == WorldRegistry.UPLANDS_DIMENSION && this.getY() <= -60) {
-                FabricDimensions.teleport(this, DimensionType.OVERWORLD, UplandsTeleporter.FROM_UPLANDS);
-            } else if (this.dimension == DimensionType.OVERWORLD && this.getY() >= 300.0) {
-                if (uplands_isUsingBeacon()) {
-                    FabricDimensions.teleport(this, WorldRegistry.UPLANDS_DIMENSION, UplandsTeleporter.TO_UPLANDS_BEACON);
-                } else {
-                    FabricDimensions.teleport(this, WorldRegistry.UPLANDS_DIMENSION, UplandsTeleporter.TO_UPLANDS_FLYING);
-                }
-            }
-        }
-        if (uplands_isUsingBeacon()) {
+//        if (!world.isClient) {
+//            if (this.dimension == WorldRegistry.UPLANDS_DIMENSION && this.getY() <= -60) {
+//                FabricDimensions.teleport(this, DimensionType.OVERWORLD, UplandsTeleporter.FROM_UPLANDS);
+//            } else if (this.dimension == DimensionType.OVERWORLD && this.getY() >= 300.0) {
+//                if (uplands_isUsingBeacon()) {
+//                    FabricDimensions.teleport(this, WorldRegistry.UPLANDS_DIMENSION, UplandsTeleporter.TO_UPLANDS_BEACON);
+//                } else {
+//                    FabricDimensions.teleport(this, WorldRegistry.UPLANDS_DIMENSION, UplandsTeleporter.TO_UPLANDS_FLYING);
+//                }
+//            }
+//        }
+        if(uplands_isUsingBeacon()) {
             Vec3d vel = this.getVelocity();
-            if (vel.y < 0.1) {
+            if(vel.y < 0.1) {
                 uplands_setUsingBeacon(false);
             } else {
                 this.setVelocity(vel.x, VERTICAL_SPEED, vel.z);

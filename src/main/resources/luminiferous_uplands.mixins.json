@@ -7,9 +7,9 @@
     "CriterionsMixin",
     "EntityContextImplMixin",
     "FluidBlockMixin",
-    "LocateCommandMixin",
     "PlayerMixin",
-    "WorldMixin"
+    "WorldMixin",
+    "ChunkGeneratorAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

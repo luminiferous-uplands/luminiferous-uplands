@@ -42,9 +42,10 @@ public abstract class FluidRendererMixin {
                 adjustedFall -= blockState.get(UplandsWaterBlock.FALL);
             }
             // fade out into the void as well
-            if (MinecraftClient.getInstance().world.getDimension().getType() == WorldRegistry.UPLANDS_DIMENSION) {
-                adjustedFall = Math.min(adjustedFall, pos.getY());
-            }
+            // todo
+//            if (MinecraftClient.getInstance().world.getDimension() == WorldRegistry.UPLANDS_DIMENSION) {
+//                adjustedFall = Math.min(adjustedFall, pos.getY());
+//            }
             if (adjustedFall < FADE_LENGTH) {
                 alpha = (adjustedFall + 1) / (float)FADE_LENGTH;
             }

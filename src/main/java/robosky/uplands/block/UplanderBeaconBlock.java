@@ -45,17 +45,18 @@ public class UplanderBeaconBlock extends Block {
 
     @Override
     public ActionResult onUse(BlockState blockState, World world, BlockPos blockPos, PlayerEntity player, Hand hand, BlockHitResult result) {
-        if(player.world.getDimension() == DimensionType.OVERWORLD) {
-            ((UplanderBeaconUser)player).uplands_setUsingBeacon(true);
-        } else if(!world.isClient()) {
-            if(blockState.get(SMOKING)) {
-                return ActionResult.FAIL;
-            }
-
-            world.setBlockState(blockPos, BlockRegistry.UPLANDER_BEACON.getDefaultState().with(SMOKING, true));
-            world.getBlockTickScheduler().schedule(blockPos, this, this.getTickRate());
-            world.playSound(player, blockPos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.3f, 0.6f);
-        }
+        // todo
+//        if(player.world.getDimension() == DimensionType.OVERWORLD) {
+//            ((UplanderBeaconUser)player).uplands_setUsingBeacon(true);
+//        } else if(!world.isClient()) {
+//            if(blockState.get(SMOKING)) {
+//                return ActionResult.FAIL;
+//            }
+//
+//            world.setBlockState(blockPos, BlockRegistry.UPLANDER_BEACON.getDefaultState().with(SMOKING, true));
+//            world.getBlockTickScheduler().schedule(blockPos, this, this.getTickRate());
+//            world.playSound(player, blockPos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.3f, 0.6f);
+//        }
 
         return ActionResult.SUCCESS;
     }

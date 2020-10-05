@@ -6,9 +6,11 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.FluidState;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.spongepowered.asm.mixin.Mixin;
@@ -44,7 +46,7 @@ public abstract class FluidBlockMixin extends Block {
 
     @Inject(method = "onBlockAdded", at = @At("RETURN"))
     private void updateUplandsStateOnAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean idk, CallbackInfo info) {
-        if (world.getDimension().getType() == WorldRegistry.UPLANDS_DIMENSION &&
+        if (world.getRegistryManager().get(Registry.DIMENSION).getKey(world).get() == WorldRegistry.UPLANDS_WORLD_KEY &&
                 !state.getFluidState().isStill() && state.getBlock() == Blocks.WATER) {
             int fall = getUplandsFall(state, world, pos);
             if (fall > UplandsWaterBlock.MAX_FALL) {
@@ -58,7 +60,7 @@ public abstract class FluidBlockMixin extends Block {
 
     @Inject(method = "getStateForNeighborUpdate", at = @At("RETURN"), cancellable = true)
     private void updateUplandsState(BlockState state, Direction dir, BlockState neighbor, WorldAccess world, BlockPos pos, BlockPos neighborPos, CallbackInfoReturnable<BlockState> info) {
-        if (world.getDimension().getType() == WorldRegistry.UPLANDS_DIMENSION) {
+        if (world.getRegistryManager().get(Registry.DIMENSION).getKey((World)world).get() == WorldRegistry.UPLANDS_WORLD_KEY) {
             state = info.getReturnValue();
             if (!state.getFluidState().isStill() && state.getBlock() == Blocks.WATER) {
                 int fall = getUplandsFall(state, world, pos);

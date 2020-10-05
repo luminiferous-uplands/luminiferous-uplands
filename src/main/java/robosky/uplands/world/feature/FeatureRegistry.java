@@ -3,9 +3,6 @@ package robosky.uplands.world.feature;
 import java.util.Optional;
 
 import robosky.uplands.UplandsMod;
-import robosky.uplands.world.feature.megadungeon.MegadungeonFeature;
-import robosky.uplands.world.feature.megadungeon.MegadungeonGenerator;
-import robosky.uplands.world.feature.minidungeons.MinidungeonFeature;
 import robosky.uplands.world.feature.minidungeons.MinidungeonFeatureConfig;
 import robosky.uplands.world.feature.plants.SkyrootFlatTreeFeature;
 import robosky.uplands.world.feature.plants.SkyrootTreeFeature;
@@ -31,11 +28,11 @@ public final class FeatureRegistry {
     public static final ZephyrOnionFeature WILD_ZEPHYR_ONION = register("wild_zephyr_onion", new ZephyrOnionFeature(DefaultFeatureConfig.CODEC));
     public static final TallUplandsGrassFeature TALL_UPLANDS_GRASS = register("tall_uplands_grass", new TallUplandsGrassFeature(RandomPatchFeatureConfig.CODEC));
 
-    public static final MinidungeonFeature TREEHOUSE = new MinidungeonFeature(
-        new MinidungeonFeatureConfig("Uplands Treehouse",
-            UplandsMod.id("minidungeons/treehouse"),
-            Optional.of(UplandsMod.id("chests/minidungeons/treehouse")))
-    ).register("treehouse");
+//    public static final MinidungeonFeature TREEHOUSE = new MinidungeonFeature(
+//        new MinidungeonFeatureConfig("Uplands Treehouse",
+//            UplandsMod.id("minidungeons/treehouse"),
+//            Optional.of(UplandsMod.id("chests/minidungeons/treehouse")))
+//    ).register("treehouse");
 
     public static final StructurePieceType SPAWN_PLATFORM = Registry.register(Registry.STRUCTURE_PIECE, UplandsMod.id("spawn_platform"), SpawnPlatformPiece::new);
 
@@ -44,7 +41,7 @@ public final class FeatureRegistry {
     }
 
     public static void init() {
-        MegadungeonFeature.register();
-        MegadungeonGenerator.initialize();
+//        MegadungeonFeature.register();
+//        MegadungeonGenerator.initialize();
     }
 }
