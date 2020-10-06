@@ -11,6 +11,7 @@ import robosky.uplands.world.feature.FeatureRegistry;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.minecraft.class_5423;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
@@ -36,5 +37,9 @@ public class UplandsMod implements ModInitializer {
 
     public static Identifier id(String name) {
         return new Identifier("luminiferous_uplands", name);
+    }
+
+    public static boolean isUplandsDimensionType(class_5423 world) {
+        return world.getRegistryManager().getDimensionTypes().get(WorldRegistry.UPLANDS_DIMENSION_TYPE_KEY) == world.getDimension();
     }
 }
