@@ -12,7 +12,11 @@
     "WorldMixin"
   ],
   "client": [
-    "AngleRandomizerAccessor"
+    "client.AngleRandomizerAccessor",
+    "client.BGRenderMixin",
+    "client.CompassItemPropertyGetterMixin",
+    "client.FluidRendererMixin",
+    "client.WorldRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

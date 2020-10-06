@@ -1,4 +1,4 @@
-package robosky.uplands.clientmixins;
+package robosky.uplands.mixin.client;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -7,10 +7,13 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import robosky.uplands.UplandsMod;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.BackgroundRenderer;
 import net.minecraft.client.world.ClientWorld;
 
+@Environment(EnvType.CLIENT)
 @Mixin(BackgroundRenderer.class)
 public class BGRenderMixin {
 

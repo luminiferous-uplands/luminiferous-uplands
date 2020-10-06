@@ -1,4 +1,4 @@
-package robosky.uplands.clientmixins;
+package robosky.uplands.mixin.client;
 
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import robosky.uplands.block.BlockRegistry;
-import robosky.uplands.mixin.AngleRandomizerAccessor;
+import robosky.uplands.mixin.client.AngleRandomizerAccessor;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -21,8 +21,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
-@Mixin(targets = "net.minecraft.client.item.ModelPredicateProviderRegistry$2")
 @Environment(EnvType.CLIENT)
+@Mixin(targets = "net.minecraft.client.item.ModelPredicateProviderRegistry$2")
 public abstract class CompassItemPropertyGetterMixin {
 
     @Unique

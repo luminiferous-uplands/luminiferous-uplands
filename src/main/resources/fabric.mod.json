@@ -25,11 +25,7 @@
     ]
   },
   "mixins": [
-    "luminiferous_uplands.mixins.json",
-    {
-      "config": "luminiferous_uplands.client-mixins.json",
-      "environment": "client"
-    }
+    "luminiferous_uplands.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.4.0",

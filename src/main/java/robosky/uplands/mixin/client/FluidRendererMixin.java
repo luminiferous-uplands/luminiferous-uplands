@@ -1,4 +1,4 @@
-package robosky.uplands.clientmixins;
+package robosky.uplands.mixin.client;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -22,8 +22,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockRenderView;
 import net.minecraft.world.World;
 
-@Mixin(FluidRenderer.class)
 @Environment(EnvType.CLIENT)
+@Mixin(FluidRenderer.class)
 public abstract class FluidRendererMixin {
 
     @Unique
