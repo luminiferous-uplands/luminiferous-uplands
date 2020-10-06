@@ -22,9 +22,14 @@
     [],
     [],
     [],
+    [
+      "$modid:decorated/lodestone_ore",
+      "$modid:decorated/aegisalt_ore"
+    ],
     [],
-    [],
-    ["$modid:autumn_skyroot_tree"],
+    [
+      "$modid:decorated/autumn_skyroot_tree"
+    ],
     []
   ],
   "starts": [],

@@ -6,6 +6,14 @@
       "type": "minecraft:decorated",
       "config": {
         "outer": {
+          "type": "minecraft:count_extra",
+          "config": {
+            "count": 2,
+            "extra_chance": 0.1,
+            "extra_count": 1
+          }
+        },
+        "inner": {
           "type": "minecraft:decorated",
           "config": {
             "outer": {
@@ -16,14 +24,6 @@
               "type": "minecraft:heightmap",
               "config": {}
             }
-          }
-        },
-        "inner": {
-          "type": "minecraft:count_extra",
-          "config": {
-            "count": 2,
-            "extra_chance": 0.1,
-            "extra_count": 1
           }
         }
       }

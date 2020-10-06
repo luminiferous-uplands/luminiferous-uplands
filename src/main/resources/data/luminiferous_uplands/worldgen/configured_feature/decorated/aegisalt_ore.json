@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:decorated",
+  "config": {
+    "feature": "$modid:aegisalt_ore",
+    "decorator": {
+      "type": "minecraft:decorated",
+      "config": {
+        "outer": {
+          "type": "minecraft:count_extra",
+          "config": {
+            "count": 6,
+            "extra_chance": 0.2,
+            "extra_count": 2
+          }
+        },
+        "inner": {
+          "type": "minecraft:decorated",
+          "config": {
+            "outer": {
+              "type": "minecraft:range",
+              "config": {
+                "bottom_offset": 0,
+                "top_offset": 0,
+                "maximum": 128
+              }
+            },
+            "inner": {
+              "type": "minecraft:square",
+              "config": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
