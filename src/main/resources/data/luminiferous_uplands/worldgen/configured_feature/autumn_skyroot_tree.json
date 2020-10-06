@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:decorated",
+  "config": {
+    "feature": "$modid:skyroot_tree",
+    "decorator": {
+      "type": "minecraft:decorated",
+      "config": {
+        "outer": {
+          "type": "minecraft:decorated",
+          "config": {
+            "outer": {
+              "type": "minecraft:square",
+              "config": {}
+            },
+            "inner": {
+              "type": "minecraft:heightmap",
+              "config": {}
+            }
+          }
+        },
+        "inner": {
+          "type": "minecraft:count_extra",
+          "config": {
+            "count": 2,
+            "extra_chance": 0.1,
+            "extra_count": 1
+          }
+        }
+      }
+    }
+  }
+}
