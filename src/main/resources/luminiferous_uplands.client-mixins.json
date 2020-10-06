@@ -3,6 +3,7 @@
   "package": "robosky.uplands.clientmixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "CompassItemPropertyGetterMixin",
     "FluidRendererMixin",
     "WorldRendererMixin",
     "BGRenderMixin"

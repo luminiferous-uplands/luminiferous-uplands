@@ -4,12 +4,15 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "BaseFluidMixin",
+    "ChunkGeneratorAccessor",
     "CriterionsMixin",
     "EntityContextImplMixin",
     "FluidBlockMixin",
     "PlayerMixin",
-    "WorldMixin",
-    "ChunkGeneratorAccessor"
+    "WorldMixin"
+  ],
+  "client": [
+    "AngleRandomizerAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

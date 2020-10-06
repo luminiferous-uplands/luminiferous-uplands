@@ -35,5 +35,6 @@
     "fabricloader": ">=0.4.0",
     "fabric": "*",
     "libgui": "*"
-  }
+  },
+  "accessWidener": "uplands.aw"
 }
