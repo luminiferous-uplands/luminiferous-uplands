@@ -1,0 +1,33 @@
+{
+  "precipitation": "none",
+  "category": "none",
+  "depth": 0.0,
+  "scale": 0.0,
+  "temperature": 0.5,
+  "downfall": 0.0,
+  "effects": {
+    "sky_color": 16777215,
+    "fog_color": 16777215,
+    "grass_color": 15382866,
+    "foliage_color": 15382866,
+    "water_color": 10000572,
+    "water_fog_color": 10000572
+  },
+  "surface_builder": "$modid:uplands_surface_builder",
+  "carvers": {},
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+  ],
+  "starts": [],
+  "spawners": {},
+  "spawn_costs": {}
+}

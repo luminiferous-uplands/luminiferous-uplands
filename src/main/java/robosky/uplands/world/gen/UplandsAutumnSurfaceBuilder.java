@@ -22,8 +22,8 @@ public class UplandsAutumnSurfaceBuilder extends SurfaceBuilder<TernarySurfaceCo
     @Override
     public void generate(Random rand, Chunk chunk, Biome biome, int absX, int absZ, int startHeight, double noise,
                          BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, TernarySurfaceConfig config) {
-        BlockState topBlock = BlockRegistry.UPLANDER_GRASS.getDefaultState();
-        BlockState underBlock = BlockRegistry.UPLANDER_DIRT.getDefaultState();
+        BlockState topBlock = config.getTopMaterial();
+        BlockState underBlock = config.getUnderMaterial();
         BlockPos.Mutable pos = new BlockPos.Mutable();
         int depth = -1;
         int maxDepth = (int)(noise / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
