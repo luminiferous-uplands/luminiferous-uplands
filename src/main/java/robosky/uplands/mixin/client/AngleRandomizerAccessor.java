@@ -8,7 +8,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 
 @Environment(EnvType.CLIENT)
-@Mixin(ModelPredicateProviderRegistry.AngleRandomizer.class)
+@Mixin(ModelPredicateProviderRegistry.AngleInterpolator.class)
 public interface AngleRandomizerAccessor {
     @Accessor
     double getValue();

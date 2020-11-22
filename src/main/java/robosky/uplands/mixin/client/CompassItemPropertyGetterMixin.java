@@ -86,7 +86,7 @@ public abstract class CompassItemPropertyGetterMixin {
      * Stores the normalized angle to the target position.
      */
     @Unique
-    private final ModelPredicateProviderRegistry.AngleRandomizer targetValue = new ModelPredicateProviderRegistry.AngleRandomizer();
+    private final ModelPredicateProviderRegistry.AngleInterpolator targetValue = new ModelPredicateProviderRegistry.AngleInterpolator();
 
     @Inject(method = "getAngleToPos(Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/entity/Entity;)D", at = @At("RETURN"), cancellable = true)
     private void interpolateCompassTargetChanges(Vec3d targetPos, Entity entity, CallbackInfoReturnable<Double> info) {

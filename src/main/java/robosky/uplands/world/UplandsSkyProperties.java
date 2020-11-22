@@ -12,7 +12,7 @@ public class UplandsSkyProperties extends SkyProperties {
     }
 
     @Override
-    public Vec3d adjustSkyColor(Vec3d color, float sunHeight) {
+    public Vec3d adjustFogColor(Vec3d color, float sunHeight) {
         return color.multiply(sunHeight * 0.94F + 0.06F, sunHeight * 0.94F + 0.06F, sunHeight * 0.91F + 0.09F);
     }
 
@@ -22,7 +22,7 @@ public class UplandsSkyProperties extends SkyProperties {
     }
 
     @Override
-    public @Nullable float[] getSkyColor(float skyAngle, float tickDelta) {
+    public @Nullable float[] getFogColorOverride(float skyAngle, float tickDelta) {
         return null;
     }
 }
