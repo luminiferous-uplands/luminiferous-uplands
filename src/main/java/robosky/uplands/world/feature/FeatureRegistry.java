@@ -1,9 +1,6 @@
 package robosky.uplands.world.feature;
 
-import java.util.Optional;
-
 import robosky.uplands.UplandsMod;
-import robosky.uplands.world.feature.minidungeons.MinidungeonFeatureConfig;
 import robosky.uplands.world.feature.plants.SkyrootFlatTreeFeature;
 import robosky.uplands.world.feature.plants.SkyrootTreeFeature;
 import robosky.uplands.world.feature.plants.SkyrootTreeFeatureConfig;
