@@ -99,10 +99,10 @@ public abstract class AbstractUplandsTree<T extends FeatureConfig> extends Featu
     }
 
     @Override
-    public final boolean generate(StructureWorldAccess iWorld_1, ChunkGenerator chunkGenerator_1, Random random_1, BlockPos blockPos_1, T featureConfig_1) {
+    public final boolean generate(StructureWorldAccess iWorld_1, ChunkGenerator chunkGenerator_1, Random random_1, BlockPos blockPos_1, T config) {
         Set<BlockPos> set_1 = Sets.newHashSet();
         BlockBox BlockBox_1 = BlockBox.empty();
-        boolean boolean_1 = this.generate(set_1, iWorld_1, random_1, blockPos_1, BlockBox_1);
+        boolean boolean_1 = this.generate(set_1, iWorld_1, random_1, blockPos_1, BlockBox_1, config);
         if(BlockBox_1.minX > BlockBox_1.maxX) {
             return false;
         } else {
@@ -179,5 +179,5 @@ public abstract class AbstractUplandsTree<T extends FeatureConfig> extends Featu
         }
     }
 
-    protected abstract boolean generate(Set<BlockPos> var1, ModifiableTestableWorld var2, Random var3, BlockPos var4, BlockBox var5);
+    protected abstract boolean generate(Set<BlockPos> var1, ModifiableTestableWorld var2, Random var3, BlockPos var4, BlockBox var5, T config);
 }

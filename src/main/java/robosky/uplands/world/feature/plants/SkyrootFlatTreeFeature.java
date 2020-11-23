@@ -35,8 +35,9 @@ public class SkyrootFlatTreeFeature extends AbstractUplandsTree<DefaultFeatureCo
         this.wood = wood;
     }
 
+    @Override
     public boolean generate(Set<BlockPos> set, ModifiableTestableWorld world, Random rand,
-                            BlockPos startPos, BlockBox bbox) {
+                            BlockPos startPos, BlockBox bbox, DefaultFeatureConfig config) {
         // Leaves have to be obtained in generate because we need access to the RNG
         float randomLeaves = rand.nextFloat();
 

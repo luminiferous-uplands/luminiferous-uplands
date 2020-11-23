@@ -14,43 +14,15 @@ import net.minecraft.world.ModifiableTestableWorld;
 import net.minecraft.world.TestableWorld;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 
-public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig> {
-    private final int height;
-    private final BlockState log;
-    private final BlockState wood;
-    private BlockState leaves;
+public class SkyrootTreeFeature extends AbstractUplandsTree<SkyrootTreeFeatureConfig> {
 
-    public SkyrootTreeFeature(Codec<DefaultFeatureConfig> deserialize, boolean sapling) {
-        this(deserialize,
-            sapling,
-            BlockRegistry.SKYROOT_LOG.getDefaultState(),
-            BlockRegistry.SKYROOT_WOOD.getDefaultState());
-    }
-
-    private SkyrootTreeFeature(Codec<DefaultFeatureConfig> dezerialize, boolean sapling,
-                               BlockState log, BlockState wood) {
+    public SkyrootTreeFeature(Codec<SkyrootTreeFeatureConfig> dezerialize, boolean sapling) {
         super(dezerialize, sapling);
-        this.height = 4;
-        this.log = log;
-        this.wood = wood;
     }
 
     @Override
     public boolean generate(Set<BlockPos> set, ModifiableTestableWorld world, Random rand,
-                            BlockPos startPos, BlockBox bbox) {
-        // Leaves have to be obtained in generate because we need access to the RNG
-        float randomLeaves = rand.nextFloat();
-
-        // In order of rarity, leaf colors are: Orange, Red, Yellow
-        if(randomLeaves < 0.8f) {
-            if(randomLeaves > 0.45) {
-                leaves = BlockRegistry.RED_SKYROOT_LEAVES.getDefaultState();
-            } else {
-                leaves = BlockRegistry.ORANGE_SKYROOT_LEAVES.getDefaultState();
-            }
-        } else {
-            leaves = BlockRegistry.YELLOW_SKYROOT_LEAVES.getDefaultState();
-        }
+                            BlockPos startPos, BlockBox bbox, SkyrootTreeFeatureConfig config) {
 
         // Create variables related to the tree's trunk
 
@@ -80,7 +52,7 @@ public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig
         Direction[] segmentBendDirections = new Direction[numberOfSegments];
 
         for(int i = 0; i <= numberOfSegments - 1; i++) {
-            int treeHeight = height + rand.nextInt(3);
+            int treeHeight = config.height + rand.nextInt(3);
 
             totalHeightOfTrunk += treeHeight;
             segmentHeights[i] = treeHeight;
@@ -118,7 +90,7 @@ public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig
 
             if(canPlaceBlock(world, mushroomLocation)) {
                 if(!canPlaceBlock(world, mushroomLocation.down())) {
-                    setBlockState(set, world, mushroomLocation, BlockRegistry.AZOTE_MUSHROOM.getDefaultState(), bbox);
+                    setBlockState(set, world, mushroomLocation, config.mushroom, bbox);
                 }
             }
         }
@@ -142,7 +114,7 @@ public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig
                 boolean isTopOrBottom = (j == 0) || (j == segmentHeights[i] - 1) && (startPos != currentPos);
 
                 // Place either a bark or log block there depending on whether or not it's a top or a bottom.
-                setBlockState(set, world, currentPos, isTopOrBottom ? wood : log, bbox);
+                setBlockState(set, world, currentPos, isTopOrBottom ? config.bark : config.log, bbox);
 
                 // Increment the position.
                 currentPos = currentPos.add(0, 1, 0);
@@ -179,7 +151,7 @@ public class SkyrootTreeFeature extends AbstractUplandsTree<DefaultFeatureConfig
 
                     if(squareDistance <= radiusSquared) {
                         if(isAirOrLeaves(world, currentPos.add(x, y, z))) {
-                            setBlockState(set, world, currentPos.add(x, y, z), leaves, bbox);
+                            setBlockState(set, world, currentPos.add(x, y, z), config.leaves, bbox);
                         }
                     }
                 }

@@ -14,20 +14,26 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
 
 public class UplandsSaplingBlock extends PlantBlock implements Fertilizable {
 
-    private final UplandsSaplingGenerator generator;
     private static final IntProperty STAGE = Properties.STAGE;
     private static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
 
-    protected UplandsSaplingBlock(UplandsSaplingGenerator generator, Settings settings) {
+    private final UplandsSaplingGenerator generator;
+    private final RegistryKey<ConfiguredFeature<?, ?>> configuredFeature;
+
+    protected UplandsSaplingBlock(UplandsSaplingGenerator generator, RegistryKey<ConfiguredFeature<?, ?>> configuredFeature, Settings settings) {
         super(settings);
         this.generator = generator;
+        this.configuredFeature = configuredFeature;
         setDefaultState(this.stateManager.getDefaultState().with(UplandsSaplingBlock.STAGE, 0));
     }
 
@@ -72,7 +78,10 @@ public class UplandsSaplingBlock extends PlantBlock implements Fertilizable {
         if(blockState.get(UplandsSaplingBlock.STAGE) == 0) {
             iWorld.setBlockState(blockPos, blockState.cycle(UplandsSaplingBlock.STAGE), 4);
         } else {
-            this.generator.generate(iWorld, blockPos, blockState, random);
+            ConfiguredFeature<?, ?> feature = iWorld.getRegistryManager().get(Registry.CONFIGURED_FEATURE_WORLDGEN).get(configuredFeature);
+            if(feature != null) {
+                this.generator.generate(iWorld, blockPos, blockState, random, feature);
+            }
         }
     }
 }

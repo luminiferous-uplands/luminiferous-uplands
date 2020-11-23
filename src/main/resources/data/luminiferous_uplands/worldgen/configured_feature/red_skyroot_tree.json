@@ -1,0 +1,29 @@
+{
+  "type": "$modid:skyroot_tree",
+  "config": {
+    "bark": {
+      "Name": "$modid:skyroot_wood",
+      "Properties": {
+        "axis": "y"
+      }
+    },
+    "log": {
+      "Name": "$modid:skyroot_log",
+      "Properties": {
+        "axis": "y"
+      }
+    },
+    "leaves": {
+      "Name": "$modid:red_skyroot_leaves",
+      "Properties": {
+        "persistent": "false",
+        "distance": "1"
+      }
+    },
+    "mushroom": {
+      "Name": "$modid:azote_mushroom",
+      "Properties": {}
+    },
+    "height": 4
+  }
+}

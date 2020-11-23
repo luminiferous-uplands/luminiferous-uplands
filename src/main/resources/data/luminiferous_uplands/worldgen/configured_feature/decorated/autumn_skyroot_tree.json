@@ -1,7 +1,7 @@
 {
   "type": "minecraft:decorated",
   "config": {
-    "feature": "$modid:skyroot_tree",
+    "feature": "$modid:autumn_skyroot_tree",
     "decorator": {
       "type": "minecraft:decorated",
       "config": {
