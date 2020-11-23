@@ -13,11 +13,11 @@ import robosky.uplands.block.bossroom.MegadungeonAltarBlock;
 import robosky.uplands.block.unbreakable.UnbreakableBlock;
 import robosky.uplands.world.feature.plants.UplandsSaplingGenerator;
 
-import net.fabricmc.fabric.api.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
-import net.fabricmc.fabric.api.tools.FabricToolTags;
+import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
@@ -39,24 +39,24 @@ import net.minecraft.util.registry.RegistryKey;
 @SuppressWarnings("unused")
 public final class BlockRegistry {
     // Block Settings
-    public static final Block.Settings UPLANDER_STONE_SETTINGS = FabricBlockSettings.of(Material.STONE).strength(1.5f, 6f).sounds(BlockSoundGroup.STONE).breakByTool(FabricToolTags.PICKAXES, 1).build();
-    public static final Block.Settings AEGISALT_BRICKS_SETTINGS = FabricBlockSettings.of(Material.STONE).strength(1.5f, 30f).breakByTool(FabricToolTags.PICKAXES, 1).build();
-    public static final Block.Settings SKYROOT_BLOCK_SETTINGS = FabricBlockSettings.of(Material.WOOD, MaterialColor.BROWN).strength(2.0F, 2.0F).sounds(BlockSoundGroup.WOOD).breakByTool(FabricToolTags.AXES, -1).build();
-    public static final Block.Settings SKYROOT_LEAVES_SETTINGS = FabricBlockSettings.of(Material.LEAVES).strength(0.2F, 0.2F).ticksRandomly().nonOpaque().sounds(BlockSoundGroup.GRASS).build();
-    public static final Block.Settings FLOWER_SETTINGS = FabricBlockSettings.of(Material.LEAVES).breakInstantly().collidable(false).build();
+    public static final Block.Settings UPLANDER_STONE_SETTINGS = FabricBlockSettings.of(Material.STONE).strength(1.5f, 6f).sounds(BlockSoundGroup.STONE).breakByTool(FabricToolTags.PICKAXES, 1);
+    public static final Block.Settings AEGISALT_BRICKS_SETTINGS = FabricBlockSettings.of(Material.STONE).strength(1.5f, 30f).breakByTool(FabricToolTags.PICKAXES, 1);
+    public static final Block.Settings SKYROOT_BLOCK_SETTINGS = FabricBlockSettings.of(Material.WOOD, MaterialColor.BROWN).strength(2.0F, 2.0F).sounds(BlockSoundGroup.WOOD).breakByTool(FabricToolTags.AXES, -1);
+    public static final Block.Settings SKYROOT_LEAVES_SETTINGS = FabricBlockSettings.of(Material.LEAVES).strength(0.2F, 0.2F).ticksRandomly().nonOpaque().sounds(BlockSoundGroup.GRASS);
+    public static final Block.Settings FLOWER_SETTINGS = FabricBlockSettings.of(Material.LEAVES).breakInstantly().collidable(false);
 
     // Uplander Organic Blocks
     public static final Block UPLANDER_GRASS = registerWithItem("uplander_grass", new UplandsGrassBlock());
-    public static final Block UPLANDER_DIRT = registerWithItem("uplander_dirt", new Block(FabricBlockSettings.of(Material.SOIL).strength(0.5f, 0.5f).sounds(BlockSoundGroup.GRAVEL).build()));
-    public static final Block UPLANDER_FARMLAND = registerWithItem("uplander_farmland", new UplanderFarmlandBlock(FabricBlockSettings.of(Material.SOIL).strength(0.6f, 0.6f).sounds(BlockSoundGroup.GRAVEL).build()));
-    public static final Block TALL_UPLANDS_GRASS = registerWithItem("tall_uplands_grass", new TallUplandsGrassBlock(FabricBlockSettings.of(Material.REPLACEABLE_PLANT).breakInstantly().noCollision().sounds(BlockSoundGroup.GRASS).build()));
+    public static final Block UPLANDER_DIRT = registerWithItem("uplander_dirt", new Block(FabricBlockSettings.of(Material.SOIL).strength(0.5f, 0.5f).sounds(BlockSoundGroup.GRAVEL)));
+    public static final Block UPLANDER_FARMLAND = registerWithItem("uplander_farmland", new UplanderFarmlandBlock(FabricBlockSettings.of(Material.SOIL).strength(0.6f, 0.6f).sounds(BlockSoundGroup.GRAVEL)));
+    public static final Block TALL_UPLANDS_GRASS = registerWithItem("tall_uplands_grass", new TallUplandsGrassBlock(FabricBlockSettings.of(Material.REPLACEABLE_PLANT).breakInstantly().noCollision().sounds(BlockSoundGroup.GRASS)));
 
     // Uplander stone-like blocks
     public static final Block UPLANDER_STONE = registerWithItem("uplander_stone", new Block(UPLANDER_STONE_SETTINGS));
     public static final Block UPLANDER_STONE_STAIRS = registerWithItem("uplander_stone_stairs", new ModStairsBlock(UPLANDER_STONE, UPLANDER_STONE_SETTINGS));
     public static final Block UPLANDER_STONE_SLAB = registerWithItem("uplander_stone_slab", new SlabBlock(UPLANDER_STONE_SETTINGS));
     public static final Block UPLANDER_STONE_WALL = registerWithItem("uplander_stone_wall", new WallBlock(UPLANDER_STONE_SETTINGS));
-    public static final Block UPLANDER_STONE_BUTTON = registerWithItem("uplander_stone_button", new ModStoneButtonBlock(FabricBlockSettings.of(Material.STONE).strength(0.5f, 2.5f).sounds(BlockSoundGroup.STONE).noCollision().build()));
+    public static final Block UPLANDER_STONE_BUTTON = registerWithItem("uplander_stone_button", new ModStoneButtonBlock(FabricBlockSettings.of(Material.STONE).strength(0.5f, 2.5f).sounds(BlockSoundGroup.STONE).noCollision()));
 
     // Uplander stonebrick-like blocks
     public static final Block UPLANDER_STONE_BRICKS = registerWithItem("uplander_stone_bricks", new Block(UPLANDER_STONE_SETTINGS));
@@ -81,14 +81,14 @@ public final class BlockRegistry {
     public static final Block SKYROOT_FENCE = registerWithItem("skyroot_fence", new FenceBlock(SKYROOT_BLOCK_SETTINGS));
 
     public static final Block SKYROOT_FENCE_GATE = registerWithItem("skyroot_fence_gate", new FenceGateBlock(SKYROOT_BLOCK_SETTINGS));
-    public static final Block SKYROOT_DOOR = registerWithItem("skyroot_door", new ModDoorBlock(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 15f).sounds(BlockSoundGroup.WOOD).nonOpaque().build()));
-    public static final Block SKYROOT_TRAPDOOR = registerWithItem("skyroot_trapdoor", new ModTrapdoorBlock(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 15f).sounds(BlockSoundGroup.WOOD).nonOpaque().build()));
-    public static final Block SKYROOT_BUTTON = registerWithItem("skyroot_button", new ModWoodButtonBlock(FabricBlockSettings.of(Material.WOOD).strength(0.5f, 2.5f).sounds(BlockSoundGroup.WOOD).noCollision().build()));
-    public static final Block SKYROOT_PRESSURE_PLATE = registerWithItem("skyroot_pressure_plate", new ModPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).noCollision().strength(0.5f, 2.5f).build()));
+    public static final Block SKYROOT_DOOR = registerWithItem("skyroot_door", new ModDoorBlock(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 15f).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block SKYROOT_TRAPDOOR = registerWithItem("skyroot_trapdoor", new ModTrapdoorBlock(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 15f).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block SKYROOT_BUTTON = registerWithItem("skyroot_button", new ModWoodButtonBlock(FabricBlockSettings.of(Material.WOOD).strength(0.5f, 2.5f).sounds(BlockSoundGroup.WOOD).noCollision()));
+    public static final Block SKYROOT_PRESSURE_PLATE = registerWithItem("skyroot_pressure_plate", new ModPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).noCollision().strength(0.5f, 2.5f)));
 
     // Skywood shrubs
-    public static final Block SKYROOT_SAPLING = registerWithItem("skyroot_sapling", new UplandsSaplingBlock(new UplandsSaplingGenerator.SkyrootSaplingGenerator(), RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, UplandsMod.id("autumn_skyroot_tree")), FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).build()));
-    public static final Block POTTED_SKYROOT_SAPLING = register("potted_skyroot_sapling", new FlowerPotBlock(SKYROOT_SAPLING, FabricBlockSettings.of(Material.SUPPORTED).breakInstantly().build()));
+    public static final Block SKYROOT_SAPLING = registerWithItem("skyroot_sapling", new UplandsSaplingBlock(new UplandsSaplingGenerator.SkyrootSaplingGenerator(), RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, UplandsMod.id("autumn_skyroot_tree")), FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS)));
+    public static final Block POTTED_SKYROOT_SAPLING = register("potted_skyroot_sapling", new FlowerPotBlock(SKYROOT_SAPLING, FabricBlockSettings.of(Material.SUPPORTED).breakInstantly()));
 
     public static final Block RED_SKYROOT_LEAVES = registerWithItem("red_skyroot_leaves", new LeavesBlock(SKYROOT_LEAVES_SETTINGS));
     public static final Block ORANGE_SKYROOT_LEAVES = registerWithItem("orange_skyroot_leaves", new LeavesBlock(SKYROOT_LEAVES_SETTINGS));
@@ -96,21 +96,21 @@ public final class BlockRegistry {
 
     // Flowers
     public static final Block CLOUD_DAISIES = registerWithItem("cloud_daisies", new CloudDaisiesBlock(FLOWER_SETTINGS));
-    public static final Block POTTED_CLOUD_DAISIES = register("potted_cloud_daisies", new FlowerPotBlock(CLOUD_DAISIES, FabricBlockSettings.of(Material.SUPPORTED).breakInstantly().build()));
+    public static final Block POTTED_CLOUD_DAISIES = register("potted_cloud_daisies", new FlowerPotBlock(CLOUD_DAISIES, FabricBlockSettings.of(Material.SUPPORTED).breakInstantly()));
 
     // Crops
-    public static final Block ZEPHYR_ONION_CROP_BLOCK = register("zephyr_onion_crop", new ZephyrOnionBlock(FabricBlockSettings.of(Material.PLANT).breakInstantly().collidable(false).ticksRandomly().sounds(BlockSoundGroup.GRASS).build()));
-    public static final Block WATER_CHESTNUT_CROP_BLOCK = register("water_chestnut_crop", new WaterChestnutBlock(FabricBlockSettings.of(Material.PLANT).breakInstantly().noCollision().ticksRandomly().sounds(BlockSoundGroup.WET_GRASS).build()));
+    public static final Block ZEPHYR_ONION_CROP_BLOCK = register("zephyr_onion_crop", new ZephyrOnionBlock(FabricBlockSettings.of(Material.PLANT).breakInstantly().collidable(false).ticksRandomly().sounds(BlockSoundGroup.GRASS)));
+    public static final Block WATER_CHESTNUT_CROP_BLOCK = register("water_chestnut_crop", new WaterChestnutBlock(FabricBlockSettings.of(Material.PLANT).breakInstantly().noCollision().ticksRandomly().sounds(BlockSoundGroup.WET_GRASS)));
 
     // Shrooms
-    public static final Block AZOTE_MUSHROOM = registerWithItem("azote_mushroom", new AzoteMushroomBlock(FabricBlockSettings.of(Material.SOLID_ORGANIC).sounds(BlockSoundGroup.NETHER_WART).breakInstantly().collidable(false).ticksRandomly().build()));
-    public static final Block AWOKEN_AZOTE_MUSHROOM = registerWithItem("awoken_azote_mushroom", new AwokenAzoteMushroomBlock(FabricBlockSettings.of(Material.SOLID_ORGANIC).sounds(BlockSoundGroup.NETHER_WART).breakInstantly().collidable(false).lightLevel(15).build()));
-    public static final Block POTTED_AZOTE_MUSHROOM = register("potted_azote_mushroom", new FlowerPotBlock(AZOTE_MUSHROOM, FabricBlockSettings.of(Material.SUPPORTED).breakInstantly().build()));
-    public static final Block POTTED_AWOKEN_AZOTE_MUSHROOM = register("potted_awoken_azote_mushroom", new FlowerPotBlock(AWOKEN_AZOTE_MUSHROOM, FabricBlockSettings.of(Material.SUPPORTED).lightLevel(15).breakInstantly().build()));
+    public static final Block AZOTE_MUSHROOM = registerWithItem("azote_mushroom", new AzoteMushroomBlock(FabricBlockSettings.of(Material.SOLID_ORGANIC).sounds(BlockSoundGroup.NETHER_WART).breakInstantly().collidable(false).ticksRandomly()));
+    public static final Block AWOKEN_AZOTE_MUSHROOM = registerWithItem("awoken_azote_mushroom", new AwokenAzoteMushroomBlock(FabricBlockSettings.of(Material.SOLID_ORGANIC).sounds(BlockSoundGroup.NETHER_WART).breakInstantly().collidable(false).luminance(15)));
+    public static final Block POTTED_AZOTE_MUSHROOM = register("potted_azote_mushroom", new FlowerPotBlock(AZOTE_MUSHROOM, FabricBlockSettings.of(Material.SUPPORTED).breakInstantly()));
+    public static final Block POTTED_AWOKEN_AZOTE_MUSHROOM = register("potted_awoken_azote_mushroom", new FlowerPotBlock(AWOKEN_AZOTE_MUSHROOM, FabricBlockSettings.of(Material.SUPPORTED).luminance(15).breakInstantly()));
 
     // Boss blocks
     public static final Block BOSS_CONTROL = registerWithItem("boss_control", new ControlBlock(), null);
-    public static final Block BOSS_DOORWAY = registerWithItem("boss_doorway", new DoorwayBlock(FabricBlockSettings.copy(BOSS_CONTROL).dynamicBounds().nonOpaque().build()), null);
+    public static final Block BOSS_DOORWAY = registerWithItem("boss_doorway", new DoorwayBlock(FabricBlockSettings.copy(BOSS_CONTROL).dynamicBounds().nonOpaque()), null);
 
     static {
         Registry.register(Registry.BLOCK_ENTITY_TYPE, UplandsMod.id("boss_control"), ControlBlockEntity.TYPE);
@@ -122,7 +122,7 @@ public final class BlockRegistry {
     public static final Block ACTIVE_MEGADUNGEON_ALTAR = registerWithItem("active_megadungeon_altar", new ActiveAltarBlock(MEGADUNGEON_ALTAR));
 
     // Misc
-    public static final Block LODESTONE = registerWithItem("lodestone", new LodestoneBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).strength(6.0F, 8.0F).breakByTool(FabricToolTags.PICKAXES, 2).build()));
+    public static final Block LODESTONE = registerWithItem("lodestone", new LodestoneBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).strength(6.0F, 8.0F).breakByTool(FabricToolTags.PICKAXES, 2)));
     public static final Block UPLANDER_BEACON = registerWithItem("uplander_beacon", new UplanderBeaconBlock());
 
     public static final Map<UplandsOreBlock.UplandsOreType, UplandsOreBlock> UPLANDS_ORES = createOreTypes();
