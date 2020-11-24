@@ -35,7 +35,7 @@
                   ]
                 }
               ],
-              "name": "$modid:red_skyroot_leaves"
+              "name": "luminiferous_uplands:red_skyroot_leaves"
             },
             {
               "type": "minecraft:item",
@@ -54,7 +54,7 @@
                   ]
                 }
               ],
-              "name": "$modid:skyroot_sapling"
+              "name": "luminiferous_uplands:skyroot_sapling"
             }
           ]
         }
@@ -145,7 +145,7 @@
               ]
             }
           ],
-          "name": "$modid:skyroot_fruit"
+          "name": "luminiferous_uplands:skyroot_fruit"
         }
       ],
       "conditions": [

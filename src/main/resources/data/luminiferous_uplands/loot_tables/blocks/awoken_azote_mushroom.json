@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "$modid:awoken_azote_mushroom"
+          "name": "luminiferous_uplands:awoken_azote_mushroom"
         }
       ],
       "conditions": [

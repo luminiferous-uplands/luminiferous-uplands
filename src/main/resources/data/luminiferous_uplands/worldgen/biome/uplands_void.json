@@ -13,7 +13,7 @@
     "water_color": 10000572,
     "water_fog_color": 10000572
   },
-  "surface_builder": "$modid:uplands_surface_builder",
+  "surface_builder": "luminiferous_uplands:uplands_surface_builder",
   "carvers": {},
   "features": [
     [],

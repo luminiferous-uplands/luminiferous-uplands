@@ -1,5 +1,5 @@
 {
-  "parent": "$modid:lore/enter_with_beacon",
+  "parent": "luminiferous_uplands:lore/enter_with_beacon",
   "display": {
     "icon": {
       "item": "minecraft:feather"
@@ -20,7 +20,7 @@
       "trigger": "minecraft:player_killed_entity",
       "conditions": {
         "entity": {
-          "type": "$modid:hexahaen"
+          "type": "luminiferous_uplands:hexahaen"
         }
       }
     }

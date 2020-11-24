@@ -6,10 +6,10 @@
   ],
   "key": {
     "#": {
-      "item": "$modid:aegisalt_brick_slab"
+      "item": "luminiferous_uplands:aegisalt_brick_slab"
     }
   },
   "result": {
-    "item": "$modid:aegisalt_pillar"
+    "item": "luminiferous_uplands:aegisalt_pillar"
   }
 }

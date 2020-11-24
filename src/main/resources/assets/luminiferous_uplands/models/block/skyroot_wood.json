@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "$modid:block/skyroot_log_side",
-    "side": "$modid:block/skyroot_log_side"
+    "end": "luminiferous_uplands:block/skyroot_log_side",
+    "side": "luminiferous_uplands:block/skyroot_log_side"
   }
 }

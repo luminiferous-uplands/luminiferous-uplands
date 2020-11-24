@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "$modid:skyroot_log"
+      "item": "luminiferous_uplands:skyroot_log"
     }
   },
   "result": {
-    "item": "$modid:skyroot_wood",
+    "item": "luminiferous_uplands:skyroot_wood",
     "count": 3
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "$modid:block/cloud_daisies"
+    "layer0": "luminiferous_uplands:block/cloud_daisies"
   }
 }

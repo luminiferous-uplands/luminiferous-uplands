@@ -6,11 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "$modid:uplander_stone_bricks"
+      "item": "luminiferous_uplands:uplander_stone_bricks"
     }
   },
   "result": {
-    "item": "$modid:uplander_stone_brick_slab",
+    "item": "luminiferous_uplands:uplander_stone_brick_slab",
     "count": 6
   }
 }

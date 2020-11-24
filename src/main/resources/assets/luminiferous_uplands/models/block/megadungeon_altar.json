@@ -1,11 +1,11 @@
 {
     "parent": "block/block",
     "textures": {
-        "particle": "$modid:block/megadungeon_altar_top",
-        "top": "$modid:block/megadungeon_altar_top",
-        "side": "$modid:block/megadungeon_altar_side",
-        "inside": "$modid:block/megadungeon_altar_inside",
-        "drape": "$modid:block/megadungeon_altar_drape"
+        "particle": "luminiferous_uplands:block/megadungeon_altar_top",
+        "top": "luminiferous_uplands:block/megadungeon_altar_top",
+        "side": "luminiferous_uplands:block/megadungeon_altar_side",
+        "inside": "luminiferous_uplands:block/megadungeon_altar_inside",
+        "drape": "luminiferous_uplands:block/megadungeon_altar_drape"
     },
     "elements": [
         {

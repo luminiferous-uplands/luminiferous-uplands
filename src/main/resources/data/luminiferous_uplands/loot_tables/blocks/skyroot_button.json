@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "$modid:skyroot_button"
+          "name": "luminiferous_uplands:skyroot_button"
         }
       ],
       "conditions": [

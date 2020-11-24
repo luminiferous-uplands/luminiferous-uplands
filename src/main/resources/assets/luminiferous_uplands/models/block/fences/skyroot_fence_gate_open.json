@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_fence_gate_open",
   "textures": {
-    "texture": "$modid:block/skyroot_planks"
+    "texture": "luminiferous_uplands:block/skyroot_planks"
   }
 }

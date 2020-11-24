@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "$modid:uplander_stone_wall",
-    "$modid:uplander_stone_brick_wall"
+    "luminiferous_uplands:uplander_stone_wall",
+    "luminiferous_uplands:uplander_stone_brick_wall"
   ]
 }

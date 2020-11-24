@@ -6,7 +6,7 @@
     "minecraft:podzol",
     "minecraft:coarse_dirt",
     "minecraft:mycelium",
-    "$modid:uplander_dirt",
-    "$modid:uplander_grass"
+    "luminiferous_uplands:uplander_dirt",
+    "luminiferous_uplands:uplander_grass"
   ]
 }

@@ -1,6 +1,6 @@
 {
     "parent": "block/flower_pot_cross",
     "textures": {
-        "plant": "$modid:block/potted_cloud_daisies"
+        "plant": "luminiferous_uplands:block/potted_cloud_daisies"
     }
 }

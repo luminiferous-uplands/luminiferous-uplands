@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "$modid:block/awoken_azote_mushroom"
+        "cross": "luminiferous_uplands:block/awoken_azote_mushroom"
     }
 }

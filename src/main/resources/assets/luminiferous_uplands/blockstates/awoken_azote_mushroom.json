@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "$modid:block/awoken_azote_mushroom" }
+        "": { "model": "luminiferous_uplands:block/awoken_azote_mushroom" }
     }
 }

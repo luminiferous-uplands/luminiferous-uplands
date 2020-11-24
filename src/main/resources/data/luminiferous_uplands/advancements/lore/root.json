@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "$modid:uplander_grass"
+      "item": "luminiferous_uplands:uplander_grass"
     },
     "title": {
       "translate": "advancements.luminiferous_uplands.lore.root"
@@ -13,7 +13,7 @@
     "show_toast": true,
     "announce_to_chat": false,
     "hidden": false,
-    "background": "$modid:textures/block/uplander_stone.png"
+    "background": "luminiferous_uplands:textures/block/uplander_stone.png"
   },
   "criteria": {
     "tick": {
@@ -22,7 +22,7 @@
   },
   "rewards": {
     "recipes": [
-      "$modid:uplander_beacon"
+      "luminiferous_uplands:uplander_beacon"
     ]
   },
   "requirements": [

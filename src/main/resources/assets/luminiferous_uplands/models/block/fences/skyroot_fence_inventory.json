@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/fence_inventory",
   "textures": {
-    "texture": "$modid:block/skyroot_planks"
+    "texture": "luminiferous_uplands:block/skyroot_planks"
   }
 }

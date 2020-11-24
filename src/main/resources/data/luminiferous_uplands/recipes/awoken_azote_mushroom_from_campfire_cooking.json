@@ -1,9 +1,9 @@
 {
   "type": "minecraft:campfire_cooking",
   "ingredient": {
-    "item": "$modid:azote_mushroom"
+    "item": "luminiferous_uplands:azote_mushroom"
   },
-  "result": "$modid:awoken_azote_mushroom",
+  "result": "luminiferous_uplands:awoken_azote_mushroom",
   "experience": 0.35,
   "cookingtime": 600
 }

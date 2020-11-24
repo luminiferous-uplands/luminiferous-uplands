@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "$modid:megadungeon_altar"
+          "name": "luminiferous_uplands:megadungeon_altar"
         }
       ],
       "conditions": [

@@ -1,6 +1,6 @@
 {
   "parent": "block/crop",
   "textures": {
-    "crop": "$modid:block/water_chestnut_crop_stage2"
+    "crop": "luminiferous_uplands:block/water_chestnut_crop_stage2"
   }
 }

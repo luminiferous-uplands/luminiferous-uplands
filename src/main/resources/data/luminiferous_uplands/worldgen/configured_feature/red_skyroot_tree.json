@@ -1,27 +1,27 @@
 {
-  "type": "$modid:skyroot_tree",
+  "type": "luminiferous_uplands:skyroot_tree",
   "config": {
     "bark": {
-      "Name": "$modid:skyroot_wood",
+      "Name": "luminiferous_uplands:skyroot_wood",
       "Properties": {
         "axis": "y"
       }
     },
     "log": {
-      "Name": "$modid:skyroot_log",
+      "Name": "luminiferous_uplands:skyroot_log",
       "Properties": {
         "axis": "y"
       }
     },
     "leaves": {
-      "Name": "$modid:red_skyroot_leaves",
+      "Name": "luminiferous_uplands:red_skyroot_leaves",
       "Properties": {
         "persistent": "false",
         "distance": "1"
       }
     },
     "mushroom": {
-      "Name": "$modid:azote_mushroom",
+      "Name": "luminiferous_uplands:azote_mushroom",
       "Properties": {}
     },
     "height": 4

@@ -1,7 +1,7 @@
 {
   "parent": "block/cube_column",
   "textures": {
-    "end": "$modid:block/aegisalt_pillar_top",
-    "side": "$modid:block/aegisalt_pillar_side"
+    "end": "luminiferous_uplands:block/aegisalt_pillar_top",
+    "side": "luminiferous_uplands:block/aegisalt_pillar_side"
   }
 }

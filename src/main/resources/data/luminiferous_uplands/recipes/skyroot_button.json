@@ -3,10 +3,10 @@
   "group": "wooden_button",
   "ingredients": [
     {
-      "item": "$modid:skyroot_planks"
+      "item": "luminiferous_uplands:skyroot_planks"
     }
   ],
   "result": {
-    "item": "$modid:skyroot_button"
+    "item": "luminiferous_uplands:skyroot_button"
   }
 }

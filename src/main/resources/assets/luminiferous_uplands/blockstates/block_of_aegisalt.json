@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "$modid:block/block_of_aegisalt"
+      "model": "luminiferous_uplands:block/block_of_aegisalt"
     }
   }
 }

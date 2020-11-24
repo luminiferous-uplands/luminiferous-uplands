@@ -1,14 +1,14 @@
 {
   "variants": {
     "axis=y": {
-      "model": "$modid:block/skyroot_log"
+      "model": "luminiferous_uplands:block/skyroot_log"
     },
     "axis=z": {
-      "model": "$modid:block/skyroot_log",
+      "model": "luminiferous_uplands:block/skyroot_log",
       "x": 90
     },
     "axis=x": {
-      "model": "$modid:block/skyroot_log",
+      "model": "luminiferous_uplands:block/skyroot_log",
       "x": 90,
       "y": 90
     }

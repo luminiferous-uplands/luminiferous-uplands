@@ -3,10 +3,10 @@
   "group": "wooden_button",
   "ingredients": [
     {
-      "item": "$modid:uplander_stone"
+      "item": "luminiferous_uplands:uplander_stone"
     }
   ],
   "result": {
-    "item": "$modid:uplander_stone_button"
+    "item": "luminiferous_uplands:uplander_stone_button"
   }
 }

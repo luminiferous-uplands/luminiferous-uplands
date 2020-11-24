@@ -1,14 +1,14 @@
 {
-  "type": "$modid:uplands_surface_builder",
+  "type": "luminiferous_uplands:uplands_surface_builder",
   "config": {
     "top_material": {
-      "Name": "$modid:uplander_grass"
+      "Name": "luminiferous_uplands:uplander_grass"
     },
     "under_material": {
-      "Name": "$modid:uplander_dirt"
+      "Name": "luminiferous_uplands:uplander_dirt"
     },
     "underwater_material": {
-      "Name": "$modid:uplander_dirt"
+      "Name": "luminiferous_uplands:uplander_dirt"
     }
   }
 }

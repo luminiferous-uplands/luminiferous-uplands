@@ -1,6 +1,6 @@
 {
     "parent": "block/flower_pot_cross",
     "textures": {
-        "plant": "$modid:block/skyroot_sapling"
+        "plant": "luminiferous_uplands:block/skyroot_sapling"
     }
 }

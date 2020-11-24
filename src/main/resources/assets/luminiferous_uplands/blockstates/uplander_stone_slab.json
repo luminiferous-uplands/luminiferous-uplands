@@ -1,7 +1,7 @@
 {
     "variants": {
-        "type=bottom": { "model": "$modid:block/slabs/uplander_stone_slab" },
-        "type=top": { "model": "$modid:block/slabs/uplander_stone_slab_top" },
-        "type=double": { "model": "$modid:block/uplander_stone" }
+        "type=bottom": { "model": "luminiferous_uplands:block/slabs/uplander_stone_slab" },
+        "type=top": { "model": "luminiferous_uplands:block/slabs/uplander_stone_slab_top" },
+        "type=double": { "model": "luminiferous_uplands:block/uplander_stone" }
     }
 }

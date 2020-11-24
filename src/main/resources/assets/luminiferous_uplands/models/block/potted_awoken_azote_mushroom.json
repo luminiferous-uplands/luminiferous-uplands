@@ -1,6 +1,6 @@
 {
     "parent": "block/flower_pot_cross",
     "textures": {
-        "plant": "$modid:block/awoken_azote_mushroom"
+        "plant": "luminiferous_uplands:block/awoken_azote_mushroom"
     }
 }

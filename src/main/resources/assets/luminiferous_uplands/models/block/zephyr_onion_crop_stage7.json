@@ -1,6 +1,6 @@
 {
   "parent": "block/crop",
   "textures": {
-    "crop": "$modid:block/zephyr_onion_crop_stage7"
+    "crop": "luminiferous_uplands:block/zephyr_onion_crop_stage7"
   }
 }

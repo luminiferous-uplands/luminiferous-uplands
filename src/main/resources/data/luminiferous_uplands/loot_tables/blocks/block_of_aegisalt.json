@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "$modid:block_of_aegisalt"
+          "name": "luminiferous_uplands:block_of_aegisalt"
         }
       ],
       "conditions": [

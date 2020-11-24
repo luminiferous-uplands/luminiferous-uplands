@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "$modid:skyroot_pressure_plate"
+          "name": "luminiferous_uplands:skyroot_pressure_plate"
         }
       ],
       "conditions": [

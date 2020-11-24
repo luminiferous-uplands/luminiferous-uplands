@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "name": "$modid:uplander_grass"
+              "name": "luminiferous_uplands:uplander_grass"
             },
             {
               "type": "minecraft:item",
@@ -33,7 +33,7 @@
                   "condition": "minecraft:survives_explosion"
                 }
               ],
-              "name": "$modid:uplander_dirt"
+              "name": "luminiferous_uplands:uplander_dirt"
             }
           ]
         }

@@ -10,10 +10,10 @@
       "item": "minecraft:stick"
     },
     "W": {
-      "item": "$modid:skyroot_planks"
+      "item": "luminiferous_uplands:skyroot_planks"
     }
   },
   "result": {
-    "item": "$modid:skyroot_fence_gate"
+    "item": "luminiferous_uplands:skyroot_fence_gate"
   }
 }

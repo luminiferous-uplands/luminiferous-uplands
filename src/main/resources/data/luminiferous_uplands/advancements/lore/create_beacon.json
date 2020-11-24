@@ -1,8 +1,8 @@
 {
-  "parent": "$modid:lore/root",
+  "parent": "luminiferous_uplands:lore/root",
   "display": {
     "icon": {
-      "item": "$modid:uplander_beacon"
+      "item": "luminiferous_uplands:uplander_beacon"
     },
     "title": {
       "translate": "advancements.luminiferous_uplands.lore.enter_skylands"
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "$modid:uplander_beacon"
+            "item": "luminiferous_uplands:uplander_beacon"
           }
         ]
       }

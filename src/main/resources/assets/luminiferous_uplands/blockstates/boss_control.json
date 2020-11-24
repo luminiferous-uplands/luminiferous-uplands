@@ -1,10 +1,10 @@
 {
   "variants": {
     "adjust=out": {
-      "model": "$modid:block/boss_control_out"
+      "model": "luminiferous_uplands:block/boss_control_out"
     },
     "adjust=in": {
-      "model": "$modid:block/boss_control_in"
+      "model": "luminiferous_uplands:block/boss_control_in"
     }
   }
 }

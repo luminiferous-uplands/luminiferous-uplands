@@ -1,7 +1,7 @@
 {
-  "type": "$modid:minidungeon",
+  "type": "luminiferous_uplands:minidungeon",
   "config": {
-    "template": "$modid:minidungeons/treehouse",
-    "loot": "$modid:chests/minidungeons/treehouse"
+    "template": "luminiferous_uplands:minidungeons/treehouse",
+    "loot": "luminiferous_uplands:chests/minidungeons/treehouse"
   }
 }

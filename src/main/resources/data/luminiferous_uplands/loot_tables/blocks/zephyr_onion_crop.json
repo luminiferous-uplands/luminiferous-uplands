@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "$modid:zephyr_onion"
+          "name": "luminiferous_uplands:zephyr_onion"
         }
       ]
     },
@@ -26,13 +26,13 @@
               }
             }
           ],
-          "name": "$modid:zephyr_onion"
+          "name": "luminiferous_uplands:zephyr_onion"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "$modid:zephyr_onion_crop",
+          "block": "luminiferous_uplands:zephyr_onion_crop",
           "properties": {
             "age": "7"
           }

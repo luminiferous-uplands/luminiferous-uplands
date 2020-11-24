@@ -2,12 +2,12 @@
   "multipart": [
     {
       "apply": {
-        "model": "$modid:block/fences/skyroot_fence_post"
+        "model": "luminiferous_uplands:block/fences/skyroot_fence_post"
       }
     },
     {
       "apply": {
-        "model": "$modid:block/fences/skyroot_fence_side",
+        "model": "luminiferous_uplands:block/fences/skyroot_fence_side",
         "uvlock": true
       },
       "when": {
@@ -16,7 +16,7 @@
     },
     {
       "apply": {
-        "model": "$modid:block/fences/skyroot_fence_side",
+        "model": "luminiferous_uplands:block/fences/skyroot_fence_side",
         "y": 90,
         "uvlock": true
       },
@@ -26,7 +26,7 @@
     },
     {
       "apply": {
-        "model": "$modid:block/fences/skyroot_fence_side",
+        "model": "luminiferous_uplands:block/fences/skyroot_fence_side",
         "y": 180,
         "uvlock": true
       },
@@ -36,7 +36,7 @@
     },
     {
       "apply": {
-        "model": "$modid:block/fences/skyroot_fence_side",
+        "model": "luminiferous_uplands:block/fences/skyroot_fence_side",
         "y": 270,
         "uvlock": true
       },

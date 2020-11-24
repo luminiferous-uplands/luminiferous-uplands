@@ -1,7 +1,7 @@
 {
   "type": "minecraft:decorated",
   "config": {
-    "feature": "$modid:aegisalt_ore",
+    "feature": "luminiferous_uplands:aegisalt_ore",
     "decorator": {
       "type": "minecraft:decorated",
       "config": {

@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
-    "$modid:unbreakable_uplander_stone_bricks",
-    "$modid:active_megadungeon_altar",
-    "$modid:boss_doorway",
-    "$modid:boss_control"
+    "luminiferous_uplands:unbreakable_uplander_stone_bricks",
+    "luminiferous_uplands:active_megadungeon_altar",
+    "luminiferous_uplands:boss_doorway",
+    "luminiferous_uplands:boss_control"
   ]
 }

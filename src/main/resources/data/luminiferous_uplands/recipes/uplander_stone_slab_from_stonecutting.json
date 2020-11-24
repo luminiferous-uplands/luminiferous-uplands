@@ -1,8 +1,8 @@
 {
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "$modid:uplander_stone"
+    "item": "luminiferous_uplands:uplander_stone"
   },
-  "result": "$modid:uplander_stone_slab",
+  "result": "luminiferous_uplands:uplander_stone_slab",
   "count": 1
 }

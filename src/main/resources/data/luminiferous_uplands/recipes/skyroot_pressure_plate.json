@@ -6,10 +6,10 @@
   ],
   "key": {
     "#": {
-      "item": "$modid:skyroot_planks"
+      "item": "luminiferous_uplands:skyroot_planks"
     }
   },
   "result": {
-    "item": "$modid:skyroot_pressure_plate"
+    "item": "luminiferous_uplands:skyroot_pressure_plate"
   }
 }

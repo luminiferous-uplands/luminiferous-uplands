@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "$modid:uplander_stone"
+      "item": "luminiferous_uplands:uplander_stone"
     }
   },
   "result": {
-    "item": "$modid:uplander_stone_stairs",
+    "item": "luminiferous_uplands:uplander_stone_stairs",
     "count": 4
   }
 }

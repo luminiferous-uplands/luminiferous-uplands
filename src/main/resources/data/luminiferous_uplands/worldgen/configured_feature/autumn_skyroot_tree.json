@@ -3,18 +3,18 @@
   "config": {
     "features": [
       {
-        "feature": "$modid:yellow_skyroot_tree",
+        "feature": "luminiferous_uplands:yellow_skyroot_tree",
         "chance": 0.2
       },
       {
-        "feature": "$modid:orange_skyroot_tree",
+        "feature": "luminiferous_uplands:orange_skyroot_tree",
         "chance": 0.45
       },
       {
-        "feature": "$modid:red_skyroot_tree",
+        "feature": "luminiferous_uplands:red_skyroot_tree",
         "chance": 0.35
       }
     ],
-    "default": "$modid:orange_skyroot_tree"
+    "default": "luminiferous_uplands:orange_skyroot_tree"
   }
 }

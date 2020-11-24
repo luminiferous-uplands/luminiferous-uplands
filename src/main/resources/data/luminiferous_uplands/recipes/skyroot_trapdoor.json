@@ -6,11 +6,11 @@
   ],
   "key": {
     "G": {
-      "item": "$modid:skyroot_planks"
+      "item": "luminiferous_uplands:skyroot_planks"
     }
   },
   "result": {
-    "item": "$modid:skyroot_trapdoor",
+    "item": "luminiferous_uplands:skyroot_trapdoor",
     "count": 2
   }
 }

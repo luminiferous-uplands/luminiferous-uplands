@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "$modid:block/uplander_stone"
+      "model": "luminiferous_uplands:block/uplander_stone"
     }
   }
 }

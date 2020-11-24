@@ -13,7 +13,7 @@
     "water_color": 10000572,
     "water_fog_color": 10000572
   },
-  "surface_builder": "$modid:uplands_surface_builder",
+  "surface_builder": "luminiferous_uplands:uplands_surface_builder",
   "carvers": {},
   "features": [
     [],
@@ -23,17 +23,17 @@
     [],
     [],
     [
-      "$modid:decorated/lodestone_ore",
-      "$modid:decorated/aegisalt_ore"
+      "luminiferous_uplands:decorated/lodestone_ore",
+      "luminiferous_uplands:decorated/aegisalt_ore"
     ],
     [],
     [
-      "$modid:decorated/autumn_skyroot_tree"
+      "luminiferous_uplands:decorated/autumn_skyroot_tree"
     ],
     []
   ],
   "starts": [
-    "$modid:minidungeons/treehouse"
+    "luminiferous_uplands:minidungeons/treehouse"
   ],
   "spawners": {
     "monster": [

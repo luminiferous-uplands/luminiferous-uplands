@@ -7,10 +7,10 @@
   ],
   "key": {
     "#": {
-      "item": "$modid:aegisalt_crystal"
+      "item": "luminiferous_uplands:aegisalt_crystal"
     }
   },
   "result": {
-    "item": "$modid:block_of_aegisalt"
+    "item": "luminiferous_uplands:block_of_aegisalt"
   }
 }

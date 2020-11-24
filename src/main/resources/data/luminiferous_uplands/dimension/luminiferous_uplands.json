@@ -1,5 +1,5 @@
 {
-  "type": "$modid:luminiferous_uplands",
+  "type": "luminiferous_uplands:luminiferous_uplands",
   "generator": {
     "type": "minecraft:noise",
     "seed": 0,
@@ -10,7 +10,7 @@
       "disable_mob_generation": false,
       "structures": {
         "structures": {
-          "$modid:minidungeon": {
+          "luminiferous_uplands:minidungeon": {
             "spacing": 8,
             "separation": 4,
             "salt": 1
@@ -42,7 +42,7 @@
         "simplex_surface_noise": true
       },
       "default_block": {
-        "Name": "$modid:uplander_stone",
+        "Name": "luminiferous_uplands:uplander_stone",
         "Properties": []
       },
       "default_fluid": {
@@ -52,7 +52,7 @@
     "biome_source": {
       "seed": 0,
       "type": "minecraft:fixed",
-      "biome": "$modid:uplands_autumn"
+      "biome": "luminiferous_uplands:uplands_autumn"
     }
   }
 }

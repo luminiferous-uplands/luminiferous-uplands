@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "$modid:block/aegisalt_ore"
+    "all": "luminiferous_uplands:block/aegisalt_ore"
   }
 }

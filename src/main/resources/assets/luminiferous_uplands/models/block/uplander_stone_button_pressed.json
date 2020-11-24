@@ -1,6 +1,6 @@
 {
     "parent": "block/button_pressed",
     "textures": {
-        "texture": "$modid:block/uplander_stone"
+        "texture": "luminiferous_uplands:block/uplander_stone"
     }
 }

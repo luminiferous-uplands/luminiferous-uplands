@@ -1,6 +1,6 @@
 {
     "variants": {
-        "powered=false": { "model": "$modid:block/skyroot_pressure_plate" },
-        "powered=true": { "model": "$modid:block/skyroot_pressure_plate_down" }
+        "powered=false": { "model": "luminiferous_uplands:block/skyroot_pressure_plate" },
+        "powered=true": { "model": "luminiferous_uplands:block/skyroot_pressure_plate_down" }
     }
 }

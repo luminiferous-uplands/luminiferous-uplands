@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "$modid:uplander_beacon"
+          "name": "luminiferous_uplands:uplander_beacon"
         }
       ],
       "conditions": [

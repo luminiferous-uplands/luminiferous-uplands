@@ -1,8 +1,8 @@
 {
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "$modid:aegisalt_bricks"
+    "item": "luminiferous_uplands:aegisalt_bricks"
   },
-  "result": "$modid:aegisalt_brick_stairs",
+  "result": "luminiferous_uplands:aegisalt_brick_stairs",
   "count": 1
 }

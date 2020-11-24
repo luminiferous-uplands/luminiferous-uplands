@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "$modid:block/boss_control_out"
+    "all": "luminiferous_uplands:block/boss_control_out"
   }
 }

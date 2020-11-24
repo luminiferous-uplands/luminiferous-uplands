@@ -6,11 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "$modid:skyroot_planks"
+      "item": "luminiferous_uplands:skyroot_planks"
     }
   },
   "result": {
-    "item": "$modid:skyroot_slab",
+    "item": "luminiferous_uplands:skyroot_slab",
     "count": 6
   }
 }

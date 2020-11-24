@@ -3,10 +3,10 @@
   "config": {
     "target": {
       "predicate_type": "block_match",
-      "block": "$modid:uplander_stone"
+      "block": "luminiferous_uplands:uplander_stone"
     },
     "state": {
-      "Name": "$modid:lodestone",
+      "Name": "luminiferous_uplands:lodestone",
       "Properties": {
         "distance": "0"
       }

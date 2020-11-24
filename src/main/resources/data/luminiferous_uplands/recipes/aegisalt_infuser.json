@@ -7,17 +7,17 @@
   ],
   "key": {
     "G": {
-      "item": "$modid:skyroot_slab"
+      "item": "luminiferous_uplands:skyroot_slab"
     },
     "R": {
-      "item": "$modid:aegisalt_crystal"
+      "item": "luminiferous_uplands:aegisalt_crystal"
     },
     "S": {
-      "item": "$modid:uplander_stone"
+      "item": "luminiferous_uplands:uplander_stone"
     }
   },
   "result": {
-    "item": "$modid:aegisalt_infuser",
+    "item": "luminiferous_uplands:aegisalt_infuser",
     "count": 1
   }
 }

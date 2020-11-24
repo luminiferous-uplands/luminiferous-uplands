@@ -1,7 +1,7 @@
 {
   "replace": true,
   "values": [
-    "$modid:boss_control",
-    "$modid:boss_doorway"
+    "luminiferous_uplands:boss_control",
+    "luminiferous_uplands:boss_doorway"
   ]
 }

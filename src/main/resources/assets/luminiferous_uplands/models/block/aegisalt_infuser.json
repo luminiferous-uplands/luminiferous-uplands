@@ -1,9 +1,9 @@
 {
   "parent": "block/cube_bottom_top",
   "textures": {
-    "particle": "$modid:block/aegisalt_infuser_side",
-    "bottom": "$modid:block/uplander_stone",
-    "top": "$modid:block/skyroot_planks",
-    "side": "$modid:block/aegisalt_infuser_side"
+    "particle": "luminiferous_uplands:block/aegisalt_infuser_side",
+    "bottom": "luminiferous_uplands:block/uplander_stone",
+    "top": "luminiferous_uplands:block/skyroot_planks",
+    "side": "luminiferous_uplands:block/aegisalt_infuser_side"
   }
 }

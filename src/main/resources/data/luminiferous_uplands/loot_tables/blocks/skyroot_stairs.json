@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "$modid:skyroot_stairs"
+          "name": "luminiferous_uplands:skyroot_stairs"
         }
       ],
       "conditions": [

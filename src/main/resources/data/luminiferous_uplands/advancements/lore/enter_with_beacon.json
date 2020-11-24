@@ -1,5 +1,5 @@
 {
-  "parent": "$modid:lore/create_beacon",
+  "parent": "luminiferous_uplands:lore/create_beacon",
   "display": {
     "icon": {
       "item": "minecraft:campfire"
@@ -20,7 +20,7 @@
       "trigger": "minecraft:changed_dimension",
       "conditions": {
         "from": "minecraft:overworld",
-        "to": "$modid:luminiferous_uplands"
+        "to": "luminiferous_uplands:luminiferous_uplands"
       }
     }
   },
@@ -29,9 +29,9 @@
   ],
   "rewards": {
     "recipes": [
-      "$modid:aegisalt_infuser",
-      "$modid:awoken_azote_mushroom",
-      "$modid:awoken_azote_mushroom_from_campfire_cooking"
+      "luminiferous_uplands:aegisalt_infuser",
+      "luminiferous_uplands:awoken_azote_mushroom",
+      "luminiferous_uplands:awoken_azote_mushroom_from_campfire_cooking"
     ]
   }
 }

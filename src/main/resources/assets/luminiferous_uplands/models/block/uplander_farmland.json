@@ -1,8 +1,8 @@
 {
     "parent": "block/template_farmland",
     "textures": {
-        "particle": "$modid:block/uplander_dirt",
-        "dirt": "$modid:block/uplander_dirt",
-        "top": "$modid:block/uplander_farmland"
+        "particle": "luminiferous_uplands:block/uplander_dirt",
+        "dirt": "luminiferous_uplands:block/uplander_dirt",
+        "top": "luminiferous_uplands:block/uplander_farmland"
     }
 }

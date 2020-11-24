@@ -1,9 +1,9 @@
 {
   "type": "minecraft:campfire_cooking",
   "ingredient": {
-    "item": "$modid:zephyr_onion"
+    "item": "luminiferous_uplands:zephyr_onion"
   },
-  "result": "$modid:roasted_zephyr_onion",
+  "result": "luminiferous_uplands:roasted_zephyr_onion",
   "experience": 0.35,
   "cookingtime": 600
 }

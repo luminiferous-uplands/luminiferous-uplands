@@ -1,13 +1,13 @@
 {
   "variants": {
     "type=bottom": {
-      "model": "$modid:block/slabs/skyroot_slab"
+      "model": "luminiferous_uplands:block/slabs/skyroot_slab"
     },
     "type=double": {
-      "model": "$modid:block/skyroot_planks"
+      "model": "luminiferous_uplands:block/skyroot_planks"
     },
     "type=top": {
-      "model": "$modid:block/slabs/skyroot_slab_top"
+      "model": "luminiferous_uplands:block/slabs/skyroot_slab_top"
     }
   }
 }

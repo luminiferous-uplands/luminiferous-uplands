@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "$modid:block/potted_cloud_daisies" }
+        "": { "model": "luminiferous_uplands:block/potted_cloud_daisies" }
     }
 }

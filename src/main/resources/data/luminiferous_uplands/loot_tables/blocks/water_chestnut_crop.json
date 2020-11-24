@@ -12,17 +12,17 @@
               "conditions": [
                 {
                   "condition": "minecraft:block_state_property",
-                  "block": "$modid:water_chestnut_crop",
+                  "block": "luminiferous_uplands:water_chestnut_crop",
                   "properties": {
                     "age": "7"
                   }
                 }
               ],
-              "name": "$modid:water_chestnut"
+              "name": "luminiferous_uplands:water_chestnut"
             },
             {
               "type": "minecraft:item",
-              "name": "$modid:water_chestnut_seeds"
+              "name": "luminiferous_uplands:water_chestnut_seeds"
             }
           ]
         }
@@ -44,13 +44,13 @@
               }
             }
           ],
-          "name": "$modid:water_chestnut_seeds"
+          "name": "luminiferous_uplands:water_chestnut_seeds"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "$modid:water_chestnut_crop",
+          "block": "luminiferous_uplands:water_chestnut_crop",
           "properties": {
             "age": "7"
           }

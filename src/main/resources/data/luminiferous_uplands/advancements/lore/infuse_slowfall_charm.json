@@ -1,8 +1,8 @@
 {
-  "parent": "$modid:lore/build_infuser",
+  "parent": "luminiferous_uplands:lore/build_infuser",
   "display": {
     "icon": {
-      "item": "$modid:aegisalt_charm"
+      "item": "luminiferous_uplands:aegisalt_charm"
     },
     "title": {
       "translate": "advancements.luminiferous_uplands.lore.infuse_slowfall_charm"
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "$modid:aegisalt_charm"
+            "item": "luminiferous_uplands:aegisalt_charm"
           }
         ]
       }

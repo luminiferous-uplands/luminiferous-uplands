@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "$modid:block/red_skyroot_leaves"
+      "model": "luminiferous_uplands:block/red_skyroot_leaves"
     }
   }
 }

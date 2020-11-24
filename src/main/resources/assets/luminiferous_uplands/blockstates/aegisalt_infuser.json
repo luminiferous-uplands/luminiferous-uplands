@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "$modid:block/aegisalt_infuser"
+      "model": "luminiferous_uplands:block/aegisalt_infuser"
     }
   }
 }

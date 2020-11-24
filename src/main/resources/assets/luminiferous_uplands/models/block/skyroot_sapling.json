@@ -1,6 +1,6 @@
 {
   "parent": "block/cross",
   "textures": {
-    "cross": "$modid:block/skyroot_sapling"
+    "cross": "luminiferous_uplands:block/skyroot_sapling"
   }
 }

@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "$modid:cloud_daisies"
+          "name": "luminiferous_uplands:cloud_daisies"
         }
       ],
       "conditions": [

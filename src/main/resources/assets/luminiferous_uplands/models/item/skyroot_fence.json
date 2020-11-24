@@ -1,3 +1,3 @@
 {
-  "parent": "$modid:block/fences/skyroot_fence_inventory"
+  "parent": "luminiferous_uplands:block/fences/skyroot_fence_inventory"
 }

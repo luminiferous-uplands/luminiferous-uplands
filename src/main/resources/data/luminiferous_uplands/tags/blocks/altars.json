@@ -1,7 +1,7 @@
 {
   "replace": true,
   "values": [
-    "$modid:megadungeon_altar",
-    "$modid:active_megadungeon_altar"
+    "luminiferous_uplands:megadungeon_altar",
+    "luminiferous_uplands:active_megadungeon_altar"
   ]
 }

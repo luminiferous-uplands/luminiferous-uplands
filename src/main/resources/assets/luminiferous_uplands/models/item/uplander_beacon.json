@@ -1,11 +1,11 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "$modid:block/uplander_beacon_top",
+		"0": "luminiferous_uplands:block/uplander_beacon_top",
 		"1": "block/stone",
-		"2": "$modid:block/uplander_beacon_etched",
-		"3": "$modid:block/uplander_beacon_wing",
-		"particle": "$modid:block/uplander_beacon_top"
+		"2": "luminiferous_uplands:block/uplander_beacon_etched",
+		"3": "luminiferous_uplands:block/uplander_beacon_wing",
+		"particle": "luminiferous_uplands:block/uplander_beacon_top"
 	},
 	"elements": [
 		{

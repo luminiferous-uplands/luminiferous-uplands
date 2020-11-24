@@ -9,13 +9,13 @@
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "$modid:skyroot_door",
+              "block": "luminiferous_uplands:skyroot_door",
               "properties": {
                 "half": "lower"
               }
             }
           ],
-          "name": "$modid:skyroot_door"
+          "name": "luminiferous_uplands:skyroot_door"
         }
       ],
       "conditions": [

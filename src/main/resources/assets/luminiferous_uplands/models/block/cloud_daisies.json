@@ -1,6 +1,6 @@
 {
   "parent": "block/cross",
   "textures": {
-    "cross": "$modid:block/cloud_daisies"
+    "cross": "luminiferous_uplands:block/cloud_daisies"
   }
 }

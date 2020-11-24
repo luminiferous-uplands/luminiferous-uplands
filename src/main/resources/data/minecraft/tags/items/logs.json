@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "$modid:skyroot_log",
-    "$modid:skyroot_wood"
+    "luminiferous_uplands:skyroot_log",
+    "luminiferous_uplands:skyroot_wood"
   ]
 }

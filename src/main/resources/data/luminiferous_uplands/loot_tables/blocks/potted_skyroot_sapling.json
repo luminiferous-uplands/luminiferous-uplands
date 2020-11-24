@@ -20,7 +20,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "$modid:skyroot_sapling"
+          "name": "luminiferous_uplands:skyroot_sapling"
         }
       ],
       "conditions": [

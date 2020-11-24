@@ -1,8 +1,8 @@
 {
-  "type": "$modid:aegisalt_infusion",
+  "type": "luminiferous_uplands:aegisalt_infusion",
   "group": "",
   "result": {
-    "item": "$modid:aegisalt_charm",
+    "item": "luminiferous_uplands:aegisalt_charm",
     "count": 1
   },
   "ingredients": [

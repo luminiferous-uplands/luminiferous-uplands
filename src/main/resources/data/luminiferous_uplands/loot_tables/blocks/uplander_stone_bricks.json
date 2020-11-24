@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "$modid:uplander_stone_bricks"
+          "name": "luminiferous_uplands:uplander_stone_bricks"
         }
       ],
       "conditions": [

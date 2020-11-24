@@ -1,6 +1,6 @@
 {
   "parent": "block/leaves",
   "textures": {
-    "all": "$modid:block/orange_skyroot_leaves"
+    "all": "luminiferous_uplands:block/orange_skyroot_leaves"
   }
 }

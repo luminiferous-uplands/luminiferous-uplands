@@ -1,8 +1,8 @@
 {
-  "parent": "$modid:lore/enter_with_beacon",
+  "parent": "luminiferous_uplands:lore/enter_with_beacon",
   "display": {
     "icon": {
-      "item": "$modid:lodestone"
+      "item": "luminiferous_uplands:lodestone"
     },
     "title": {
       "translate": "advancements.luminiferous_uplands.lore.find_lodestone"
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "$modid:lodestone"
+            "item": "luminiferous_uplands:lodestone"
           }
         ]
       }

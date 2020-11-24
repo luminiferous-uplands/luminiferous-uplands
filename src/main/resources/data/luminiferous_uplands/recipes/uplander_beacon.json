@@ -17,7 +17,7 @@
     }
   },
   "result": {
-    "item": "$modid:uplander_beacon",
+    "item": "luminiferous_uplands:uplander_beacon",
     "count": 1
   }
 }

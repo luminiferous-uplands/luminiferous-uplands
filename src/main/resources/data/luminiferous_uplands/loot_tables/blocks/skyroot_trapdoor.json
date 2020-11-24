@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "$modid:skyroot_trapdoor"
+          "name": "luminiferous_uplands:skyroot_trapdoor"
         }
       ],
       "conditions": [

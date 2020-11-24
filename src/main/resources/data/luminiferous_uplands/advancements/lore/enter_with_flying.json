@@ -1,5 +1,5 @@
 {
-  "parent": "$modid:lore/enter_with_beacon",
+  "parent": "luminiferous_uplands:lore/enter_with_beacon",
   "display": {
     "icon": {
       "item": "minecraft:elytra"

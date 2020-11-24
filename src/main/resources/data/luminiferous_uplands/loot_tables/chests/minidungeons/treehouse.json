@@ -21,7 +21,7 @@
               }
             }
           ],
-          "name": "$modid:uplander_stone"
+          "name": "luminiferous_uplands:uplander_stone"
         },
         {
           "type": "minecraft:item",
@@ -36,7 +36,7 @@
               }
             }
           ],
-          "name": "$modid:skyroot_log"
+          "name": "luminiferous_uplands:skyroot_log"
         },
         {
           "type": "minecraft:item",

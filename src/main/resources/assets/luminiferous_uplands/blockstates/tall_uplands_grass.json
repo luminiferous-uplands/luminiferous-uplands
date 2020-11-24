@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "$modid:block/tall_uplands_grass"
+      "model": "luminiferous_uplands:block/tall_uplands_grass"
     }
   }
 }

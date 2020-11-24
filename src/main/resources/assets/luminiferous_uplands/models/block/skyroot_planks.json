@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "$modid:block/skyroot_planks"
+    "all": "luminiferous_uplands:block/skyroot_planks"
   }
 }

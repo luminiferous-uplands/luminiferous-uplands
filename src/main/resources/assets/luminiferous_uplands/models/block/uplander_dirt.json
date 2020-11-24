@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "$modid:block/uplander_dirt"
+    "all": "luminiferous_uplands:block/uplander_dirt"
   }
 }

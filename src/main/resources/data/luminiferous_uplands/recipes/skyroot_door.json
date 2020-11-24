@@ -7,11 +7,11 @@
   ],
   "key": {
     "G": {
-      "item": "$modid:skyroot_planks"
+      "item": "luminiferous_uplands:skyroot_planks"
     }
   },
   "result": {
-    "item": "$modid:skyroot_door",
+    "item": "luminiferous_uplands:skyroot_door",
     "count": 3
   }
 }

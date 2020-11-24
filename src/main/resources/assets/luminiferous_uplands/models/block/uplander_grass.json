@@ -1,9 +1,9 @@
 {
   "parent": "block/cube_bottom_top",
   "textures": {
-    "particle": "$modid:block/uplander_grass_top",
-    "bottom": "$modid:block/uplander_dirt",
-    "top": "$modid:block/uplander_grass_top",
-    "side": "$modid:block/uplander_grass_side"
+    "particle": "luminiferous_uplands:block/uplander_grass_top",
+    "bottom": "luminiferous_uplands:block/uplander_dirt",
+    "top": "luminiferous_uplands:block/uplander_grass_top",
+    "side": "luminiferous_uplands:block/uplander_grass_side"
   }
 }

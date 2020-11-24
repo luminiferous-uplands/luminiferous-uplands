@@ -1,7 +1,7 @@
 {
   "type": "minecraft:decorated",
   "config": {
-    "feature": "$modid:lodestone_ore",
+    "feature": "luminiferous_uplands:lodestone_ore",
     "decorator": {
       "type": "minecraft:decorated",
       "config": {

@@ -6,15 +6,15 @@
   ],
   "key": {
     "#": {
-      "item": "$modid:uplander_stone"
+      "item": "luminiferous_uplands:uplander_stone"
     },
 
     "%": {
-      "item": "$modid:aegisalt_crystal"
+      "item": "luminiferous_uplands:aegisalt_crystal"
     }
   },
   "result": {
-    "item": "$modid:aegisalt_bricks",
+    "item": "luminiferous_uplands:aegisalt_bricks",
     "count": 4
   }
 }
