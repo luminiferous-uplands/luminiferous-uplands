@@ -11,7 +11,6 @@ import robosky.uplands.block.bossroom.DoorwayBlock;
 import robosky.uplands.block.bossroom.DoorwayBlockEntity;
 import robosky.uplands.block.bossroom.MegadungeonAltarBlock;
 import robosky.uplands.block.unbreakable.UnbreakableBlock;
-import robosky.uplands.world.feature.plants.UplandsSaplingGenerator;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
