@@ -1,0 +1,7 @@
+{
+  "type": "$modid:minidungeon",
+  "config": {
+    "template": "$modid:minidungeons/treehouse",
+    "loot": "$modid:chests/minidungeons/treehouse"
+  }
+}

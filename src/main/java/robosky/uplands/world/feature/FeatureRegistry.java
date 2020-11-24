@@ -1,6 +1,8 @@
 package robosky.uplands.world.feature;
 
 import robosky.uplands.UplandsMod;
+import robosky.uplands.world.feature.minidungeons.MinidungeonFeature;
+import robosky.uplands.world.feature.minidungeons.MinidungeonGenerator;
 import robosky.uplands.world.feature.plants.SkyrootFlatTreeFeature;
 import robosky.uplands.world.feature.plants.SkyrootTreeFeature;
 import robosky.uplands.world.feature.plants.SkyrootTreeFeatureConfig;
@@ -9,8 +11,10 @@ import robosky.uplands.world.feature.plants.UplandFlowerFeature;
 import robosky.uplands.world.feature.plants.WaterChestnutFeature;
 import robosky.uplands.world.feature.plants.ZephyrOnionFeature;
 
+import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
 import net.minecraft.structure.StructurePieceType;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.RandomPatchFeatureConfig;
@@ -26,13 +30,14 @@ public final class FeatureRegistry {
     public static final ZephyrOnionFeature WILD_ZEPHYR_ONION = register("wild_zephyr_onion", new ZephyrOnionFeature(DefaultFeatureConfig.CODEC));
     public static final TallUplandsGrassFeature TALL_UPLANDS_GRASS = register("tall_uplands_grass", new TallUplandsGrassFeature(RandomPatchFeatureConfig.CODEC));
 
-//    public static final MinidungeonFeature TREEHOUSE = new MinidungeonFeature(
-//        new MinidungeonFeatureConfig("Uplands Treehouse",
-//            UplandsMod.id("minidungeons/treehouse"),
-//            Optional.of(UplandsMod.id("chests/minidungeons/treehouse")))
-//    ).register("treehouse");
+    public static final MinidungeonFeature MINIDUNGEON =
+        FabricStructureBuilder.create(UplandsMod.id("minidungeon"), new MinidungeonFeature())
+            .step(GenerationStep.Feature.SURFACE_STRUCTURES)
+            .defaultConfig(8, 4, 1)
+            .register();
 
     public static final StructurePieceType SPAWN_PLATFORM = Registry.register(Registry.STRUCTURE_PIECE, UplandsMod.id("spawn_platform"), SpawnPlatformPiece::new);
+    public static final StructurePieceType MINIDUNGEON_PIECE = Registry.register(Registry.STRUCTURE_PIECE, UplandsMod.id("minidungeon"), MinidungeonGenerator.Piece::new);
 
     public static <A extends Feature<?>> A register(String name, A f) {
         return Registry.register(Registry.FEATURE, UplandsMod.id(name), f);

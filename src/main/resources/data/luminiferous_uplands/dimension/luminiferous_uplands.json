@@ -9,7 +9,13 @@
       "sea_level": 0,
       "disable_mob_generation": false,
       "structures": {
-        "structures": {}
+        "structures": {
+          "$modid:minidungeon": {
+            "spacing": 8,
+            "separation": 4,
+            "salt": 1
+          }
+        }
       },
       "noise": {
         "top_slide": {

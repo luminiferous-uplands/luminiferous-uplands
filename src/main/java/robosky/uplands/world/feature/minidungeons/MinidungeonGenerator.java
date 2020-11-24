@@ -3,6 +3,8 @@ package robosky.uplands.world.feature.minidungeons;
 import java.util.List;
 import java.util.Random;
 
+import robosky.uplands.world.feature.FeatureRegistry;
+
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ChestBlockEntity;
@@ -11,7 +13,6 @@ import net.minecraft.structure.SimpleStructurePiece;
 import net.minecraft.structure.Structure;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructurePiece;
-import net.minecraft.structure.StructurePieceType;
 import net.minecraft.structure.StructurePlacementData;
 import net.minecraft.structure.processor.BlockIgnoreStructureProcessor;
 import net.minecraft.util.BlockMirror;
@@ -20,7 +21,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.StructureWorldAccess;
@@ -36,25 +36,23 @@ public class MinidungeonGenerator {
     public static class Piece extends SimpleStructurePiece {
         private final BlockRotation rotation;
         private final Identifier template;
-        private Identifier loot = null;
+        private final Identifier loot;
 
         Piece(StructureManager mgr, BlockPos pos, BlockRotation rotation, MinidungeonFeatureConfig conf) {
-            super(Registry.STRUCTURE_PIECE.get(conf.getTemplate()), 0);
+            super(FeatureRegistry.MINIDUNGEON_PIECE, 0);
             this.rotation = rotation;
             this.pos = pos;
-            this.template = conf.getTemplate();
-            this.loot = conf.getLoot().orElse(null);
+            this.template = conf.template;
+            this.loot = conf.loot;
 
             initializeStructureData(mgr);
         }
 
-        public Piece(StructurePieceType tpe, StructureManager mgr, CompoundTag tag) {
-            super(tpe, tag);
+        public Piece(StructureManager mgr, CompoundTag tag) {
+            super(FeatureRegistry.MINIDUNGEON_PIECE, tag);
             this.rotation = BlockRotation.valueOf(tag.getString("Rot"));
             this.template = new Identifier(tag.getString("Template"));
-            if(tag.contains("LootTable")) {
-                this.loot = new Identifier(tag.getString("LootTable"));
-            }
+            this.loot = new Identifier(tag.getString("LootTable"));
             initializeStructureData(mgr);
         }
 
@@ -62,9 +60,7 @@ public class MinidungeonGenerator {
             super.toNbt(tag);
             tag.putString("Rot", this.rotation.name());
             tag.putString("Template", template.toString());
-            if(loot != null) {
-                tag.putString("LootTable", loot.toString());
-            }
+            tag.putString("LootTable", loot.toString());
         }
 
         private void initializeStructureData(StructureManager mgr) {
