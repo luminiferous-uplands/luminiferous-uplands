@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "$modid:skyroot_sapling"
+          "name": "$modid:yellow_skyroot_sapling"
         }
       ],
       "conditions": [

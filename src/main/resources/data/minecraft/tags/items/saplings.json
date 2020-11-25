@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "$modid:skyroot_sapling"
+    "$modid:red_skyroot_sapling",
+    "$modid:orange_skyroot_sapling",
+    "$modid:yellow_skyroot_sapling"
   ]
 }

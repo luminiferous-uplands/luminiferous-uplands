@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "$modid:block/red_skyroot_sapling"
+  }
+}

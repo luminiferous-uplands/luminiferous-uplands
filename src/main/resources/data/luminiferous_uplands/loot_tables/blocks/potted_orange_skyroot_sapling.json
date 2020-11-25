@@ -20,7 +20,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "$modid:skyroot_sapling"
+          "name": "$modid:orange_skyroot_sapling"
         }
       ],
       "conditions": [

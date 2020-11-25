@@ -17,6 +17,7 @@ import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
@@ -42,6 +43,7 @@ public final class BlockRegistry {
     public static final Block.Settings AEGISALT_BRICKS_SETTINGS = FabricBlockSettings.of(Material.STONE).strength(1.5f, 30f).breakByTool(FabricToolTags.PICKAXES, 1);
     public static final Block.Settings SKYROOT_BLOCK_SETTINGS = FabricBlockSettings.of(Material.WOOD, MaterialColor.BROWN).strength(2.0F, 2.0F).sounds(BlockSoundGroup.WOOD).breakByTool(FabricToolTags.AXES, -1);
     public static final Block.Settings SKYROOT_LEAVES_SETTINGS = FabricBlockSettings.of(Material.LEAVES).strength(0.2F, 0.2F).ticksRandomly().nonOpaque().sounds(BlockSoundGroup.GRASS);
+    public static final Block.Settings SKYROOT_SAPLING_SETTINGS = FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS);
     public static final Block.Settings FLOWER_SETTINGS = FabricBlockSettings.of(Material.LEAVES).breakInstantly().collidable(false);
 
     // Uplander Organic Blocks
@@ -86,8 +88,12 @@ public final class BlockRegistry {
     public static final Block SKYROOT_PRESSURE_PLATE = registerWithItem("skyroot_pressure_plate", new ModPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).noCollision().strength(0.5f, 2.5f)));
 
     // Skywood shrubs
-    public static final Block SKYROOT_SAPLING = registerWithItem("skyroot_sapling", new UplandsSaplingBlock(RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, UplandsMod.id("autumn_skyroot_tree")), FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS)));
-    public static final Block POTTED_SKYROOT_SAPLING = register("potted_skyroot_sapling", new FlowerPotBlock(SKYROOT_SAPLING, FabricBlockSettings.of(Material.SUPPORTED).breakInstantly()));
+    public static final Block RED_SKYROOT_SAPLING = registerWithItem("red_skyroot_sapling", new UplandsSaplingBlock(RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, UplandsMod.id("red_skyroot_tree")), SKYROOT_SAPLING_SETTINGS));
+    public static final Block ORANGE_SKYROOT_SAPLING = registerWithItem("orange_skyroot_sapling", new UplandsSaplingBlock(RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, UplandsMod.id("orange_skyroot_tree")), SKYROOT_SAPLING_SETTINGS));
+    public static final Block YELLOW_SKYROOT_SAPLING = registerWithItem("yellow_skyroot_sapling", new UplandsSaplingBlock(RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, UplandsMod.id("yellow_skyroot_tree")), SKYROOT_SAPLING_SETTINGS));
+    public static final Block POTTED_RED_SKYROOT_SAPLING = register("potted_red_skyroot_sapling", new FlowerPotBlock(RED_SKYROOT_SAPLING, FabricBlockSettings.of(Material.SUPPORTED).breakInstantly()));
+    public static final Block POTTED_ORANGE_SKYROOT_SAPLING = register("potted_orange_skyroot_sapling", new FlowerPotBlock(ORANGE_SKYROOT_SAPLING, FabricBlockSettings.of(Material.SUPPORTED).breakInstantly()));
+    public static final Block POTTED_YELLOW_SKYROOT_SAPLING = register("potted_yellow_skyroot_sapling", new FlowerPotBlock(YELLOW_SKYROOT_SAPLING, FabricBlockSettings.of(Material.SUPPORTED).breakInstantly()));
 
     public static final Block RED_SKYROOT_LEAVES = registerWithItem("red_skyroot_leaves", new LeavesBlock(SKYROOT_LEAVES_SETTINGS));
     public static final Block ORANGE_SKYROOT_LEAVES = registerWithItem("orange_skyroot_leaves", new LeavesBlock(SKYROOT_LEAVES_SETTINGS));
@@ -223,8 +229,12 @@ public final class BlockRegistry {
 
         fuel(SKYROOT_PRESSURE_PLATE, 300);
 
-        compostable(SKYROOT_SAPLING, 0.65F);
-        fuel(SKYROOT_SAPLING, 100);
+        compostable(RED_SKYROOT_SAPLING, 0.65F);
+        compostable(ORANGE_SKYROOT_SAPLING, 0.65F);
+        compostable(YELLOW_SKYROOT_SAPLING, 0.65F);
+        fuel(RED_SKYROOT_SAPLING, 100);
+        fuel(ORANGE_SKYROOT_SAPLING, 100);
+        fuel(YELLOW_SKYROOT_SAPLING, 100);
 
         flammable(RED_SKYROOT_LEAVES, 60, 30);
         compostable(RED_SKYROOT_LEAVES, 0.3F);
