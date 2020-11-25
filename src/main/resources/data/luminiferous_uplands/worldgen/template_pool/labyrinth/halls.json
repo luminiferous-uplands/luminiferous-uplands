@@ -1,0 +1,86 @@
+{
+  "name": "$modid:labyrinth/halls",
+  "fallback": "$modid:labyrinth/dead_ends",
+  "elements": [
+    {
+      "weight": 6,
+      "element": {
+        "element_type": "structure-helpers:metadata_element",
+        "location": "$modid:megadungeon/hallway",
+        "projection": "rigid",
+        "OverwriteFluids": true,
+        "processors": []
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "element_type": "structure-helpers:metadata_element",
+        "location": "$modid:megadungeon/corner",
+        "projection": "rigid",
+        "OverwriteFluids": true,
+        "processors": []
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "element_type": "structure-helpers:metadata_element",
+        "location": "$modid:megadungeon/tee",
+        "projection": "rigid",
+        "OverwriteFluids": true,
+        "processors": []
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "structure-helpers:metadata_element",
+        "location": "$modid:megadungeon/alcove",
+        "projection": "rigid",
+        "OverwriteFluids": true,
+        "processors": []
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "structure-helpers:metadata_element",
+        "location": "$modid:megadungeon/spawner_room",
+        "projection": "rigid",
+        "OverwriteFluids": true,
+        "processors": []
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "structure-helpers:metadata_element",
+        "location": "$modid:megadungeon/trap",
+        "projection": "rigid",
+        "OverwriteFluids": true,
+        "processors": []
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "structure-helpers:metadata_element",
+        "location": "$modid:megadungeon/boss_room",
+        "projection": "rigid",
+        "OverwriteFluids": true,
+        "processors": []
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "structure-helpers:metadata_element",
+        "location": "$modid:megadungeon/dead_end",
+        "projection": "rigid",
+        "OverwriteFluids": true,
+        "processors": []
+      }
+    }
+  ]
+}

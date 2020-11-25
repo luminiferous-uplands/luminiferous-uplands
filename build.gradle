@@ -22,6 +22,7 @@ repositories {
     maven { url "https://repo.elytradev.com/" }
     maven { url 'http://server.bbkr.space:8081/artifactory/libs-release' }
     maven { url "https://maven.swordglowsblue.com" }
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -56,7 +57,10 @@ dependencies {
         exclude group: 'io.github.prospector.modmenu'
         exclude group: 'io.github.prospector'
     }
+    modImplementation "com.github.kvverti:structure-helpers:${project.structure_helpers_version}"
+
     include "io.github.cottonmc:LibGui:${project.libgui_version}"
+    include "com.github.kvverti:structure-helpers:${project.structure_helpers_version}"
 }
 
 processResources {

@@ -14,6 +14,11 @@
             "spacing": 8,
             "separation": 4,
             "salt": 1
+          },
+          "$modid:megadungeon": {
+            "spacing": 16,
+            "separation": 4,
+            "salt": 1
           }
         }
       },

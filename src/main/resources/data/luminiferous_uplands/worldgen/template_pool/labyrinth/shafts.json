@@ -1,0 +1,26 @@
+{
+  "name": "$modid:labyrinth/shafts",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 4,
+      "element": {
+        "element_type": "structure-helpers:metadata_element",
+        "location": "$modid:megadungeon/shaft_vertical",
+        "projection": "rigid",
+        "OverwriteFluids": true,
+        "processors": []
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "structure-helpers:metadata_element",
+        "location": "$modid:megadungeon/shaft_bottom",
+        "projection": "rigid",
+        "OverwriteFluids": true,
+        "processors": []
+      }
+    }
+  ]
+}

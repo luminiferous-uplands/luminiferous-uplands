@@ -33,7 +33,8 @@
     []
   ],
   "starts": [
-    "$modid:minidungeons/treehouse"
+    "$modid:minidungeons/treehouse",
+    "$modid:megadungeons/labyrinth"
   ],
   "spawners": {
     "monster": [

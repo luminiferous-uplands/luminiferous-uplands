@@ -1,0 +1,16 @@
+{
+  "name": "$modid:labyrinth/entrance",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "structure-helpers:metadata_element",
+        "location": "$modid:megadungeon/entrance",
+        "projection": "rigid",
+        "OverwriteFluids": true,
+        "processors": []
+      }
+    }
+  ]
+}

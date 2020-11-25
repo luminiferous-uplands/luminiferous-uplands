@@ -1,6 +1,9 @@
 package robosky.uplands.world.feature;
 
+import robosky.structurehelpers.structure.pool.ExtendedSinglePoolElement;
+import robosky.structurehelpers.structure.pool.ExtendedStructureFeature;
 import robosky.uplands.UplandsMod;
+import robosky.uplands.world.feature.megadungeon.MegadungeonFeature;
 import robosky.uplands.world.feature.minidungeons.MinidungeonFeature;
 import robosky.uplands.world.feature.minidungeons.MinidungeonGenerator;
 import robosky.uplands.world.feature.plants.SkyrootFlatTreeFeature;
@@ -35,6 +38,11 @@ public final class FeatureRegistry {
             .step(GenerationStep.Feature.SURFACE_STRUCTURES)
             .defaultConfig(8, 4, 1)
             .register();
+    public static final ExtendedStructureFeature MEGADUNGEON =
+        FabricStructureBuilder.create(UplandsMod.id("megadungeon"), new MegadungeonFeature())
+            .step(GenerationStep.Feature.UNDERGROUND_STRUCTURES)
+            .defaultConfig(16, 4, 1)
+            .register();
 
     public static final StructurePieceType SPAWN_PLATFORM = Registry.register(Registry.STRUCTURE_PIECE, UplandsMod.id("spawn_platform"), SpawnPlatformPiece::new);
     public static final StructurePieceType MINIDUNGEON_PIECE = Registry.register(Registry.STRUCTURE_PIECE, UplandsMod.id("minidungeon"), MinidungeonGenerator.Piece::new);
@@ -44,7 +52,7 @@ public final class FeatureRegistry {
     }
 
     public static void init() {
-//        MegadungeonFeature.register();
-//        MegadungeonGenerator.initialize();
+        // initialize this since Structure Helpers doesn't
+        ExtendedSinglePoolElement.TYPE.getClass();
     }
 }

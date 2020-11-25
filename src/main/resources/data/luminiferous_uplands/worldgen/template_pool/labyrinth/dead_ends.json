@@ -1,0 +1,16 @@
+{
+  "name": "$modid:labyrinth/dead_ends",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "structure-helpers:metadata_element",
+        "location": "$modid:megadungeon/dead_end",
+        "projection": "rigid",
+        "OverwriteFluids": true,
+        "processors": []
+      }
+    }
+  ]
+}

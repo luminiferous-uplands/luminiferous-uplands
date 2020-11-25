@@ -1,0 +1,16 @@
+{
+  "type": "$modid:megadungeon",
+  "config": {
+    "StartPool": "$modid:labyrinth/entrance",
+    "Size": 16,
+    "HorizontalExtent": 128,
+    "VerticalExtent": 0,
+    "RangeConstraints": [
+      {
+        "Id": "$modid:megadungeon/boss_room",
+        "Min": 1,
+        "Max": 1
+      }
+    ]
+  }
+}
