@@ -1,6 +1,5 @@
 package robosky.uplands.world.feature;
 
-import robosky.structurehelpers.structure.pool.ExtendedSinglePoolElement;
 import robosky.structurehelpers.structure.pool.ExtendedStructureFeature;
 import robosky.uplands.UplandsMod;
 import robosky.uplands.world.feature.megadungeon.MegadungeonFeature;
@@ -52,7 +51,5 @@ public final class FeatureRegistry {
     }
 
     public static void init() {
-        // initialize this since Structure Helpers doesn't
-        ExtendedSinglePoolElement.TYPE.getClass();
     }
 }
