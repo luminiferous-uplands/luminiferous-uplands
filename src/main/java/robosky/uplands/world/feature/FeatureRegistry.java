@@ -8,7 +8,6 @@ import robosky.uplands.world.feature.minidungeons.MinidungeonGenerator;
 import robosky.uplands.world.feature.plants.SkyrootFlatTreeFeature;
 import robosky.uplands.world.feature.plants.SkyrootTreeFeature;
 import robosky.uplands.world.feature.plants.SkyrootTreeFeatureConfig;
-import robosky.uplands.world.feature.plants.TallUplandsGrassFeature;
 import robosky.uplands.world.feature.plants.UplandFlowerFeature;
 import robosky.uplands.world.feature.plants.WaterChestnutFeature;
 import robosky.uplands.world.feature.plants.ZephyrOnionFeature;
@@ -19,7 +18,6 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.RandomPatchFeatureConfig;
 import net.minecraft.world.gen.feature.SingleStateFeatureConfig;
 
 public final class FeatureRegistry {
@@ -30,7 +28,6 @@ public final class FeatureRegistry {
     public static final WaterChestnutFeature WILD_WATER_CHESTNUTS = register("wild_water_chestnuts", new WaterChestnutFeature(DefaultFeatureConfig.CODEC));
     public static final UplandFlowerFeature UPLAND_FLOWER = register("upland_flower", new UplandFlowerFeature(DefaultFeatureConfig.CODEC));
     public static final ZephyrOnionFeature WILD_ZEPHYR_ONION = register("wild_zephyr_onion", new ZephyrOnionFeature(DefaultFeatureConfig.CODEC));
-    public static final TallUplandsGrassFeature TALL_UPLANDS_GRASS = register("tall_uplands_grass", new TallUplandsGrassFeature(RandomPatchFeatureConfig.CODEC));
 
     public static final MinidungeonFeature MINIDUNGEON =
         FabricStructureBuilder.create(UplandsMod.id("minidungeon"), new MinidungeonFeature())

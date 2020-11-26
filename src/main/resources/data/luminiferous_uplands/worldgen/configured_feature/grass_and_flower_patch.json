@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "state_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "weight": 7,
+          "data": {
+            "Name": "$modid:tall_uplands_grass"
+          }
+        },
+        {
+          "weight": 1,
+          "data": {
+            "Name": "$modid:cloud_daisies"
+          }
+        }
+      ]
+    },
+    "block_placer": {
+      "type": "minecraft:simple_block_placer"
+    },
+    "whitelist": [
+      {
+        "Name": "$modid:uplander_grass"
+      },
+      {
+        "Name": "$modid:uplander_dirt"
+      }
+    ],
+    "blacklist": [],
+    "tries": 32
+  }
+}
