@@ -2,6 +2,7 @@ package robosky.uplands.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import robosky.uplands.advancement.FlyIntoUplandsCriterion;
 
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.advancement.criterion.Criterion;
@@ -13,6 +14,6 @@ public abstract class CriterionsMixin {
     private static native <T extends Criterion<?>> T register(T criterion_1);
 
     static {
-//        register(UplandsTeleporter.getUplandsCriterion());
+        register(FlyIntoUplandsCriterion.INSTANCE);
     }
 }

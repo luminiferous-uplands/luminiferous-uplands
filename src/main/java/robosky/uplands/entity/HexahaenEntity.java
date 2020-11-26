@@ -32,10 +32,6 @@ public class HexahaenEntity extends HostileEntity {
         super(entityType, world);
     }
 
-    public HexahaenEntity(World world) {
-        this(EntityRegistry.HEXAHAEN, world);
-    }
-
     @Override
     public @Nullable EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable CompoundTag entityTag) {
         setStrength(this.random.nextInt(5) + 1);

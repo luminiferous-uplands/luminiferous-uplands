@@ -10,12 +10,6 @@ import net.minecraft.world.dimension.DimensionType;
 
 public final class WorldRegistry {
 
-//    public static final FabricDimensionType UPLANDS_DIMENSION = FabricDimensionType.builder()
-//        .factory(UplandsDimension::new)
-//        .skyLight(true)
-//        .defaultPlacer(UplandsTeleporter.TO_UPLANDS_BEACON)
-//        .buildAndRegister(UplandsMod.id("luminiferous_uplands"));
-
     public static final RegistryKey<World> UPLANDS_WORLD_KEY = RegistryKey.of(Registry.DIMENSION, UplandsMod.id("luminiferous_uplands"));
     public static final RegistryKey<DimensionType> UPLANDS_DIMENSION_TYPE_KEY = RegistryKey.of(Registry.DIMENSION_TYPE_KEY, UplandsMod.id("luminiferous_uplands"));
 
