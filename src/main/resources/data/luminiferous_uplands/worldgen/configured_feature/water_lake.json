@@ -1,0 +1,12 @@
+{
+  "type": "$modid:sky_lake",
+  "config": {
+    "state": {
+      "Name": "minecraft:water",
+      "Properties": {
+        "level": "0",
+        "fall": "0"
+      }
+    }
+  }
+}

@@ -8,6 +8,7 @@ import robosky.uplands.block.UplandsBlockTags;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.LightType;
@@ -107,7 +108,8 @@ public class SkyLakeFeature extends Feature<SingleStateFeatureConfig> {
                     if(bitset[(dx * 16 + dz) * 8 + dy]) {
                         BlockPos pos = start.add(dx, dy - 1, dz);
                         if(world.getBlockState(pos).getBlock().isIn(UplandsBlockTags.PLANTABLE_ON) &&
-                            world.getLightLevel(LightType.SKY, start.add(dx, dy, dz)) > 0) {
+                            world.getLightLevel(LightType.SKY, start.add(dx, dy, dz)) > 0 &&
+                            world.getFluidState(pos.up()).getFluid() == Fluids.EMPTY) {
                             world.setBlockState(pos, BlockRegistry.UPLANDER_GRASS.getDefaultState(), 2);
                         }
                     }

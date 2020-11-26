@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:decorated",
+  "config": {
+    "feature": "$modid:water_lake",
+    "decorator": {
+      "type": "minecraft:water_lake",
+      "config": {
+        "chance": 8
+      }
+    }
+  }
+}

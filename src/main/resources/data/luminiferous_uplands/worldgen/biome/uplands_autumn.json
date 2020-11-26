@@ -17,7 +17,9 @@
   "carvers": {},
   "features": [
     [],
-    [],
+    [
+      "$modid:decorated/water_lake"
+    ],
     [],
     [],
     [],
