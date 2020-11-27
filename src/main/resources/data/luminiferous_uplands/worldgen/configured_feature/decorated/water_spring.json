@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:decorated",
+  "config": {
+    "feature": "$modid:water_spring",
+    "decorator": {
+      "type": "minecraft:decorated",
+      "config": {
+        "outer": {
+          "type": "minecraft:count",
+          "config": {
+            "count": 50
+          }
+        },
+        "inner": {
+          "type": "minecraft:decorated",
+          "config": {
+            "outer": {
+              "type": "minecraft:square",
+              "config": {}
+            },
+            "inner": {
+              "type": "minecraft:range_biased",
+              "config": {
+                "bottom_offset": 8,
+                "top_offset": 8,
+                "maximum": 256
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

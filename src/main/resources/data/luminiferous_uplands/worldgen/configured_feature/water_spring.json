@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:spring_feature",
+  "config": {
+    "state": {
+      "Name": "minecraft:water",
+      "Properties": {
+        "falling": "false"
+      }
+    },
+    "requires_block_below": true,
+    "valid_blocks": [
+      "$modid:uplander_stone"
+    ],
+    "rock_count": 4,
+    "hole_count": 1
+  }
+}
