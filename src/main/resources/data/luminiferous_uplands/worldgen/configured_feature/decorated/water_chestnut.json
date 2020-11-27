@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:decorated",
+  "config": {
+    "feature": "$modid:water_chestnut",
+    "decorator": {
+      "type": "minecraft:decorated",
+      "config": {
+        "outer": {
+          "type": "minecraft:count_extra",
+          "config": {
+            "count": 16,
+            "extra_chance": 0.1,
+            "extra_count": 1
+          }
+        },
+        "inner": {
+          "type": "minecraft:decorated",
+          "config": {
+            "outer": {
+              "type": "minecraft:square",
+              "config": {}
+            },
+            "inner": {
+              "type": "minecraft:heightmap",
+              "config": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

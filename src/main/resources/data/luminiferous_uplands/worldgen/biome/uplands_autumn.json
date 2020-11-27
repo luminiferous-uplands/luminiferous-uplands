@@ -32,7 +32,8 @@
     [
       "$modid:decorated/autumn_skyroot_tree",
       "$modid:decorated/autumn_grass_and_flower_patch",
-      "$modid:decorated/water_spring"
+      "$modid:decorated/water_spring",
+      "$modid:decorated/water_chestnut"
     ],
     []
   ],
