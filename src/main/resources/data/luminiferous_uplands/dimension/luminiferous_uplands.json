@@ -57,7 +57,7 @@
     "biome_source": {
       "seed": 0,
       "type": "minecraft:fixed",
-      "biome": "$modid:uplands_autumn"
+      "biome": "$modid:cloud_meadows"
     }
   }
 }

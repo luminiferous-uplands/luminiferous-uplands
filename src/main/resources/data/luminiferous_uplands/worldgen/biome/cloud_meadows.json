@@ -1,0 +1,54 @@
+{
+  "precipitation": "none",
+  "category": "plains",
+  "depth": 0.3,
+  "scale": 0.2,
+  "temperature": 0.5,
+  "downfall": 0.0,
+  "effects": {
+    "sky_color": 12632319,
+    "fog_color": 10066336,
+    "grass_color": 15382866,
+    "foliage_color": 15382866,
+    "water_color": 10000572,
+    "water_fog_color": 10000572
+  },
+  "surface_builder": "$modid:uplands_surface_builder",
+  "carvers": {},
+  "features": [
+    [],
+    [
+      "$modid:decorated/water_lake"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [
+      "$modid:decorated/lodestone_ore",
+      "$modid:decorated/aegisalt_ore"
+    ],
+    [],
+    [
+      "$modid:decorated/meadows_skyroot_tree",
+      "$modid:decorated/meadows_grass_and_flower_patch",
+      "$modid:decorated/water_spring",
+      "$modid:decorated/water_chestnut"
+    ],
+    []
+  ],
+  "starts": [
+    "$modid:megadungeons/labyrinth"
+  ],
+  "spawners": {
+    "monster": [
+      {
+        "type": "minecraft:enderman",
+        "weight": 10,
+        "minCount": 1,
+        "maxCount": 4
+      }
+    ]
+  },
+  "spawn_costs": {}
+}
