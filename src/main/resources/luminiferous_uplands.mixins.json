@@ -8,6 +8,7 @@
     "EntityContextImplMixin",
     "FluidBlockMixin",
     "PlayerMixin",
+    "StateManagerMixin",
     "WorldMixin"
   ],
   "client": [
