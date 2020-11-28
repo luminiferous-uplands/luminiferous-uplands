@@ -4,8 +4,7 @@
     "state": {
       "Name": "minecraft:water",
       "Properties": {
-        "level": "0",
-        "fall": "0"
+        "level": "0"
       }
     }
   }
