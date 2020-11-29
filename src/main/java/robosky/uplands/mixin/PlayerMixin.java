@@ -6,14 +6,19 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import robosky.uplands.TickableItem;
+import robosky.uplands.UplandsMod;
+import robosky.uplands.UplandsTeleporter;
 import robosky.uplands.iface.UplanderBeaconUser;
+import robosky.uplands.world.WorldRegistry;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerMixin extends LivingEntity implements UplanderBeaconUser {
@@ -56,17 +61,18 @@ public abstract class PlayerMixin extends LivingEntity implements UplanderBeacon
 
     @Inject(method = "tickMovement", at = @At("TAIL"))
     private void onTickMovement(CallbackInfo info) {
-//        if (!world.isClient) {
-//            if (this.dimension == WorldRegistry.UPLANDS_DIMENSION && this.getY() <= -60) {
-//                FabricDimensions.teleport(this, DimensionType.OVERWORLD, UplandsTeleporter.FROM_UPLANDS);
-//            } else if (this.dimension == DimensionType.OVERWORLD && this.getY() >= 300.0) {
-//                if (uplands_isUsingBeacon()) {
-//                    FabricDimensions.teleport(this, WorldRegistry.UPLANDS_DIMENSION, UplandsTeleporter.TO_UPLANDS_BEACON);
-//                } else {
-//                    FabricDimensions.teleport(this, WorldRegistry.UPLANDS_DIMENSION, UplandsTeleporter.TO_UPLANDS_FLYING);
-//                }
-//            }
-//        }
+        if(!world.isClient) {
+            if(UplandsMod.isUplandsDimensionType(this.world) && this.getY() <= -60) {
+                UplandsTeleporter.teleport(this, this.world.getServer().getOverworld(), UplandsTeleporter.FROM_UPLANDS);
+            } else if(UplandsMod.isDimensionType(this.world, DimensionType.OVERWORLD_REGISTRY_KEY) && this.getY() >= 300.0) {
+                ServerWorld uplands = this.world.getServer().getWorld(WorldRegistry.UPLANDS_WORLD_KEY);
+                if(uplands_isUsingBeacon()) {
+                    UplandsTeleporter.teleport(this, uplands, UplandsTeleporter.TO_UPLANDS_BEACON);
+                } else {
+                    UplandsTeleporter.teleport(this, uplands, UplandsTeleporter.TO_UPLANDS_FLYING);
+                }
+            }
+        }
         if(uplands_isUsingBeacon()) {
             Vec3d vel = this.getVelocity();
             if(vel.y < 0.1) {

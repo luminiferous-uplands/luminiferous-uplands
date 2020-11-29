@@ -15,6 +15,8 @@ import net.minecraft.class_5423;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.dimension.DimensionType;
 
 public class UplandsMod implements ModInitializer {
 
@@ -40,6 +42,10 @@ public class UplandsMod implements ModInitializer {
     }
 
     public static boolean isUplandsDimensionType(class_5423 world) {
-        return world.getRegistryManager().getDimensionTypes().get(WorldRegistry.UPLANDS_DIMENSION_TYPE_KEY) == world.getDimension();
+        return isDimensionType(world, WorldRegistry.UPLANDS_DIMENSION_TYPE_KEY);
+    }
+
+    public static boolean isDimensionType(class_5423 world, RegistryKey<DimensionType> key) {
+        return world.getRegistryManager().getDimensionTypes().get(key) == world.getDimension();
     }
 }
