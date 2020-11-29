@@ -23,6 +23,7 @@ repositories {
     maven { url 'http://server.bbkr.space:8081/artifactory/libs-release' }
     maven { url "https://maven.swordglowsblue.com" }
     maven { url "https://jitpack.io" }
+    maven { url "https://hephaestus.dev/release" }
 }
 
 dependencies {
@@ -58,9 +59,11 @@ dependencies {
         exclude group: 'io.github.prospector'
     }
     modImplementation "com.github.kvverti:structure-helpers:${project.structure_helpers_version}"
+    modImplementation "dev.hephaestus:seedy-behavior:${project.seedy_behavior_version}"
 
     include "io.github.cottonmc:LibGui:${project.libgui_version}"
     include "com.github.kvverti:structure-helpers:${project.structure_helpers_version}"
+    include "dev.hephaestus:seedy-behavior:${project.seedy_behavior_version}"
 }
 
 processResources {

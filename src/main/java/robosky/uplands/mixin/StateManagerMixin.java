@@ -1,6 +1,5 @@
 package robosky.uplands.mixin;
 
-import java.util.Optional;
 import java.util.function.Supplier;
 
 import com.mojang.serialization.Codec;
@@ -33,12 +32,6 @@ public class StateManagerMixin {
         Supplier<S> defaultState,
         String nameCopy,
         Property<T> property) {
-        return Codec.optionalField(name, codec)
-            .xmap(
-                // fall back to the corresponding properly in the default state
-                opt -> opt.orElse(property.createValue(defaultState.get())),
-                // always persist, to be compatible with vanilla potentially reading it back in
-                Optional::of
-            );
+        return codec.fieldOf(name).orElseGet(() -> property.createValue(defaultState.get()));
     }
 }

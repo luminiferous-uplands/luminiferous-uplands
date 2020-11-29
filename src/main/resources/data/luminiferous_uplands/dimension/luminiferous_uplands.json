@@ -2,7 +2,6 @@
   "type": "$modid:luminiferous_uplands",
   "generator": {
     "type": "minecraft:noise",
-    "seed": 0,
     "settings": {
       "bedrock_roof_position": -1,
       "bedrock_floor_position": -10,
@@ -55,7 +54,6 @@
       }
     },
     "biome_source": {
-      "seed": 0,
       "type": "minecraft:fixed",
       "biome": "$modid:cloud_meadows"
     }
