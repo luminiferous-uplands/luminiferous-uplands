@@ -10,6 +10,6 @@
   "respawn_anchor_works": false,
   "has_raids": false,
   "logical_height": 256,
-  "infiniburn": "minecraft:infiniburn_overworld",
+  "infiniburn": "$modid:infiniburn_uplands",
   "effects": "$modid:uplands_sky"
 }

@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "$modid:uplander_grass",
+    "$modid:uplander_dirt",
+    "$modid:cloud_daisies",
+    "$modid:azote_mushroom",
+    "$modid:awoken_azote_mushroom"
+  ]
+}
