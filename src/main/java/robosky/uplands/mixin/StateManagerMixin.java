@@ -15,7 +15,7 @@ import net.minecraft.state.property.Property;
 // Makes properties in state serialized forms optional.
 // This allows LU to add a property to water without breaking data packs that use the water block.
 @Mixin(StateManager.class)
-public class StateManagerMixin {
+public abstract class StateManagerMixin {
 
     @Redirect(
         method = "method_30040",

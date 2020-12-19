@@ -29,7 +29,7 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 
 public class MinidungeonGenerator {
     static void addParts(StructureManager mgr, BlockPos pos, BlockRotation rot, List<StructurePiece> pieces,
-                         MinidungeonFeatureConfig conf) {
+                         TreehouseFeatureConfig conf) {
         pieces.add(new Piece(mgr, pos, rot, conf));
     }
 
@@ -38,7 +38,7 @@ public class MinidungeonGenerator {
         private final Identifier template;
         private final Identifier loot;
 
-        Piece(StructureManager mgr, BlockPos pos, BlockRotation rotation, MinidungeonFeatureConfig conf) {
+        Piece(StructureManager mgr, BlockPos pos, BlockRotation rotation, TreehouseFeatureConfig conf) {
             super(FeatureRegistry.MINIDUNGEON_PIECE, 0);
             this.rotation = rotation;
             this.pos = pos;

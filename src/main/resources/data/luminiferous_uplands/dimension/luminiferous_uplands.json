@@ -9,7 +9,7 @@
       "disable_mob_generation": false,
       "structures": {
         "structures": {
-          "$modid:minidungeon": {
+          "$modid:treehouse": {
             "spacing": 8,
             "separation": 4,
             "salt": 1

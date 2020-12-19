@@ -3,7 +3,7 @@ package robosky.uplands.world.feature;
 import robosky.structurehelpers.structure.pool.ExtendedStructureFeature;
 import robosky.uplands.UplandsMod;
 import robosky.uplands.world.feature.megadungeon.MegadungeonFeature;
-import robosky.uplands.world.feature.minidungeons.MinidungeonFeature;
+import robosky.uplands.world.feature.minidungeons.TreehouseFeature;
 import robosky.uplands.world.feature.minidungeons.MinidungeonGenerator;
 import robosky.uplands.world.feature.plants.SkyrootFlatTreeFeature;
 import robosky.uplands.world.feature.plants.SkyrootTreeFeature;
@@ -26,8 +26,8 @@ public final class FeatureRegistry {
     public static final WaterChestnutFeature WILD_WATER_CHESTNUTS = register("wild_water_chestnuts", new WaterChestnutFeature(DefaultFeatureConfig.CODEC));
     public static final ZephyrOnionFeature WILD_ZEPHYR_ONION = register("wild_zephyr_onion", new ZephyrOnionFeature(DefaultFeatureConfig.CODEC));
 
-    public static final MinidungeonFeature MINIDUNGEON =
-        FabricStructureBuilder.create(UplandsMod.id("minidungeon"), new MinidungeonFeature())
+    public static final TreehouseFeature TREEHOUSE =
+        FabricStructureBuilder.create(UplandsMod.id("treehouse"), new TreehouseFeature())
             .step(GenerationStep.Feature.SURFACE_STRUCTURES)
             .defaultConfig(8, 4, 1)
             .register();

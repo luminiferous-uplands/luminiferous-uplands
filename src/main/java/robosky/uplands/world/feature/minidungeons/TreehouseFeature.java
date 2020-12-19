@@ -10,20 +10,20 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.StructureFeature;
 
-public class MinidungeonFeature extends StructureFeature<MinidungeonFeatureConfig> {
+public class TreehouseFeature extends StructureFeature<TreehouseFeatureConfig> {
 
-    public MinidungeonFeature() {
-        super(MinidungeonFeatureConfig.CODEC);
+    public TreehouseFeature() {
+        super(TreehouseFeatureConfig.CODEC);
     }
 
-    public static final class Start extends StructureStart<MinidungeonFeatureConfig> {
+    public static final class Start extends StructureStart<TreehouseFeatureConfig> {
 
-        Start(StructureFeature<MinidungeonFeatureConfig> feature, int chunkX, int chunkZ, BlockBox bbox, int references, long seed) {
+        Start(StructureFeature<TreehouseFeatureConfig> feature, int chunkX, int chunkZ, BlockBox bbox, int references, long seed) {
             super(feature, chunkX, chunkZ, bbox, references, seed);
         }
 
         @Override
-        public void init(DynamicRegistryManager registryManager, ChunkGenerator generator, StructureManager mgr, int chunkX, int chunkZ, Biome biome, MinidungeonFeatureConfig conf) {
+        public void init(DynamicRegistryManager registryManager, ChunkGenerator generator, StructureManager mgr, int chunkX, int chunkZ, Biome biome, TreehouseFeatureConfig conf) {
             int x = chunkX * 16;
             int z = chunkZ * 16;
             BlockPos startingPos = new BlockPos(x, 0, z);
@@ -34,7 +34,7 @@ public class MinidungeonFeature extends StructureFeature<MinidungeonFeatureConfi
     }
 
     @Override
-    public StructureFeature.StructureStartFactory<MinidungeonFeatureConfig> getStructureStartFactory() {
+    public StructureFeature.StructureStartFactory<TreehouseFeatureConfig> getStructureStartFactory() {
         return Start::new;
     }
 }
