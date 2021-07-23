@@ -1,12 +1,13 @@
 package robosky.uplands.item;
 
+import robosky.uplands.UplandsMod;
+import robosky.uplands.block.BlockRegistry;
+
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
-import robosky.uplands.UplandsMod;
-import robosky.uplands.block.BlockRegistry;
 
 public class ItemRegistry {
 
@@ -45,7 +46,10 @@ public class ItemRegistry {
             .saturationModifier(0.6f)
             .build())));
 
-    public static void init() {}
+    public static final Item MAGNETITE_NODULE = register("magnetite_nodule", new Item(new Item.Settings()));
+
+    public static void init() {
+    }
 
     private static Item register(String name, Item item) {
         return Registry.register(Registry.ITEM, UplandsMod.id(name), item);

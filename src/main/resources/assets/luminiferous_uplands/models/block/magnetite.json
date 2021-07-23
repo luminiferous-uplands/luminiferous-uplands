@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "$modid:block/lodestone"
+    "all": "$modid:block/magnetite"
   }
 }

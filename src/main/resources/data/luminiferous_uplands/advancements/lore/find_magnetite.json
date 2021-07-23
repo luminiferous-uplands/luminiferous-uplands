@@ -2,13 +2,13 @@
   "parent": "$modid:lore/enter_with_beacon",
   "display": {
     "icon": {
-      "item": "$modid:lodestone"
+      "item": "$modid:magnetite"
     },
     "title": {
-      "translate": "advancements.luminiferous_uplands.lore.find_lodestone"
+      "translate": "advancements.luminiferous_uplands.lore.find_magnetite"
     },
     "description": {
-      "translate": "advancements.luminiferous_uplands.lore.find_lodestone.description"
+      "translate": "advancements.luminiferous_uplands.lore.find_magnetite.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,12 +16,12 @@
     "hidden": false
   },
   "criteria": {
-    "lodestone": {
+    "magnetite": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "$modid:lodestone"
+            "item": "$modid:magnetite_nodule"
           }
         ]
       }
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "lodestone"
+      "magnetite"
     ]
   ]
 }

@@ -6,7 +6,7 @@
       "block": "$modid:uplander_stone"
     },
     "state": {
-      "Name": "$modid:lodestone",
+      "Name": "$modid:magnetite",
       "Properties": {
         "distance": "0"
       }

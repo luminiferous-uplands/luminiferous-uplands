@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "$modid:block/lodestone"
+      "model": "$modid:block/magnetite"
     }
   }
 }

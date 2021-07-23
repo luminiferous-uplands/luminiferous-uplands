@@ -17,7 +17,6 @@ import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
@@ -127,7 +126,7 @@ public final class BlockRegistry {
     public static final Block ACTIVE_MEGADUNGEON_ALTAR = registerWithItem("active_megadungeon_altar", new ActiveAltarBlock(MEGADUNGEON_ALTAR));
 
     // Misc
-    public static final Block LODESTONE = registerWithItem("lodestone", new LodestoneBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).strength(6.0F, 8.0F).breakByTool(FabricToolTags.PICKAXES, 2)));
+    public static final Block MAGNETITE = registerWithItem("magnetite", new MagnetiteBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).strength(6.0F, 8.0F).breakByTool(FabricToolTags.PICKAXES, 2)));
     public static final Block UPLANDER_BEACON = registerWithItem("uplander_beacon", new UplanderBeaconBlock());
 
     public static final Map<UplandsOreBlock.UplandsOreType, UplandsOreBlock> UPLANDS_ORES = createOreTypes();

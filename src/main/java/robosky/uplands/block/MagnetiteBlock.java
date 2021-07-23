@@ -17,12 +17,12 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
-public class LodestoneBlock extends Block {
+public class MagnetiteBlock extends Block {
 
     private static final int MAX_DISTANCE = 4;
     private static final Property<Integer> DISTANCE = IntProperty.of("distance", 0, MAX_DISTANCE);
 
-    public LodestoneBlock(Settings settings) {
+    public MagnetiteBlock(Settings settings) {
         super(settings);
     }
 

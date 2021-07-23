@@ -51,7 +51,7 @@ public abstract class CompassItemPropertyGetterMixin {
                 for(int z = -X_RADIUS; z <= X_RADIUS; z++) {
                     pos.set(entity.getBlockPos()).move(x, y, z);
                     BlockState state = world.getBlockState(pos);
-                    if(state.getBlock() == BlockRegistry.LODESTONE) {
+                    if(state.getBlock() == BlockRegistry.MAGNETITE) {
                         int dist = Math.abs(x) + Math.abs(y) + Math.abs(z);
                         if(dist < prevDist) {
                             targetX = x;
