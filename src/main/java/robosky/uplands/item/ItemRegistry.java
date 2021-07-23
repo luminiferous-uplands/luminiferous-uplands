@@ -46,7 +46,7 @@ public class ItemRegistry {
             .saturationModifier(0.6f)
             .build())));
 
-    public static final Item MAGNETITE_NODULE = register("magnetite_nodule", new Item(new Item.Settings()));
+    public static final Item MAGNETITE_NODULE = register("magnetite_nodule", new Item(new Item.Settings().group(UplandsMod.GROUP)));
 
     public static void init() {
     }
