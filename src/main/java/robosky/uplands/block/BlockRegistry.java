@@ -38,17 +38,17 @@ import net.minecraft.util.registry.RegistryKey;
 @SuppressWarnings("unused")
 public final class BlockRegistry {
     // Block Settings
-    public static final Block.Settings UPLANDER_STONE_SETTINGS = FabricBlockSettings.of(Material.STONE).strength(1.5f, 6f).sounds(BlockSoundGroup.STONE).breakByTool(FabricToolTags.PICKAXES, 1);
-    public static final Block.Settings AEGISALT_BRICKS_SETTINGS = FabricBlockSettings.of(Material.STONE).strength(1.5f, 30f).breakByTool(FabricToolTags.PICKAXES, 1);
-    public static final Block.Settings SKYROOT_BLOCK_SETTINGS = FabricBlockSettings.of(Material.WOOD, MaterialColor.BROWN).strength(2.0F, 2.0F).sounds(BlockSoundGroup.WOOD).breakByTool(FabricToolTags.AXES, -1);
+    public static final Block.Settings UPLANDER_STONE_SETTINGS = FabricBlockSettings.of(Material.STONE).strength(1.5f, 6f).sounds(BlockSoundGroup.STONE).breakByTool(FabricToolTags.PICKAXES).requiresTool();
+    public static final Block.Settings AEGISALT_BRICKS_SETTINGS = FabricBlockSettings.of(Material.STONE).strength(1.5f, 30f).breakByTool(FabricToolTags.PICKAXES).requiresTool();
+    public static final Block.Settings SKYROOT_BLOCK_SETTINGS = FabricBlockSettings.of(Material.WOOD, MaterialColor.BROWN).strength(2.0F, 2.0F).sounds(BlockSoundGroup.WOOD).breakByTool(FabricToolTags.AXES);
     public static final Block.Settings SKYROOT_LEAVES_SETTINGS = FabricBlockSettings.of(Material.LEAVES).strength(0.2F, 0.2F).ticksRandomly().nonOpaque().sounds(BlockSoundGroup.GRASS);
     public static final Block.Settings SKYROOT_SAPLING_SETTINGS = FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS);
-    public static final Block.Settings FLOWER_SETTINGS = FabricBlockSettings.of(Material.LEAVES).breakInstantly().collidable(false);
+    public static final Block.Settings FLOWER_SETTINGS = FabricBlockSettings.of(Material.LEAVES).breakInstantly().collidable(false).sounds(BlockSoundGroup.GRASS);
 
     // Uplander Organic Blocks
     public static final Block UPLANDER_GRASS = registerWithItem("uplander_grass", new UplandsGrassBlock());
-    public static final Block UPLANDER_DIRT = registerWithItem("uplander_dirt", new Block(FabricBlockSettings.of(Material.SOIL).strength(0.5f, 0.5f).sounds(BlockSoundGroup.GRAVEL)));
-    public static final Block UPLANDER_FARMLAND = registerWithItem("uplander_farmland", new UplanderFarmlandBlock(FabricBlockSettings.of(Material.SOIL).strength(0.6f, 0.6f).sounds(BlockSoundGroup.GRAVEL)));
+    public static final Block UPLANDER_DIRT = registerWithItem("uplander_dirt", new Block(FabricBlockSettings.of(Material.SOIL).strength(0.5f, 0.5f).breakByTool(FabricToolTags.SHOVELS).sounds(BlockSoundGroup.GRAVEL)));
+    public static final Block UPLANDER_FARMLAND = registerWithItem("uplander_farmland", new UplanderFarmlandBlock(FabricBlockSettings.of(Material.SOIL).strength(0.6f, 0.6f).breakByTool(FabricToolTags.SHOVELS).sounds(BlockSoundGroup.GRAVEL)));
     public static final Block TALL_UPLANDS_GRASS = registerWithItem("tall_uplands_grass", new TallUplandsGrassBlock(FabricBlockSettings.of(Material.REPLACEABLE_PLANT).breakInstantly().noCollision().sounds(BlockSoundGroup.GRASS)));
 
     // Uplander stone-like blocks

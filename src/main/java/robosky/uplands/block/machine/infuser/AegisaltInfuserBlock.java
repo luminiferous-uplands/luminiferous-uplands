@@ -2,6 +2,9 @@ package robosky.uplands.block.machine.infuser;
 
 import robosky.uplands.block.machine.base.BaseMachineBlock;
 
+import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
@@ -14,18 +17,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
-import net.fabricmc.fabric.api.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
-import net.fabricmc.fabric.api.tools.FabricToolTags;
-
 public final class AegisaltInfuserBlock extends BaseMachineBlock {
 
     public AegisaltInfuserBlock() {
         super(FabricBlockSettings.of(Material.STONE)
             .strength(1.5f, 6f)
-            .breakByTool(FabricToolTags.PICKAXES, 1)
-            .sounds(BlockSoundGroup.STONE)
-            .build());
+            .breakByTool(FabricToolTags.PICKAXES)
+            .requiresTool()
+            .sounds(BlockSoundGroup.STONE));
     }
 
     @Override
