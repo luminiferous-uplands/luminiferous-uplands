@@ -9,9 +9,6 @@ import robosky.uplands.block.machine.infuser.AegisaltRecipe;
 
 import net.minecraft.util.Identifier;
 
-import net.fabricmc.loader.api.SemanticVersion;
-import net.fabricmc.loader.util.version.VersionParsingException;
-
 public final class UplandsREIPlugin implements REIPluginV0 {
     @Override
     public Identifier getPluginIdentifier() {
@@ -31,10 +28,5 @@ public final class UplandsREIPlugin implements REIPluginV0 {
     @Override
     public void registerOthers(RecipeHelper recipeHelper) {
         recipeHelper.registerWorkingStations(UplandsMod.id("plugins/aegisalt_infusions"), EntryStack.create(MachineRegistry.AEGISALT_INFUSER.block));
-    }
-
-    @Override
-    public SemanticVersion getMinimumVersion() throws VersionParsingException {
-        return SemanticVersion.parse("3.0-pre");
     }
 }

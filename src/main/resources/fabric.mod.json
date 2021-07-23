@@ -32,5 +32,8 @@
     "fabric": "*",
     "libgui": "*"
   },
+  "conflicts": {
+    "roughlyenoughitems": "<3.0-pre"
+  },
   "accessWidener": "uplands.aw"
 }
