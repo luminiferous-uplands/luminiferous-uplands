@@ -25,6 +25,7 @@ public final class FeatureRegistry {
     public static final SkyLakeFeature SKY_LAKE = register("sky_lake", new SkyLakeFeature(SingleStateFeatureConfig.CODEC));
     public static final WaterChestnutFeature WILD_WATER_CHESTNUTS = register("wild_water_chestnuts", new WaterChestnutFeature(DefaultFeatureConfig.CODEC));
     public static final ZephyrOnionFeature WILD_ZEPHYR_ONION = register("wild_zephyr_onion", new ZephyrOnionFeature(DefaultFeatureConfig.CODEC));
+    public static final CloudFeature CLOUD_FEATURE = register("cloud", new CloudFeature());
 
     public static final TreehouseFeature TREEHOUSE =
         FabricStructureBuilder.create(UplandsMod.id("treehouse"), new TreehouseFeature())

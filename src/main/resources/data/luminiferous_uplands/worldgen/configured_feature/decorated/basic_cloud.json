@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:decorated",
+  "config": {
+    "feature": "$modid:basic_cloud",
+    "decorator": {
+      "type": "minecraft:decorated",
+      "config": {
+        "outer": {
+          "type": "minecraft:chance",
+          "config": {
+            "chance": 3
+          }
+        },
+        "inner": {
+          "type": "minecraft:range",
+          "config": {
+            "maximum": 70,
+            "bottom_offset": 60,
+            "top_offset": 60
+          }
+        }
+      }
+    }
+  }
+}

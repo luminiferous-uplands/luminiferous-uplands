@@ -18,7 +18,8 @@
   "features": [
     [],
     [
-      "$modid:decorated/water_lake"
+      "$modid:decorated/water_lake",
+      "$modid:decorated/basic_cloud"
     ],
     [],
     [],

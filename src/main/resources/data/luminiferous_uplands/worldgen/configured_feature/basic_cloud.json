@@ -1,0 +1,11 @@
+{
+  "type": "$modid:cloud",
+  "config": {
+    "state": {
+      "Name": "minecraft:ice"
+    },
+    "half_length": 7,
+    "radius": 5,
+    "height": 3
+  }
+}
