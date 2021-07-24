@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "$modid:uplander_cobblestone"
+  },
+  "result": "$modid:uplander_cobblestone_slab",
+  "count": 1
+}

@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "$modid:uplander_stone_stairs",
+    "$modid:uplander_cobblestone_stairs",
     "$modid:uplander_stone_brick_stairs",
     "$modid:aegisalt_brick_stairs"
   ]

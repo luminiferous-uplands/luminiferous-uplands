@@ -39,6 +39,7 @@ import net.minecraft.util.registry.RegistryKey;
 public final class BlockRegistry {
     // Block Settings
     public static final Block.Settings UPLANDER_STONE_SETTINGS = FabricBlockSettings.of(Material.STONE).strength(1.5f, 6f).sounds(BlockSoundGroup.STONE).breakByTool(FabricToolTags.PICKAXES).requiresTool();
+    public static final Block.Settings UPLANDER_COBBLESTONE_SETTINGS = FabricBlockSettings.of(Material.STONE).strength(2.0f, 6f).sounds(BlockSoundGroup.STONE).breakByTool(FabricToolTags.PICKAXES).requiresTool();
     public static final Block.Settings AEGISALT_BRICKS_SETTINGS = FabricBlockSettings.of(Material.STONE).strength(1.5f, 30f).breakByTool(FabricToolTags.PICKAXES).requiresTool();
     public static final Block.Settings SKYROOT_BLOCK_SETTINGS = FabricBlockSettings.of(Material.WOOD, MaterialColor.BROWN).strength(2.0F, 2.0F).sounds(BlockSoundGroup.WOOD).breakByTool(FabricToolTags.AXES);
     public static final Block.Settings SKYROOT_LEAVES_SETTINGS = FabricBlockSettings.of(Material.LEAVES).strength(0.2F, 0.2F).ticksRandomly().nonOpaque().sounds(BlockSoundGroup.GRASS);
@@ -57,6 +58,11 @@ public final class BlockRegistry {
     public static final Block UPLANDER_STONE_SLAB = registerWithItem("uplander_stone_slab", new SlabBlock(UPLANDER_STONE_SETTINGS));
     public static final Block UPLANDER_STONE_WALL = registerWithItem("uplander_stone_wall", new WallBlock(UPLANDER_STONE_SETTINGS));
     public static final Block UPLANDER_STONE_BUTTON = registerWithItem("uplander_stone_button", new ModStoneButtonBlock(FabricBlockSettings.of(Material.STONE).strength(0.5f, 2.5f).sounds(BlockSoundGroup.STONE).noCollision()));
+
+    public static final Block UPLANDER_COBBLESTONE = registerWithItem("uplander_cobblestone", new Block(UPLANDER_COBBLESTONE_SETTINGS));
+    public static final Block UPLANDER_COBBLESTONE_STAIRS = registerWithItem("uplander_cobblestone_stairs", new ModStairsBlock(UPLANDER_STONE, UPLANDER_COBBLESTONE_SETTINGS));
+    public static final Block UPLANDER_COBBLESTONE_SLAB = registerWithItem("uplander_cobblestone_slab", new SlabBlock(UPLANDER_COBBLESTONE_SETTINGS));
+    public static final Block UPLANDER_COBBLESTONE_WALL = registerWithItem("uplander_cobblestone_wall", new WallBlock(UPLANDER_COBBLESTONE_SETTINGS));
 
     // Uplander stonebrick-like blocks
     public static final Block UPLANDER_STONE_BRICKS = registerWithItem("uplander_stone_bricks", new Block(UPLANDER_STONE_SETTINGS));
