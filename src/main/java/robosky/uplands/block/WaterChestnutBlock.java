@@ -5,9 +5,11 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.CropBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import robosky.uplands.item.ItemRegistry;
 
 public class WaterChestnutBlock extends CropBlock {
 
@@ -34,5 +36,10 @@ public class WaterChestnutBlock extends CropBlock {
     @Override
     protected boolean canPlantOnTop(BlockState blockState, BlockView blockView, BlockPos blockPos) {
         return blockState.getFluidState().getFluid() == Fluids.WATER;
+    }
+
+    @Override
+    protected ItemConvertible getSeedsItem() {
+        return ItemRegistry.WATER_CHESTNUT_SEEDS_ITEM;
     }
 }
