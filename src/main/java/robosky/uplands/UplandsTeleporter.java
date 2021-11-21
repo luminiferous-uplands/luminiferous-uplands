@@ -71,7 +71,7 @@ public final class UplandsTeleporter {
     public static final TeleportTargetSupplier TO_UPLANDS_FLYING = (entity, world) -> {
         if(entity instanceof ServerPlayerEntity) {
             ServerPlayerEntity se = (ServerPlayerEntity)entity;
-            FlyIntoUplandsCriterion.INSTANCE.handle(se);
+            FlyIntoUplandsCriterion.INSTANCE.grant(se);
         }
         return new TeleportTarget(new Vec3d(entity.getX(), -40.0, entity.getZ()), entity.getVelocity(), entity.yaw, entity.pitch);
     };
