@@ -9,7 +9,7 @@
         "location": "$modid:megadungeon/shaft_vertical",
         "projection": "rigid",
         "OverwriteFluids": true,
-        "processors": []
+        "processors": "$modid:labyrinth_decay"
       }
     },
     {
@@ -19,7 +19,7 @@
         "location": "$modid:megadungeon/shaft_bottom",
         "projection": "rigid",
         "OverwriteFluids": true,
-        "processors": []
+        "processors": "$modid:labyrinth_decay"
       }
     }
   ]

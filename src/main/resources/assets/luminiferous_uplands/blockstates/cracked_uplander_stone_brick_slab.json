@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "$modid:block/slabs/cracked_uplander_stone_brick_slab" },
+        "type=top": { "model": "$modid:block/slabs/cracked_uplander_stone_brick_slab_top" },
+        "type=double": { "model": "$modid:block/cracked_uplander_stone_bricks" }
+    }
+}

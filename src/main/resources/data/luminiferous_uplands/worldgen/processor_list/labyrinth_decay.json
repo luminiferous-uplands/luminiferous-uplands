@@ -1,0 +1,31 @@
+{
+  "processors": [
+    {
+      "processor_type": "structure-helpers:random_chance_processor",
+      "Entries": [
+        {
+          "Key": {
+            "Block": "$modid:uplander_stone_bricks",
+            "PropertyEntries": []
+          },
+          "Replacements": [
+            {
+              "Weight": 0.8,
+              "Target": {
+                "Block": "$modid:uplander_stone_bricks",
+                "PropertyEntries": []
+              }
+            },
+            {
+              "Weight": 0.2,
+              "Target": {
+                "Block": "$modid:cracked_uplander_stone_bricks",
+                "PropertyEntries": []
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

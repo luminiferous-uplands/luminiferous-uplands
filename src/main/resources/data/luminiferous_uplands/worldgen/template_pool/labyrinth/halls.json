@@ -9,7 +9,7 @@
         "location": "$modid:megadungeon/hallway",
         "projection": "rigid",
         "OverwriteFluids": true,
-        "processors": []
+        "processors": "$modid:labyrinth_decay"
       }
     },
     {
@@ -19,7 +19,7 @@
         "location": "$modid:megadungeon/corner",
         "projection": "rigid",
         "OverwriteFluids": true,
-        "processors": []
+        "processors": "$modid:labyrinth_decay"
       }
     },
     {
@@ -29,7 +29,7 @@
         "location": "$modid:megadungeon/tee",
         "projection": "rigid",
         "OverwriteFluids": true,
-        "processors": []
+        "processors": "$modid:labyrinth_decay"
       }
     },
     {
@@ -39,7 +39,7 @@
         "location": "$modid:megadungeon/alcove",
         "projection": "rigid",
         "OverwriteFluids": true,
-        "processors": []
+        "processors": "$modid:labyrinth_decay"
       }
     },
     {
@@ -49,7 +49,7 @@
         "location": "$modid:megadungeon/spawner_room",
         "projection": "rigid",
         "OverwriteFluids": true,
-        "processors": []
+        "processors": "$modid:labyrinth_decay"
       }
     },
     {
@@ -59,7 +59,7 @@
         "location": "$modid:megadungeon/trap",
         "projection": "rigid",
         "OverwriteFluids": true,
-        "processors": []
+        "processors": "$modid:labyrinth_decay"
       }
     },
     {
@@ -69,7 +69,7 @@
         "location": "$modid:megadungeon/boss_room",
         "projection": "rigid",
         "OverwriteFluids": true,
-        "processors": []
+        "processors": "$modid:labyrinth_bossroom_decay"
       }
     },
     {
@@ -79,7 +79,7 @@
         "location": "$modid:megadungeon/dead_end",
         "projection": "rigid",
         "OverwriteFluids": true,
-        "processors": []
+        "processors": "$modid:labyrinth_decay"
       }
     }
   ]

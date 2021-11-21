@@ -66,10 +66,15 @@ public final class BlockRegistry {
 
     // Uplander stonebrick-like blocks
     public static final Block UPLANDER_STONE_BRICKS = registerWithItem("uplander_stone_bricks", new Block(UPLANDER_STONE_SETTINGS));
+    public static final Block CRACKED_UPLANDER_STONE_BRICKS = registerWithItem("cracked_uplander_stone_bricks", new Block(UPLANDER_STONE_SETTINGS));
     public static final Block UPLANDER_STONE_BRICK_STAIRS = registerWithItem("uplander_stone_brick_stairs", new ModStairsBlock(UPLANDER_STONE_BRICKS, UPLANDER_STONE_SETTINGS));
+    public static final Block CRACKED_UPLANDER_STONE_BRICK_STAIRS = registerWithItem("cracked_uplander_stone_brick_stairs", new ModStairsBlock(UPLANDER_STONE_BRICKS, UPLANDER_STONE_SETTINGS));
     public static final Block UPLANDER_STONE_BRICK_SLAB = registerWithItem("uplander_stone_brick_slab", new SlabBlock(UPLANDER_STONE_SETTINGS));
+    public static final Block CRACKED_UPLANDER_STONE_BRICK_SLAB = registerWithItem("cracked_uplander_stone_brick_slab", new SlabBlock(UPLANDER_STONE_SETTINGS));
     public static final Block UPLANDER_STONE_BRICK_WALL = registerWithItem("uplander_stone_brick_wall", new WallBlock(UPLANDER_STONE_SETTINGS));
+    public static final Block CRACKED_UPLANDER_STONE_BRICK_WALL = registerWithItem("cracked_uplander_stone_brick_wall", new WallBlock(UPLANDER_STONE_SETTINGS));
     public static final Block UNBREAKABLE_UPLANDER_STONE_BRICKS = registerWithItem("unbreakable_uplander_stone_bricks", new UnbreakableBlock(UPLANDER_STONE_BRICKS));
+    public static final Block UNBREAKABLE_CRACKED_UPLANDER_STONE_BRICKS = registerWithItem("unbreakable_cracked_uplander_stone_bricks", new UnbreakableBlock(CRACKED_UPLANDER_STONE_BRICKS));
 
     // Aegisalt blocks
     public static final Block AEGISALT_BRICKS = registerWithItem("aegisalt_bricks", new Block(AEGISALT_BRICKS_SETTINGS));

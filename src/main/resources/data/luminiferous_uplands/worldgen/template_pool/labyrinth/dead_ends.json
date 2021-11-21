@@ -9,7 +9,7 @@
         "location": "$modid:megadungeon/dead_end",
         "projection": "rigid",
         "OverwriteFluids": true,
-        "processors": []
+        "processors": "$modid:labyrinth_decay"
       }
     }
   ]

@@ -9,7 +9,7 @@
         "location": "$modid:megadungeon/entrance",
         "projection": "rigid",
         "OverwriteFluids": true,
-        "processors": []
+        "processors": "$modid:labyrinth_decay"
       }
     }
   ]

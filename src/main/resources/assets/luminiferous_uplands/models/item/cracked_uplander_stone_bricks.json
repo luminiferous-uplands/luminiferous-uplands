@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "$modid:block/cracked_uplander_stone_bricks"
+    }
+}

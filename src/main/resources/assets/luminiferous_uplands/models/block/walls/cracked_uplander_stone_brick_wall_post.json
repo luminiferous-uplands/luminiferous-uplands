@@ -1,0 +1,6 @@
+{
+    "parent": "block/template_wall_post",
+    "textures": {
+        "wall": "$modid:block/cracked_uplander_stone_bricks"
+    }
+}
