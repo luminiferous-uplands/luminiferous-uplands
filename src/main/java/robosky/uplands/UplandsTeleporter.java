@@ -34,7 +34,6 @@ public final class UplandsTeleporter {
             createSpawnPlatform(world, pos1.north(6).west(4).down(6));
             pos = new Vec3d(pos1.getX(), pos1.getY(), pos1.getZ());
             state.setPlatformLocation(pos);
-            world.getPersistentStateManager().set(state);
         }
         return new TeleportTarget(pos, Vec3d.ZERO, 0, 0);
     };

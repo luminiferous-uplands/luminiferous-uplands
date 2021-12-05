@@ -25,6 +25,7 @@ public class UplandsPersistentState extends PersistentState {
 
     public void setPlatformLocation(@Nullable Vec3d platformLocation) {
         this.platformLocation = platformLocation;
+        this.setDirty(true);
     }
 
     @Override
