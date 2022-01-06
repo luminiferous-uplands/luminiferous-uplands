@@ -9,6 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.WorldView;
 
 import java.util.Iterator;
 import java.util.Random;
@@ -22,8 +23,9 @@ public class AzoteMushroomBlock extends MushroomPlantBlock {
     }
 
     @Override
-    public boolean canPathfindThrough(BlockState blockState, BlockView blockView, BlockPos blockPos, NavigationType environment) {
-        BlockState blockBelow = blockView.getBlockState(blockPos.down());
+    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos)  {
+        BlockState blockBelow = world.getBlockState(pos.down());
+
         return blockBelow.isIn(UplandsBlockTags.PLANTABLE_ON) ||
                 blockBelow.isIn(TagRegistry.block(new Identifier("luminiferous_uplands:azote_mushroom_spreadable")));
     }
@@ -39,7 +41,7 @@ public class AzoteMushroomBlock extends MushroomPlantBlock {
     }
 
     @Override
-    public void scheduledTick(BlockState blockState, ServerWorld serverWorld, BlockPos blockPos, Random random) {
+    public void randomTick(BlockState blockState, ServerWorld serverWorld, BlockPos blockPos, Random random) {
         // If it should spread this frame
         if (random.nextInt(25) == 0) {
             // The number of mushrooms that can be in close proximity, before it stops spreading.

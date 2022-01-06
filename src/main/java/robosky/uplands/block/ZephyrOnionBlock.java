@@ -4,9 +4,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropBlock;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import robosky.uplands.item.ItemRegistry;
 
 public class ZephyrOnionBlock extends CropBlock {
 
@@ -33,5 +35,10 @@ public class ZephyrOnionBlock extends CropBlock {
     @Override
     protected boolean canPlantOnTop(BlockState blockState, BlockView blockView, BlockPos blockPos) {
         return blockState.getBlock() == BlockRegistry.UPLANDER_FARMLAND;
+    }
+
+    @Override
+    protected ItemConvertible getSeedsItem() {
+        return ItemRegistry.ZEPHYR_ONION_ITEM;
     }
 }
